@@ -979,7 +979,7 @@ Transform:
   m_GameObject: {fileID: 1897232658}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.31, y: -3.22, z: 0}
+  m_LocalPosition: {x: -1.672, y: -2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Music: {fileID: 1302133180}
   ScrollSpeed: 7
-  SpawnLeadTime: 4.63
+  SpawnLeadTime: 2.96
   Lanes:
   - {fileID: 566901084}
   - {fileID: 1535955077}
@@ -1083,12 +1083,14 @@ MonoBehaviour:
   NotePrefab_TypeB: {fileID: 4778064962251987020, guid: 004a5be27d97c4748bf7e478bc692eaa, type: 3}
   NotePrefab_TypeC: {fileID: 7214182099033442407, guid: da3c6e31396a8044c93b7b23db7ea7c3, type: 3}
   NotePrefab_TypeD: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
-  HoldHeadPrefab_TypeA: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
-  HoldHeadPrefab_TypeB: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
-  HoldHeadPrefab_TypeC: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
-  HoldHeadPrefab_TypeD: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
-  HoldBodyPrefab: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
-  HoldEndPrefab: {fileID: 1996908913226298683, guid: 898e34daf7780844aa8e1c8166dfb2ed, type: 3}
+  HoldBodyPrefab_TypeA: {fileID: 7616786001258505359, guid: 1dbe7007570613a42b24c4acefdcc6a1, type: 3}
+  HoldBodyPrefab_TypeB: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
+  HoldBodyPrefab_TypeC: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
+  HoldBodyPrefab_TypeD: {fileID: 7616786001258505359, guid: 1dbe7007570613a42b24c4acefdcc6a1, type: 3}
+  HoldEndPrefab_TypeA: {fileID: 775594856530101656, guid: c8cca72113b95354fb9c101b549338f6, type: 3}
+  HoldEndPrefab_TypeB: {fileID: 1996908913226298683, guid: 898e34daf7780844aa8e1c8166dfb2ed, type: 3}
+  HoldEndPrefab_TypeC: {fileID: 1996908913226298683, guid: 898e34daf7780844aa8e1c8166dfb2ed, type: 3}
+  HoldEndPrefab_TypeD: {fileID: 775594856530101656, guid: c8cca72113b95354fb9c101b549338f6, type: 3}
 --- !u!4 &1992232875
 Transform:
   m_ObjectHideFlags: 0
@@ -1098,7 +1100,7 @@ Transform:
   m_GameObject: {fileID: 1992232873}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.78, y: 4.24, z: 0}
+  m_LocalPosition: {x: -1.5, y: 3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

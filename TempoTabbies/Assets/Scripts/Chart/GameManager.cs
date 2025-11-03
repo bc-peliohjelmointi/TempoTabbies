@@ -7,18 +7,19 @@ public class GameManager : MonoBehaviour
     public AudioSource Music;
 
     [Header("Prefabs")]
-    public GameObject NotePrefab_TypeA; // lanes 0 & 3
-    public GameObject NotePrefab_TypeB; // lanes 1 & 2
-    public GameObject NotePrefab_TypeC; // lane 4
-    public GameObject NotePrefab_TypeD; // lane 5
+    public GameObject NotePrefab_TypeA;
+    public GameObject NotePrefab_TypeB;
+    public GameObject NotePrefab_TypeC;
+    public GameObject NotePrefab_TypeD;
 
     [Header("Layout")]
     public Transform LaneParent;
     public Transform HitLine;
 
+    private float audioOffset = 0f; // <-- from chart or player setting
+
     void Start()
     {
-        // Path to your .sm file
         string path = Application.dataPath + "/Songs/zunda/zundasolo.sm";
         SMFile sm = SMParser.Parse(path);
 
@@ -29,10 +30,12 @@ public class GameManager : MonoBehaviour
         }
 
         SMChart chart = sm.Charts[0];
-        Debug.Log($"Loaded dance-solo chart with {chart.Measures.Count} measures.");
+        Debug.Log($"Loaded chart with {chart.Measures.Count} measures.");
 
-        // ?? Lanes are now placed manually in the scene!
-        // Just grab their references under LaneParent.
+        //  Read offset from SM file if available
+        audioOffset = sm.Offset; // StepMania OFFSET = time before chart starts (usually negative)
+
+        // Setup lanes
         if (LaneParent == null)
         {
             Debug.LogError("LaneParent is not assigned!");
@@ -43,7 +46,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < LaneParent.childCount; i++)
             lanes[i] = LaneParent.GetChild(i);
 
-        // Assign to spawner
         Spawner.Music = Music;
         Spawner.HitLine = HitLine;
         Spawner.Lanes = lanes;
@@ -53,8 +55,26 @@ public class GameManager : MonoBehaviour
         Spawner.NotePrefab_TypeC = NotePrefab_TypeC;
         Spawner.NotePrefab_TypeD = NotePrefab_TypeD;
 
-        // Load and start
         Spawner.LoadChart(sm, chart);
-        Music.Play();
+
+        //  Start playback with offset correction
+        StartCoroutine(StartMusicWithOffset());
     }
+
+    private System.Collections.IEnumerator StartMusicWithOffset()
+    {
+        if (audioOffset > 0)
+        {
+            // StepMania: positive offset means music starts later
+            yield return new WaitForSeconds(audioOffset);
+            Music.Play();
+        }
+        else
+        {
+            // Negative offset means start music earlier
+            Music.time = Mathf.Abs(audioOffset);
+            Music.Play();
+        }
+    }
+
 }

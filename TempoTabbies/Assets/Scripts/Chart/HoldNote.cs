@@ -42,6 +42,7 @@ public class HoldNote : MonoBehaviour
         {
             Vector3 scale = End.transform.localScale;
             scale.x = BodyWidth;
+            scale.y = BodyWidth;
             End.transform.localScale = scale;
         }
     }

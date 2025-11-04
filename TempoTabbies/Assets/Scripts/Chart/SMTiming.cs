@@ -14,7 +14,6 @@ public static class SMTiming
         public float holdEndTime; // only valid for hold starts
     }
 
-
     public static List<ParsedNote> GetNoteTimes(SMFile sm, SMChart chart)
     {
         List<ParsedNote> notes = new();
@@ -24,10 +23,16 @@ public static class SMTiming
             return notes;
         }
 
-        float offset = sm != null ? sm.Offset : 0f;
+        // Do NOT apply sm.Offset here — music offset is handled in GameManager
         float bpm = 120f;
         if (sm?.Bpms != null && sm.Bpms.Count > 0)
-            foreach (var kv in sm.Bpms) { bpm = kv.Value; break; }
+        {
+            foreach (var kv in sm.Bpms)
+            {
+                bpm = kv.Value;
+                break;
+            }
+        }
 
         float secPerBeat = 60f / bpm;
         float currentBeat = 0f;
@@ -44,7 +49,7 @@ public static class SMTiming
                 if (string.IsNullOrWhiteSpace(row)) continue;
 
                 float rowBeat = currentBeat + (4f * i / rows);
-                float time = offset + rowBeat * secPerBeat;
+                float time = rowBeat * secPerBeat; // offset removed!
 
                 for (int lane = 0; lane < row.Length; lane++)
                 {
@@ -78,6 +83,7 @@ public static class SMTiming
         Debug.Log($"Generated {notes.Count} notes (with holds)");
         return notes;
     }
+
     public static ParsedNote? FindHoldEnd(List<ParsedNote> notes, int startIndex)
     {
         var start = notes[startIndex];
@@ -91,5 +97,4 @@ public static class SMTiming
         }
         return null;
     }
-
 }

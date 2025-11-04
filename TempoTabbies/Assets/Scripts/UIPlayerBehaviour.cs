@@ -1,101 +1,73 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UIPlayerBehaviour : MonoBehaviour
 {
-    // Which button is selected
-    public enum ButtonSelection
-    {
-        // Rename these to be based on the button in use
-        section1,
-        section2,
-        section3
-    }
-    public ButtonSelection state;
-
-    // The number associated with each number
-    int stateChoice;
-
-    // The vertical input of the joystick
-    float verticalInput;
+    // Wether the manu is actie or not
+    [SerializeField] public bool isMenuActive = true;
 
     // All the buttons
-    [SerializeField] private UnityEngine.UI.Button Button1;
-    [SerializeField] private UnityEngine.UI.Button Button2;
-    [SerializeField] private UnityEngine.UI.Button Button3;
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject button;
 
-    private void Awake()
+    // Short timer for when the menu goes away
+    float timer;
+
+    private void Start()
     {
-        stateChoice = 1;
-        ChangeSelection();
     }
 
     private void Update()
     {
-        // Checks the input
-        verticalInput = Input.GetAxis("Vertical");
-
-        // Changes the selected state based on player controller movement
-        if (verticalInput > 0.1 && stateChoice! >= 3)
+        if (!isMenuActive)
         {
-            stateChoice += 1;
-            ChangeSelection();
-            Wait(0.1f);
-        }
-        else if (verticalInput < -0.1 && stateChoice! <= 0)
-        {
-            stateChoice -= 1;
-            ChangeSelection();
-            Wait(0.1f);
-        }
-
-        // Clicks the currently selected button
-        if (Input.GetButtonDown("Jump"))
-        {
-            switch (state)
+            if (Input.GetButtonDown("Submit"))
             {
-                case ButtonSelection.section1:
-                    Button1.onClick.Invoke();
-                    break;
-                case ButtonSelection.section2:
-                    Button2.onClick.Invoke();
-                    break;
-                case ButtonSelection.section3:
-                    Button3.onClick.Invoke();
-                    break;
+                OpenMenu();
+            }
+            // Timer for when the menu turns off
+            // Set the timer to 3 when you turn the menu off
+            if (timer > 0)
+            {
+                timer -= Time.deltaTime;
+                timerText.text = ((int)timer).ToString();
+                if (timer >= 0)
+                {
+                    // Make the game start
+                }
             }
         }
     }
 
     // Actually changes the state of the state, to make all buttons real
-    private void ChangeSelection()
+
+    public void OnContinueClick()
     {
-        switch (stateChoice)
-        {
-            case 1:
-                state = ButtonSelection.section1;
-                // The color changes make it more obvovious what the player has currently selected
-                Button1.image.color = new Color32(22, 22, 22, 255);
-                Button2.image.color = new Color32(66, 66, 66, 255);
-                Button3.image.color = new Color32(66, 66, 66, 255);
-                break;
-            case 2:
-                state = ButtonSelection.section2;
-                Button1.image.color = new Color32(66, 66, 66, 255);
-                Button2.image.color = new Color32(22, 22, 22, 255);
-                Button3.image.color = new Color32(66, 66, 66, 255);
-                break;
-            case 3:
-                state = ButtonSelection.section3;
-                Button1.image.color = new Color32(66, 66, 66, 255);
-                Button2.image.color = new Color32(66, 66, 66, 255);
-                Button3.image.color = new Color32(22, 22, 22, 255);
-                break;
-        }
+        isMenuActive = false;
+        menu.SetActive(false);
+        timerText.gameObject.SetActive(true);
+        timer = 3;
     }
 
-    private IEnumerator Wait(float time)
+    public void OnOptionsClick()
     {
-        yield return new WaitForSeconds(time);
+        // Open the options screen 
+    }
+
+    public void OnQuitClick()
+    {
+        // Return the player to the starting menu
+    }
+
+    public void OpenMenu()
+    {
+        menu.SetActive(true);
+        isMenuActive = true;
+        timerText.gameObject.SetActive(false);
+        // Changes the button to be the currently selected object for the controller
+        EventSystem.current.SetSelectedGameObject(button);
     }
 }

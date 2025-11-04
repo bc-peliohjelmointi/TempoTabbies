@@ -47,5 +47,8 @@ TagManager:
   - name: tapnotes
     uniqueID: 1151061153
     locked: 0
+  - name: hitlight
+    uniqueID: 3561964045
+    locked: 0
   m_RenderingLayers:
   - Default

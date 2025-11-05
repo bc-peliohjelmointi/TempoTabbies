@@ -806,6 +806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1049476161}
   - component: {fileID: 1049476160}
+  - component: {fileID: 1049476162}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -825,8 +826,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d659a5406f5ba4193c9190e7b942f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navigate:
+    m_Name: Navigate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5d2cffec-eb2e-421d-9a87-8a3fbdaa1760
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  isStageSelectActive: 1
+  stageSelect: {fileID: 0}
   stage1: {fileID: 664670253}
   stage2: {fileID: 1798684955}
+  stage: 0
 --- !u!4 &1049476161
 Transform:
   m_ObjectHideFlags: 0
@@ -842,6 +855,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1049476162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049476159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1678179470
 GameObject:
   m_ObjectHideFlags: 0

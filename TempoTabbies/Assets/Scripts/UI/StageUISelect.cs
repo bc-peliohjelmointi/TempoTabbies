@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// This class is for buttons and changes what they do when selected or deselected
+/// </summary>
 public class StageUISelect : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     // Input what happes when you select the button

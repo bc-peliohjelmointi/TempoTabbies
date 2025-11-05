@@ -1,42 +1,121 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class UIPlayerBehaviour : MonoBehaviour
 {
-    // Wether the manu is active or not
-    [SerializeField] public bool isPauseMenuActive = false;
-    [SerializeField] public bool isStageSelectActive = true;
+    // The needed inputs
+    public InputAction submit;
+    public InputAction navigate;
 
-    // Pause menu
+    // Wether the menu is active or not
+    [SerializeField] public bool isPauseMenuActive = false;
+
+    // Menu buttons
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject pauseButton;
+    [SerializeField] UnityEngine.UI.Button button1;
+    [SerializeField] UnityEngine.UI.Button button2;
+    [SerializeField] UnityEngine.UI.Button button3;
 
     // Short timer for when the menu goes away
     [SerializeField] private TextMeshProUGUI timerText;
     float timer;
 
-    // Stage select menu
-    [SerializeField] private GameObject stageSelect;
-    [SerializeField] private GameObject stageButton;
+    // The state for which button is currently selected
+    public enum ButtonSelect
+    {
+        button1,
+        button2,
+        button3
+    }
+    public ButtonSelect buttonSelect;
+    // Movement timer for the buttons changing
+    bool canMove;
+    float moveTimer;
+
+    private void Awake()
+    {
+        // Set up the inputs
+        navigate = InputSystem.actions.FindAction("Navigate");
+        submit = InputSystem.actions.FindAction("Submit");
+    }
 
     private void Update()
     {
-        if (!isPauseMenuActive && !isStageSelectActive)
+        // Check if the pause menu is active
+        if (isPauseMenuActive)
         {
-            if (Input.GetButtonDown("Submit"))
+            // Check the stick movement
+            Vector2 moveAmount = navigate.ReadValue<Vector2>();
+
+            // Check which button is meant to be selected
+            switch (buttonSelect)
+            {
+                case ButtonSelect.button1:
+                    EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                    if (moveAmount.y < -0.1f && canMove)
+                    {
+                        buttonSelect = ButtonSelect.button2;
+                        canMove = false;
+                    }
+                    break;
+
+                case ButtonSelect.button2:
+                    EventSystem.current.SetSelectedGameObject(button2.gameObject);
+                    if (moveAmount.y < -0.1f && canMove)
+                    {
+                        buttonSelect = ButtonSelect.button3;
+                        canMove = false;
+                    }
+                    else if (moveAmount.y > 0.1 && canMove)
+                    {
+                        buttonSelect = ButtonSelect.button1;
+                        canMove = false;
+                    }
+                    break;
+
+                case ButtonSelect.button3:
+                    EventSystem.current.SetSelectedGameObject(button3.gameObject);
+                    if (moveAmount.y > 0.1 && canMove)
+                    {
+                        buttonSelect = ButtonSelect.button2;
+                        canMove = false;
+                    }
+                    break;
+            }
+
+            // Timer for movement, so the player doesn't just go to the top and bottom
+            if (!canMove)
+            {
+                if (moveTimer < 0.2f)
+                {
+                    moveTimer += Time.deltaTime;
+                }
+                else
+                {
+                    canMove = true;
+                    moveTimer = 0;
+                }
+            }
+        }
+        else if (!isPauseMenuActive)
+        {
+            // Check the start buttons state, if its pressed, open the pause menu
+            float submitValue = submit.ReadValue<float>();
+            if (submitValue > 0)
             {
                 OpenPauseMenu();
             }
+
             // Timer for when the menu turns off
             // Set the timer to 3 when you turn the menu off
             if (timer > 0)
             {
                 timer -= Time.deltaTime;
                 timerText.text = ((int)timer).ToString();
-                if (timer >= 0)
+                if (timer <= 0)
                 {
                     // Make the game start
                 }
@@ -54,7 +133,7 @@ public class UIPlayerBehaviour : MonoBehaviour
 
     public void OnOptionsClick()
     {
-        SceneManager.LoadScene("Options"); 
+        SceneManager.LoadScene("Options");
     }
 
     public void OnQuitClick()
@@ -67,28 +146,6 @@ public class UIPlayerBehaviour : MonoBehaviour
         pauseMenu.SetActive(true);
         isPauseMenuActive = true;
         timerText.gameObject.SetActive(false);
-        // Changes the button to be the currently selected object for the controller
-        EventSystem.current.SetSelectedGameObject(pauseButton);
-    }
-
-    public void OpenStageSelect()
-    {
-        isStageSelectActive = true;
-        stageSelect.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(stageButton);
-    }
-
-    public void OnStage1Click()
-    {
-        isStageSelectActive = false;
-        OnContinueClick();
-        // Begin the game with stage 1 as the song
-    }
-
-    public void OnStage2Click()
-    {
-        isStageSelectActive = false;
-        OnContinueClick();
-        // Begin the game with stage 2 as the song
+        buttonSelect = ButtonSelect.button1;
     }
 }

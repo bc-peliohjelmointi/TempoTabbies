@@ -6,6 +6,8 @@ public class Note : MonoBehaviour
     public float ScrollSpeed = 6f;
     public AudioSource Music;
     public Transform HitLine;
+    public int Lane;
+    public bool Hit;
 
     private float initialX;
     private float initialZ;

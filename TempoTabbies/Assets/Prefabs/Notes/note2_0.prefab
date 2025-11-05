@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4778064962251987020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2133878, y: 0.87866104, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1151061153
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -8561289038441490638, guid: b74c63eb6f8658d4eb17fc8e58ecce8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -104,3 +104,5 @@ MonoBehaviour:
   ScrollSpeed: 6
   Music: {fileID: 0}
   HitLine: {fileID: 0}
+  Lane: 0
+  Hit: 0

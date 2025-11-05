@@ -81,28 +81,30 @@ public class NoteSpawner : MonoBehaviour
                     int endIndex = notes.IndexOf(endNote.Value);
                     if (endIndex >= 0) skipIndices.Add(endIndex);
 
-                    // spawn the normal head note prefab
-                    GameObject headPrefab = GetTapPrefabForLane(noteData.lane);
-                    GameObject head = Instantiate(headPrefab, spawnPos, Quaternion.identity, transform);
+                    // create parent
+                    GameObject holdRoot = new GameObject($"HoldNote_Lane{noteData.lane}");
+                    holdRoot.transform.parent = transform;
+                    holdRoot.transform.position = lane.position; // ? fixed: start at lane, not scrolled position
 
-                    // add HoldNote component
-                    HoldNote hold = head.AddComponent<HoldNote>();
+                    // add script
+                    HoldNote hold = holdRoot.AddComponent<HoldNote>();
                     hold.StartTime = noteData.time;
                     hold.EndTime = endNote.Value.time;
                     hold.ScrollSpeed = ScrollSpeed;
                     hold.Music = Music;
                     hold.HitLine = HitLine;
+                    hold.Lane = noteData.lane;
 
-                    // lane-specific body & end
+                    // spawn parts
+                    GameObject headPrefab = GetTapPrefabForLane(noteData.lane);
                     GameObject bodyPrefab = GetHoldBodyPrefabForLane(noteData.lane);
                     GameObject endPrefab = GetHoldEndPrefabForLane(noteData.lane);
 
-                    GameObject body = Instantiate(bodyPrefab, transform);
-                    GameObject endObj = Instantiate(endPrefab, transform);
+                    GameObject head = Instantiate(headPrefab, holdRoot.transform);
+                    GameObject body = Instantiate(bodyPrefab, holdRoot.transform);
+                    GameObject endObj = Instantiate(endPrefab, holdRoot.transform);
 
-                    body.transform.localScale = Vector3.one;
-                    endObj.transform.localScale = Vector3.one;
-
+                    hold.Head = head;
                     hold.Body = body;
                     hold.End = endObj;
 
@@ -110,6 +112,8 @@ public class NoteSpawner : MonoBehaviour
                     continue;
                 }
             }
+
+
 
             // --- TAP NOTE ---
             GameObject tapPrefab = GetTapPrefabForLane(noteData.lane);
@@ -128,6 +132,7 @@ public class NoteSpawner : MonoBehaviour
                 n.ScrollSpeed = ScrollSpeed;
                 n.Music = Music;
                 n.HitLine = HitLine;
+                n.Lane = noteData.lane;
             }
 
             nextIndex++;

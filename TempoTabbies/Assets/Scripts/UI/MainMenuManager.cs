@@ -1,14 +1,94 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Main menu script
+/// </summary>
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] private GameObject button;
+    // Menu objects
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] UnityEngine.UI.Button button1;
+    [SerializeField] UnityEngine.UI.Button button2;
+    [SerializeField] UnityEngine.UI.Button button3;
+
+    // Player movement input
+    public InputAction navigate;
+
+    // State to know which button is being selected
+    public enum ButtonSelect
+    {
+        button1,
+        button2,
+        button3
+    }
+    public ButtonSelect buttonSelect;
+    // Timer to make movement between buttons better
+    bool canMove;
+    float moveTimer;
+
     private void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(button);
+        navigate = InputSystem.actions.FindAction("Navigate");
+        EventSystem.current.SetSelectedGameObject(button1.gameObject);
     }
+
+    private void Update()
+    {
+        Vector2 moveAmount = navigate.ReadValue<Vector2>();
+        // Check which button is currently selected
+        switch (buttonSelect)
+        {
+            case ButtonSelect.button1:
+                EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                if (moveAmount.y < -0.1f && canMove)
+                {
+                    buttonSelect = ButtonSelect.button2;
+                    canMove = false;
+                }
+                break;
+
+            case ButtonSelect.button2:
+                EventSystem.current.SetSelectedGameObject(button2.gameObject);
+                if (moveAmount.y < -0.1f && canMove)
+                {
+                    buttonSelect = ButtonSelect.button3;
+                    canMove = false;
+                }
+                else if (moveAmount.y > 0.1 && canMove)
+                {
+                    buttonSelect = ButtonSelect.button1;
+                    canMove = false;
+                }
+                break;
+
+            case ButtonSelect.button3:
+                EventSystem.current.SetSelectedGameObject(button3.gameObject);
+                if (moveAmount.y > 0.1 && canMove)
+                {
+                    buttonSelect = ButtonSelect.button2;
+                    canMove = false;
+                }
+                break;
+        }
+
+        // Timer for movement, so the player doesn't just go to the top and bottom
+        if (!canMove)
+        {
+            if (moveTimer < 0.2f)
+            {
+                moveTimer += Time.deltaTime;
+            }
+            else
+            {
+                canMove = true;
+                moveTimer = 0;
+            }
+        }
+    }
+
 
     public void OnStageSelectClick()
     {

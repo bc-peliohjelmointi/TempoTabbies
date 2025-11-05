@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class StageSelectManager : MonoBehaviour
 {
+    private _GameManager gameManager;
+
     public InputAction navigate;
 
     [SerializeField] public bool isStageSelectActive = true;
@@ -22,6 +24,7 @@ public class StageSelectManager : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindAnyObjectByType<_GameManager>();
         EventSystem.current.SetSelectedGameObject(stage1.gameObject);
         navigate = InputSystem.actions.FindAction("Navigate");
     }
@@ -61,12 +64,14 @@ public class StageSelectManager : MonoBehaviour
 
     public void OnStage1Click()
     {
+        gameManager.stageID = 1;
         isStageSelectActive = false;
         // Begin the game with stage 1 as the song
     }
 
     public void OnStage2Click()
     {
+        gameManager.stageID = 2;
         isStageSelectActive = false;
         // Begin the game with stage 2 as the song
     }

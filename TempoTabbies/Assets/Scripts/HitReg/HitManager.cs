@@ -17,13 +17,8 @@ public class HitManager : MonoBehaviour
     public NoteSpawner Spawner;
     public Transform HitLine;
 
-    [Header("Judgment Prefabs")]
-    public GameObject MarvelousPrefab;
-    public GameObject PerfectPrefab;
-    public GameObject GreatPrefab;
-    public GameObject GoodPrefab;
-    public GameObject BadPrefab;
-    public GameObject MissPrefab;
+    [Header("Judgment Display Reference")]
+    public JudgmentDisplay JudgmentDisplay;  // <-- Single persistent sprite object
 
     [Header("Lane Mapping (controller ? chart lane)")]
     public int leftTriggerLane = 0;
@@ -81,8 +76,6 @@ public class HitManager : MonoBehaviour
         CheckForMisses(songTime);
     }
 
-    // -----------------------------------------------------
-
     private void TryHit(int lane, float currentTime)
     {
         Note closestNote = null;
@@ -93,7 +86,6 @@ public class HitManager : MonoBehaviour
         {
             if (child == null) continue;
 
-            // Tap note
             Note note = child.GetComponent<Note>();
             if (note != null && !note.Hit && note.Lane == lane)
             {
@@ -105,7 +97,6 @@ public class HitManager : MonoBehaviour
                 }
             }
 
-            // Hold note start
             HoldNote hold = child.GetComponent<HoldNote>();
             if (hold != null && hold.Lane == lane)
             {
@@ -119,32 +110,27 @@ public class HitManager : MonoBehaviour
         }
 
         if (closestNote != null)
-        {
             EvaluateHit(closestNote, currentTime);
-        }
         else if (holdHead != null)
-        {
             TryStartHold(holdHead, lane, currentTime);
-        }
     }
 
     private void EvaluateHit(Note note, float currentTime)
     {
         float diff = currentTime - note.TargetTime;
         float absDiff = Mathf.Abs(diff);
-        GameObject prefab = null;
         string label;
 
-        if (absDiff <= TimingWindows.Marvelous) { prefab = MarvelousPrefab; label = "MARVELOUS"; }
-        else if (absDiff <= TimingWindows.Perfect) { prefab = PerfectPrefab; label = "PERFECT"; }
-        else if (absDiff <= TimingWindows.Great) { prefab = GreatPrefab; label = "GREAT"; }
-        else if (absDiff <= TimingWindows.Good) { prefab = GoodPrefab; label = "GOOD"; }
-        else if (absDiff <= TimingWindows.Bad) { prefab = BadPrefab; label = "BAD"; }
+        if (absDiff <= TimingWindows.Marvelous) label = "MARVELOUS";
+        else if (absDiff <= TimingWindows.Perfect) label = "PERFECT";
+        else if (absDiff <= TimingWindows.Great) label = "GREAT";
+        else if (absDiff <= TimingWindows.Good) label = "GOOD";
+        else if (absDiff <= TimingWindows.Bad) label = "BAD";
         else return;
 
         note.Hit = true;
         Destroy(note.gameObject);
-        SpawnJudgment(prefab);
+        ShowJudgment(label);
         Debug.Log($"[{label}] lane {note.Lane} ?t={diff * 1000f:F1}ms");
     }
 
@@ -154,7 +140,7 @@ public class HitManager : MonoBehaviour
         if (diff <= TimingWindows.Great && !activeHolds.ContainsKey(lane))
         {
             activeHolds[lane] = hold;
-            SpawnJudgment(MarvelousPrefab);
+            ShowJudgment("MARVELOUS");
             Debug.Log($"[HOLD START] lane {lane}");
         }
     }
@@ -208,17 +194,16 @@ public class HitManager : MonoBehaviour
             if (currentTime > note.TargetTime + TimingWindows.Bad)
             {
                 note.Hit = true;
-                SpawnJudgment(MissPrefab);
+                ShowJudgment("MISS");
                 Destroy(note.gameObject);
                 Debug.Log($"[MISS] lane {note.Lane}");
             }
         }
     }
 
-    private void SpawnJudgment(GameObject prefab)
+    private void ShowJudgment(string label)
     {
-        if (prefab == null || HitLine == null) return;
-        GameObject obj = Instantiate(prefab, HitLine.position, Quaternion.identity);
-        Destroy(obj, 0.5f);
+        if (JudgmentDisplay != null)
+            JudgmentDisplay.Show(label);
     }
 }

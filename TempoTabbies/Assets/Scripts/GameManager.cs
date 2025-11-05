@@ -1,6 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// General game manager
+/// </summary>
 public class _GameManager : MonoBehaviour
 {
     public static _GameManager instance;

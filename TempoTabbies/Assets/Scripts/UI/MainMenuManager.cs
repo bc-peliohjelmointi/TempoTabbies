@@ -3,16 +3,21 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Main menu script
+/// </summary>
 public class MainMenuManager : MonoBehaviour
 {
-    // Menu
+    // Menu objects
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] UnityEngine.UI.Button button1;
     [SerializeField] UnityEngine.UI.Button button2;
     [SerializeField] UnityEngine.UI.Button button3;
 
+    // Player movement input
     public InputAction navigate;
 
+    // State to know which button is being selected
     public enum ButtonSelect
     {
         button1,
@@ -20,6 +25,7 @@ public class MainMenuManager : MonoBehaviour
         button3
     }
     public ButtonSelect buttonSelect;
+    // Timer to make movement between buttons better
     bool canMove;
     float moveTimer;
 
@@ -32,6 +38,7 @@ public class MainMenuManager : MonoBehaviour
     private void Update()
     {
         Vector2 moveAmount = navigate.ReadValue<Vector2>();
+        // Check which button is currently selected
         switch (buttonSelect)
         {
             case ButtonSelect.button1:

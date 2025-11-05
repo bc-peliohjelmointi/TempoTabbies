@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// The in game pause menu script
+/// </summary>
 public class UIPlayerBehaviour : MonoBehaviour
 {
     // The needed inputs
@@ -31,7 +34,7 @@ public class UIPlayerBehaviour : MonoBehaviour
         button3
     }
     public ButtonSelect buttonSelect;
-    // Movement timer for the buttons changing
+    // Movement timer to make movement in the menu better
     bool canMove;
     float moveTimer;
 
@@ -110,14 +113,15 @@ public class UIPlayerBehaviour : MonoBehaviour
             }
 
             // Timer for when the menu turns off
-            // Set the timer to 3 when you turn the menu off
+            // Set the timer to 4 when you turn the menu off
             if (timer > 0)
             {
                 timer -= Time.deltaTime;
                 timerText.text = ((int)timer).ToString();
                 if (timer <= 0)
                 {
-                    // Make the game start
+                    timerText.gameObject.SetActive(false);
+                    // Make the game continue
                 }
             }
         }
@@ -128,7 +132,7 @@ public class UIPlayerBehaviour : MonoBehaviour
         isPauseMenuActive = false;
         pauseMenu.SetActive(false);
         timerText.gameObject.SetActive(true);
-        timer = 3;
+        timer = 4;
     }
 
     public void OnOptionsClick()

@@ -1,20 +1,24 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Stage select menu script
+/// </summary>
 public class StageSelectManager : MonoBehaviour
 {
     private _GameManager gameManager;
 
+    // The player actions
     public InputAction navigate;
 
-    [SerializeField] public bool isStageSelectActive = true;
-
+    // The menu objects
     [SerializeField] private GameObject stageSelect;
-
     [SerializeField] private UnityEngine.UI.Button stage1;
     [SerializeField] private UnityEngine.UI.Button stage2;
 
+    // The state to know which button is currently selected
     public enum Stage
     {
         stage1,
@@ -33,46 +37,35 @@ public class StageSelectManager : MonoBehaviour
     {
         Vector2 moveAmount = navigate.ReadValue<Vector2>();
 
-        if (isStageSelectActive)
+        // Checks which stage button is currently selected
+        switch (stage)
         {
-            switch (stage)
-            {
-                case Stage.stage1:
-                    EventSystem.current.SetSelectedGameObject(stage1.gameObject);
-                    if (moveAmount.y < -0.1f)
-                    {
-                        stage = Stage.stage2;
-                    }
-                    break;
-                case Stage.stage2:
-                    EventSystem.current.SetSelectedGameObject(stage2.gameObject);
-                    if (moveAmount.y > 0.1f)
-                    {
-                        stage = Stage.stage1;
-                    }
-                    break;
-            }
+            case Stage.stage1:
+                EventSystem.current.SetSelectedGameObject(stage1.gameObject);
+                if (moveAmount.y < -0.1f)
+                {
+                    stage = Stage.stage2;
+                }
+                break;
+            case Stage.stage2:
+                EventSystem.current.SetSelectedGameObject(stage2.gameObject);
+                if (moveAmount.y > 0.1f)
+                {
+                    stage = Stage.stage1;
+                }
+                break;
         }
-    }
-
-    public void OpenStageSelect()
-    {
-        isStageSelectActive = true;
-        stageSelect.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(stage1.gameObject);
     }
 
     public void OnStage1Click()
     {
         gameManager.stageID = 1;
-        isStageSelectActive = false;
-        // Begin the game with stage 1 as the song
+        SceneManager.LoadScene("Game");
     }
 
     public void OnStage2Click()
     {
         gameManager.stageID = 2;
-        isStageSelectActive = false;
-        // Begin the game with stage 2 as the song
+        SceneManager.LoadScene("Game");
     }
 }

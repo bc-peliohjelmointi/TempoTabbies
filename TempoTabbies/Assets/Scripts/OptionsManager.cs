@@ -64,6 +64,6 @@ public class OptionsManager : MonoBehaviour
 
     public void VolumeChange()
     {
-        volume = volumeSlider.value;
+        AudioListener.volume = volumeSlider.value;
     }
 }

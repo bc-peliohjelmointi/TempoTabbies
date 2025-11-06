@@ -26,7 +26,7 @@ public class StageSelectManager : MonoBehaviour
     }
     public Stage stage;
 
-    private void Awake()
+    private void Start()
     {
         gameManager = FindAnyObjectByType<_GameManager>();
         EventSystem.current.SetSelectedGameObject(stage1.gameObject);

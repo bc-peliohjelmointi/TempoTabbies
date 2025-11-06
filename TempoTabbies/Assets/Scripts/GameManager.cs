@@ -10,6 +10,8 @@ public class _GameManager : MonoBehaviour
     // A spot to remember what stage is currently selected
     public int stageID;
 
+    public bool whoGetsToPlay; // When true, only player 1 gets to do stuff in menus, when false, only player 2 gets to do stuff in menus
+
     private void Awake()
     {
         if (instance == null)

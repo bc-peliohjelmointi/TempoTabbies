@@ -36,6 +36,8 @@ public class StageSelectManager : MonoBehaviour
     private void Update()
     {
         Vector2 moveAmount = navigate.ReadValue<Vector2>();
+        var controllers = Input.GetJoystickNames();
+        Debug.Log(controllers);
 
         // Checks which stage button is currently selected
         switch (stage)

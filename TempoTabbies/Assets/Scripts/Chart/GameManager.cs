@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,26 +19,26 @@ public class GameManager : MonoBehaviour
     public Transform LaneParent;
     public Transform HitLine;
 
-    private float audioOffset = 0f; // <-- from chart or player setting
+    private float audioOffset = 0f;
+    public static float GlobalMusicStartTime;
+
 
     void Start()
     {
-        string path = Application.dataPath + "/Songs/zunda/zundasolo.sm";
-        SMFile sm = SMParser.Parse(path);
-
-        if (sm.Charts.Count == 0)
+        if (GameSession.SelectedSong == null || GameSession.SelectedChart == null)
         {
-            Debug.LogError("No dance-solo chart found in SM file!");
+            Debug.LogError("No song or chart selected! Please load from Song Select first.");
             return;
         }
 
-        SMChart chart = sm.Charts[0];
-        Debug.Log($"Loaded chart with {chart.Measures.Count} measures.");
+        SMFile sm = GameSession.SelectedSong;
+        SMChart chart = GameSession.SelectedChart;
 
-        //  Read offset from SM file if available
-        audioOffset = sm.Offset; // StepMania OFFSET = time before chart starts (usually negative)
+        Debug.Log($"Now playing: {sm.Title} by {sm.Artist}");
+        Debug.Log($"Chart: {chart.Description} ({chart.Difficulty}) - {chart.Measures.Count} measures");
 
-        // Setup lanes
+        audioOffset = sm.Offset;
+
         if (LaneParent == null)
         {
             Debug.LogError("LaneParent is not assigned!");
@@ -57,24 +60,103 @@ public class GameManager : MonoBehaviour
 
         Spawner.LoadChart(sm, chart);
 
-        //  Start playback with offset correction
-        StartCoroutine(StartMusicWithOffset());
+        // Load audio file dynamically (.mp3 or .ogg)
+        StartCoroutine(LoadAndStartMusic(sm));
     }
 
-    private System.Collections.IEnumerator StartMusicWithOffset()
+    private IEnumerator LoadAndStartMusic(SMFile sm)
     {
+        // --- Find the directory where the SM file is located ---
+        string songDir = Path.GetDirectoryName(sm.FilePath);
+        string songsRoot = Path.Combine(Application.dataPath, "Songs");
+
+        string musicFile = sm.MusicFile;
+        if (string.IsNullOrEmpty(musicFile))
+        {
+            Debug.LogError($"No MUSIC tag found in SM file for {sm.Title}");
+            yield break;
+        }
+
+        // --- Try path relative to the .sm file first ---
+        string fullPath = Path.Combine(songDir, musicFile);
+
+        if (!File.Exists(fullPath))
+        {
+            // If not found, search the entire Songs folder for the file
+            string[] found = Directory.GetFiles(songsRoot, Path.GetFileName(musicFile), SearchOption.AllDirectories);
+            if (found.Length > 0)
+            {
+                fullPath = found[0];
+                Debug.Log($"[SM Loader] Found audio by search: {fullPath}");
+            }
+            else
+            {
+                Debug.LogError($"Audio file not found anywhere: {musicFile}");
+                yield break;
+            }
+        }
+
+        // --- Normalize path for UnityWebRequest ---
+        fullPath = Path.GetFullPath(fullPath);
+        string uri = "file:///" + UnityWebRequest.EscapeURL(fullPath.Replace("\\", "/"));
+
+        Debug.Log($"[SM Loader] Loading audio from: {uri}");
+
+        // --- Detect file type ---
+        AudioType audioType = AudioType.MPEG;
+        string ext = Path.GetExtension(fullPath).ToLower();
+        if (ext == ".ogg") audioType = AudioType.OGGVORBIS;
+        else if (ext == ".wav") audioType = AudioType.WAV;
+
+        // --- Load the audio ---
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(uri, audioType))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"Failed to load audio: {www.error}");
+                yield break;
+            }
+
+            Music.clip = DownloadHandlerAudioClip.GetContent(www);
+        }
+
+        // --- Wait for offset and start playback ---
+        yield return StartCoroutine(StartMusicWithOffset());
+    }
+
+
+
+    private IEnumerator StartMusicWithOffset()
+    {
+        if (Music.clip == null)
+        {
+            Debug.LogError("Audio clip not loaded!");
+            yield break;
+        }
+
+        // wait until offset time
         if (audioOffset > 0)
         {
-            // StepMania: positive offset means music starts later
+            Debug.Log($"Delaying music start by {audioOffset} seconds (positive offset)");
             yield return new WaitForSeconds(audioOffset);
+            Music.Play();
+        }
+        else if (audioOffset < 0)
+        {
+            float startTime = Mathf.Abs(audioOffset);
+            Debug.Log($"Starting music early by {startTime} seconds (negative offset)");
+            Music.time = startTime;
             Music.Play();
         }
         else
         {
-            // Negative offset means start music earlier
-            Music.time = Mathf.Abs(audioOffset);
             Music.Play();
         }
+
+        // store the absolute game time when music starts
+        GlobalMusicStartTime = Time.time - Music.time;
     }
 
 }

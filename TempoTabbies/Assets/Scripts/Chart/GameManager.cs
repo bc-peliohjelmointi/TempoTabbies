@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Now playing: {sm.Title} by {sm.Artist}");
         Debug.Log($"Chart: {chart.Description} ({chart.Difficulty}) - {chart.Measures.Count} measures");
 
-        audioOffset = sm.Offset;
+        audioOffset = 0f;
 
         if (LaneParent == null)
         {
@@ -136,27 +136,29 @@ public class GameManager : MonoBehaviour
             yield break;
         }
 
-        // wait until offset time
         if (audioOffset > 0)
         {
-            Debug.Log($"Delaying music start by {audioOffset} seconds (positive offset)");
+            Debug.Log($"Delaying music start by {audioOffset}s");
             yield return new WaitForSeconds(audioOffset);
             Music.Play();
+            GameManager.GlobalMusicStartTime = Time.time - audioOffset;
         }
         else if (audioOffset < 0)
         {
             float startTime = Mathf.Abs(audioOffset);
-            Debug.Log($"Starting music early by {startTime} seconds (negative offset)");
+            Debug.Log($"Starting music early by {startTime}s");
             Music.time = startTime;
             Music.Play();
+            GameManager.GlobalMusicStartTime = Time.time + audioOffset;
         }
         else
         {
             Music.Play();
+            GameManager.GlobalMusicStartTime = Time.time;
         }
-
-        // store the absolute game time when music starts
-        GlobalMusicStartTime = Time.time - Music.time;
     }
+
+
+
 
 }

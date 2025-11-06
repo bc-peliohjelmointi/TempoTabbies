@@ -47,7 +47,10 @@ public class NoteSpawner : MonoBehaviour
         if (notes == null || notes.Count == 0) return;
         if (!Music || !HitLine || Lanes == null || Lanes.Length == 0) return;
 
+        if (!Music.isPlaying) return;
         float songTime = Time.time - GameManager.GlobalMusicStartTime;
+
+
 
         // loop through notes that are within the lead time
         while (nextIndex < notes.Count && notes[nextIndex].time - songTime < SpawnLeadTime)

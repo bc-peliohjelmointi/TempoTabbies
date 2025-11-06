@@ -19,8 +19,10 @@ public class JudgmentDisplay : MonoBehaviour
     private float bounceTimer;
     private bool isBouncing;
 
+    public static JudgmentDisplay Instance { get; private set; }
     void Awake()
     {
+        Instance = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalScale = transform.localScale;
         spriteRenderer.enabled = false;

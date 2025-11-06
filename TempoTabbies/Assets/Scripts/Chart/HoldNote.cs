@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HoldNote : MonoBehaviour
 {
@@ -10,96 +11,199 @@ public class HoldNote : MonoBehaviour
     public Transform HitLine;
 
     [Header("Hold Components")]
-    public GameObject Head; // assigned in NoteSpawner
+    public GameObject Head;
     public GameObject Body;
     public GameObject End;
-
-    private float initialX;
-    private float initialZ;
-    private SpriteRenderer bodyRenderer;
-    private float baseBodyHeight;
 
     [Header("Body Settings")]
     public float BodyWidth = 0.25f;
 
+    private SpriteRenderer bodyRenderer;
+    private Gamepad gamepad;
+
+    private bool hasStartedHold;
+    private bool hasEnded;
+    private bool releaseChecked;
+
+    private const float ReleaseLeniency = 1.5f; // 1.5× timing window leniency
+
     void Start()
     {
-        initialX = transform.position.x;
-        initialZ = transform.position.z;
-
         if (Body != null)
         {
             bodyRenderer = Body.GetComponent<SpriteRenderer>();
-            if (bodyRenderer != null && bodyRenderer.sprite != null)
-                baseBodyHeight = bodyRenderer.bounds.size.y;
-
-            Vector3 scale = Body.transform.localScale;
-            scale.x = BodyWidth;
-            Body.transform.localScale = scale;
+            var s = Body.transform.localScale;
+            s.x = BodyWidth;
+            Body.transform.localScale = s;
         }
 
         if (End != null)
         {
-            Vector3 scale = End.transform.localScale;
-            scale.x = BodyWidth;
-            scale.y = BodyWidth;
-            End.transform.localScale = scale;
+            var s = End.transform.localScale;
+            s.x = BodyWidth;
+            s.y = BodyWidth;
+            End.transform.localScale = s;
         }
 
         if (Head != null)
         {
-            Vector3 scale = Head.transform.localScale;
-            scale.x = BodyWidth;
-            Head.transform.localScale = scale;
+            var s = Head.transform.localScale;
+            s.x = BodyWidth;
+            Head.transform.localScale = s;
         }
     }
 
     void Update()
     {
-        if (!Music || !HitLine) return;
+        if (!Music || !HitLine || hasEnded) return;
 
+        gamepad = Gamepad.current;
         float songTime = Music.time;
+
         float timeUntilStart = StartTime - songTime;
         float timeUntilEnd = EndTime - songTime;
 
         float startY = HitLine.position.y + timeUntilStart * ScrollSpeed;
         float endY = HitLine.position.y + timeUntilEnd * ScrollSpeed;
 
-        // move the WHOLE hold note root (includes Head/Body/End)
-        transform.position = new Vector3(initialX, startY, initialZ);
+        // --- BEFORE HOLD START ---
+        if (!hasStartedHold)
+        {
+            transform.position = new Vector3(transform.position.x, startY, transform.position.z);
 
-        // adjust End position (local relative to head)
+            // start holding if pressed near receptor
+            if (songTime >= StartTime - 0.05f && songTime <= StartTime + 0.1f && IsPressedForLane(Lane))
+            {
+                hasStartedHold = true;
+                transform.position = new Vector3(transform.position.x, HitLine.position.y, transform.position.z);
+            }
+
+            UpdateBodyWorld(startY, endY);
+            return;
+        }
+
+        // --- WHILE HOLDING ---
+        // keep head locked to receptor
+        transform.position = new Vector3(transform.position.x, HitLine.position.y, transform.position.z);
+
+        // end keeps scrolling up as song plays
+        float remaining = Mathf.Max(EndTime - songTime, 0f);
+        float localEndY = remaining * ScrollSpeed;
         if (End != null)
-        {
-            float localEndY = (endY - startY); // local offset
             End.transform.localPosition = new Vector3(0f, localEndY, 0f);
-        }
 
-        // stretch body between Head and End
-        if (Body != null && bodyRenderer != null && End != null)
+        UpdateBodyLocal(localEndY);
+
+        // released early
+        if (!IsPressedForLane(Lane) && songTime < EndTime)
         {
-            float localEndY = End.transform.localPosition.y;
-            float worldDistance = Mathf.Abs(localEndY);
-            float midY = localEndY * 0.5f;
-
-            Body.transform.localPosition = new Vector3(0f, midY, 0f);
-
-            float spriteHeight = bodyRenderer.sprite.bounds.size.y;
-            float scaleY = worldDistance / spriteHeight;
-
-            Vector3 bodyScale = Body.transform.localScale;
-            bodyScale.x = BodyWidth;
-            bodyScale.y = scaleY;
-            Body.transform.localScale = bodyScale;
+            RegisterReleaseJudgment(songTime);
+            DestroyHold();
+            return;
         }
 
-        // Cleanup
-        if (songTime > EndTime + 1f)
+        // natural end
+        if (songTime >= EndTime && !releaseChecked)
         {
-            if (Head) Destroy(Head);
-            if (Body) Destroy(Body);
-            if (End) Destroy(End);
-            Destroy(gameObject);
+            RegisterReleaseJudgment(songTime);
+            hasEnded = true;
+            DestroyHold();
         }
+    }
+
+    // --- updates body before hold starts (note still falling) ---
+    private void UpdateBodyWorld(float startY, float endY)
+    {
+        if (Body == null || bodyRenderer == null || End == null) return;
+
+        float worldDistance = Mathf.Abs(endY - startY);
+        float midY = (endY + startY) * 0.5f;
+
+        End.transform.position = new Vector3(transform.position.x, endY, transform.position.z);
+        Body.transform.position = new Vector3(transform.position.x, midY, transform.position.z);
+
+        float spriteHeight = bodyRenderer.sprite.bounds.size.y;
+        float scaleY = worldDistance / spriteHeight;
+
+        Vector3 s = Body.transform.localScale;
+        s.x = BodyWidth;
+        s.y = scaleY;
+        Body.transform.localScale = s;
+    }
+
+    // --- updates body while holding (note frozen at receptor) ---
+    private void UpdateBodyLocal(float localEndY)
+    {
+        if (Body == null || bodyRenderer == null || End == null) return;
+
+        float worldDistance = Mathf.Abs(localEndY);
+        float midY = localEndY * 0.5f;
+
+        Body.transform.localPosition = new Vector3(0f, midY, 0f);
+
+        float spriteHeight = bodyRenderer.sprite.bounds.size.y;
+        float scaleY = worldDistance / spriteHeight;
+
+        Vector3 s = Body.transform.localScale;
+        s.x = BodyWidth;
+        s.y = scaleY;
+        Body.transform.localScale = s;
+    }
+
+    private void RegisterReleaseJudgment(float currentTime)
+    {
+        if (releaseChecked) return;
+        releaseChecked = true;
+
+        // Measure the *offset* from the correct release time.
+        float diff = currentTime - EndTime; // positive if late, negative if early
+        float absDiff = Mathf.Abs(diff);
+
+        float marv = TimingWindows.Marvelous * ReleaseLeniency;
+        float perf = TimingWindows.Perfect * ReleaseLeniency;
+        float great = TimingWindows.Great * ReleaseLeniency;
+        float good = TimingWindows.Good * ReleaseLeniency;
+        float bad = TimingWindows.Bad * ReleaseLeniency;
+
+        string result =
+            absDiff <= marv ? "MARVELOUS" :
+            absDiff <= perf ? "PERFECT" :
+            absDiff <= great ? "GREAT" :
+            absDiff <= good ? "GOOD" :
+            absDiff <= bad ? "BAD" : "MISS";
+
+        if (JudgmentDisplay.Instance != null)
+            JudgmentDisplay.Instance.Show(result);
+
+        Debug.Log($"[HoldNote] Release Judgment: {result} (?={diff * 1000f:F1} ms)");
+
+        // Optional: add a small delay so the player can see the judgment
+        Invoke(nameof(DestroyHold), 0.05f);
+    }
+
+
+
+    private void DestroyHold()
+    {
+        if (Head) Destroy(Head);
+        if (Body) Destroy(Body);
+        if (End) Destroy(End);
+        Destroy(gameObject);
+    }
+
+    private bool IsPressedForLane(int lane)
+    {
+        if (gamepad == null) return false;
+
+        return lane switch
+        {
+            0 => gamepad.leftTrigger.isPressed,
+            1 => gamepad.leftShoulder.isPressed,
+            2 => gamepad.rightShoulder.isPressed,
+            3 => gamepad.rightTrigger.isPressed,
+            4 => gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f,
+            5 => gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f,
+            _ => false,
+        };
     }
 }

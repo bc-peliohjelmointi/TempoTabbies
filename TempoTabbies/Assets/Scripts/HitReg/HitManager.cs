@@ -175,11 +175,11 @@ public class HitManager : MonoBehaviour
         if (lane == leftBumperLane) return gamepad.leftShoulder.isPressed;
         if (lane == rightBumperLane) return gamepad.rightShoulder.isPressed;
         if (lane == leftStickLane)
-            return gamepad.leftStick.ReadValue().x < -0.5f ||
-                   gamepad.rightStick.ReadValue().x < -0.5f;
+            return gamepad.leftStick.ReadValue().x < -0.2f ||
+                   gamepad.rightStick.ReadValue().x < -0.2f;
         if (lane == rightStickLane)
-            return gamepad.leftStick.ReadValue().x > 0.5f ||
-                   gamepad.rightStick.ReadValue().x > 0.5f;
+            return gamepad.leftStick.ReadValue().x > 0.2f ||
+                   gamepad.rightStick.ReadValue().x > 0.2f;
 
         return false;
     }

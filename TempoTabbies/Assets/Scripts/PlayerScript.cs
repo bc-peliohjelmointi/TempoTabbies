@@ -15,10 +15,12 @@ public class PlayerScript : MonoBehaviour
     public InputAction navigate;
     public InputAction clickButton;
 
-    public bool isInGame = true;
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
-
-    private void Start()
+    private void OnEnable()
     {
         pauseMenu = FindFirstObjectByType<UIPlayerBehaviour>();
         gameManager = FindFirstObjectByType<_GameManager>();
@@ -32,19 +34,21 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         // Checks if the player is in  a song
-        if (isInGame)
+        if (gameManager.state == _GameManager.GameState.Game)
         {
-            // Checks if this player should be allowed to move in menus
+            // Checks if the pauseMenu is inactive
             if (!pauseMenu.isPauseMenuActive)
             {
                 float submitValue = submit.ReadValue<float>();
-                pauseMenu.submitValue = submitValue;
+                //pauseMenu.submitValue = submitValue;
                 if (submitValue > 0)
                 {
                     gameManager.whoGetsToPlay = _playerIndex;
+                    pauseMenu.OpenPauseMenu(this);
                     DisableOthers();
                 }
             }
+            // Checks if this player should be moving in the menus
             if (_playerIndex == gameManager.whoGetsToPlay && pauseMenu.isPauseMenuActive)
             {
                 pauseMenu.moveAmount = navigate.ReadValue<Vector2>();
@@ -56,11 +60,13 @@ public class PlayerScript : MonoBehaviour
     public void DisableOthers()
     {
         var allControllers = InputSystem.devices;
-        var myDevice = playerInput.devices[_playerIndex];
-        for (int i = 0; allControllers.Count > i; i++)
+        var myDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
+
+        for (int i = 0; i < allControllers.Count; i++)
         {
             if (allControllers[i] != myDevice)
             {
+                Debug.Log(i);
                 InputSystem.DisableDevice(allControllers[i]);
             }
         }
@@ -69,9 +75,10 @@ public class PlayerScript : MonoBehaviour
     public void EnableOthers()
     {
         var allControllers = InputSystem.devices;
-        for (int i = 0; allControllers.Count > i; i++)
+        var myDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
+        for (int i = 0; i < allControllers.Count; i++)
         {
-            if (allControllers[i] != InputSystem.devices[_playerIndex])
+            if (allControllers[i] != myDevice)
             {
                 InputSystem.EnableDevice(allControllers[i]);
             }

@@ -70,6 +70,10 @@ public class UIPlayerBehaviour : MonoBehaviour
 
                 case ButtonSelect.button2:
                     EventSystem.current.SetSelectedGameObject(button2.gameObject);
+                    if (clickValue > 0)
+                    {
+                        OnOptionsClick();
+                    }
                     if (moveAmount.y < -0.1f && canMove)
                     {
                         buttonSelect = ButtonSelect.button3;
@@ -84,6 +88,10 @@ public class UIPlayerBehaviour : MonoBehaviour
 
                 case ButtonSelect.button3:
                     EventSystem.current.SetSelectedGameObject(button3.gameObject);
+                    if (clickValue > 0)
+                    {
+                        OnQuitClick();
+                    }
                     if (moveAmount.y > 0.1 && canMove)
                     {
                         buttonSelect = ButtonSelect.button2;
@@ -108,13 +116,6 @@ public class UIPlayerBehaviour : MonoBehaviour
         }
         else if (!isPauseMenuActive)
         {
-            // Check the start buttons state, if its pressed, open the pause menu
-            //float submitValue = submit.ReadValue<float>();
-            if (submitValue > 0)
-            {
-                OpenPauseMenu();
-            }
-
             // Timer for when the menu turns off
             // Set the timer to 4 when you turn the menu off
             if (timer > 0)
@@ -149,7 +150,7 @@ public class UIPlayerBehaviour : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void OpenPauseMenu()
+    public void OpenPauseMenu(PlayerScript player)
     {
         pauseMenu.SetActive(true);
         isPauseMenuActive = true;

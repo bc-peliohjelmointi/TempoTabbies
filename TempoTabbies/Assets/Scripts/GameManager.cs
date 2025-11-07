@@ -13,6 +13,15 @@ public class _GameManager : MonoBehaviour
 
     public int whoGetsToPlay; // When 0, only player 1 gets to do stuff in menus, when 1, only player 2 gets to do stuff in menus
 
+    public enum GameState
+    {
+        MainMenu,
+        Options,
+        StageSelect,
+        Game
+    }
+    public GameState state;
+
     private void Awake()
     {
         if (instance == null)
@@ -29,9 +38,12 @@ public class _GameManager : MonoBehaviour
     public void EnableControllers()
     {
         var allControllers = InputSystem.devices;
-        for (int i = 0; allControllers.Count > i; i++)
+        for (int i = 0; i < allControllers.Count; i++)
         {
-            InputSystem.EnableDevice(allControllers[i]);
+            if (!allControllers[i].enabled)
+            {
+                InputSystem.EnableDevice(allControllers[i]);
+            }
         }
     }
 }

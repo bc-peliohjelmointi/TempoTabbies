@@ -55,12 +55,13 @@ public class UIPlayerBehaviour : MonoBehaviour
             // Check which button is meant to be selected
             switch (buttonSelect)
             {
-                case ButtonSelect.button1:
+                case ButtonSelect.button1: // Continue
                     EventSystem.current.SetSelectedGameObject(button1.gameObject);
                     if (clickValue > 0)
                     {
                         OnContinueClick();
                     }
+                    // Moves to the desired button
                     if (moveAmount.y < -0.1f && canMove)
                     {
                         buttonSelect = ButtonSelect.button2;
@@ -68,12 +69,13 @@ public class UIPlayerBehaviour : MonoBehaviour
                     }
                     break;
 
-                case ButtonSelect.button2:
+                case ButtonSelect.button2: // Options
                     EventSystem.current.SetSelectedGameObject(button2.gameObject);
                     if (clickValue > 0)
                     {
                         OnOptionsClick();
                     }
+                    // Moves to the desired button
                     if (moveAmount.y < -0.1f && canMove)
                     {
                         buttonSelect = ButtonSelect.button3;
@@ -86,12 +88,13 @@ public class UIPlayerBehaviour : MonoBehaviour
                     }
                     break;
 
-                case ButtonSelect.button3:
+                case ButtonSelect.button3: // Quit
                     EventSystem.current.SetSelectedGameObject(button3.gameObject);
                     if (clickValue > 0)
                     {
                         OnQuitClick();
                     }
+                    // Moves to the desired button
                     if (moveAmount.y > 0.1 && canMove)
                     {
                         buttonSelect = ButtonSelect.button2;
@@ -131,6 +134,7 @@ public class UIPlayerBehaviour : MonoBehaviour
         }
     }
 
+    // What happens when you click the continue button
     public void OnContinueClick()
     {
         gameManager.EnableControllers();
@@ -140,17 +144,20 @@ public class UIPlayerBehaviour : MonoBehaviour
         timer = 4;
     }
 
+    // What happens when you click the options button
     public void OnOptionsClick()
     {
         SceneManager.LoadScene("Options");
     }
 
+    // What happens when you click the quit button
     public void OnQuitClick()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void OpenPauseMenu(PlayerScript player)
+    // Opens the pause menu mid game
+    public void OpenPauseMenu()
     {
         pauseMenu.SetActive(true);
         isPauseMenuActive = true;

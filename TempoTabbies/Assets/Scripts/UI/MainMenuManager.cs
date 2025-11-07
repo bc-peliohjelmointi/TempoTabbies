@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -15,7 +14,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button button3;
 
     // Player movement input
-    public InputAction navigate;
+    public Vector2 moveAmount;
+    public float clickValue;
 
     // State to know which button is being selected
     public enum ButtonSelect
@@ -31,18 +31,20 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        navigate = InputSystem.actions.FindAction("Navigate");
         EventSystem.current.SetSelectedGameObject(button1.gameObject);
     }
 
     private void Update()
     {
-        Vector2 moveAmount = navigate.ReadValue<Vector2>();
         // Check which button is currently selected
         switch (buttonSelect)
         {
             case ButtonSelect.button1:
                 EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                if (clickValue > 0)
+                {
+                    OnStageSelectClick();
+                }
                 if (moveAmount.y < -0.1f && canMove)
                 {
                     buttonSelect = ButtonSelect.button2;
@@ -52,6 +54,10 @@ public class MainMenuManager : MonoBehaviour
 
             case ButtonSelect.button2:
                 EventSystem.current.SetSelectedGameObject(button2.gameObject);
+                if (clickValue > 0)
+                {
+                    OnOptionsClick();
+                }
                 if (moveAmount.y < -0.1f && canMove)
                 {
                     buttonSelect = ButtonSelect.button3;
@@ -66,6 +72,10 @@ public class MainMenuManager : MonoBehaviour
 
             case ButtonSelect.button3:
                 EventSystem.current.SetSelectedGameObject(button3.gameObject);
+                if (clickValue > 0)
+                {
+                    OnQuitClick();
+                }
                 if (moveAmount.y > 0.1 && canMove)
                 {
                     buttonSelect = ButtonSelect.button2;

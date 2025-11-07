@@ -7,7 +7,8 @@ public class OptionsManager : MonoBehaviour
 {
     [SerializeField] public float volume;
 
-    InputAction navigate;
+    public Vector2 moveAmount;
+    public float clickValue;
 
     public Button button1;
     public Slider volumeSlider;
@@ -23,17 +24,19 @@ public class OptionsManager : MonoBehaviour
 
     void Awake()
     {
-        navigate = InputSystem.actions.FindAction("Navigate");
         EventSystem.current.SetSelectedGameObject(button1.gameObject);
     }
 
     private void Update()
     {
-        Vector2 moveAmount = navigate.ReadValue<Vector2>();
         switch (selected)
         {
             case Selected.button1:
                 EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                if (clickValue > 0)
+                {
+                    // Add a button event here
+                }
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.volumeSlider;

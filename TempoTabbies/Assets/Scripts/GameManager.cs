@@ -15,10 +15,10 @@ public class _GameManager : MonoBehaviour
 
     public enum GameState
     {
-        MainMenu,
-        Options,
-        StageSelect,
-        Game
+        MainMenu, // The main menu
+        Options, // The options menu
+        StageSelect, // The song select screen
+        Game // The songs being played
     }
     public GameState state;
 
@@ -35,11 +35,15 @@ public class _GameManager : MonoBehaviour
         }
     }
 
+    // Turns on all the controllers (keyboards, gamepads etc.)
     public void EnableControllers()
     {
+        // Every controller
         var allControllers = InputSystem.devices;
+        // Checks each controller to turn them all on
         for (int i = 0; i < allControllers.Count; i++)
         {
+            // if a controller is disabled, enable it
             if (!allControllers[i].enabled)
             {
                 InputSystem.EnableDevice(allControllers[i]);

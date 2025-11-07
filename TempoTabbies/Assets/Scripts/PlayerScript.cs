@@ -4,11 +4,15 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     private PlayerInput playerInput;
-    // Which player is active // 0 means player 1, 1 means player 2
+    // The players player number, 0 = player 1, 1 = player 2
     public int _playerIndex;
 
-    private UIPlayerBehaviour pauseMenu;
+    // Other scripts
     private _GameManager gameManager;
+    private UIPlayerBehaviour pauseMenu;
+    private MainMenuManager mainMenu;
+    private OptionsManager optionsMenu;
+    private StageSelectManager stageSelect;
 
     // The needed inputs
     public InputAction submit;
@@ -17,12 +21,13 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
+        // Makes players stay alive between scenes
         DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
     {
-        pauseMenu = FindFirstObjectByType<UIPlayerBehaviour>();
+        // Everything we need to find
         gameManager = FindFirstObjectByType<_GameManager>();
         playerInput = GetComponent<PlayerInput>();
         _playerIndex = playerInput.playerIndex;
@@ -33,35 +38,79 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        // Checks if the player is in  a song
-        if (gameManager.state == _GameManager.GameState.Game)
+        // Checks what state the game is currently in
+        if (gameManager.state == _GameManager.GameState.MainMenu)
         {
+            if (mainMenu == null)
+            {
+                mainMenu = FindFirstObjectByType<MainMenuManager>();
+            }
+            if (_playerIndex == gameManager.whoGetsToPlay)
+            {
+                // Checks the movement that we need for menus
+                mainMenu.moveAmount = navigate.ReadValue<Vector2>();
+                mainMenu.clickValue = clickButton.ReadValue<float>();
+            }
+        }
+        else if (gameManager.state == _GameManager.GameState.Options)
+        {
+            if (optionsMenu == null)
+            {
+                optionsMenu = FindFirstObjectByType<OptionsManager>();
+            }
+            if (_playerIndex == gameManager.whoGetsToPlay)
+            {
+                // Checks the movement that we need for menus
+                optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
+                optionsMenu.clickValue = clickButton.ReadValue<float>();
+            }
+        }
+        else if (gameManager.state == _GameManager.GameState.StageSelect)
+        {
+            if (stageSelect == null)
+            {
+                stageSelect = FindFirstObjectByType<StageSelectManager>();
+            }
+        }
+        else if (gameManager.state == _GameManager.GameState.Game)
+        {
+            if (pauseMenu == null)
+            {
+                pauseMenu = FindFirstObjectByType<UIPlayerBehaviour>();
+            }
             // Checks if the pauseMenu is inactive
             if (!pauseMenu.isPauseMenuActive)
             {
                 float submitValue = submit.ReadValue<float>();
-                //pauseMenu.submitValue = submitValue;
                 if (submitValue > 0)
                 {
+                    // Makes this player the active player
                     gameManager.whoGetsToPlay = _playerIndex;
-                    pauseMenu.OpenPauseMenu(this);
+                    // Opens the pause menu
+                    pauseMenu.OpenPauseMenu();
+                    // Disables the other controllers
                     DisableOthers();
                 }
             }
             // Checks if this player should be moving in the menus
             if (_playerIndex == gameManager.whoGetsToPlay && pauseMenu.isPauseMenuActive)
             {
+                // Checks the movement that we need for menus
                 pauseMenu.moveAmount = navigate.ReadValue<Vector2>();
-                pauseMenu.clickValue = clickButton.ReadValue<float>(); 
+                pauseMenu.clickValue = clickButton.ReadValue<float>();
             }
         }
     }
 
+    // Turns off other players controls
     public void DisableOthers()
     {
+        // All the controllers (keyboards, gamepads etc.)
         var allControllers = InputSystem.devices;
+        // THIS controller
         var myDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
 
+        // Checks each controller to turn them all off
         for (int i = 0; i < allControllers.Count; i++)
         {
             if (allControllers[i] != myDevice)
@@ -72,6 +121,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    // Turns on other players controls
     public void EnableOthers()
     {
         var allControllers = InputSystem.devices;

@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 2
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -985,6 +985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageID: 0
   whoGetsToPlay: 0
+  state: 3
 --- !u!4 &1308827856
 Transform:
   m_ObjectHideFlags: 0

@@ -41,6 +41,7 @@ public class PlayerScript : MonoBehaviour
         // Checks what state the game is currently in
         if (gameManager.state == _GameManager.GameState.MainMenu)
         {
+            // Gets the main menu script
             if (mainMenu == null)
             {
                 mainMenu = FindFirstObjectByType<MainMenuManager>();
@@ -54,6 +55,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (gameManager.state == _GameManager.GameState.Options)
         {
+            // gets the options menu script
             if (optionsMenu == null)
             {
                 optionsMenu = FindFirstObjectByType<OptionsManager>();
@@ -67,6 +69,8 @@ public class PlayerScript : MonoBehaviour
         }
         else if (gameManager.state == _GameManager.GameState.StageSelect)
         {
+            /// Not touching this yet, as I am pretty sure its getting changed a lot
+            // gets the stage select script
             if (stageSelect == null)
             {
                 stageSelect = FindFirstObjectByType<StageSelectManager>();
@@ -74,6 +78,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (gameManager.state == _GameManager.GameState.Game)
         {
+            // gets the pause menu script
             if (pauseMenu == null)
             {
                 pauseMenu = FindFirstObjectByType<UIPlayerBehaviour>();

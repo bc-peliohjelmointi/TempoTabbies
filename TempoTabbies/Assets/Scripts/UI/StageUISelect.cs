@@ -7,11 +7,13 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(AudioSource))]
 public class StageUISelect : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
+    // The song attached to the button
     AudioSource source;
     [SerializeField] GameObject songsImage;
 
     private void Start()
     {
+        // Finds the song attached
         source = GetComponent<AudioSource>();
         Debug.Log(source);
     }

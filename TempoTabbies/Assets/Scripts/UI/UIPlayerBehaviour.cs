@@ -137,9 +137,11 @@ public class UIPlayerBehaviour : MonoBehaviour
     // What happens when you click the continue button
     public void OnContinueClick()
     {
+        // Turns on the controllers that are disabled
         gameManager.EnableControllers();
         isPauseMenuActive = false;
         pauseMenu.SetActive(false);
+        // Activates the timer
         timerText.gameObject.SetActive(true);
         timer = 4;
     }

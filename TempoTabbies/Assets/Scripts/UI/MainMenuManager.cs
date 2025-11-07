@@ -40,11 +40,14 @@ public class MainMenuManager : MonoBehaviour
         switch (buttonSelect)
         {
             case ButtonSelect.button1:
+                // Selects the correct button
                 EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                // Checks if the button is clicked
                 if (clickValue > 0)
                 {
                     OnStageSelectClick();
                 }
+                // Moves to the desired button
                 if (moveAmount.y < -0.1f && canMove)
                 {
                     buttonSelect = ButtonSelect.button2;

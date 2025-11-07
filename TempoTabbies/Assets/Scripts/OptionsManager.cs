@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour
 {
-    [SerializeField] public float volume;
-
+    // Player input values
     public Vector2 moveAmount;
     public float clickValue;
 
+    // The button and slider
     public Button button1;
     public Slider volumeSlider;
 
+    // Enum to check what is selected
     public enum Selected
     {
         button1,
@@ -32,6 +33,7 @@ public class OptionsManager : MonoBehaviour
         switch (selected)
         {
             case Selected.button1:
+                // Selects the correct button
                 EventSystem.current.SetSelectedGameObject(button1.gameObject);
                 if (clickValue > 0)
                 {
@@ -44,6 +46,7 @@ public class OptionsManager : MonoBehaviour
                 break;
 
             case Selected.volumeSlider:
+                // Selects the slider
                 EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
                 if (canMove && moveAmount.y > 0.1f)
                 {
@@ -65,6 +68,7 @@ public class OptionsManager : MonoBehaviour
         }
     }
 
+    // Changes the global volume to be equal to the sliders value
     public void VolumeChange()
     {
         AudioListener.volume = volumeSlider.value;

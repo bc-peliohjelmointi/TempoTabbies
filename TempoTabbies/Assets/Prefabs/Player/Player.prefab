@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5245563029815847489}
   - component: {fileID: 143850149876714798}
+  - component: {fileID: -4167658743662502954}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -62,3 +63,44 @@ MonoBehaviour:
   m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-4167658743662502954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8147008204506448123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245c5708f6f91e14eb4c1bb4ddaede55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerIndex: 0
+  submit:
+    m_Name: Submit
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: de09a8ae-de44-4671-988d-6a8608cdca1f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  navigate:
+    m_Name: Navigate
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b451fcb6-0934-4771-8e7b-eab79608cece
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  clickButton:
+    m_Name: Click Button
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1021d155-a099-46bb-aa70-0ce33d77f2f2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  isInGame: 1

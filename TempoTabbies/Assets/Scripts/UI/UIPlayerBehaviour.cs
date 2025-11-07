@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 /// <summary>
@@ -9,9 +8,11 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class UIPlayerBehaviour : MonoBehaviour
 {
-    // The needed inputs
-    public InputAction submit;
-    public InputAction navigate;
+    public Vector2 moveAmount;
+    public float submitValue;
+    public float clickValue;
+
+    private _GameManager gameManager;
 
     // Wether the menu is active or not
     [SerializeField] public bool isPauseMenuActive = false;
@@ -40,9 +41,7 @@ public class UIPlayerBehaviour : MonoBehaviour
 
     private void Awake()
     {
-        // Set up the inputs
-        navigate = InputSystem.actions.FindAction("Navigate");
-        submit = InputSystem.actions.FindAction("Submit");
+        gameManager = FindAnyObjectByType<_GameManager>();
     }
 
     private void Update()
@@ -51,13 +50,17 @@ public class UIPlayerBehaviour : MonoBehaviour
         if (isPauseMenuActive)
         {
             // Check the stick movement
-            Vector2 moveAmount = navigate.ReadValue<Vector2>();
+            //Vector2 moveAmount = navigate.ReadValue<Vector2>();
 
             // Check which button is meant to be selected
             switch (buttonSelect)
             {
                 case ButtonSelect.button1:
                     EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                    if (clickValue > 0)
+                    {
+                        OnContinueClick();
+                    }
                     if (moveAmount.y < -0.1f && canMove)
                     {
                         buttonSelect = ButtonSelect.button2;
@@ -106,7 +109,7 @@ public class UIPlayerBehaviour : MonoBehaviour
         else if (!isPauseMenuActive)
         {
             // Check the start buttons state, if its pressed, open the pause menu
-            float submitValue = submit.ReadValue<float>();
+            //float submitValue = submit.ReadValue<float>();
             if (submitValue > 0)
             {
                 OpenPauseMenu();
@@ -129,6 +132,7 @@ public class UIPlayerBehaviour : MonoBehaviour
 
     public void OnContinueClick()
     {
+        gameManager.EnableControllers();
         isPauseMenuActive = false;
         pauseMenu.SetActive(false);
         timerText.gameObject.SetActive(true);

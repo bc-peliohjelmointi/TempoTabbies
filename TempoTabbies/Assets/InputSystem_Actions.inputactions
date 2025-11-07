@@ -618,6 +618,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ClickButton",
+                    "type": "Button",
+                    "id": "9a28a913-7d1b-4edf-b54c-15e3b7584f1c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Cancel",
                     "type": "Button",
                     "id": "15cef263-9014-4fd5-94d9-4e4a6234a6ef",
@@ -968,6 +977,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b2248315-cbf4-4a38-bd54-a2fe7931ce0e",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "82627dcc-3b13-4ba9-841d-e4b746d6553e",
                     "path": "*/{Cancel}",
                     "interactions": "",
@@ -1117,6 +1137,17 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd7e7cc2-5437-4043-95a4-3fbe9cd44314",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

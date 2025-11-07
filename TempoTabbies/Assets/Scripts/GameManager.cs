@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// General game manager
@@ -10,7 +11,7 @@ public class _GameManager : MonoBehaviour
     // A spot to remember what stage is currently selected
     public int stageID;
 
-    public bool whoGetsToPlay; // When true, only player 1 gets to do stuff in menus, when false, only player 2 gets to do stuff in menus
+    public int whoGetsToPlay; // When 0, only player 1 gets to do stuff in menus, when 1, only player 2 gets to do stuff in menus
 
     private void Awake()
     {
@@ -22,6 +23,15 @@ public class _GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void EnableControllers()
+    {
+        var allControllers = InputSystem.devices;
+        for (int i = 0; allControllers.Count > i; i++)
+        {
+            InputSystem.EnableDevice(allControllers[i]);
         }
     }
 }

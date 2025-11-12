@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewCard", menuName = "RhythmGame/Card", order = 0)]
 public class CardDataScript : MonoBehaviour
 {
 
@@ -11,6 +10,7 @@ public class CardDataScript : MonoBehaviour
         Attack,     // hyökkää vastustajaan
         Defense,    // suojaa itseä
     }
+    [CreateAssetMenu(fileName = "NewCard", menuName = "RhythmGame/Card", order = 0)]
     public class CardData : ScriptableObject
     {
         [Header("Perustiedot")]

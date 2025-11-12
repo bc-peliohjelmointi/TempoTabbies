@@ -9,6 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc04af20f6c355948b9795467c45a85c, type: 3}
-  m_Name: Combo_Leech
+  m_Script: {fileID: 0}
+  m_Name: Valashai
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
+  CardName: valashai
+  description: 
+  EffectType: 
+  icon: {fileID: 0}
+  type: 0
+  duration: 10
+  cooldown: 30
+  activatesAutomatically: 1
+  value: 0
+  triggerThreshold: 0
+  effectPrefab: {fileID: 0}

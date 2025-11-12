@@ -7,7 +7,7 @@ using static ComboLeechScript;
 
 public class CardActivationManager : MonoBehaviour
 {
-    /*public CardManagerScript CardManager;
+   /* public CardManagerScript CardManager;
     public RhythmGameManager Game;
 
     void Start()

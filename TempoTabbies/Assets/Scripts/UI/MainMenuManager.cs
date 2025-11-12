@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Main menu script
 /// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class MainMenuManager : MonoBehaviour
 {
     // Menu objects
@@ -18,6 +19,9 @@ public class MainMenuManager : MonoBehaviour
     // Player movement input
     public Vector2 moveAmount;
     public float clickValue;
+
+    // Audio
+    AudioSource source;
 
     // State to know which button is being selected
     public enum ButtonSelect
@@ -34,6 +38,10 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         EventSystem.current.SetSelectedGameObject(button1.gameObject);
+        gameManager = FindAnyObjectByType<_GameManager>();
+        source = GetComponent<AudioSource>();
+        source.Play();
+        source.loop = true;
     }
 
     private void Update()

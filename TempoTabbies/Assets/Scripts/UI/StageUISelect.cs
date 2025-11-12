@@ -9,30 +9,30 @@ public class StageUISelect : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     // The song attached to the button
     AudioSource source;
-    [SerializeField] GameObject songsImage;
 
-    private void Start()
-    {
-        // Finds the song attached
-        source = GetComponent<AudioSource>();
-        Debug.Log(source);
-    }
+    private _GameManager gameManager;
 
     // Input what happes when you select the button
     public void OnSelect(BaseEventData eventData)
     {
-        // Prolly play the first song and show a big image of the songs
-        gameObject.transform.localScale = new Vector3(6, 6, 6);
-        songsImage.SetActive(true);
-        source.Play();
+        if (gameManager == null)
+        {
+            gameManager = FindAnyObjectByType<_GameManager>();
+        }
+        if (source == null)
+        {
+            source = GetComponent<AudioSource>();
+        }
+        // Buttons all play a sound when selected, 
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
     }
 
     // Input what happens when you deselect the button
     public void OnDeselect(BaseEventData eventData)
     {
         // Undo what OnSelect() does
-        gameObject.transform.localScale = new Vector3(3, 3, 3);
-        songsImage.SetActive(false);
-        source.Stop();
     }
 }

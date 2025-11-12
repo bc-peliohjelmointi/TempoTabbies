@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class OptionsManager : MonoBehaviour
 {
     // Player input values
@@ -12,6 +13,9 @@ public class OptionsManager : MonoBehaviour
     // The button and slider
     public Button button1;
     public Slider volumeSlider;
+
+    // Audio
+    AudioSource source;
 
     // Enum to check what is selected
     public enum Selected
@@ -26,6 +30,10 @@ public class OptionsManager : MonoBehaviour
     void Awake()
     {
         EventSystem.current.SetSelectedGameObject(button1.gameObject);
+        volumeSlider.value = 1;
+        source = GetComponent<AudioSource>();
+        source.Play();
+        source.loop = true;
     }
 
     private void Update()
@@ -48,6 +56,7 @@ public class OptionsManager : MonoBehaviour
             case Selected.volumeSlider:
                 // Selects the slider
                 EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
+                AudioListener.volume = volumeSlider.value;
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.button1;
@@ -66,11 +75,5 @@ public class OptionsManager : MonoBehaviour
                 moveTimer = 0;
             }
         }
-    }
-
-    // Changes the global volume to be equal to the sliders value
-    public void VolumeChange()
-    {
-        AudioListener.volume = volumeSlider.value;
     }
 }

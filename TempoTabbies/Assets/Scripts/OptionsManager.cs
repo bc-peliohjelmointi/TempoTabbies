@@ -24,6 +24,8 @@ public class OptionsManager : MonoBehaviour
         volumeSlider
     }
     public Selected selected;
+
+    // player movement timer
     bool canMove;
     float moveTimer;
 
@@ -40,7 +42,7 @@ public class OptionsManager : MonoBehaviour
     {
         switch (selected)
         {
-            case Selected.button1:
+            case Selected.button1: // Back to menu
                 // Selects the correct button
                 EventSystem.current.SetSelectedGameObject(button1.gameObject);
                 if (clickValue > 0)
@@ -53,7 +55,7 @@ public class OptionsManager : MonoBehaviour
                 }
                 break;
 
-            case Selected.volumeSlider:
+            case Selected.volumeSlider: // The volume slider
                 // Selects the slider
                 EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
                 AudioListener.volume = volumeSlider.value;

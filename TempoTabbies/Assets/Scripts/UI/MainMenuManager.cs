@@ -49,7 +49,7 @@ public class MainMenuManager : MonoBehaviour
         // Check which button is currently selected
         switch (buttonSelect)
         {
-            case ButtonSelect.button1:
+            case ButtonSelect.button1: // Stage select
                 // Selects the correct button
                 EventSystem.current.SetSelectedGameObject(button1.gameObject);
                 // Checks if the button is clicked
@@ -65,7 +65,7 @@ public class MainMenuManager : MonoBehaviour
                 }
                 break;
 
-            case ButtonSelect.button2:
+            case ButtonSelect.button2: // Options
                 EventSystem.current.SetSelectedGameObject(button2.gameObject);
                 if (clickValue > 0)
                 {
@@ -83,7 +83,7 @@ public class MainMenuManager : MonoBehaviour
                 }
                 break;
 
-            case ButtonSelect.button3:
+            case ButtonSelect.button3: // Quit
                 EventSystem.current.SetSelectedGameObject(button3.gameObject);
                 if (clickValue > 0)
                 {

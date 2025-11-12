@@ -15,6 +15,7 @@ public class StageUISelect : MonoBehaviour, ISelectHandler, IDeselectHandler
     // Input what happes when you select the button
     public void OnSelect(BaseEventData eventData)
     {
+        // we find these here, because the menu scripts select buttons, which can happen before the buttons awake
         if (gameManager == null)
         {
             gameManager = FindAnyObjectByType<_GameManager>();
@@ -23,7 +24,8 @@ public class StageUISelect : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             source = GetComponent<AudioSource>();
         }
-        // Buttons all play a sound when selected, 
+
+        // Play the audio, if it is not already playing, this stops the button select tweaking out and selecting itself twice in a millisecond
         if (!source.isPlaying)
         {
             source.Play();
@@ -33,6 +35,6 @@ public class StageUISelect : MonoBehaviour, ISelectHandler, IDeselectHandler
     // Input what happens when you deselect the button
     public void OnDeselect(BaseEventData eventData)
     {
-        // Undo what OnSelect() does
+        
     }
 }

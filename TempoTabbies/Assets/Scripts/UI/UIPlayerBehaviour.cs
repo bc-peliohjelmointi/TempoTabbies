@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class UIPlayerBehaviour : MonoBehaviour
 {
+    // Player movement, which is sent by the PlayerScript.cs Class
     public Vector2 moveAmount;
     public float submitValue;
     public float clickValue;
@@ -49,9 +50,6 @@ public class UIPlayerBehaviour : MonoBehaviour
         // Check if the pause menu is active
         if (isPauseMenuActive)
         {
-            // Check the stick movement
-            //Vector2 moveAmount = navigate.ReadValue<Vector2>();
-
             // Check which button is meant to be selected
             switch (buttonSelect)
             {
@@ -139,6 +137,7 @@ public class UIPlayerBehaviour : MonoBehaviour
     {
         // Turns on the controllers that are disabled
         gameManager.EnableControllers();
+        gameManager.state = _GameManager.GameState.Game;
         isPauseMenuActive = false;
         pauseMenu.SetActive(false);
         // Activates the timer
@@ -163,6 +162,7 @@ public class UIPlayerBehaviour : MonoBehaviour
     public void OpenPauseMenu()
     {
         pauseMenu.SetActive(true);
+        gameManager.state = _GameManager.GameState.Pause;
         isPauseMenuActive = true;
         timerText.gameObject.SetActive(false);
         buttonSelect = ButtonSelect.button1;

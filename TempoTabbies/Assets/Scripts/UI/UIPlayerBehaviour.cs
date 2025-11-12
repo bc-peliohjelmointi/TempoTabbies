@@ -149,6 +149,7 @@ public class UIPlayerBehaviour : MonoBehaviour
     // What happens when you click the options button
     public void OnOptionsClick()
     {
+        gameManager.state = _GameManager.GameState.Options;
         SceneManager.LoadScene("Options");
     }
 

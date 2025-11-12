@@ -13,6 +13,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button button2;
     [SerializeField] UnityEngine.UI.Button button3;
 
+    private _GameManager gameManager;
+
     // Player movement input
     public Vector2 moveAmount;
     public float clickValue;
@@ -102,14 +104,15 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-
     public void OnStageSelectClick()
     {
+        gameManager.state = _GameManager.GameState.StageSelect;
         SceneManager.LoadScene("MainGame");
     }
 
     public void OnOptionsClick()
     {
+        gameManager.state = _GameManager.GameState.Options;
         SceneManager.LoadScene("Options");
     }
 

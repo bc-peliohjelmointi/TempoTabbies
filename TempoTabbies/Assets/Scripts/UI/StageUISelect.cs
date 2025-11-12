@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 /// This class is for buttons and changes what they do when selected or deselected
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
-public class StageUISelect : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class StageUISelect : MonoBehaviour, ISelectHandler
 {
     // The song attached to the button
     AudioSource source;
@@ -30,11 +30,5 @@ public class StageUISelect : MonoBehaviour, ISelectHandler, IDeselectHandler
         {
             source.Play();
         }
-    }
-
-    // Input what happens when you deselect the button
-    public void OnDeselect(BaseEventData eventData)
-    {
-        
     }
 }

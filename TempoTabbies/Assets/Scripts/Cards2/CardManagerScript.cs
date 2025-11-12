@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
-using static CardDataScript;
-using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using static CardDataScript;
 
 public class CardManagerScript : MonoBehaviour
 {
@@ -10,6 +10,9 @@ public class CardManagerScript : MonoBehaviour
     public List<CardDataScript.CardData> AllCards;
 
     [Header("Player Card Choices")]
+    public PlayerScript Score;
+
+
     public CardDataScript.CardData PlayerAChoice;
     public CardDataScript.CardData PlayerBChoice;
 
@@ -21,12 +24,12 @@ public class CardManagerScript : MonoBehaviour
     private bool lockedB = false;
 
     List<CardDataScript.CardData> KorttiLista; //Lista arvotuista korteista
-   
+
 
     void Start()
     {
         KorttiLista = new List<CardDataScript.CardData>();
-        
+
         if (Gamepad.all.Count > 0) padA = Gamepad.all[0];
         if (Gamepad.all.Count > 1) padB = Gamepad.all[1];
 
@@ -35,6 +38,27 @@ public class CardManagerScript : MonoBehaviour
 
     void Update()
     {
+        PlayerScript active = findPlayerActive(); //etsii pelaaja pisteiden perusteella
+        if (active != null)//pisteiden perusteillä löytyi ekaksi menevä
+        {
+            PlayerScript NoCardPlayer = findPlayerNoCard(active);//löytää pelaajan ilman korttia
+            if (NoCardPlayer != null) //jos on pelaaja ilman korttia 
+            {
+                //vaihtaa UI tektin pelaajaan vuoroon
+                //odotta
+
+            }
+            else //voi mennä eteenpäin
+            {
+                // change scene !!!!
+            }
+        }
+        else
+        {
+           //ei tule mitään, koska ei ole pelaajia ja tämä menee vain ohi
+        }
+
+
         if (AllCards == null || AllCards.Count == 0) return;
 
         // --- Player A selection ---
@@ -87,22 +111,96 @@ public class CardManagerScript : MonoBehaviour
         GameObject.Find("Valinta3").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[2].CardName;
     }
 
+    PlayerScript FindPlayerOther(PlayerScript Chosen)
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length == 1)
+        {
+            return null;
+        }
+        else
+        {
+            PlayerScript script1 = players[0].GetComponent<PlayerScript>();
+            PlayerScript script2 = players[1].GetComponent<PlayerScript>();
+            if (Chosen == script1)
+            {
+                return script2;
+            }
+            else
+            {
+                return script1;
+            }
+        }
+    }
+
+    PlayerScript findPlayerNoCard(PlayerScript Chosen)
+    {
+        if (Chosen.AllCards.Count == 0)
+        {
+            return Chosen;
+        }
+        else
+        {
+            PlayerScript Other = FindPlayerOther(Chosen);
+            if (Other != null)
+            {
+                if (Other.AllCards.Count == 0)
+                {
+                    return Other;
+                }
+            }
+        }
+        return null;
+
+    }
+
+    PlayerScript findPlayerActive()
+    {
+        //jos on toinen pelaaja arvo uudestaan
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length == 0)
+        {
+            return null;//ei ole pelaajia
+        }
+        if (players.Length == 1)
+        {
+            return players[0].GetComponent<PlayerScript>();
+        }
+        else
+        {
+            PlayerScript script1 = players[0].GetComponent<PlayerScript>();
+            PlayerScript script2 = players[1].GetComponent<PlayerScript>();
+
+            if (script1.Score >= script2.Score)
+            {
+                return script1;
+            }
+            else
+            {
+                return script2;
+            }
+        }
+    }
+
     public void Button1Press()
     {
         Debug.Log("Button 1");
+        GiveCardToPlayer(KorttiLista[0]);
     }
     public void Button2Press()
     {
         Debug.Log("Button 2");
+        GiveCardToPlayer(KorttiLista[1]);
     }
     public void Button3Press()
     {
         Debug.Log("Button 3");
+        GiveCardToPlayer(KorttiLista[2]);
     }
 
     public void GiveCardToPlayer(CardData card)
     {
-        GameObject player= GameObject.FindGameObjectWithTag("Player");
-        PlayerScript script = player.GetComponent<PlayerScript>();
+        PlayerScript script = findPlayerActive();
+        script.AllCards.Add(card);
     }
 }

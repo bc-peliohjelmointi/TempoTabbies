@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class PlayerScript : MonoBehaviour
     public InputAction submit;
     public InputAction navigate;
     public InputAction clickButton;
+
+    // Cards and Score
+    public List<CardDataScript.CardData> AllCards;
+    public int Score;
 
     private void Awake()
     {

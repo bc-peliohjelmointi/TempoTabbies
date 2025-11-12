@@ -20,8 +20,30 @@ public class GameManager : MonoBehaviour
     public Transform HitLine;
 
     private float audioOffset = 0f;
-    public static float GlobalMusicStartTime;
+    public static float GlobalMusicStartTime; // when audio actually starts
+    public static float ChartStartTime;       // when chart started (notes spawn relative to this)
+                                              // ADD THIS - Make GameManager a singleton for easy access
+    public static GameManager Instance { get; private set; }
 
+    // ADD THIS - Property to get corrected song time (without offset)
+    public static float SongTime
+    {
+        get
+        {
+            if (Instance != null && Instance.Music != null && Instance.Music.isPlaying)
+            {
+                // For positive offsets, Music.time starts from 0 after the delay
+                // For negative offsets, Music.time starts from the offset value
+                return Instance.Music.time;
+            }
+            return Time.time - ChartStartTime;
+        }
+    }
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -37,7 +59,6 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Now playing: {sm.Title} by {sm.Artist}");
         Debug.Log($"Chart: {chart.Description} ({chart.Difficulty}) - {chart.Measures.Count} measures");
 
-        audioOffset = 0f;
 
         if (LaneParent == null)
         {
@@ -60,13 +81,16 @@ public class GameManager : MonoBehaviour
 
         Spawner.LoadChart(sm, chart);
 
-        // Load audio file dynamically (.mp3 or .ogg)
+        // --- Set chart start time before loading music ---
+        ChartStartTime = Time.time;
+
         StartCoroutine(LoadAndStartMusic(sm));
     }
 
+
+
     private IEnumerator LoadAndStartMusic(SMFile sm)
     {
-        // --- Find the directory where the SM file is located ---
         string songDir = Path.GetDirectoryName(sm.FilePath);
         string songsRoot = Path.Combine(Application.dataPath, "Songs");
 
@@ -77,12 +101,10 @@ public class GameManager : MonoBehaviour
             yield break;
         }
 
-        // --- Try path relative to the .sm file first ---
         string fullPath = Path.Combine(songDir, musicFile);
 
         if (!File.Exists(fullPath))
         {
-            // If not found, search the entire Songs folder for the file
             string[] found = Directory.GetFiles(songsRoot, Path.GetFileName(musicFile), SearchOption.AllDirectories);
             if (found.Length > 0)
             {
@@ -96,19 +118,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // --- Normalize path for UnityWebRequest ---
         fullPath = Path.GetFullPath(fullPath);
         string uri = "file:///" + UnityWebRequest.EscapeURL(fullPath.Replace("\\", "/"));
 
         Debug.Log($"[SM Loader] Loading audio from: {uri}");
 
-        // --- Detect file type ---
         AudioType audioType = AudioType.MPEG;
         string ext = Path.GetExtension(fullPath).ToLower();
         if (ext == ".ogg") audioType = AudioType.OGGVORBIS;
         else if (ext == ".wav") audioType = AudioType.WAV;
 
-        // --- Load the audio ---
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(uri, audioType))
         {
             yield return www.SendWebRequest();
@@ -122,43 +141,32 @@ public class GameManager : MonoBehaviour
             Music.clip = DownloadHandlerAudioClip.GetContent(www);
         }
 
-        // --- Wait for offset and start playback ---
-        yield return StartCoroutine(StartMusicWithOffset());
+        Music.Play();
+        GlobalMusicStartTime = Time.time;
+
+        Debug.Log($"[GameManager] Music started at time 0, notes have offset applied");
     }
 
 
-
-    private IEnumerator StartMusicWithOffset()
+    /*private IEnumerator StartMusicWithOffset()
     {
-        if (Music.clip == null)
-        {
-            Debug.LogError("Audio clip not loaded!");
-            yield break;
-        }
-
+        // AudioSource already exists in the scene
         if (audioOffset > 0)
         {
-            Debug.Log($"Delaying music start by {audioOffset}s");
             yield return new WaitForSeconds(audioOffset);
             Music.Play();
-            GameManager.GlobalMusicStartTime = Time.time - audioOffset;
+            GlobalMusicStartTime = Time.time;
         }
         else if (audioOffset < 0)
         {
-            float startTime = Mathf.Abs(audioOffset);
-            Debug.Log($"Starting music early by {startTime}s");
-            Music.time = startTime;
+            Music.time = Mathf.Abs(audioOffset);
             Music.Play();
-            GameManager.GlobalMusicStartTime = Time.time + audioOffset;
+            GlobalMusicStartTime = Time.time;
         }
         else
         {
             Music.Play();
-            GameManager.GlobalMusicStartTime = Time.time;
+            GlobalMusicStartTime = Time.time;
         }
-    }
-
-
-
-
+    }*/
 }

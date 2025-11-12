@@ -25,7 +25,9 @@ public class Note : MonoBehaviour
         if (!started) return;
         if (Music == null || HitLine == null) return;
 
-        float timeUntilHit = TargetTime - (float)Music.time;
+        // Use the corrected song time
+        float songTime = GameManager.SongTime;
+        float timeUntilHit = TargetTime - songTime;
         float y = HitLine.position.y + (timeUntilHit * ScrollSpeed);
         transform.position = new Vector3(initialX, y, initialZ);
 

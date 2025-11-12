@@ -23,7 +23,6 @@ public static class SMTiming
             return notes;
         }
 
-        // Do NOT apply sm.Offset here — music offset is handled in GameManager
         float bpm = 120f;
         if (sm?.Bpms != null && sm.Bpms.Count > 0)
         {
@@ -49,7 +48,10 @@ public static class SMTiming
                 if (string.IsNullOrWhiteSpace(row)) continue;
 
                 float rowBeat = currentBeat + (4f * i / rows);
-                float time = rowBeat * secPerBeat; // offset removed!
+                float time = rowBeat * secPerBeat;
+
+                // APPLY THE OFFSET TO NOTE TIMES (subtract the offset)
+                time -= sm.Offset; // This makes notes spawn earlier if offset is positive
 
                 for (int lane = 0; lane < row.Length; lane++)
                 {
@@ -80,7 +82,11 @@ public static class SMTiming
             currentBeat += 4f;
         }
 
-        Debug.Log($"Generated {notes.Count} notes (with holds)");
+        Debug.Log($"Generated {notes.Count} notes (offset {sm.Offset} applied to note times)");
+        if (notes.Count > 0)
+        {
+            Debug.Log($"First note time after offset: {notes[0].time} (should be ~2.236)");
+        }
         return notes;
     }
 

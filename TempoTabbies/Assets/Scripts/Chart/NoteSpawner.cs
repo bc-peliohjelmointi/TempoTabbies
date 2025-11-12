@@ -48,11 +48,14 @@ public class NoteSpawner : MonoBehaviour
         if (!Music || !HitLine || Lanes == null || Lanes.Length == 0) return;
 
         if (!Music.isPlaying) return;
-        float songTime = Time.time - GameManager.GlobalMusicStartTime;
 
+        float songTime = GameManager.SongTime;
 
-
-        // loop through notes that are within the lead time
+        // ADD THIS DEBUG LOG:
+        if (nextIndex == 0 && notes.Count > 0)
+        {
+            Debug.Log($"[NoteSpawner] First note time: {notes[0].time}, Current song time: {songTime}, Music.time: {Music.time}");
+        }
         while (nextIndex < notes.Count && notes[nextIndex].time - songTime < SpawnLeadTime)
         {
             if (skipIndices.Contains(nextIndex))
@@ -62,83 +65,81 @@ public class NoteSpawner : MonoBehaviour
             }
 
             var noteData = notes[nextIndex];
-            if (noteData.lane < 0 || noteData.lane >= Lanes.Length)
+
+            if (AssistTickManager.Instance != null)
             {
-                nextIndex++;
-                continue;
-            }
-
-            Transform lane = Lanes[noteData.lane];
-
-            // --- Calculate dynamic spawn height based on time ---
-            float timeUntilHit = noteData.time - songTime;
-            float spawnY = HitLine.position.y + timeUntilHit * ScrollSpeed;
-            Vector3 spawnPos = new Vector3(lane.position.x, spawnY, lane.position.z);
-
-            // --- HANDLE HOLD START ---
-            if (noteData.type == '2') // hold start
-            {
-                var endNote = FindHoldEnd(noteData.lane, nextIndex);
-                if (endNote.HasValue)
+                // Play ticks for tap notes AND hold starts, but NOT hold ends
+                if (noteData.type == '1' || noteData.type == '2') // Taps and hold starts only
                 {
-                    int endIndex = notes.IndexOf(endNote.Value);
-                    if (endIndex >= 0) skipIndices.Add(endIndex);
-
-                    // create parent
-                    GameObject holdRoot = new GameObject($"HoldNote_Lane{noteData.lane}");
-                    holdRoot.transform.parent = transform;
-                    holdRoot.transform.position = lane.position; // ? fixed: start at lane, not scrolled position
-
-                    // add script
-                    HoldNote hold = holdRoot.AddComponent<HoldNote>();
-                    hold.StartTime = noteData.time;
-                    hold.EndTime = endNote.Value.time;
-                    hold.ScrollSpeed = ScrollSpeed;
-                    hold.Music = Music;
-                    hold.HitLine = HitLine;
-                    hold.Lane = noteData.lane;
-
-                    // spawn parts
-                    GameObject headPrefab = GetTapPrefabForLane(noteData.lane);
-                    GameObject bodyPrefab = GetHoldBodyPrefabForLane(noteData.lane);
-                    GameObject endPrefab = GetHoldEndPrefabForLane(noteData.lane);
-
-                    GameObject head = Instantiate(headPrefab, holdRoot.transform);
-                    GameObject body = Instantiate(bodyPrefab, holdRoot.transform);
-                    GameObject endObj = Instantiate(endPrefab, holdRoot.transform);
-
-                    hold.Head = head;
-                    hold.Body = body;
-                    hold.End = endObj;
-
+                    AssistTickManager.Instance.ScheduleTick(noteData.time);
+                }
+                if (noteData.lane < 0 || noteData.lane >= Lanes.Length)
+                {
                     nextIndex++;
                     continue;
                 }
-            }
 
+                Transform lane = Lanes[noteData.lane];
+                float timeUntilHit = noteData.time - songTime;
+                float spawnY = HitLine.position.y + timeUntilHit * ScrollSpeed;
+                Vector3 spawnPos = new Vector3(lane.position.x, spawnY, lane.position.z);
 
+                // Handle hold notes as before
+                if (noteData.type == '2')
+                {
+                    var endNote = FindHoldEnd(noteData.lane, nextIndex);
+                    if (endNote.HasValue)
+                    {
+                        int endIndex = notes.IndexOf(endNote.Value);
+                        if (endIndex >= 0) skipIndices.Add(endIndex);
 
-            // --- TAP NOTE ---
-            GameObject tapPrefab = GetTapPrefabForLane(noteData.lane);
-            if (tapPrefab == null)
-            {
-                Debug.LogWarning($"No tap prefab assigned for lane {noteData.lane}");
+                        GameObject holdRoot = new GameObject($"HoldNote_Lane{noteData.lane}");
+                        holdRoot.transform.parent = transform;
+                        holdRoot.transform.position = lane.position;
+
+                        HoldNote hold = holdRoot.AddComponent<HoldNote>();
+                        hold.StartTime = noteData.time;
+                        hold.EndTime = endNote.Value.time;
+                        hold.ScrollSpeed = ScrollSpeed;
+                        hold.Music = Music;
+                        hold.HitLine = HitLine;
+                        hold.Lane = noteData.lane;
+
+                        GameObject headPrefab = GetTapPrefabForLane(noteData.lane);
+                        GameObject bodyPrefab = GetHoldBodyPrefabForLane(noteData.lane);
+                        GameObject endPrefab = GetHoldEndPrefabForLane(noteData.lane);
+
+                        hold.Head = Instantiate(headPrefab, holdRoot.transform);
+                        hold.Body = Instantiate(bodyPrefab, holdRoot.transform);
+                        hold.End = Instantiate(endPrefab, holdRoot.transform);
+
+                        nextIndex++;
+                        continue;
+                    }
+                }
+
+                // Tap notes
+                GameObject tapPrefab = GetTapPrefabForLane(noteData.lane);
+                if (tapPrefab == null)
+                {
+                    Debug.LogWarning($"No tap prefab assigned for lane {noteData.lane}");
+                    nextIndex++;
+                    continue;
+                }
+
+                GameObject note = Instantiate(tapPrefab, spawnPos, Quaternion.identity, transform);
+                Note n = note.GetComponent<Note>();
+                if (n != null)
+                {
+                    n.TargetTime = noteData.time;
+                    n.ScrollSpeed = ScrollSpeed;
+                    n.Music = Music;
+                    n.HitLine = HitLine;
+                    n.Lane = noteData.lane;
+                }
+
                 nextIndex++;
-                continue;
             }
-
-            GameObject note = Instantiate(tapPrefab, spawnPos, Quaternion.identity, transform);
-            Note n = note.GetComponent<Note>();
-            if (n != null)
-            {
-                n.TargetTime = noteData.time;
-                n.ScrollSpeed = ScrollSpeed;
-                n.Music = Music;
-                n.HitLine = HitLine;
-                n.Lane = noteData.lane;
-            }
-
-            nextIndex++;
         }
     }
 

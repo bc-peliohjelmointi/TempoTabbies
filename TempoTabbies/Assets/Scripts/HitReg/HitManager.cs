@@ -59,7 +59,7 @@ public class HitManager : MonoBehaviour
         if (Music == null || Spawner == null)
             return;
 
-        float songTime = Music.time;
+        float songTime = GameManager.SongTime;
 
         // Tap / hold start detection
         if (gamepad.leftTrigger.wasPressedThisFrame) TryHit(leftTriggerLane, songTime);
@@ -119,6 +119,10 @@ public class HitManager : MonoBehaviour
     {
         float diff = currentTime - note.TargetTime;
         float absDiff = Mathf.Abs(diff);
+
+        // ADD THIS:
+        Debug.Log($"[Hit Timing] Note: {note.TargetTime}, Current: {currentTime}, Diff: {diff}");
+
         string label;
 
         if (absDiff <= TimingWindows.Marvelous) label = "MARVELOUS";
@@ -131,6 +135,12 @@ public class HitManager : MonoBehaviour
         note.Hit = true;
         Destroy(note.gameObject);
         ShowJudgment(label);
+
+        // PLAY HITSOUND
+        if (HitSoundManager.Instance != null)
+        {
+            HitSoundManager.Instance.PlayHitSound(label);
+        }
         Debug.Log($"[{label}] lane {note.Lane} ?t={diff * 1000f:F1}ms");
     }
 

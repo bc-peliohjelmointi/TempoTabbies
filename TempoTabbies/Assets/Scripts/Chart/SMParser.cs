@@ -16,9 +16,13 @@ public class SMFile
 {
     public string Title;
     public string Artist;
+    public string MusicFile;    
     public float Offset;
     public Dictionary<float, float> Bpms = new();
     public List<SMChart> Charts = new();
+
+    public string FilePath;  // full path to the .sm file
+    public string DirectoryPath => Path.GetDirectoryName(FilePath);
 }
 
 public static class SMParser
@@ -29,13 +33,16 @@ public static class SMParser
         {
             Debug.LogError($"SM file not found: {path}");
             return null;
+            
         }
 
         string data = File.ReadAllText(path);
         SMFile sm = new();
+        sm.FilePath = path;
 
         sm.Title = GetTag(data, "TITLE");
         sm.Artist = GetTag(data, "ARTIST");
+        sm.MusicFile = GetTag(data, "MUSIC");
         sm.Offset = float.Parse(GetTag(data, "OFFSET", "0"), System.Globalization.CultureInfo.InvariantCulture);
         sm.Bpms = ParseBpms(GetTag(data, "BPMS"));
 

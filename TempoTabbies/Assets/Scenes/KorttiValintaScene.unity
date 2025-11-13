@@ -624,8 +624,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 278349487}
-        m_TargetAssemblyTypeName: KorttiValintaScript, Assembly-CSharp
+      - m_Target: {fileID: 2061349019}
+        m_TargetAssemblyTypeName: CardManagerScript, Assembly-CSharp
         m_MethodName: Button1Press
         m_Mode: 1
         m_Arguments:
@@ -1270,8 +1270,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 278349487}
-        m_TargetAssemblyTypeName: KorttiValintaScript, Assembly-CSharp
+      - m_Target: {fileID: 2061349019}
+        m_TargetAssemblyTypeName: CardManagerScript, Assembly-CSharp
         m_MethodName: Button3Press
         m_Mode: 1
         m_Arguments:
@@ -1403,8 +1403,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 278349487}
-        m_TargetAssemblyTypeName: KorttiValintaScript, Assembly-CSharp
+      - m_Target: {fileID: 2061349019}
+        m_TargetAssemblyTypeName: CardManagerScript, Assembly-CSharp
         m_MethodName: Button2Press
         m_Mode: 1
         m_Arguments:
@@ -1486,8 +1486,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d8119ce22ed87954cbe44f138b0d09b3, type: 2}
   - {fileID: 11400000, guid: d89b93aecd139d04caa6650b5031c432, type: 2}
   - {fileID: 11400000, guid: 3324b73afd48e104b9a60b3d5a36572a, type: 2}
-  PlayerAChoice: {fileID: 0}
-  PlayerBChoice: {fileID: 0}
+  Score: {fileID: 0}
+  ValittuPelaaja: {fileID: 1667247208}
 --- !u!4 &2061349020
 Transform:
   m_ObjectHideFlags: 0

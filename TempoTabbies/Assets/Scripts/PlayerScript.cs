@@ -110,6 +110,12 @@ public class PlayerScript : MonoBehaviour
                 pauseMenu.clickValue = clickButton.ReadValue<float>();
             }
         }
+
+        if (gameManager.state == _GameManager.GameState.CardSelection)
+        {
+            // liikkuminenen            navigate.ReadValue<Vector2>();
+            // napin A painaminen       clickButton.ReadValue<float>();
+        }
     }
 
     // Turns off other players controls

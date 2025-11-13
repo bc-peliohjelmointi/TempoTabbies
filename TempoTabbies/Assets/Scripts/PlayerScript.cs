@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
     // The needed inputs
     public InputAction submit;
     public InputAction navigate;
+    public InputAction scrollWheel;
     public InputAction clickButton;
 
     // Cards and Score
@@ -70,6 +71,7 @@ public class PlayerScript : MonoBehaviour
                 // Checks the movement that we need for menus
                 optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
                 optionsMenu.clickValue = clickButton.ReadValue<float>();
+                optionsMenu.scrollVallue = scrollWheel.ReadValue<Vector2>();
             }
         }
         else if (gameManager.state == _GameManager.GameState.StageSelect)

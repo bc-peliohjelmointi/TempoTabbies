@@ -1069,7 +1069,7 @@
                     "path": "<Gamepad>/rightStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1080,7 +1080,7 @@
                     "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1091,7 +1091,7 @@
                     "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -1102,7 +1102,7 @@
                     "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": true

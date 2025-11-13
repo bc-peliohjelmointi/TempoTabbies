@@ -105,6 +105,7 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.volumeSlider;
+                    canMove = false;
                 }
                 break;
 
@@ -114,13 +115,16 @@ public class OptionsManager : MonoBehaviour
                 AudioListener.volume = volumeSlider.value;
                 _gameManager.volume = volumeSlider.value; 
                 volumeValue.text = (volumeSlider.value * 10).ToString();
+                Debug.Log(moveAmount);
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.button1;
+                    canMove = false;
                 }
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.scrollSpeed;
+                    canMove = false;
                 }
                 break;
 
@@ -131,10 +135,12 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.volumeSlider;
+                    canMove = false;
                 }
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.stickSensitivity;
+                    canMove = false;
                 }
                 break;
 
@@ -145,10 +151,12 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.scrollSpeed;
+                    canMove = false;
                 }
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.audioOffset;
+                    canMove = false;
                 }
                 break;
 
@@ -159,10 +167,12 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.stickSensitivity;
+                    canMove = false;
                 }
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.assistTick;
+                    canMove = false;
                 }
                 break;
 
@@ -175,10 +185,12 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.audioOffset;
+                    canMove = false;
                 }
                 if (canMove && moveAmount.y < -0.1f)
                 {
-                    selected = Selected.hitSound;
+                    selected = Selected.assistTickVolume;
+                    canMove = false;
                 }
                 break;
 
@@ -189,10 +201,12 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.assistTick;
+                    canMove = false;
                 }
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.hitSound;
+                    canMove = false;
                 }
                 break;
 
@@ -205,10 +219,12 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.assistTickVolume;
+                    canMove = false;
                 }
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.noteColor;
+                    canMove = false;
                 }
                 break;
 
@@ -219,10 +235,12 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.hitSound;
+                    canMove = false;
                 }
                 if (canMove && moveAmount.y < -0.1f)
                 {
                     selected = Selected.noteColor;
+                    canMove = false;
                 }
                 break;
 
@@ -231,6 +249,7 @@ public class OptionsManager : MonoBehaviour
                 if (canMove && moveAmount.y > 0.1f)
                 {
                     selected = Selected.audioOffset;
+                    canMove = false;
                 }
                 break;
         }

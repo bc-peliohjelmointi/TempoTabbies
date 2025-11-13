@@ -236,8 +236,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00066757, y: 0}
-  m_SizeDelta: {x: 304.19, y: 30}
+  m_AnchoredPosition: {x: 0.00066757, y: -3.8818}
+  m_SizeDelta: {x: 304.19, y: 92.2363}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5609677823908717852
 CanvasRenderer:
@@ -298,10 +298,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 0.42830187, b: 0.42830187, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.2245282, g: 1, b: 0.23217142, a: 1}
+    m_NormalColor: {r: 0.4415095, g: 0.4415095, b: 0.4415095, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -361,7 +361,7 @@ RectTransform:
   m_GameObject: {fileID: 7857642987358398941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1080333, y: 1.1080333, z: 1.1080333}
+  m_LocalScale: {x: 1.4067471, y: 1.4067471, z: 1.4067471}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4738266008948479451}
@@ -397,6 +397,8 @@ MonoBehaviour:
   ArtistText: {fileID: 6996589899595565508}
   ChartListParent: {fileID: 1020866547863520351}
   ChartButtonPrefab: {fileID: 2649696940767847695, guid: 474de040f7c9f544c86bdf7be652a481, type: 3}
+  bannerImage: {fileID: 2478215740557766095}
+  defaultBannerSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &5400658716612560003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +453,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -77.000694, y: 35}
+  m_AnchoredPosition: {x: -66.6, y: -31.1}
   m_SizeDelta: {x: 0.0032958984, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3789518600891360616
@@ -516,7 +518,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -547,7 +549,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 76.55547, y: 36.41959, z: 51.284737, w: 30.473528}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -587,7 +589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 73.999306, y: 35}
+  m_AnchoredPosition: {x: -4.100006, y: -2.9000015}
   m_SizeDelta: {x: 0.0032958984, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6109903179658448796
@@ -652,7 +654,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -683,7 +685,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 176.89519, y: 63.920116, z: 0, w: 2.2297478}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

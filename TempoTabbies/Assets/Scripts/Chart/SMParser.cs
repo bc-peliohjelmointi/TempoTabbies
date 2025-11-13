@@ -18,6 +18,7 @@ public class SMFile
     public string Artist;
     public string MusicFile;    
     public float Offset;
+    public string Banner;
     public Dictionary<float, float> Bpms = new();
     public List<SMChart> Charts = new();
 
@@ -45,6 +46,7 @@ public static class SMParser
         sm.MusicFile = GetTag(data, "MUSIC");
         sm.Offset = float.Parse(GetTag(data, "OFFSET", "0"), System.Globalization.CultureInfo.InvariantCulture);
         sm.Bpms = ParseBpms(GetTag(data, "BPMS"));
+        sm.Banner = GetTag(data, "BANNER");
 
         var noteBlocks = Regex.Matches(data, @"#NOTES:(.*?);", RegexOptions.Singleline);
         foreach (Match m in noteBlocks)

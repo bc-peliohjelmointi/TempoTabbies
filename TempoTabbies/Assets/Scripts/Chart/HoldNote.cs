@@ -58,7 +58,7 @@ public class HoldNote : MonoBehaviour
         if (!Music || !HitLine || hasEnded) return;
 
         gamepad = Gamepad.current;
-        float songTime = Music.time;
+        float songTime = GameManager.SongTime;
 
         float timeUntilStart = StartTime - songTime;
         float timeUntilEnd = EndTime - songTime;

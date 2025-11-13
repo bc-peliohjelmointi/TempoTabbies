@@ -18,7 +18,8 @@ public class _GameManager : MonoBehaviour
         MainMenu, // The main menu
         Options, // The options menu
         StageSelect, // The song select screen
-        Game // The songs being played
+        Game, // The songs being played
+        Pause // Pausing mid game
     }
     public GameState state;
 

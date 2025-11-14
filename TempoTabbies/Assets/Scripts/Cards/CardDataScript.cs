@@ -10,13 +10,17 @@ public class CardDataScript : MonoBehaviour
         Attack,     // hyökkää vastustajaan
         Defense,    // suojaa itseä
     }
+    public enum EffectType
+    {
+        ComboLeech
+    }
     [CreateAssetMenu(fileName = "NewCard", menuName = "RhythmGame/Card", order = 0)]
     public class CardData : ScriptableObject
     {
         [Header("Perustiedot")]
         public string CardName = "New Card";   // Kortin nimi
         [TextArea] public string description; // Kortin kuvaus
-        public string EffectType;           // esim. "ComboLeech"
+        public EffectType effectType;           // esim. "ComboLeech"
         public Sprite icon;                 // Kuvake
         public CardType type;               // Minkä tyyppinen kortti on
 

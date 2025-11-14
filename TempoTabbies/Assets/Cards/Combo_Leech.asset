@@ -9,6 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc04af20f6c355948b9795467c45a85c, type: 3}
+  m_Script: {fileID: 0}
   m_Name: Combo_Leech
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
+  CardName: ComboLeech
+  description: 
+  effectType: 0
+  icon: {fileID: 7974186288005948701, guid: 05dd9c8c07fa15f4b9eb5ebbc854ff4d, type: 3}
+  type: 1
+  duration: 10
+  cooldown: 30
+  activatesAutomatically: 1
+  value: 5
+  triggerThreshold: 30
+  effectPrefab: {fileID: 0}

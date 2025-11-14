@@ -1,10 +1,49 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static CardDataScript;
-using static PlayerStatsScript;
-using static GameManager;
 
 public class ComboLeechEffect : MonoBehaviour
 {
+    PlayerScript holder;
+    PlayerScript attaked;
+    CardData data;
+    float HyokkausAika;
+    float CoolDown;
+    CardManagerScript CardManager;
+
+    public void Activate(PlayerScript holder, PlayerScript attaked)
+    {
+        this.holder = holder;
+        this.attaked = attaked;
+        this.CardManager = GameObject.FindFirstObjectByType<CardManagerScript>();
+        this.data=CardManager.GetEffectDataforCard(EffectType.ComboLeech);
+    }
+
+    private void Update()
+    {
+        if (attaked.Combo > data.triggerThreshold)// combo menee rikki
+        {
+            HyokkausAika = 0;
+            CoolDown = 0;
+            while (HyokkausAika < data.duration)//aika on k‰ynniss‰
+            {
+                HyokkausAika += Time.deltaTime;
+                if (attaked.Combo > 1)
+                {
+                    attaked.Combo -= 1;
+                    holder.Combo += 1;
+                }
+            }
+        }
+        while (CoolDown < data.cooldown)
+        {            
+            CoolDown += Time.deltaTime;
+        }
+        // liikaa kombo 
+        // kombo siirtyy tietyn ajan aikana
+        // aloita toinen laskuri joka katsoo cooldownin
+        // Jos pelaajalla on x: kombo ja cooldown on kulunut aloita uudestaan 
+    }
     /*public RhythmGameManager Game;
 
     /// <summary>
@@ -13,8 +52,6 @@ public class ComboLeechEffect : MonoBehaviour
 
 
     [Header("Effect Settings")]
-    public string ownerPlayer = "PlayerA";
-    public string targetPlayer = "PlayerB";
     public float duration = 5f;      // efektin kesto sekunteina
     public float interval = 1f;      // kuinka usein leechaus tapahtuu
     public int comboDrainAmount = 5; // montako comboa siirret‰‰n / sekunti

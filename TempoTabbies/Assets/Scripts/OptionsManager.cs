@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using NUnit.Framework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static _GameManager;
+using System.Collections.Generic;
 
 /// <summary>
 /// Test the scrollbar with a controller
@@ -15,7 +14,6 @@ public class OptionsManager : MonoBehaviour
     // Player input values
     public Vector2 moveAmount;
     public float clickValue;
-    public Vector2 scrollVallue;
 
     // Other scripts
     private _GameManager _gameManager;
@@ -32,6 +30,20 @@ public class OptionsManager : MonoBehaviour
     public Slider hitSoundVolume;
     public TMP_Dropdown noteColor;
     public Scrollbar scrollbar;
+
+    // P! specific
+    public Slider scrollSpeedP1;
+    public Slider stickSensitivityP1;
+    public Button assistTickP1;
+    public TextMeshProUGUI scrollSpeedValueP1;
+    public TextMeshProUGUI stickSensitivityValueP1;
+    // P2 specific
+    public Slider scrollSpeedP2;
+    public Slider stickSensitivityP2;
+    public Button assistTickP2;
+    public TextMeshProUGUI scrollSpeedValueP2;
+    public TextMeshProUGUI stickSensitivityValueP2;
+
     // gameObjects to show button are on or off
     public Image assistTickConfirmation;
     public Image hitSoundConfirmation;
@@ -45,9 +57,14 @@ public class OptionsManager : MonoBehaviour
 
     // The parent object of every UI item
     public GameObject allOfIt;
+    public GameObject allOfP1;
+    public GameObject allOfP2;
 
     // Audio
     AudioSource source;
+
+
+    List<PlayerScript> players;
 
     // Enum to check what is selected
     public enum Selected
@@ -64,7 +81,14 @@ public class OptionsManager : MonoBehaviour
         noteColor
     }
     public Selected selected;
-    public Stack<Selected> selectedStack = new Stack<Selected>();
+
+    public enum Player
+    {
+        none,
+        p1,
+        p2
+    }
+    public Player player;
 
     // player movement timer
     bool canMove;
@@ -82,7 +106,7 @@ public class OptionsManager : MonoBehaviour
         audioOffset.value = _gameManager.audioOffset;
         assistTickVolume.value = _gameManager.assistTickVolume;
         hitSoundVolume.value = _gameManager.hitSoundVolume;
-        AssistTick(); AssistTick(); // just clicks them twice, so if true, it goes false then back to true
+        AssistTick(); AssistTick(); // just clicks them twice, so if true, it goes false then back to true, we do this so it can check what the button bools are in the game manager
         HitSound(); HitSound();
 
         // Plays audio
@@ -93,176 +117,217 @@ public class OptionsManager : MonoBehaviour
 
     private void Update()
     {
-        switch (selected)
+        switch (player)
         {
-            case Selected.button1: // Back to menu
-                // Selects the correct button
-                EventSystem.current.SetSelectedGameObject(button1.gameObject);
-                if (clickValue > 0)
+
+            case Player.none:
+
+                switch (selected)
                 {
-                    // Add a button event here
-                }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.volumeSlider;
-                    canMove = false;
+                    case Selected.button1: // Back to menu
+                                           // Selects the correct button
+                        EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                        if (clickValue > 0)
+                        {
+                            // Add a button event here
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.volumeSlider;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.volumeSlider: // The volume slider
+                                                // Selects the slider
+                        EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
+                        AudioListener.volume = volumeSlider.value;
+                        _gameManager.volume = volumeSlider.value;
+                        volumeValue.text = (volumeSlider.value * 10).ToString();
+                        Debug.Log(moveAmount);
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.button1;
+                            ScrollBar(-0.2f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.scrollSpeed;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.scrollSpeed: // The scroll speed slider
+                        EventSystem.current.SetSelectedGameObject(scrollSpeed.gameObject);
+                        _gameManager.scrollSpeed = scrollSpeed.value;
+                        scrollSpeedValue.text = (scrollSpeed.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.volumeSlider;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.stickSensitivity;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.stickSensitivity: // The stick sensitivity slider
+                        EventSystem.current.SetSelectedGameObject(stickSensitivity.gameObject);
+                        _gameManager.stickSensitivity = stickSensitivity.value;
+                        stickSensitivityValue.text = (stickSensitivity.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.scrollSpeed;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.audioOffset;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.audioOffset: // The audio offset slider
+                        EventSystem.current.SetSelectedGameObject(audioOffset.gameObject);
+                        _gameManager.audioOffset = audioOffset.value;
+                        audioOffsetValue.text = (audioOffset.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.stickSensitivity;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.assistTick;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.assistTick:
+                        EventSystem.current.SetSelectedGameObject(assistTick.gameObject);
+                        if (canMove && clickValue > 0)
+                        {
+                            AssistTick();
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.audioOffset;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.assistTickVolume;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.assistTickVolume:
+                        EventSystem.current.SetSelectedGameObject(assistTickVolume.gameObject);
+                        _gameManager.assistTickVolume = assistTickVolume.value;
+                        assistTickVolumeValue.text = (assistTickVolume.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.assistTick;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.hitSound;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.hitSound:
+                        EventSystem.current.SetSelectedGameObject(hitSound.gameObject);
+                        if (canMove && clickValue > 0)
+                        {
+                            HitSound();
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.assistTickVolume;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.hitSoundVolume;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.hitSoundVolume:
+                        EventSystem.current.SetSelectedGameObject(hitSoundVolume.gameObject);
+                        _gameManager.hitSoundVolume = hitSoundVolume.value;
+                        hitSoundVolumeValue.text = (hitSoundVolume.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.hitSound;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.noteColor;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.noteColor: // The note color dropdown, possibly not being made
+                        EventSystem.current.SetSelectedGameObject(noteColor.gameObject);
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.hitSoundVolume;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        break;
                 }
                 break;
 
-            case Selected.volumeSlider: // The volume slider
-                // Selects the slider
-                EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
-                AudioListener.volume = volumeSlider.value;
-                _gameManager.volume = volumeSlider.value; 
-                volumeValue.text = (volumeSlider.value * 10).ToString();
-                Debug.Log(moveAmount);
-                if (canMove && moveAmount.y > 0.1f)
+            case Player.p1:
+
+                switch (selected)
                 {
-                    selected = Selected.button1;
-                    canMove = false;
-                }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.scrollSpeed;
-                    canMove = false;
+                    case Selected.scrollSpeed: // The scroll speed slider
+                        EventSystem.current.SetSelectedGameObject(scrollSpeed.gameObject);
+                        _gameManager.scrollSpeed = scrollSpeed.value;
+                        scrollSpeedValue.text = (scrollSpeed.value * 10).ToString();
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.stickSensitivity;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
                 }
                 break;
 
-            case Selected.scrollSpeed: // The scroll speed slider
-                EventSystem.current.SetSelectedGameObject(scrollSpeed.gameObject);
-                _gameManager.scrollSpeed = scrollSpeed.value;
-                scrollSpeedValue.text = (scrollbar.value * 10).ToString(); 
-                if (canMove && moveAmount.y > 0.1f)
+            case Player.p2:
+                switch (selected)
                 {
-                    selected = Selected.volumeSlider;
-                    canMove = false;
-                }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.stickSensitivity;
-                    canMove = false;
-                }
-                break;
 
-            case Selected.stickSensitivity: // The stick sensitivity slider
-                EventSystem.current.SetSelectedGameObject(stickSensitivity.gameObject);
-                _gameManager.stickSensitivity = stickSensitivity.value;
-                stickSensitivityValue.text = (stickSensitivity.value * 10).ToString();
-                if (canMove && moveAmount.y > 0.1f)
-                {
-                    selected = Selected.scrollSpeed;
-                    canMove = false;
                 }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.audioOffset;
-                    canMove = false;
-                }
-                break;
-
-            case Selected.audioOffset: // The audio offset slider
-                EventSystem.current.SetSelectedGameObject(audioOffset.gameObject);
-                _gameManager.audioOffset = audioOffset.value;
-                audioOffsetValue.text = (audioOffset.value * 10).ToString();
-                if (canMove && moveAmount.y > 0.1f)
-                {
-                    selected = Selected.stickSensitivity;
-                    canMove = false;
-                }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.assistTick;
-                    canMove = false;
-                }
-                break;
-
-            case Selected.assistTick:
-                EventSystem.current.SetSelectedGameObject(assistTick.gameObject);
-                if (clickValue > 0)
-                {
-                    AssistTick();
-                }
-                if (canMove && moveAmount.y > 0.1f)
-                {
-                    selected = Selected.audioOffset;
-                    canMove = false;
-                }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.assistTickVolume;
-                    canMove = false;
-                }
-                break;
-
-            case Selected.assistTickVolume:
-                EventSystem.current.SetSelectedGameObject(assistTickVolume.gameObject);
-                _gameManager.assistTickVolume = assistTickVolume.value;
-                assistTickVolumeValue.text = (assistTickVolume.value * 10).ToString();
-                if (canMove && moveAmount.y > 0.1f)
-                {
-                    selected = Selected.assistTick;
-                    canMove = false;
-                }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.hitSound;
-                    canMove = false;
-                }
-                break;
-
-            case Selected.hitSound:
-                EventSystem.current.SetSelectedGameObject(hitSound.gameObject);
-                if (clickValue > 0)
-                {
-                    HitSound();
-                }
-                if (canMove && moveAmount.y > 0.1f)
-                {
-                    selected = Selected.assistTickVolume;
-                    canMove = false;
-                }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.noteColor;
-                    canMove = false;
-                }
-                break;
-
-            case Selected.hitSoundVolume:
-                EventSystem.current.SetSelectedGameObject(hitSoundVolume.gameObject);
-                _gameManager.hitSoundVolume = hitSoundVolume.value;
-                hitSoundVolumeValue.text = (hitSoundVolume.value * 10).ToString();
-                if (canMove && moveAmount.y > 0.1f)
-                {
-                    selected = Selected.hitSound;
-                    canMove = false;
-                }
-                if (canMove && moveAmount.y < -0.1f)
-                {
-                    selected = Selected.noteColor;
-                    canMove = false;
-                }
-                break;
-
-            case Selected.noteColor: // The note color dropdown
-                EventSystem.current.SetSelectedGameObject(noteColor.gameObject);
-                if (canMove && moveAmount.y > 0.1f)
-                {
-                    selected = Selected.audioOffset;
-                    canMove = false;
-                }
-                break;
-        }
-
-        if (scrollVallue.y > 0.1f)
-        {
-            scrollbar.value += 1;
-            ScrollBar();
-        }
-        else if (scrollVallue.y < -0.1f)
-        {
-            scrollbar.value -= 1;
-            ScrollBar();
+                    break;
         }
 
         if (!canMove)
@@ -277,6 +342,11 @@ public class OptionsManager : MonoBehaviour
                 moveTimer = 0;
             }
         }
+    }
+
+    public void DropdownValueChanged(Color color)
+    {
+        // Figure this out later
     }
 
     public void AssistTick()
@@ -307,8 +377,9 @@ public class OptionsManager : MonoBehaviour
         }
     }
 
-    public void ScrollBar()
+    public void ScrollBar(float value)
     {
-        allOfIt.transform.localPosition = new Vector3(0, scrollbar.value*100, 0);
+        scrollbar.value += value;
+        allOfIt.transform.localPosition = new Vector3(0, scrollbar.value * 100, 0);
     }
 }

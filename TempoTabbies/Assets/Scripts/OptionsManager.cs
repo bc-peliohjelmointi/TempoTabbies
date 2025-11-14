@@ -1,9 +1,9 @@
-using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 /// <summary>
 /// Test the scrollbar with a controller
@@ -32,15 +32,15 @@ public class OptionsManager : MonoBehaviour
     public Scrollbar scrollbar;
 
     // P! specific
+    public Button buttonP1;
     public Slider scrollSpeedP1;
     public Slider stickSensitivityP1;
-    public Button assistTickP1;
     public TextMeshProUGUI scrollSpeedValueP1;
     public TextMeshProUGUI stickSensitivityValueP1;
     // P2 specific
+    public Button buttonP2;
     public Slider scrollSpeedP2;
     public Slider stickSensitivityP2;
-    public Button assistTickP2;
     public TextMeshProUGUI scrollSpeedValueP2;
     public TextMeshProUGUI stickSensitivityValueP2;
 
@@ -63,8 +63,9 @@ public class OptionsManager : MonoBehaviour
     // Audio
     AudioSource source;
 
-
     List<PlayerScript> players;
+    PlayerScript p1;
+    PlayerScript p2;
 
     // Enum to check what is selected
     public enum Selected
@@ -99,6 +100,11 @@ public class OptionsManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(button1.gameObject);
         _gameManager = FindAnyObjectByType<_GameManager>();
 
+        // The player objects
+        players = FindObjectsByType<PlayerScript>(FindObjectsSortMode.InstanceID).ToList();
+        //p1 = players[0]; // in testing, these cannot work
+        //p2 = players[1]; // since the controllers need to exist before entering the scene
+
         // sets the sliders and buttons to the current values
         volumeSlider.value = _gameManager.volume;
         scrollSpeed.value = _gameManager.scrollSpeed;
@@ -106,8 +112,8 @@ public class OptionsManager : MonoBehaviour
         audioOffset.value = _gameManager.audioOffset;
         assistTickVolume.value = _gameManager.assistTickVolume;
         hitSoundVolume.value = _gameManager.hitSoundVolume;
-        AssistTick(); AssistTick(); // just clicks them twice, so if true, it goes false then back to true, we do this so it can check what the button bools are in the game manager
-        HitSound(); HitSound();
+        AssistTick(); AssistTick(); // just clicks them twice, so if true, it goes false then back to true 
+        HitSound(); HitSound();     // we do this so it can check what the button bools are in the game manager
 
         // Plays audio
         source = GetComponent<AudioSource>();
@@ -119,9 +125,10 @@ public class OptionsManager : MonoBehaviour
     {
         switch (player)
         {
-
             case Player.none:
-
+                allOfIt.SetActive(true);
+                allOfP1.SetActive(false);
+                allOfP2.SetActive(false);
                 switch (selected)
                 {
                     case Selected.button1: // Back to menu
@@ -304,14 +311,37 @@ public class OptionsManager : MonoBehaviour
                 }
                 break;
 
-            case Player.p1:
-
+            case Player.p1: // Remember to set scrolls peed as the selected object
+                allOfIt.SetActive(false);
+                allOfP1.SetActive(true);
+                allOfP2.SetActive(false);
                 switch (selected)
                 {
+                    case Selected.button1: // Back to menu
+                                           // Selects the correct button
+                        EventSystem.current.SetSelectedGameObject(buttonP1.gameObject);
+                        if (clickValue > 0)
+                        {
+                            // Add a button event here
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.scrollSpeed;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
                     case Selected.scrollSpeed: // The scroll speed slider
-                        EventSystem.current.SetSelectedGameObject(scrollSpeed.gameObject);
-                        _gameManager.scrollSpeed = scrollSpeed.value;
-                        scrollSpeedValue.text = (scrollSpeed.value * 10).ToString();
+                        EventSystem.current.SetSelectedGameObject(scrollSpeedP1.gameObject);
+                        p1.scrollSpeed = scrollSpeedP1.value;
+                        scrollSpeedValueP1.text = (scrollSpeedP1.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.button1;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.stickSensitivity;
@@ -319,15 +349,73 @@ public class OptionsManager : MonoBehaviour
                             canMove = false;
                         }
                         break;
+
+                    case Selected.stickSensitivity: // The stick sensitivity slider
+                        EventSystem.current.SetSelectedGameObject(stickSensitivityP1.gameObject);
+                        p1.stickSensitivity = stickSensitivityP1.value;
+                        stickSensitivityValueP1.text = (stickSensitivityP1.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.scrollSpeed;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        break;
                 }
                 break;
 
             case Player.p2:
+                allOfIt.SetActive(false);
+                allOfP1.SetActive(false);
+                allOfP2.SetActive(true);
                 switch (selected)
                 {
+                    case Selected.button1: // Back to menu
+                                           // Selects the correct button
+                        EventSystem.current.SetSelectedGameObject(buttonP1.gameObject);
+                        if (clickValue > 0)
+                        {
+                            // Add a button event here
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.scrollSpeed;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
 
+                    case Selected.scrollSpeed: // The scroll speed slider
+                        EventSystem.current.SetSelectedGameObject(scrollSpeedP2.gameObject);
+                        p2.scrollSpeed = scrollSpeedP2.value;
+                        scrollSpeedValueP2.text = (scrollSpeedP2.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.button1;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.stickSensitivity;
+                            ScrollBar(0.1f);
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.stickSensitivity: // The stick sensitivity slider
+                        EventSystem.current.SetSelectedGameObject(stickSensitivityP2.gameObject);
+                        p2.stickSensitivity = stickSensitivityP2.value;
+                        stickSensitivityValueP2.text = (stickSensitivityP2.value * 10).ToString();
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.scrollSpeed;
+                            ScrollBar(-0.1f);
+                            canMove = false;
+                        }
+                        break;
                 }
-                    break;
+                break;
         }
 
         if (!canMove)

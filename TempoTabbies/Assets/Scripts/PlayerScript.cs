@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour
     // Cards and Score
     public List<CardDataScript.CardData> AllCards;
     public int Score;
+    public int Combo;
 
     // Stored values that are player specific
     public float scrollSpeed;

@@ -7,7 +7,7 @@
 #GENRE:;
 #CREDIT:;
 #MUSIC:audio.mp3;
-#BANNER:;
+#BANNER:_banner.png;
 #BACKGROUND:;
 #CDTITLE:;
 #SAMPLESTART:0.000000;
@@ -23,7 +23,7 @@
      dance-solo:
      :
      Beginner:
-     1:
+     6:
      0,0,0,0,0:
 000000
 000000
@@ -622,7 +622,7 @@
      dance-solo:
      :
      Medium:
-     1:
+     13:
      0,0,0,0,0:
 000000
 000000
@@ -933,7 +933,7 @@
      dance-solo:
      :
      Hard:
-     1:
+     16:
      0,0,0,0,0:
 000000
 000000
@@ -1244,7 +1244,7 @@
      dance-solo:
      :
      Challenge:
-     1:
+     20:
      0,0,0,0,0:
 000000
 000000

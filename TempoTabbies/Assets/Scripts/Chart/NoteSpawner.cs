@@ -12,6 +12,9 @@ public class NoteSpawner : MonoBehaviour
     public Transform[] Lanes;
     public Transform HitLine;
 
+    [Header("Score Reference")]
+    public HitManager hitManager;
+
     [Header("Tap Prefabs by Lane Group")]
     public GameObject NotePrefab_TypeA; // lanes 0,3
     public GameObject NotePrefab_TypeB; // lanes 1,2
@@ -39,7 +42,23 @@ public class NoteSpawner : MonoBehaviour
         notes.Sort((a, b) => a.time.CompareTo(b.time));
         nextIndex = 0;
         skipIndices.Clear();
-        Debug.Log($"[NoteSpawner] Loaded chart with {notes.Count} notes");
+
+        // Get EXACT judgment note count from the parser
+        int judgmentNotes = SMParser.CountJudgmentNotes(chart);
+
+        Debug.Log($"[Score Init] Total judgment notes: {judgmentNotes}");
+
+        // INITIALIZE SCORE MANAGER with exact count
+        if (hitManager != null)
+        {
+            hitManager.InitializeChart(judgmentNotes);
+        }
+        else
+        {
+            Debug.LogError("HitManager reference is null in NoteSpawner!");
+        }
+
+        Debug.Log($"[NoteSpawner] Loaded chart with {judgmentNotes} judgment notes");
     }
 
     void Update()

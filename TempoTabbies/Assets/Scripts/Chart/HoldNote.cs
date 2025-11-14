@@ -25,6 +25,10 @@ public class HoldNote : MonoBehaviour
     private bool hasEnded;
     private bool releaseChecked;
 
+    private bool initialPressScored = false;
+    private bool initialPressMissed = false;
+    private bool releaseJudgmentGiven = false;
+
     private const float ReleaseLeniency = 1.5f; // 1.5× timing window leniency
 
     void Start()
@@ -71,11 +75,25 @@ public class HoldNote : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, startY, transform.position.z);
 
+            // Check for MISS if we passed the hit window without pressing
+            if (!initialPressScored && !initialPressMissed && songTime > StartTime + TimingWindows.Bad)
+            {
+                MissInitialPress();
+                initialPressMissed = true;
+            }
+
             // start holding if pressed near receptor
             if (songTime >= StartTime - 0.05f && songTime <= StartTime + 0.1f && IsPressedForLane(Lane))
             {
                 hasStartedHold = true;
                 transform.position = new Vector3(transform.position.x, HitLine.position.y, transform.position.z);
+
+                // ADD INITIAL PRESS SCORING
+                if (!initialPressScored)
+                {
+                    ScoreInitialPress(songTime);
+                    initialPressScored = true;
+                }
             }
 
             UpdateBodyWorld(startY, endY);
@@ -83,10 +101,18 @@ public class HoldNote : MonoBehaviour
         }
 
         // --- WHILE HOLDING ---
-        // keep head locked to receptor
         transform.position = new Vector3(transform.position.x, HitLine.position.y, transform.position.z);
 
-        // end keeps scrolling up as song plays
+        // Check if player is still holding the note
+        bool stillHolding = IsPressedForLane(Lane);
+
+        // If player let go TOO EARLY, count as miss
+        if (!stillHolding && songTime < EndTime - TimingWindows.Bad)
+        {
+            EarlyReleaseMiss();
+            return;
+        }
+
         float remaining = Mathf.Max(EndTime - songTime, 0f);
         float localEndY = remaining * ScrollSpeed;
         if (End != null)
@@ -94,22 +120,50 @@ public class HoldNote : MonoBehaviour
 
         UpdateBodyLocal(localEndY);
 
-        // released early
-        if (!IsPressedForLane(Lane) && songTime < EndTime)
+        // FORCE RELEASE JUDGMENT when we pass the end time (normal case)
+        if (songTime >= EndTime && !releaseJudgmentGiven)
         {
-            RegisterReleaseJudgment(songTime);
-            DestroyHold();
-            return;
-        }
-
-        // natural end
-        if (songTime >= EndTime && !releaseChecked)
-        {
-            RegisterReleaseJudgment(songTime);
+            float releaseTime = stillHolding ? EndTime : songTime;
+            RegisterReleaseJudgment(releaseTime);
+            releaseJudgmentGiven = true;
             hasEnded = true;
             DestroyHold();
         }
     }
+
+
+    private void MissInitialPress()
+    {
+        Debug.Log($"[HoldNote] MISSED initial press");
+
+        if (JudgmentDisplay.Instance != null)
+            JudgmentDisplay.Instance.Show("MISS");
+
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddJudgment("MISS");
+        }
+
+        // Destroy the hold note since initial press was missed
+        DestroyHold();
+    }
+
+    private void EarlyReleaseMiss()
+    {
+        Debug.Log($"[HoldNote] EARLY RELEASE - MISS");
+
+        if (JudgmentDisplay.Instance != null)
+            JudgmentDisplay.Instance.Show("MISS");
+
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddJudgment("MISS");
+        }
+
+        DestroyHold();
+    }
+
+
 
     // --- updates body before hold starts (note still falling) ---
     private void UpdateBodyWorld(float startY, float endY)
@@ -150,15 +204,48 @@ public class HoldNote : MonoBehaviour
         Body.transform.localScale = s;
     }
 
+    private void ScoreInitialPress(float currentTime)
+    {
+        float diff = currentTime - StartTime;
+        float absDiff = Mathf.Abs(diff);
+
+        string result;
+
+        if (absDiff <= TimingWindows.Marvelous) result = "MARVELOUS";
+        else if (absDiff <= TimingWindows.Perfect) result = "PERFECT";
+        else if (absDiff <= TimingWindows.Great) result = "GREAT";
+        else if (absDiff <= TimingWindows.Good) result = "GOOD";
+        else if (absDiff <= TimingWindows.Bad) result = "BAD";
+        else result = "MISS";
+
+        if (JudgmentDisplay.Instance != null)
+            JudgmentDisplay.Instance.Show(result);
+
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddJudgment(result);
+        }
+
+        Debug.Log($"[HoldNote] Initial Press: {result} (?={diff * 1000f:F1} ms)");
+    }
+
     private void RegisterReleaseJudgment(float currentTime)
     {
         if (releaseChecked) return;
         releaseChecked = true;
 
+        // Only score release if initial press was successful
+        if (!initialPressScored || initialPressMissed)
+        {
+            DestroyHold();
+            return;
+        }
+
         // Measure the *offset* from the correct release time.
-        float diff = currentTime - EndTime; // positive if late, negative if early
+        float diff = currentTime - EndTime; // Positive if late, negative if early
         float absDiff = Mathf.Abs(diff);
 
+        // USE LENIENCY for release timing
         float marv = TimingWindows.Marvelous * ReleaseLeniency;
         float perf = TimingWindows.Perfect * ReleaseLeniency;
         float great = TimingWindows.Great * ReleaseLeniency;
@@ -175,14 +262,15 @@ public class HoldNote : MonoBehaviour
         if (JudgmentDisplay.Instance != null)
             JudgmentDisplay.Instance.Show(result);
 
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.AddJudgment(result);
+        }
+
         Debug.Log($"[HoldNote] Release Judgment: {result} (?={diff * 1000f:F1} ms)");
 
-        // Optional: add a small delay so the player can see the judgment
         Invoke(nameof(DestroyHold), 0.05f);
     }
-
-
-
     private void DestroyHold()
     {
         if (Head) Destroy(Head);

@@ -56,8 +56,29 @@ public class SongButton : MonoBehaviour
             GameObject btnObj = Instantiate(ChartButtonPrefab, ChartListParent);
             var btn = btnObj.GetComponent<Button>();
             var txt = btnObj.GetComponentInChildren<TMP_Text>();
-            txt.text = $"{chart.Difficulty} ({chart.Meter})";
 
+            if (chart.Difficulty == "Beginner")
+            {
+                txt.text = $"EZ ({chart.Meter})";
+            }
+            else if (chart.Difficulty == "Medium")
+            {
+                txt.text = $"NM ({chart.Meter})";
+            }
+            else if (chart.Difficulty == "Hard")
+            {
+                txt.text = $"HD ({chart.Meter})";
+            }
+            else if (chart.Difficulty == "Challenge")
+            {
+                txt.text = $"EX ({chart.Meter})";
+            }
+            else
+            {
+                txt.text = $"{chart.Difficulty} ({chart.Meter})";
+            }
+
+            SetButtonColor(btn, chart.Difficulty);
             SMChart currentChart = chart;
             btn.onClick.AddListener(() => OnChartSelected(currentChart));
         }
@@ -67,6 +88,45 @@ public class SongButton : MonoBehaviour
         {
             ChartListParent.gameObject.SetActive(false);
         }
+    }
+
+    private void SetButtonColor(Button button, string difficulty)
+    {
+        ColorBlock colors = button.colors;
+
+        switch (difficulty)
+        {
+            case "Beginner":
+                colors.normalColor = new Color(0.2f, 0.8f, 0.2f); // Green
+                colors.highlightedColor = new Color(0.3f, 0.9f, 0.3f);
+                colors.pressedColor = new Color(0.1f, 0.7f, 0.1f);
+                break;
+            case "Medium":
+                colors.normalColor = new Color(0.9f, 0.9f, 0.2f); // Yellow
+                colors.highlightedColor = new Color(1.0f, 1.0f, 0.3f);
+                colors.pressedColor = new Color(0.8f, 0.8f, 0.1f);
+                break;
+            case "Hard":
+                colors.normalColor = new Color(0.8f, 0.2f, 0.2f); // Red
+                colors.highlightedColor = new Color(0.9f, 0.3f, 0.3f);
+                colors.pressedColor = new Color(0.7f, 0.1f, 0.1f);
+                break;
+            case "Challenge":
+            colors.normalColor = new Color(0.6f, 0.2f, 0.8f); // Purple
+            colors.highlightedColor = new Color(0.7f, 0.3f, 0.9f);
+            colors.pressedColor = new Color(0.5f, 0.1f, 0.7f);
+                break;
+            default:
+                colors.normalColor = new Color(0.6f, 0.6f, 0.6f); // Gray for unknown
+                colors.highlightedColor = new Color(0.7f, 0.7f, 0.7f);
+                colors.pressedColor = new Color(0.5f, 0.5f, 0.5f);
+                break;
+        }
+
+        // Keep the selected color consistent
+        colors.selectedColor = colors.highlightedColor;
+
+        button.colors = colors;
     }
 
     private void LoadBanner(string bannerPath)

@@ -34,7 +34,7 @@ public static class SMParser
         {
             Debug.LogError($"SM file not found: {path}");
             return null;
-            
+
         }
 
         string data = File.ReadAllText(path);
@@ -118,5 +118,32 @@ public static class SMParser
             }
         }
         return map;
+    }
+
+    public static int CountJudgmentNotes(SMChart chart)
+    {
+        int judgmentCount = 0;
+
+        foreach (var measure in chart.Measures)
+        {
+            foreach (var row in measure)
+            {
+                for (int lane = 0; lane < row.Length; lane++)
+                {
+                    char noteType = row[lane];
+                    if (noteType == '1') // Taps = 1 judgment
+                    {
+                        judgmentCount++;
+                    }
+                    else if (noteType == '2') // Hold starts = 2 judgments (start + release)
+                    {
+                        judgmentCount += 2;
+                    }
+                    // Don't count hold ends (3) separately - they're part of the hold
+                }
+            }
+        }
+
+        return judgmentCount;
     }
 }

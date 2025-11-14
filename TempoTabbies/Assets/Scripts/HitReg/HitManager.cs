@@ -12,6 +12,9 @@ public class HitManager : MonoBehaviour
     public GameObject leftStickObject;
     public GameObject rightStickObject;
 
+    [Header("Score Management")]
+    public ScoreManager scoreManager;
+
     [Header("Rhythm Game References")]
     public AudioSource Music;
     public NoteSpawner Spawner;
@@ -120,7 +123,6 @@ public class HitManager : MonoBehaviour
         float diff = currentTime - note.TargetTime;
         float absDiff = Mathf.Abs(diff);
 
-        // ADD THIS:
         Debug.Log($"[Hit Timing] Note: {note.TargetTime}, Current: {currentTime}, Diff: {diff}");
 
         string label;
@@ -135,6 +137,12 @@ public class HitManager : MonoBehaviour
         note.Hit = true;
         Destroy(note.gameObject);
         ShowJudgment(label);
+
+        // ADD SCORE - Add this part
+        if (scoreManager != null)
+        {
+            scoreManager.AddJudgment(label);
+        }
 
         // PLAY HITSOUND
         if (HitSoundManager.Instance != null)
@@ -205,9 +213,24 @@ public class HitManager : MonoBehaviour
             {
                 note.Hit = true;
                 ShowJudgment("MISS");
+
+                // ADD MISS TO SCORE - Add this part
+                if (scoreManager != null)
+                {
+                    scoreManager.AddJudgment("MISS");
+                }
+
                 Destroy(note.gameObject);
                 Debug.Log($"[MISS] lane {note.Lane}");
             }
+        }
+    }
+
+    public void InitializeChart(int totalNotes)
+    {
+        if (scoreManager != null)
+        {
+            scoreManager.InitializeScore(totalNotes);
         }
     }
 

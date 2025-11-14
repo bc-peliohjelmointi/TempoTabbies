@@ -1,8 +1,10 @@
-using UnityEngine;
-using UnityEngine.UI;
+using System.Collections;
+using System.IO;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class SongButton : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class SongButton : MonoBehaviour
     public TMP_Text ArtistText;
     public Transform ChartListParent;
     public GameObject ChartButtonPrefab;
+    public Image bannerImage; // Add this reference
+    public Sprite defaultBannerSprite; // Set this in inspector
 
     private SMFile currentSong;
     private ChartSelectManager manager;
@@ -43,6 +47,9 @@ public class SongButton : MonoBehaviour
         TitleText.text = sm.Title;
         ArtistText.text = sm.Artist;
 
+        // Load the banner image
+        LoadBanner(sm.Banner);
+
         // Create chart buttons but hide them initially
         foreach (var chart in sm.Charts)
         {
@@ -60,6 +67,57 @@ public class SongButton : MonoBehaviour
         {
             ChartListParent.gameObject.SetActive(false);
         }
+    }
+
+    private void LoadBanner(string bannerPath)
+    {
+        if (bannerImage == null) return;
+
+        if (!string.IsNullOrEmpty(bannerPath))
+        {
+            // Construct full path to banner
+            string fullBannerPath = Path.Combine(currentSong.DirectoryPath, bannerPath);
+            StartCoroutine(LoadBannerCoroutine(fullBannerPath));
+        }
+        else
+        {
+            bannerImage.sprite = defaultBannerSprite;
+        }
+    }
+
+    private IEnumerator LoadBannerCoroutine(string fullBannerPath)
+    {
+        if (!File.Exists(fullBannerPath))
+        {
+            Debug.LogWarning($"Banner file not found: {fullBannerPath}");
+            bannerImage.sprite = defaultBannerSprite;
+            yield break;
+        }
+
+        try
+        {
+            byte[] fileData = File.ReadAllBytes(fullBannerPath);
+            Texture2D texture = new Texture2D(2, 2);
+
+            if (texture.LoadImage(fileData))
+            {
+                Sprite sprite = Sprite.Create(texture,
+                    new Rect(0, 0, texture.width, texture.height),
+                    new Vector2(0.5f, 0.5f));
+                bannerImage.sprite = sprite;
+            }
+            else
+            {
+                bannerImage.sprite = defaultBannerSprite;
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Error loading banner: {e.Message}");
+            bannerImage.sprite = defaultBannerSprite;
+        }
+
+        yield return null;
     }
 
     public void ToggleCharts()

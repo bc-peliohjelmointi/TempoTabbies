@@ -55,6 +55,15 @@ public class _GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        // Checks if players are null when it can, to find players
+        if (p1 == null || p2 == null)
+        {
+            FindPlayers();
+        }
+    }
+
     // Turns on all the controllers (keyboards, gamepads etc.)
     public void EnableControllers()
     {
@@ -71,17 +80,17 @@ public class _GameManager : MonoBehaviour
         }
     }
 
-    // when players are loaded in, use this to add them to a list
+    // When players are loaded in, use this to add them to a list that other scripts can see
     public void FindPlayers()
     {
         players = FindObjectsByType<PlayerScript>(FindObjectsSortMode.InstanceID).ToList();
-        if (players.Count > 0)
+        if (players.Count > 0 && p1 == null)
         {
             p1 = players[0];
-            if (players.Count > 1)
-            {
-                p2 = players[1];
-            }
+        }
+        if (players.Count > 1 && p2 == null)
+        {
+            p2 = players[1];
         }
     }
 }

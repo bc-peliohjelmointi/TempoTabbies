@@ -71,6 +71,7 @@ public class _GameManager : MonoBehaviour
         }
     }
 
+    // when players are loaded in, use this to add them to a list
     public void FindPlayers()
     {
         players = FindObjectsByType<PlayerScript>(FindObjectsSortMode.InstanceID).ToList();

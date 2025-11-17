@@ -14,6 +14,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button button2;
     [SerializeField] UnityEngine.UI.Button button3;
 
+    private JSON_Stuff json;
     private _GameManager gameManager;
 
     // Player movement input
@@ -38,6 +39,7 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         EventSystem.current.SetSelectedGameObject(button1.gameObject);
+        json = FindAnyObjectByType<JSON_Stuff>();
         gameManager = FindAnyObjectByType<_GameManager>();
         source = GetComponent<AudioSource>();
         source.Play();

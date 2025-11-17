@@ -71,7 +71,7 @@ public class UIPlayerBehaviour : MonoBehaviour
                     EventSystem.current.SetSelectedGameObject(button2.gameObject);
                     if (clickValue > 0)
                     {
-                        OnOptionsClick();
+                        OnMenuClick();
                     }
                     // Moves to the desired button
                     if (moveAmount.y < -0.1f && canMove)
@@ -82,20 +82,6 @@ public class UIPlayerBehaviour : MonoBehaviour
                     else if (moveAmount.y > 0.1 && canMove)
                     {
                         buttonSelect = ButtonSelect.button1;
-                        canMove = false;
-                    }
-                    break;
-
-                case ButtonSelect.button3: // Quit
-                    EventSystem.current.SetSelectedGameObject(button3.gameObject);
-                    if (clickValue > 0)
-                    {
-                        OnQuitClick();
-                    }
-                    // Moves to the desired button
-                    if (moveAmount.y > 0.1 && canMove)
-                    {
-                        buttonSelect = ButtonSelect.button2;
                         canMove = false;
                     }
                     break;
@@ -145,17 +131,11 @@ public class UIPlayerBehaviour : MonoBehaviour
         timer = 4;
     }
 
-    // What happens when you click the options button
-    public void OnOptionsClick()
+    // What happens when you click the Menu button
+    public void OnMenuClick()
     {
-        gameManager.state = _GameManager.GameState.Options;
+        gameManager.state = _GameManager.GameState.MainMenu;
         SceneManager.LoadScene("Options");
-    }
-
-    // What happens when you click the quit button
-    public void OnQuitClick()
-    {
-        SceneManager.LoadScene("MainMenu");
     }
 
     // Opens the pause menu mid game

@@ -10,12 +10,10 @@ public class _GameManager : MonoBehaviour
 {
     public static _GameManager instance;
 
-    // A spot to remember what stage is currently selected
-    public int stageID;
-
     public int whoGetsToPlay; // When 0, only player 1 gets to do stuff in menus, when 1, only player 2 gets to do stuff in menus
 
     // Setting values to remember
+    [Header("Settings values to save")]
     public float volume;
     public float scrollSpeed;
     public float stickSensitivity;
@@ -27,6 +25,7 @@ public class _GameManager : MonoBehaviour
     // public ??? noteColor;
 
     // The players, first a script to find them all, then the 2 players individually
+    [Header("The players")]
     public List<PlayerScript> players;
     public PlayerScript p1;
     public PlayerScript p2;

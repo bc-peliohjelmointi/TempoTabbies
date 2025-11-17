@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     private PlayerInput playerInput;
     // The players player number, 0 = player 1, 1 = player 2
+    [Header("Who the player is")]
     public int _playerIndex;
 
     // Other scripts
@@ -16,16 +17,19 @@ public class PlayerScript : MonoBehaviour
     private StageSelectManager stageSelect;
 
     // The needed inputs
+    [Header("The inputs we're using")]
     public InputAction submit;
     public InputAction navigate;
     public InputAction clickButton;
 
     // Cards and Score
+    [Header("In game info")]
     public List<CardDataScript.CardData> AllCards;
     public int Score;
     public int Combo;
 
     // Stored values that are player specific
+    [Header("Stuff we save")]
     public float scrollSpeed;
     public float stickSensitivity;
     public bool assistTick;

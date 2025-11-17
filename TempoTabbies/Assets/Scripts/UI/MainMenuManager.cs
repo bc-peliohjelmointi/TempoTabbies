@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     // Menu objects
+    [Header("The UI elements")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] UnityEngine.UI.Button button1;
     [SerializeField] UnityEngine.UI.Button button2;
@@ -18,10 +19,12 @@ public class MainMenuManager : MonoBehaviour
     private _GameManager gameManager;
 
     // Player movement input
+    [Header("Player input values")]
     public Vector2 moveAmount;
     public float clickValue;
 
     // Audio
+    [Header("Audio file for background music")]
     AudioSource source;
 
     // State to know which button is being selected

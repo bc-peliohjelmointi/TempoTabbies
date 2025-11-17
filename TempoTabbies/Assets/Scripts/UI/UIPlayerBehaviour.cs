@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class UIPlayerBehaviour : MonoBehaviour
 {
     // Player movement, which is sent by the PlayerScript.cs Class
+    [Header("Player input values")]
     public Vector2 moveAmount;
     public float submitValue;
     public float clickValue;
@@ -16,6 +17,7 @@ public class UIPlayerBehaviour : MonoBehaviour
     private _GameManager gameManager;
 
     // Wether the menu is active or not
+    [Header("Are we paused")]
     [SerializeField] public bool isPauseMenuActive = false;
 
     // Menu buttons

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +26,11 @@ public class _GameManager : MonoBehaviour
     public float hitSoundVolume;
     // public ??? noteColor;
 
+    // The players, first a script to find them all, then the 2 players individually
+    public List<PlayerScript> players;
+    public PlayerScript p1;
+    public PlayerScript p2;
+
     public enum GameState
     {
         MainMenu, // The main menu
@@ -42,7 +49,7 @@ public class _GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
@@ -60,6 +67,19 @@ public class _GameManager : MonoBehaviour
             if (!allControllers[i].enabled)
             {
                 InputSystem.EnableDevice(allControllers[i]);
+            }
+        }
+    }
+
+    public void FindPlayers()
+    {
+        players = FindObjectsByType<PlayerScript>(FindObjectsSortMode.InstanceID).ToList();
+        if (players.Count > 0)
+        {
+            p1 = players[0];
+            if (players.Count > 1)
+            {
+                p2 = players[1];
             }
         }
     }

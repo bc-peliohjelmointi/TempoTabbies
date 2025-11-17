@@ -5,20 +5,20 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-/// <summary>
-/// Test the scrollbar with a controller
-/// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class OptionsManager : MonoBehaviour
 {
     // Player input values
+    [field: HideInInspector]
     public Vector2 moveAmount;
+    [field: HideInInspector]
     public float clickValue;
 
     // Other scripts
     private _GameManager _gameManager;
 
     // The UI elements
+    [Header("Every UI element in the shared options")]
     public Button button1;
     public Slider volumeSlider;
     public Slider scrollSpeed;
@@ -32,12 +32,14 @@ public class OptionsManager : MonoBehaviour
     public Scrollbar scrollbar;
 
     // P! specific
+    [Header("Every UI element for player 1 options")]
     public Button buttonP1;
     public Slider scrollSpeedP1;
     public Slider stickSensitivityP1;
     public TextMeshProUGUI scrollSpeedValueP1;
     public TextMeshProUGUI stickSensitivityValueP1;
     // P2 specific
+    [Header("Every UI element for player 2 options")]
     public Button buttonP2;
     public Slider scrollSpeedP2;
     public Slider stickSensitivityP2;
@@ -45,9 +47,11 @@ public class OptionsManager : MonoBehaviour
     public TextMeshProUGUI stickSensitivityValueP2;
 
     // gameObjects to show button are on or off
+    [Header("The images for buttons, to see if they are false or true")]
     public Image assistTickConfirmation;
     public Image hitSoundConfirmation;
     // Slider value text
+    [Header("Every piece of text in the settings")]
     public TextMeshProUGUI volumeValue;
     public TextMeshProUGUI scrollSpeedValue;
     public TextMeshProUGUI stickSensitivityValue;
@@ -56,6 +60,7 @@ public class OptionsManager : MonoBehaviour
     public TextMeshProUGUI hitSoundVolumeValue;
 
     // The parent object of every UI item
+    [Header("All the objects that contain everything")]
     public GameObject allOfIt;
     public GameObject allOfP1;
     public GameObject allOfP2;
@@ -63,6 +68,7 @@ public class OptionsManager : MonoBehaviour
     // Audio
     AudioSource source;
 
+    // The players, first a script to find them all, then the 2 players individually
     List<PlayerScript> players;
     PlayerScript p1;
     PlayerScript p2;
@@ -81,7 +87,6 @@ public class OptionsManager : MonoBehaviour
         hitSoundVolume,
         noteColor
     }
-    public Selected selected;
 
     public enum Player
     {
@@ -89,6 +94,9 @@ public class OptionsManager : MonoBehaviour
         p1,
         p2
     }
+
+    [Header("The current option state")]
+    public Selected selected;
     public Player player;
 
     // player movement timer
@@ -102,8 +110,6 @@ public class OptionsManager : MonoBehaviour
 
         // The player objects
         players = FindObjectsByType<PlayerScript>(FindObjectsSortMode.InstanceID).ToList();
-        //p1 = players[0]; // in testing, these cannot work
-        //p2 = players[1]; // since the controllers need to exist before entering the scene
 
         // sets the sliders and buttons to the current values
         volumeSlider.value = _gameManager.volume;
@@ -112,7 +118,7 @@ public class OptionsManager : MonoBehaviour
         audioOffset.value = _gameManager.audioOffset;
         assistTickVolume.value = _gameManager.assistTickVolume;
         hitSoundVolume.value = _gameManager.hitSoundVolume;
-        AssistTick(); AssistTick(); // just clicks them twice, so if true, it goes false then back to true 
+        AssistTick(); AssistTick(); // just clicks them twice, so if true in gameManager, it goes false then back to true ->
         HitSound(); HitSound();     // we do this so it can check what the button bools are in the game manager
 
         // Plays audio
@@ -132,7 +138,7 @@ public class OptionsManager : MonoBehaviour
                 switch (selected)
                 {
                     case Selected.button1: // Back to menu
-                                           // Selects the correct button
+                        // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(button1.gameObject);
                         if (clickValue > 0)
                         {
@@ -147,7 +153,7 @@ public class OptionsManager : MonoBehaviour
                         break;
 
                     case Selected.volumeSlider: // The volume slider
-                                                // Selects the slider
+                        // Selects the slider
                         EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
                         AudioListener.volume = volumeSlider.value;
                         _gameManager.volume = volumeSlider.value;
@@ -315,6 +321,18 @@ public class OptionsManager : MonoBehaviour
                 allOfIt.SetActive(false);
                 allOfP1.SetActive(true);
                 allOfP2.SetActive(false);
+                if (p1 == null)
+                {
+                    p1 = players[0];
+                }
+                if (p1 != null)
+                {
+                    scrollSpeedP1.value = p1.scrollSpeed;
+                    scrollSpeedValueP1.text = (scrollSpeedP1.value * 10).ToString();
+
+                    stickSensitivityP1.value = p1.stickSensitivity;
+                    stickSensitivityValueP1.text = (stickSensitivityP1.value * 10).ToString();
+                }
                 switch (selected)
                 {
                     case Selected.button1: // Back to menu
@@ -368,11 +386,23 @@ public class OptionsManager : MonoBehaviour
                 allOfIt.SetActive(false);
                 allOfP1.SetActive(false);
                 allOfP2.SetActive(true);
+                if (p2 == null)
+                {
+                    p2 = players[1];
+                }
+                if (p2 != null)
+                {
+                    scrollSpeedP2.value = p2.scrollSpeed;
+                    scrollSpeedValueP2.text = (scrollSpeedP2.value * 10).ToString();
+
+                    stickSensitivityP2.value = p2.stickSensitivity;
+                    stickSensitivityValueP2.text = (stickSensitivityP2.value * 10).ToString();
+                }
                 switch (selected)
                 {
                     case Selected.button1: // Back to menu
                                            // Selects the correct button
-                        EventSystem.current.SetSelectedGameObject(buttonP1.gameObject);
+                        EventSystem.current.SetSelectedGameObject(buttonP2.gameObject);
                         if (clickValue > 0)
                         {
                             // Add a button event here

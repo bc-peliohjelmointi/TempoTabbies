@@ -48,7 +48,7 @@ public class ScoreManager : MonoBehaviour
         if (totalNotes > 0)
         {
             // Calculate how many points to deduct for each judgment type
-            pointsPerNote = maxScore / totalNotes;
+            pointsPerNote = perfectScore / totalNotes;
 
             // Start with maximum possible score (all Marvelous)
             currentScore = maxScore;
@@ -103,7 +103,7 @@ public class ScoreManager : MonoBehaviour
 
         totalPoints += marvelousCount * Mathf.RoundToInt(pointsPerNote * 1.01f);
         totalPoints += perfectCount * Mathf.RoundToInt(pointsPerNote * 1.00f);
-        totalPoints += greatCount * Mathf.RoundToInt(pointsPerNote * 0.66f);
+        totalPoints += greatCount * Mathf.RoundToInt(pointsPerNote * 0.75f);
         totalPoints += goodCount * Mathf.RoundToInt(pointsPerNote * 0.30f);
         totalPoints += badCount * Mathf.RoundToInt(pointsPerNote * 0.15f);
         // Misses add 0 points
@@ -119,7 +119,7 @@ public class ScoreManager : MonoBehaviour
         float weightedScore =
             (marvelousCount * 1.01f) +
             (perfectCount * 1.0f) +
-            (greatCount * 0.66f) +
+            (greatCount * 0.75f) +
             (goodCount * 0.30f) +
             (badCount * 0.15f);
 
@@ -131,14 +131,21 @@ public class ScoreManager : MonoBehaviour
     {
         float accuracy = GetAccuracy();
 
-        if (accuracy >= 100.5f) return "AAAA";
-        if (accuracy >= 99f) return "AAA";
-        if (accuracy >= 95f) return "AA";
-        if (accuracy >= 90f) return "A";
-        if (accuracy >= 80f) return "B";
-        if (accuracy >= 70f) return "C";
-        if (accuracy >= 60f) return "D";
-        return "E";
+        if (currentScore >= 1010000) return "MAX";
+        if (currentScore >= 1009000) return "SSS+";
+        if (currentScore >= 1007500) return "SSS";
+        if (currentScore >= 1005000) return "SS+";
+        if (currentScore >= 1000000) return "SS";
+        if (currentScore >= 990000) return "S+";
+        if (currentScore >= 975000) return "S";
+        if (currentScore >= 950000) return "AAA";
+        if (currentScore >= 925000) return "AA";
+        if (currentScore >= 900000) return "A";
+        if (currentScore >= 800000) return "BBB";
+        if (currentScore >= 700000) return "BB";
+        if (currentScore >= 600000) return "B";
+        if (currentScore >= 500000) return "C";
+        return "D";
     }
 
     public void ResetScore()

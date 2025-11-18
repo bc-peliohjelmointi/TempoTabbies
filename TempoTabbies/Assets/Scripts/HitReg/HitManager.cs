@@ -31,6 +31,10 @@ public class HitManager : MonoBehaviour
     public int leftStickLane = 4;
     public int rightStickLane = 5;
 
+    private bool stickLeftInitialPress = false;
+    private bool stickRightInitialPress = false;
+
+
     private Gamepad gamepad;
     private readonly Dictionary<int, HoldNote> activeHolds = new();
 
@@ -49,15 +53,19 @@ public class HitManager : MonoBehaviour
         if (rightBumperObject != null)
             rightBumperObject.SetActive(gamepad.rightShoulder.isPressed);
 
-        bool anyStickLeft = gamepad.leftStick.ReadValue().x < -0.5f ||
-                            gamepad.rightStick.ReadValue().x < -0.5f;
-        bool anyStickRight = gamepad.leftStick.ReadValue().x > 0.5f ||
+        bool stickLeftHeld = gamepad.leftStick.ReadValue().x < -0.5f ||
+                    gamepad.rightStick.ReadValue().x < -0.5f;
+        bool stickRightHeld = gamepad.leftStick.ReadValue().x > 0.5f ||
                              gamepad.rightStick.ReadValue().x > 0.5f;
 
+        bool stickLeftPressed = stickLeftHeld && !stickLeftInitialPress;
+        bool stickRightPressed = stickRightHeld && !stickRightInitialPress;
+
+
         if (leftStickObject != null)
-            leftStickObject.SetActive(anyStickLeft);
+            leftStickObject.SetActive(stickLeftHeld);
         if (rightStickObject != null)
-            rightStickObject.SetActive(anyStickRight);
+            rightStickObject.SetActive(stickRightHeld);
 
         if (Music == null || Spawner == null)
             return;
@@ -69,8 +77,11 @@ public class HitManager : MonoBehaviour
         if (gamepad.leftShoulder.wasPressedThisFrame) TryHit(leftBumperLane, songTime);
         if (gamepad.rightShoulder.wasPressedThisFrame) TryHit(rightBumperLane, songTime);
         if (gamepad.rightTrigger.wasPressedThisFrame) TryHit(rightTriggerLane, songTime);
-        if (anyStickLeft) TryHit(leftStickLane, songTime);
-        if (anyStickRight) TryHit(rightStickLane, songTime);
+        if (stickLeftPressed) TryHit(leftStickLane, songTime);
+        if (stickRightPressed) TryHit(rightStickLane, songTime);
+
+        stickLeftInitialPress = stickLeftHeld;
+        stickRightInitialPress = stickRightHeld;
 
         // Update hold tracking
         UpdateHolds(songTime);
@@ -138,17 +149,12 @@ public class HitManager : MonoBehaviour
         Destroy(note.gameObject);
         ShowJudgment(label);
 
-        // ADD SCORE - Add this part
+        // ADD SCORE
         if (scoreManager != null)
         {
             scoreManager.AddJudgment(label);
         }
 
-        // PLAY HITSOUND
-        if (HitSoundManager.Instance != null)
-        {
-            HitSoundManager.Instance.PlayHitSound(label);
-        }
         Debug.Log($"[{label}] lane {note.Lane} ?t={diff * 1000f:F1}ms");
     }
 
@@ -193,11 +199,11 @@ public class HitManager : MonoBehaviour
         if (lane == leftBumperLane) return gamepad.leftShoulder.isPressed;
         if (lane == rightBumperLane) return gamepad.rightShoulder.isPressed;
         if (lane == leftStickLane)
-            return gamepad.leftStick.ReadValue().x < -0.2f ||
-                   gamepad.rightStick.ReadValue().x < -0.2f;
+            return gamepad.leftStick.ReadValue().x < -0.5f ||
+                   gamepad.rightStick.ReadValue().x < -0.5f;
         if (lane == rightStickLane)
-            return gamepad.leftStick.ReadValue().x > 0.2f ||
-                   gamepad.rightStick.ReadValue().x > 0.2f;
+            return gamepad.leftStick.ReadValue().x > 0.5f ||
+                   gamepad.rightStick.ReadValue().x > 0.5f;
 
         return false;
     }
@@ -214,7 +220,7 @@ public class HitManager : MonoBehaviour
                 note.Hit = true;
                 ShowJudgment("MISS");
 
-                // ADD MISS TO SCORE - Add this part
+                // ADD MISS TO SCORE
                 if (scoreManager != null)
                 {
                     scoreManager.AddJudgment("MISS");

@@ -27,18 +27,28 @@ public class HitSoundManager : MonoBehaviour
             switch (judgment)
             {
                 case "MARVELOUS":
-                case "PERFECT":
                     if (hitSoundVariations.Length > 0)
                         clipToPlay = hitSoundVariations[0];
                     break;
-                case "GREAT":
+                case "PERFECT":
                     if (hitSoundVariations.Length > 1)
                         clipToPlay = hitSoundVariations[1];
                     break;
-                case "GOOD":
-                case "BAD":
+                case "GREAT":
                     if (hitSoundVariations.Length > 2)
                         clipToPlay = hitSoundVariations[2];
+                    break;
+                case "GOOD":
+                    if (hitSoundVariations.Length > 3)
+                        clipToPlay = hitSoundVariations[3];
+                    break;
+                case "BAD":
+                    if (hitSoundVariations.Length > 4)
+                        clipToPlay = hitSoundVariations[4];
+                    break;
+                case "Miss":
+                    if (hitSoundVariations.Length > 5)
+                        clipToPlay = hitSoundVariations[5];
                     break;
             }
         }

@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +10,12 @@ public class _GameManager : MonoBehaviour
 {
     public static _GameManager instance;
 
-    // A spot to remember what stage is currently selected
     public int stageID;
 
     public int whoGetsToPlay; // When 0, only player 1 gets to do stuff in menus, when 1, only player 2 gets to do stuff in menus
 
     // Setting values to remember
+    [Header("Settings values to save")]
     public float volume;
     public float scrollSpeed;
     public float stickSensitivity;
@@ -23,6 +25,12 @@ public class _GameManager : MonoBehaviour
     public bool hitSound;
     public float hitSoundVolume;
     // public ??? noteColor;
+
+    // The players, first a script to find them all, then the 2 players individually
+    [Header("The players")]
+    public List<PlayerScript> players;
+    public PlayerScript p1;
+    public PlayerScript p2;
 
     public enum GameState
     {
@@ -42,9 +50,18 @@ public class _GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (instance != null && instance != this)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Update()
+    {
+        // Checks if players are null when it can, to find players
+        if (p1 == null || p2 == null)
+        {
+            FindPlayers();
         }
     }
 
@@ -61,6 +78,20 @@ public class _GameManager : MonoBehaviour
             {
                 InputSystem.EnableDevice(allControllers[i]);
             }
+        }
+    }
+
+    // When players are loaded in, use this to add them to a list that other scripts can see
+    public void FindPlayers()
+    {
+        players = FindObjectsByType<PlayerScript>(FindObjectsSortMode.InstanceID).ToList();
+        if (players.Count > 0 && p1 == null)
+        {
+            p1 = players[0];
+        }
+        if (players.Count > 1 && p2 == null)
+        {
+            p2 = players[1];
         }
     }
 }

@@ -9,18 +9,22 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
     // Menu objects
+    [Header("The UI elements")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] UnityEngine.UI.Button button1;
     [SerializeField] UnityEngine.UI.Button button2;
     [SerializeField] UnityEngine.UI.Button button3;
 
+    private JSON_Stuff json;
     private _GameManager gameManager;
 
     // Player movement input
+    [Header("Player input values")]
     public Vector2 moveAmount;
     public float clickValue;
 
     // Audio
+    [Header("Audio file for background music")]
     AudioSource source;
 
     // State to know which button is being selected
@@ -38,6 +42,7 @@ public class MainMenuManager : MonoBehaviour
     private void Awake()
     {
         EventSystem.current.SetSelectedGameObject(button1.gameObject);
+        json = FindAnyObjectByType<JSON_Stuff>();
         gameManager = FindAnyObjectByType<_GameManager>();
         source = GetComponent<AudioSource>();
         source.Play();

@@ -3,15 +3,16 @@ using UnityEngine;
 public class CardDataScript : MonoBehaviour
 {
 
-    public enum CardType
+   /* public enum CardType
     {
         Buff,       // parantaa omaa pelaajaa
         Debuff,     // heikent‰‰ omaa pelaajaa
         Attack,     // hyˆkk‰‰ vastustajaan
         Defense,    // suojaa itse‰
-    }
+    }*/
     public enum EffectType
     {
+        Empty,
         ComboLeech
     }
     [CreateAssetMenu(fileName = "NewCard", menuName = "RhythmGame/Card", order = 0)]
@@ -22,7 +23,7 @@ public class CardDataScript : MonoBehaviour
         [TextArea] public string description; // Kortin kuvaus
         public EffectType effectType;           // esim. "ComboLeech"
         public Sprite icon;                 // Kuvake
-        public CardType type;               // Mink‰ tyyppinen kortti on
+       // public CardType type;               // Mink‰ tyyppinen kortti on
 
         [Header("Pelimekaniikka")]
         public float duration = 10f;        // Kuinka kauan efekti kest‰‰

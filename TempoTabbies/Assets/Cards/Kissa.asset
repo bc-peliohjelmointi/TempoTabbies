@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: kissa
   description: 
-  EffectType: 
-  icon: {fileID: 0}
-  type: 0
+  effectType: 0
+  icon: {fileID: -1383402430054890417, guid: f1f0ce85c36bd7b44987581a953a09da, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1

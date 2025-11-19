@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Combo_Leech
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: ComboLeech
-  description: 
-  effectType: 0
+  description: 'Kissa '
+  effectType: 1
   icon: {fileID: 7974186288005948701, guid: 05dd9c8c07fa15f4b9eb5ebbc854ff4d, type: 3}
-  type: 1
   duration: 10
   cooldown: 30
   activatesAutomatically: 1

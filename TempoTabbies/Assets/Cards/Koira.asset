@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: koira
   description: 
-  EffectType: 
-  icon: {fileID: 0}
-  type: 0
+  effectType: 0
+  icon: {fileID: 21300000, guid: 7273109f2ccd65049b008d5e31a66f6b, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1

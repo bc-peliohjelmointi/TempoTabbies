@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 using static CardDataScript;
 
 public class CardManagerScript : MonoBehaviour
@@ -16,9 +19,11 @@ public class CardManagerScript : MonoBehaviour
     [Header("UI asiat")]
     public TextMeshProUGUI ValittuPelaaja;
 
+
     void Start()
     {
         KorttiLista = new List<CardDataScript.CardData>();
+       // button = new Button();
 
         RandomizeCard();
     }
@@ -59,8 +64,11 @@ public class CardManagerScript : MonoBehaviour
             KorttiLista.Add(Arvottu);
         }
         GameObject.Find("Valinta1").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[0].CardName;
+        GameObject.Find("Valinta1").GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = KorttiLista[0].icon;
         GameObject.Find("Valinta2").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[1].CardName;
+        GameObject.Find("Valinta2").GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = KorttiLista[1].icon;
         GameObject.Find("Valinta3").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[2].CardName;
+        GameObject.Find("Valinta3").GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = KorttiLista[2].icon;
     }
 
     PlayerScript FindPlayerOther(PlayerScript Chosen)

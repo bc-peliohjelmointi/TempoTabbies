@@ -1,0 +1,468 @@
+fileFormatVersion: 2
+guid: 19212eb58372cc14882f4ad3927bc9a3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 9158718538935099309
+    second: multiplayerEval_0
+  - first:
+      213: -4879061949237156928
+    second: multiplayerEval_1
+  - first:
+      213: 1032434427608075962
+    second: multiplayerEval_2
+  - first:
+      213: -2290900513186002461
+    second: multiplayerEval_3
+  - first:
+      213: -2834205681742775
+    second: multiplayerEval_4
+  - first:
+      213: -1306969581109826604
+    second: multiplayerEval_5
+  - first:
+      213: -6102385828510607255
+    second: multiplayerEval_6
+  - first:
+      213: 4250725978682763420
+    second: multiplayerEval_7
+  - first:
+      213: -6764774304335534739
+    second: multiplayerEval_8
+  - first:
+      213: -867328501368655314
+    second: multiplayerEval_9
+  - first:
+      213: 3834204767677953279
+    second: multiplayerEval_10
+  - first:
+      213: -8214586291498474675
+    second: multiplayerEval_11
+  - first:
+      213: 4770686590650457197
+    second: multiplayerEval_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: multiplayerEval_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 902
+        width: 2088
+        height: 273
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dafd2077cfd4a1f70800000000000000
+      internalID: 9158718538935099309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 633
+        width: 6
+        height: 214
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c3289ee1071a4cb0800000000000000
+      internalID: -4879061949237156928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_2
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 632
+        width: 765
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abe867f44a1f35e00800000000000000
+      internalID: 1032434427608075962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_3
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 757
+        width: 9
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e9c9c7fe161530e0800000000000000
+      internalID: -2290900513186002461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_4
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 486
+        width: 493
+        height: 367
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94c8e111e4ee5fff0800000000000000
+      internalID: -2834205681742775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_5
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 787
+        width: 6
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db25b13716bcdde0800000000000000
+      internalID: -1306969581109826604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_6
+      rect:
+        serializedVersion: 2
+        x: 1347
+        y: 632
+        width: 757
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9685f39bb68ff4ba0800000000000000
+      internalID: -6102385828510607255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_7
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 458
+        width: 683
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9829ec91cc9dfa30800000000000000
+      internalID: 4250725978682763420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_8
+      rect:
+        serializedVersion: 2
+        x: 818
+        y: 63
+        width: 493
+        height: 396
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d65e36c8c91be12a0800000000000000
+      internalID: -6764774304335534739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_9
+      rect:
+        serializedVersion: 2
+        x: 1357
+        y: 458
+        width: 683
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e227954c251a6f3f0800000000000000
+      internalID: -867328501368655314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_10
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 55
+        width: 671
+        height: 383
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff4bd85fbe4d53530800000000000000
+      internalID: 3834204767677953279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_11
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 350
+        width: 6
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d43a0766a4deffd80800000000000000
+      internalID: -8214586291498474675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: multiplayerEval_12
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 53
+        width: 674
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c90729d22e43240800000000000000
+      internalID: 4770686590650457197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      multiplayerEval_0: 9158718538935099309
+      multiplayerEval_1: -4879061949237156928
+      multiplayerEval_10: 3834204767677953279
+      multiplayerEval_11: -8214586291498474675
+      multiplayerEval_12: 4770686590650457197
+      multiplayerEval_2: 1032434427608075962
+      multiplayerEval_3: -2290900513186002461
+      multiplayerEval_4: -2834205681742775
+      multiplayerEval_5: -1306969581109826604
+      multiplayerEval_6: -6102385828510607255
+      multiplayerEval_7: 4250725978682763420
+      multiplayerEval_8: -6764774304335534739
+      multiplayerEval_9: -867328501368655314
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

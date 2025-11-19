@@ -130,25 +130,14 @@ public class OptionsManager : MonoBehaviour
                 allOfIt.SetActive(true);
                 allOfP1.SetActive(false);
                 allOfP2.SetActive(false);
+                volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
+                scrollSpeedValue.text = ((int)(scrollSpeed.value * 10)).ToString();
+                stickSensitivityValue.text = ((int)(stickSensitivity.value * 10)).ToString();
+                audioOffsetValue.text = ((int)(audioOffset.value * 100)).ToString() + "ms";
+                assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
+                hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
                 switch (selected)
                 {
-                    case Selected.mouse:
-                        volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
-                        scrollSpeedValue.text = ((int)(scrollSpeed.value * 10)).ToString();
-                        stickSensitivityValue.text = ((int)(stickSensitivity.value * 10)).ToString();
-                        audioOffsetValue.text = ((int)(audioOffset.value * 100)).ToString() + "ms";
-                        assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
-                        hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
-
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.button1;
-                            scrollbar.value = 0;
-                            ScrollBar(0);
-                            canMove = false;
-                        }
-                        break;
-
                     case Selected.button1: // Back to menu
                         // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(button1.gameObject);
@@ -170,7 +159,6 @@ public class OptionsManager : MonoBehaviour
                         EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
                         AudioListener.volume = volumeSlider.value;
                         gameManager.volume = volumeSlider.value;
-                        volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
                         Debug.Log(moveAmount);
                         if (canMove && moveAmount.y > 0.1f)
                         {
@@ -189,7 +177,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.scrollSpeed: // The scroll speed slider
                         EventSystem.current.SetSelectedGameObject(scrollSpeed.gameObject);
                         gameManager.scrollSpeed = scrollSpeed.value;
-                        scrollSpeedValue.text = ((int)(scrollSpeed.value * 10)).ToString();
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.volumeSlider;
@@ -207,7 +194,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.stickSensitivity: // The stick sensitivity slider
                         EventSystem.current.SetSelectedGameObject(stickSensitivity.gameObject);
                         gameManager.stickSensitivity = stickSensitivity.value;
-                        stickSensitivityValue.text = ((int)(stickSensitivity.value * 10)).ToString();
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.scrollSpeed;
@@ -224,8 +210,7 @@ public class OptionsManager : MonoBehaviour
 
                     case Selected.audioOffset: // The audio offset slider
                         EventSystem.current.SetSelectedGameObject(audioOffset.gameObject);
-                        gameManager.audioOffset = audioOffset.value;
-                        audioOffsetValue.text = ((int)(audioOffset.value * 100)).ToString() + "ms";
+                        gameManager.audioOffset = audioOffset.value / 0.1f;
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.stickSensitivity;
@@ -242,11 +227,6 @@ public class OptionsManager : MonoBehaviour
 
                     case Selected.assistTick:
                         EventSystem.current.SetSelectedGameObject(assistTick.gameObject);
-                        if (canMove && clickValue > 0)
-                        {
-                            AssistTick();
-                            canMove = false;
-                        }
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.audioOffset;
@@ -264,7 +244,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.assistTickVolume:
                         EventSystem.current.SetSelectedGameObject(assistTickVolume.gameObject);
                         gameManager.assistTickVolume = assistTickVolume.value;
-                        assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.assistTick;
@@ -281,11 +260,6 @@ public class OptionsManager : MonoBehaviour
 
                     case Selected.hitSound:
                         EventSystem.current.SetSelectedGameObject(hitSound.gameObject);
-                        if (canMove && clickValue > 0)
-                        {
-                            HitSound();
-                            canMove = false;
-                        }
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.assistTickVolume;
@@ -303,7 +277,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.hitSoundVolume:
                         EventSystem.current.SetSelectedGameObject(hitSoundVolume.gameObject);
                         gameManager.hitSoundVolume = hitSoundVolume.value;
-                        hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 20)).ToString(); ;
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.hitSound;
@@ -334,17 +307,16 @@ public class OptionsManager : MonoBehaviour
                 allOfIt.SetActive(false);
                 allOfP1.SetActive(true);
                 allOfP2.SetActive(false);
-                if (gameManager.p1 == null)
-                {
-                    gameManager.p1 = gameManager.players[0];
-                }
-                if (gameManager.p1 != null)
+                scrollSpeedValueP1.text = (scrollSpeedP1.value * 10).ToString();
+                stickSensitivityValueP1.text = (stickSensitivityP1.value * 10).ToString();
+                gameManager.whoGetsToPlay = 0;
+                if (gameManager.p1.scrollSpeed != 0 && scrollSpeedP1.value == 0)
                 {
                     scrollSpeedP1.value = gameManager.p1.scrollSpeed;
-                    scrollSpeedValueP1.text = (scrollSpeedP1.value * 10).ToString();
-
+                }
+                if (gameManager.p1.stickSensitivity != 0 && scrollSpeedP1.value == 0)
+                {
                     stickSensitivityP1.value = gameManager.p1.stickSensitivity;
-                    stickSensitivityValueP1.text = (stickSensitivityP1.value * 10).ToString();
                 }
                 switch (selected)
                 {
@@ -410,17 +382,16 @@ public class OptionsManager : MonoBehaviour
                 allOfIt.SetActive(false);
                 allOfP1.SetActive(false);
                 allOfP2.SetActive(true);
-                if (gameManager.p2 == null)
-                {
-                    gameManager.p2 = gameManager.players[1];
-                }
-                if (gameManager.p2 != null)
+                scrollSpeedValueP2.text = (scrollSpeedP2.value * 10).ToString();
+                stickSensitivityValueP2.text = (stickSensitivityP2.value * 10).ToString();
+                gameManager.whoGetsToPlay = 1;
+                if (gameManager.p2.scrollSpeed != 0 && scrollSpeedP2.value == 0)
                 {
                     scrollSpeedP2.value = gameManager.p2.scrollSpeed;
-                    scrollSpeedValueP2.text = (scrollSpeedP2.value * 10).ToString();
-
+                }
+                if (gameManager.p2.stickSensitivity != 0 && scrollSpeedP2.value == 0)
+                {
                     stickSensitivityP2.value = gameManager.p2.stickSensitivity;
-                    stickSensitivityValueP2.text = (stickSensitivityP2.value * 10).ToString();
                 }
                 switch (selected)
                 {

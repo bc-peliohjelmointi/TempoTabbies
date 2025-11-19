@@ -14,26 +14,28 @@ public class AssistTickManager : MonoBehaviour
 
     public static AssistTickManager Instance { get; private set; }
 
+
     void Awake()
     {
         Instance = this;
     }
 
     void Update()
-    {
-        if (tickSoundSource == null || tickSoundClip == null) return;
-        if (!GameManager.Instance.Music.isPlaying) return;
-
-        float currentTime = GameManager.SongTime;
-
-        // Process scheduled ticks that are due
-        while (scheduledTicks.Count > 0 && scheduledTicks.Peek() <= currentTime)
         {
-            float tickTime = scheduledTicks.Dequeue();
-            tickSoundSource.PlayOneShot(tickSoundClip);
-            lastProcessedTime = tickTime;
+            if (tickSoundSource == null || tickSoundClip == null) return;
+            if (!GameManager.Instance.Music.isPlaying) return;
+
+            float currentTime = GameManager.SongTime;
+
+            // Process scheduled ticks that are due
+            while (scheduledTicks.Count > 0 && scheduledTicks.Peek() <= currentTime)
+            {
+                float tickTime = scheduledTicks.Dequeue();
+                tickSoundSource.PlayOneShot(tickSoundClip);
+                lastProcessedTime = tickTime;
+            }
         }
-    }
+        
 
     public void ScheduleTick(float targetTime)
     {

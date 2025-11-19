@@ -24,6 +24,8 @@ public class ScoreManager : MonoBehaviour
     public int currentScore = 0;
     public int totalNotes = 0;
     public int notesHit = 0;
+    public int currentCombo = 0;
+
 
     // Judgment counters
     public int marvelousCount = 0;
@@ -33,12 +35,15 @@ public class ScoreManager : MonoBehaviour
     public int badCount = 0;
     public int missCount = 0;
 
+    public int maxCombo = 0;
+
     private int pointsPerNote;
 
     // Events for real-time updates
     public System.Action<int> OnScoreChanged;
     public System.Action<float> OnAccuracyChanged;
     public System.Action<string> OnGradeChanged;
+    public System.Action<int> OnComboChanged;
 
     public void InitializeScore(int totalNotesInChart)
     {
@@ -84,16 +89,42 @@ public class ScoreManager : MonoBehaviour
 
         notesHit++;
 
+        // Update combo system
+        UpdateCombo(judgment);
+
         // Calculate points based on judgment
         int pointsEarned = CalculatePoints(judgment);
         currentScore = pointsEarned; // Just set to calculated total
 
-        Debug.Log($"{judgment}: Score: {currentScore}");
+        Debug.Log($"{judgment}: Score: {currentScore}, Combo: {currentCombo}");
 
         // Trigger updates
         OnScoreChanged?.Invoke(currentScore);
         OnAccuracyChanged?.Invoke(GetAccuracy());
         OnGradeChanged?.Invoke(GetGrade());
+    }
+
+    public void UpdateCombo(string judgment)
+    {
+        // Reset combo on miss or bad
+        if (judgment == "MISS" || judgment == "BAD")
+        {
+            currentCombo = 0;
+        }
+        else
+        {
+            // Increment combo for other judgments
+            currentCombo++;
+
+            // Update max combo if current combo is higher
+            if (currentCombo > maxCombo)
+            {
+                maxCombo = currentCombo;
+            }
+        }
+
+        // Update combo UI/display
+        OnComboChanged?.Invoke(currentCombo);
     }
 
     private int CalculatePoints(string judgment)
@@ -153,6 +184,7 @@ public class ScoreManager : MonoBehaviour
         currentScore = 0;
         totalNotes = 0;
         notesHit = 0;
+        currentCombo = 0;
         ResetJudgmentCounters();
 
         OnScoreChanged?.Invoke(currentScore);
@@ -167,11 +199,23 @@ public class ScoreManager : MonoBehaviour
         greatCount = 0;
         goodCount = 0;
         badCount = 0;
-        missCount = 0;
+        ResetCombo();
+    }
+
+    public void ResetCombo()
+    {
+        currentCombo = 0;
+        maxCombo = 0;
+        OnComboChanged?.Invoke(currentCombo);
     }
 
     public string GetScoreBreakdown()
     {
         return $"Score: {currentScore:N0}\nAccuracy: {GetAccuracy():F2}%\nGrade: {GetGrade()}";
+    }
+
+    public string GetComboInfo()
+    {
+        return $"{currentCombo}x";
     }
 }

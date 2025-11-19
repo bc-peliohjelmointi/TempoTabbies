@@ -36,6 +36,8 @@ public class NoteSpawner : MonoBehaviour
     private int nextIndex = 0;
     private HashSet<int> skipIndices = new HashSet<int>();
 
+
+
     public void LoadChart(SMFile sm, SMChart chart)
     {
         notes = SMTiming.GetNoteTimes(sm, chart);
@@ -160,7 +162,23 @@ public class NoteSpawner : MonoBehaviour
                 nextIndex++;
             }
         }
+
     }
+    public bool IsChartComplete()
+    {
+        return notes != null && nextIndex >= notes.Count;
+    }
+
+    public float LastNoteTime
+    {
+        get
+        {
+            if (notes == null || notes.Count == 0)
+                return 0f;
+            return notes[notes.Count - 1].time;
+        }
+    }
+
 
     private SMTiming.ParsedNote? FindHoldEnd(int lane, int startIndex)
     {

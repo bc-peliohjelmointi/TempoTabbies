@@ -522,12 +522,12 @@ public class OptionsManager : MonoBehaviour
         if (gameManager.assistTick == false)
         {
             gameManager.assistTick = true;
-            assistTickConfirmation.color = Color.black;
+            assistTickConfirmation.color = Color.softRed;
         }
         else
         {
             gameManager.assistTick = false;
-            assistTickConfirmation.color = Color.white;
+            assistTickConfirmation.color = Color.limeGreen;
         }
     }
 
@@ -536,12 +536,12 @@ public class OptionsManager : MonoBehaviour
         if (gameManager.hitSound == false)
         {
             gameManager.hitSound = true;
-            hitSoundConfirmation.color = Color.black;
+            hitSoundConfirmation.color = Color.softRed;
         }
         else
         {
             gameManager.hitSound = false;
-            hitSoundConfirmation.color = Color.white;
+            hitSoundConfirmation.color = Color.limeGreen;
         }
     }
 

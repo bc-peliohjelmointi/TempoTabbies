@@ -12,12 +12,14 @@ public class Note : MonoBehaviour
     private float initialX;
     private float initialZ;
     private bool started = false;
+    private bool registered = false;
 
     void Start()
     {
         initialX = transform.position.x;
         initialZ = transform.position.z;
         started = true;
+
     }
 
     void Update()
@@ -31,6 +33,13 @@ public class Note : MonoBehaviour
         float y = HitLine.position.y + (timeUntilHit * ScrollSpeed);
         transform.position = new Vector3(initialX, y, initialZ);
 
-        if (timeUntilHit < -0.5f) Destroy(gameObject);
+        if (timeUntilHit < -0.5f)
+        {
+
+            Destroy(gameObject);
+        }
+
+
+
     }
 }

@@ -8,6 +8,7 @@ public class ScoreDisplay : MonoBehaviour
     public TMP_Text accuracyText;
     public TMP_Text gradeText;
     public TMP_Text judgmentText;
+    public TMP_Text comboText;
 
     [Header("Score Reference")]
     public ScoreManager scoreManager;
@@ -20,6 +21,7 @@ public class ScoreDisplay : MonoBehaviour
             scoreText.text = $"Score: {scoreManager.currentScore:N0}";
             accuracyText.text = $"Accuracy: {scoreManager.GetAccuracy():F2}%";
             gradeText.text = $"Grade: {scoreManager.GetGrade()}";
+            comboText.text = scoreManager.GetComboInfo();
 
             // Update judgment counters
             judgmentText.text = $"MARV: {scoreManager.marvelousCount}\n" +

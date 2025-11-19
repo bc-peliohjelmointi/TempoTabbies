@@ -75,7 +75,8 @@ public class _GameManager : MonoBehaviour
         }
         if (players.Count > 1 && p2 == null)
         {
-            p2 = players[1];
+            // This works, since when you add a 2nd player, it goes to slot 0, even though when player 1 is added, it also goes to slot 0
+            p2 = players[0];
         }
     }
 

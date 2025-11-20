@@ -27,8 +27,6 @@ public class OptionsManager : MonoBehaviour
     public Slider assistTickVolume;
     public Button hitSound;
     public Slider hitSoundVolume;
-    public TMP_Dropdown noteColor;
-    public Scrollbar scrollbar;
 
     // P! specific
     [Header("Every UI element for player 1 options")]
@@ -70,7 +68,6 @@ public class OptionsManager : MonoBehaviour
     // Enum to check what is selected
     public enum Selected
     {
-        mouse,
         button1,
         volumeSlider,
         scrollSpeed,
@@ -79,8 +76,7 @@ public class OptionsManager : MonoBehaviour
         assistTick,
         assistTickVolume,
         hitSound,
-        hitSoundVolume,
-        noteColor
+        hitSoundVolume
     }
 
     public enum Player
@@ -141,7 +137,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.button1: // Back to menu
                         // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(button1.gameObject);
-                        scrollbar.value = 0;
                         if (clickValue > 0)
                         {
                             // Add a button event here
@@ -149,7 +144,6 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.volumeSlider;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -163,13 +157,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.button1;
-                            ScrollBar(-0.2f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.scrollSpeed;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -180,13 +172,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.volumeSlider;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.stickSensitivity;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -197,13 +187,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.scrollSpeed;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.audioOffset;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -214,13 +202,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.stickSensitivity;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.assistTick;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -230,13 +216,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.audioOffset;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.assistTickVolume;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -247,13 +231,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.assistTick;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.hitSound;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -263,13 +245,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.assistTickVolume;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.hitSoundVolume;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -280,26 +260,10 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.hitSound;
-                            ScrollBar(-0.1f);
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.noteColor;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
 
-                    case Selected.noteColor: // The note color dropdown, possibly not being made
-                        EventSystem.current.SetSelectedGameObject(noteColor.gameObject);
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.hitSoundVolume;
-                            ScrollBar(-0.1f);
-                            canMove = false;
-                        }
-                        break;
                 }
                 break;
 
@@ -320,17 +284,6 @@ public class OptionsManager : MonoBehaviour
                 }
                 switch (selected)
                 {
-                    case Selected.mouse:
-                        scrollSpeedValueP1.text = ((int)(scrollSpeedP1.value * 10)).ToString();
-                        stickSensitivityValueP1.text = ((int)(stickSensitivityP1.value * 10)).ToString();
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.button1;
-                            scrollbar.value = 0;
-                            ScrollBar(0);
-                            canMove = false;
-                        }
-                        break;
                     case Selected.button1: // Back to menu
                                            // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(buttonP1.gameObject);
@@ -341,7 +294,6 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.scrollSpeed;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -353,13 +305,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.button1;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.stickSensitivity;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -371,7 +321,6 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.scrollSpeed;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         break;
@@ -395,17 +344,6 @@ public class OptionsManager : MonoBehaviour
                 }
                 switch (selected)
                 {
-                    case Selected.mouse:
-                        scrollSpeedValueP2.text = ((int)(scrollSpeedP2.value * 10)).ToString();
-                        stickSensitivityValueP2.text = ((int)(stickSensitivityP2.value * 10)).ToString();
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.button1;
-                            scrollbar.value = 0;
-                            ScrollBar(0);
-                            canMove = false;
-                        }
-                        break;
                     case Selected.button1: // Back to menu
                                            // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(buttonP2.gameObject);
@@ -416,7 +354,6 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.scrollSpeed;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -428,13 +365,11 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.button1;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.stickSensitivity;
-                            ScrollBar(0.1f);
                             canMove = false;
                         }
                         break;
@@ -446,7 +381,6 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.scrollSpeed;
-                            ScrollBar(-0.1f);
                             canMove = false;
                         }
                         break;
@@ -482,12 +416,6 @@ public class OptionsManager : MonoBehaviour
         gameManager.state = _GameManager.GameState.MainMenu;
     }
 
-    public void OnSelect(GameObject GO)
-    {
-        selected = Selected.mouse;
-        EventSystem.current.SetSelectedGameObject(GO);
-    }
-
     public void AssistTick()
     {
         if (gameManager.assistTick == false)
@@ -514,11 +442,5 @@ public class OptionsManager : MonoBehaviour
             gameManager.hitSound = false;
             hitSoundConfirmation.color = Color.limeGreen;
         }
-    }
-
-    public void ScrollBar(float value)
-    {
-        scrollbar.value += value;
-        allOfIt.transform.localPosition = new Vector3(0, scrollbar.value * 100, 0);
     }
 }

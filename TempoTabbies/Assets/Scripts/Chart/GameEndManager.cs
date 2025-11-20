@@ -128,7 +128,7 @@ public class GameEndManager : MonoBehaviour
     private IEnumerator FadeFromBlack()
     {
         if (fadeOverlay == null) yield break;
-        
+
         float timer = 0f;
         Color color = fadeOverlay.color;
 
@@ -143,6 +143,12 @@ public class GameEndManager : MonoBehaviour
 
         color.a = 0f;
         fadeOverlay.color = color;
+
+        
+        if (fadeOverlay.TryGetComponent<Image>(out var fadeImage))
+        {
+            fadeImage.raycastTarget = false;
+        }
     }
 
     private void ShowEvalScreen()

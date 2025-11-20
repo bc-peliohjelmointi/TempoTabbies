@@ -1343,7 +1343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 705246542}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &610080726
@@ -1392,6 +1392,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2144985823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &705246542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4962479939790208140, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
+  m_PrefabInstance: {fileID: 4053400001518979735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &881922578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2005,6 +2010,86 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128865664}
   m_CullTransparentMesh: 1
+--- !u!1 &1129255222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1129255223}
+  - component: {fileID: 1129255224}
+  m_Layer: 5
+  m_Name: InitialButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1129255223
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129255222}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4053400001518979737}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -207, y: -101}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1129255224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129255222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1168355256
 GameObject:
   m_ObjectHideFlags: 0
@@ -3397,7 +3482,7 @@ MonoBehaviour:
   badText: {fileID: 4053400001518979740}
   missText: {fileID: 4053400001518979739}
   returnButton: {fileID: 4053400001518979738}
-  initialSelectedButton: {fileID: 4053400001518979737}
+  initialSelectedButton: {fileID: 1129255222}
   difficultyBackground: {fileID: 4053400001518979736}
   scoreManager: {fileID: 1947054494}
   beginnerColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
@@ -4236,6 +4321,10 @@ PrefabInstance:
       value: -212.9512
       objectReference: {fileID: 0}
     - target: {fileID: 6417720536121199590, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6417720536121199590, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1608932984}
@@ -4337,7 +4426,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8428291481213988233, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1129255223}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
 --- !u!114 &4053400001518979736 stripped
@@ -4351,9 +4443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &4053400001518979737 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4962479939790208140, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
+--- !u!224 &4053400001518979737 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8428291481213988233, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
   m_PrefabInstance: {fileID: 4053400001518979735}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &4053400001518979738 stripped
@@ -4361,7 +4453,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6417720536121199590, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
   m_PrefabInstance: {fileID: 4053400001518979735}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4053400001518979737}
+  m_GameObject: {fileID: 705246542}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -4525,6 +4617,6 @@ SceneRoots:
   - {fileID: 1976548521}
   - {fileID: 346440819}
   - {fileID: 1200865376}
-  - {fileID: 4053400001518979735}
   - {fileID: 402811329}
+  - {fileID: 4053400001518979735}
   - {fileID: 1608932985}

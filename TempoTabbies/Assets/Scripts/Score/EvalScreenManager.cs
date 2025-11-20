@@ -178,57 +178,57 @@ public class EvalScreenManager : MonoBehaviour
 
 
     private IEnumerator LoadBannerImage(string bannerFilename, string songDirectory)
+{
+    if (string.IsNullOrEmpty(bannerFilename) || bannerImage == null)
+        yield break;
+
+    string bannerPath = Path.Combine(songDirectory, bannerFilename);
+
+    if (!File.Exists(bannerPath))
     {
-        if (string.IsNullOrEmpty(bannerFilename) || bannerImage == null)
-            yield break;
-
-        string bannerPath = Path.Combine(songDirectory, bannerFilename);
-
-        if (!File.Exists(bannerPath))
+        // Try to find the file in the Songs folder
+        string songsRoot = Path.Combine(Application.dataPath, "Songs");
+        string[] foundFiles = Directory.GetFiles(songsRoot, bannerFilename, SearchOption.AllDirectories);
+        if (foundFiles.Length > 0)
         {
-            // Try to find the file in the Songs folder
-            string songsRoot = Path.Combine(Application.dataPath, "Songs");
-            string[] foundFiles = Directory.GetFiles(songsRoot, bannerFilename, SearchOption.AllDirectories);
-            if (foundFiles.Length > 0)
-            {
-                bannerPath = foundFiles[0];
-            }
-            else
-            {
-                Debug.LogWarning($"Banner file not found: {bannerFilename}");
-                yield break;
-            }
-        }
-
-        // Load the file directly as bytes to avoid compression
-        byte[] fileData = File.ReadAllBytes(bannerPath);
-        Texture2D texture = new Texture2D(2, 2);
-
-        // Load the image without compression
-        if (texture.LoadImage(fileData))
-        {
-            // Disable compression for this texture
-            texture.filterMode = FilterMode.Point;
-            texture.wrapMode = TextureWrapMode.Clamp;
-
-            // Create sprite
-            Sprite bannerSprite = Sprite.Create(texture,
-                new Rect(0, 0, texture.width, texture.height),
-                new Vector2(0.5f, 0.5f), 100f);
-
-            bannerImage.sprite = bannerSprite;
-
-            // Don't preserve aspect - let it stretch to fill the RectTransform
-            bannerImage.preserveAspect = false;
-            bannerImage.type = Image.Type.Simple;
-
-            Debug.Log($"[EvalScreenManager] Banner loaded without aspect preservation: {texture.width}x{texture.height}");
+            bannerPath = foundFiles[0];
         }
         else
         {
-            Debug.LogWarning("Failed to load banner image from file data");
+            Debug.LogWarning($"Banner file not found: {bannerFilename}");
+            yield break;
         }
     }
+
+    // Load the file directly as bytes to avoid compression
+    byte[] fileData = File.ReadAllBytes(bannerPath);
+    Texture2D texture = new Texture2D(2, 2);
+    
+    // Load the image without compression
+    if (texture.LoadImage(fileData))
+    {
+        // Disable compression for this texture
+        texture.filterMode = FilterMode.Point;
+        texture.wrapMode = TextureWrapMode.Clamp;
+        
+        // Create sprite
+        Sprite bannerSprite = Sprite.Create(texture,
+            new Rect(0, 0, texture.width, texture.height),
+            new Vector2(0.5f, 0.5f), 100f);
+        
+        bannerImage.sprite = bannerSprite;
+        
+        // Don't preserve aspect - let it stretch to fill the RectTransform
+        bannerImage.preserveAspect = false;
+        bannerImage.type = Image.Type.Simple;
+        
+        Debug.Log($"[EvalScreenManager] Banner loaded without aspect preservation: {texture.width}x{texture.height}");
+    }
+    else
+    {
+        Debug.LogWarning("Failed to load banner image from file data");
+    }
+}
 
     private IEnumerator LoadStageBackground(string songDirectory)
     {

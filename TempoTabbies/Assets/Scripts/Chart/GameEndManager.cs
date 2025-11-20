@@ -16,6 +16,7 @@ public class GameEndManager : MonoBehaviour
 
     public NoteSpawner noteSpawner;
     public AudioSource music;
+    public EvalScreenManager evalScreenManager;
     private bool gameEnding = false;
     private bool gameEnded = false;
     private bool allNotesSpawned = false;
@@ -29,7 +30,6 @@ public class GameEndManager : MonoBehaviour
 
     void Start()
     {
-
 
         // Initialize fade overlay
         if (fadeOverlay != null)
@@ -128,7 +128,7 @@ public class GameEndManager : MonoBehaviour
     private IEnumerator FadeFromBlack()
     {
         if (fadeOverlay == null) yield break;
-
+        
         float timer = 0f;
         Color color = fadeOverlay.color;
 
@@ -150,7 +150,18 @@ public class GameEndManager : MonoBehaviour
         if (evalScreen != null)
         {
             evalScreen.SetActive(true);
-            Debug.Log("[GameEndManager] Evaluation screen shown");
+
+            EvalScreenManager evalManager = evalScreen.GetComponent<EvalScreenManager>();
+            if (evalManager != null)
+            {
+                evalManager.RefreshDisplay();
+            }
+            else
+            {
+                Debug.LogWarning("[GameEndManager] EvalScreenManager component not found on eval screen!");
+            }
+
+            Debug.Log("[GameEndManager] Evaluation screen shown and refreshed");
         }
         else
         {

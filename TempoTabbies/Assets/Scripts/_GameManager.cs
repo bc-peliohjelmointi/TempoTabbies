@@ -10,6 +10,9 @@ public class _GameManager : MonoBehaviour
 {
     public static _GameManager instance;
 
+    public GameManager gm;
+    public NoteSpawner spawner;
+
     public int stageID;
 
     public int whoGetsToPlay; // When 0, only player 1 gets to do stuff in menus, when 1, only player 2 gets to do stuff in menus
@@ -19,14 +22,13 @@ public class _GameManager : MonoBehaviour
     public float volume;
     public float scrollSpeed;
     public float stickSensitivity;
-    public float audioOffset;
+    public float audioOffset; // in ms
     public bool assistTick;
     public float assistTickVolume;
     public bool hitSound;
     public float hitSoundVolume;
-    // public ??? noteColor;
 
-    // The players, first a script to find them all, then the 2 players individually
+    // The players, first a list  to find them all, then the 2 players individually
     [Header("The players")]
     public List<PlayerScript> players;
     public PlayerScript p1;

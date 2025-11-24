@@ -11,6 +11,8 @@ public class OptionsManager : MonoBehaviour
     public Vector2 moveAmount;
     [field: HideInInspector]
     public float clickValue;
+    [field: HideInInspector]
+    public float audioOffsetFloat;
 
     // Other scripts
     private _GameManager gameManager;
@@ -22,13 +24,14 @@ public class OptionsManager : MonoBehaviour
     public Slider volumeSlider;
     public Slider scrollSpeed;
     public Slider stickSensitivity;
-    public Slider audioOffset;
+    public Button audioOffset1;
+    public Button audioOffset2;
     public Button assistTick;
     public Slider assistTickVolume;
     public Button hitSound;
     public Slider hitSoundVolume;
 
-    // P! specific
+    // P1 specific
     [Header("Every UI element for player 1 options")]
     public Button buttonP1;
     public Slider scrollSpeedP1;
@@ -47,8 +50,9 @@ public class OptionsManager : MonoBehaviour
     [Header("The images for buttons, to see if they are false or true")]
     public Image assistTickConfirmation;
     public Image hitSoundConfirmation;
+
     // Slider value text
-    [Header("Every piece of text in the settings")]
+    [Header("Most of the text in the settings")]
     public TextMeshProUGUI volumeValue;
     public TextMeshProUGUI scrollSpeedValue;
     public TextMeshProUGUI stickSensitivityValue;
@@ -72,7 +76,8 @@ public class OptionsManager : MonoBehaviour
         volumeSlider,
         scrollSpeed,
         stickSensitivity,
-        audioOffset,
+        audioOffset1,
+        audioOffset2,
         assistTick,
         assistTickVolume,
         hitSound,
@@ -106,7 +111,7 @@ public class OptionsManager : MonoBehaviour
         volumeSlider.value = gameManager.volume;
         scrollSpeed.value = gameManager.scrollSpeed;
         stickSensitivity.value = gameManager.stickSensitivity;
-        audioOffset.value = gameManager.audioOffset;
+        audioOffsetFloat = gameManager.audioOffset;
         assistTickVolume.value = gameManager.assistTickVolume;
         hitSoundVolume.value = gameManager.hitSoundVolume;
         AssistTick(); AssistTick(); // just clicks them twice, so if true in gameManager, it goes false then back to true ->
@@ -129,7 +134,7 @@ public class OptionsManager : MonoBehaviour
                 volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
                 scrollSpeedValue.text = ((int)(scrollSpeed.value * 10)).ToString();
                 stickSensitivityValue.text = ((int)(stickSensitivity.value * 10)).ToString();
-                audioOffsetValue.text = ((int)(audioOffset.value * 100)).ToString() + "ms";
+                audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
                 assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
                 hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
                 switch (selected)
@@ -137,10 +142,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.button1: // Back to menu
                         // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(button1.gameObject);
-                        if (clickValue > 0)
-                        {
-                            // Add a button event here
-                        }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.volumeSlider;
@@ -153,7 +154,6 @@ public class OptionsManager : MonoBehaviour
                         EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
                         AudioListener.volume = volumeSlider.value;
                         gameManager.volume = volumeSlider.value;
-                        Debug.Log(moveAmount);
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.button1;
@@ -191,17 +191,29 @@ public class OptionsManager : MonoBehaviour
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
-                            selected = Selected.audioOffset;
+                            selected = Selected.audioOffset1;
                             canMove = false;
                         }
                         break;
 
-                    case Selected.audioOffset: // The audio offset slider
-                        EventSystem.current.SetSelectedGameObject(audioOffset.gameObject);
-                        gameManager.audioOffset = audioOffset.value / 0.1f;
+                    case Selected.audioOffset1: // The audio offset slider
+                        EventSystem.current.SetSelectedGameObject(audioOffset1.gameObject);
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.stickSensitivity;
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.audioOffset2;
+                            canMove = false;
+                        }
+                        break;
+                    case Selected.audioOffset2: // The audio offset slider
+                        EventSystem.current.SetSelectedGameObject(audioOffset2.gameObject);
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.audioOffset1;
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
@@ -210,12 +222,11 @@ public class OptionsManager : MonoBehaviour
                             canMove = false;
                         }
                         break;
-
                     case Selected.assistTick:
                         EventSystem.current.SetSelectedGameObject(assistTick.gameObject);
                         if (canMove && moveAmount.y > 0.1f)
                         {
-                            selected = Selected.audioOffset;
+                            selected = Selected.audioOffset2;
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
@@ -267,7 +278,7 @@ public class OptionsManager : MonoBehaviour
                 }
                 break;
 
-            case Player.p1: // Remember to set scrolls peed as the selected object
+            case Player.p1: 
                 allOfIt.SetActive(false);
                 allOfP1.SetActive(true);
                 allOfP2.SetActive(false);
@@ -402,11 +413,17 @@ public class OptionsManager : MonoBehaviour
         }
     }
 
-    public void DropdownValueChanged(Color color)
+    public void OnAudioOffset1Click()
     {
-        // Figure this out later
+        audioOffsetFloat += 2;
+        gameManager.audioOffset = audioOffsetFloat;
     }
 
+    public void OnAudioOffset2Click()
+    {
+        audioOffsetFloat -= 2;
+        gameManager.audioOffset = audioOffsetFloat;
+    }
     public void OnReturnClick()
     {
         json.SaveGameManager();

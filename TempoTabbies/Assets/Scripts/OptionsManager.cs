@@ -52,7 +52,7 @@ public class OptionsManager : MonoBehaviour
     public Image hitSoundConfirmation;
 
     // Slider value text
-    [Header("Most of the text in the settings")]
+    [Header("Number text in the settings")]
     public TextMeshProUGUI volumeValue;
     public TextMeshProUGUI scrollSpeedValue;
     public TextMeshProUGUI stickSensitivityValue;
@@ -278,7 +278,7 @@ public class OptionsManager : MonoBehaviour
                 }
                 break;
 
-            case Player.p1: 
+            case Player.p1:
                 allOfIt.SetActive(false);
                 allOfP1.SetActive(true);
                 allOfP2.SetActive(false);
@@ -424,6 +424,7 @@ public class OptionsManager : MonoBehaviour
         audioOffsetFloat -= 2;
         gameManager.audioOffset = audioOffsetFloat;
     }
+
     public void OnReturnClick()
     {
         json.SaveGameManager();

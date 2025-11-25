@@ -14,7 +14,6 @@ public class PlayerScript : MonoBehaviour
     private UIPlayerBehaviour pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
-    private StageSelectManager stageSelect;
 
     // The needed inputs
     [Header("The inputs we're using")]
@@ -84,12 +83,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if (gameManager.state == _GameManager.GameState.StageSelect)
         {
-            /// Not touching this yet, as I am pretty sure its getting changed a lot
-            // gets the stage select script
-            if (stageSelect == null)
-            {
-                stageSelect = FindFirstObjectByType<StageSelectManager>();
-            }
+            // Not sure what to do here yet
         }
         else if (gameManager.state == _GameManager.GameState.Game)
         {

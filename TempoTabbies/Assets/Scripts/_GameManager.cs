@@ -10,9 +10,6 @@ public class _GameManager : MonoBehaviour
 {
     public static _GameManager instance;
 
-    public GameManager gm;
-    public NoteSpawner spawner;
-
     public int stageID;
 
     public int whoGetsToPlay; // When 0, only player 1 gets to do stuff in menus, when 1, only player 2 gets to do stuff in menus

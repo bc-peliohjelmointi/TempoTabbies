@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// This class is for buttons and changes what they do when selected or deselected
+/// This class is for buttons and changes what they do when selected
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
 public class StageUISelect : MonoBehaviour, ISelectHandler
@@ -25,10 +25,6 @@ public class StageUISelect : MonoBehaviour, ISelectHandler
             source = GetComponent<AudioSource>();
         }
 
-        // Play the audio, if it is not already playing, this stops the button select tweaking out and selecting itself twice in a millisecond
-        if (!source.isPlaying)
-        {
-            source.Play();
-        }
+        source.PlayOneShot(source.clip);
     }
 }

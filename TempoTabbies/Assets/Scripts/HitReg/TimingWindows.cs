@@ -1,10 +1,18 @@
-using UnityEngine;
-
 public static class TimingWindows
 {
-    public const float Marvelous = 0.033f;
-    public const float Perfect = 0.066f;
-    public const float Great = 0.1f;
-    public const float Good = 0.140f;
-    public const float Bad = 0.180f;
+    public static float Marvelous { get { return TimingWindows.kerroin * 0.033f; } }
+    public static float Perfect { get { return TimingWindows.kerroin * 0.066f; } }
+    public static float Great { get { return TimingWindows.kerroin * 0.1f; } }
+    public static float Good { get { return TimingWindows.kerroin * 0.140f; } }
+    public static float Bad { get { return TimingWindows.kerroin * 0.180f; } }
+
+    private static float kerroin = 1;
+
+    public static void setMultiplier(float kerroin)
+    {
+        if (kerroin > 0)
+        {
+            TimingWindows.kerroin = kerroin;
+        }
+    }
 }

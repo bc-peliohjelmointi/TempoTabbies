@@ -6,11 +6,12 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class OptionsManager : MonoBehaviour
 {
-    // Player input values
+    // Player movement, which is sent by the PlayerScript.cs Class
     [field: HideInInspector]
     public Vector2 moveAmount;
     [field: HideInInspector]
     public float clickValue;
+
     [field: HideInInspector]
     public float audioOffsetFloat;
 
@@ -20,7 +21,7 @@ public class OptionsManager : MonoBehaviour
 
     // The UI elements
     [Header("Every UI element in the shared options")]
-    public Button button1;
+    public Button backButton;
     public Slider volumeSlider;
     public Slider scrollSpeed;
     public Slider stickSensitivity;
@@ -72,7 +73,7 @@ public class OptionsManager : MonoBehaviour
     // Enum to check what is selected
     public enum Selected
     {
-        button1,
+        backButton,
         volumeSlider,
         scrollSpeed,
         stickSensitivity,
@@ -101,11 +102,11 @@ public class OptionsManager : MonoBehaviour
 
     void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(button1.gameObject);
+        EventSystem.current.SetSelectedGameObject(backButton.gameObject);
         gameManager = FindAnyObjectByType<_GameManager>();
         json = FindAnyObjectByType<JSON_Stuff>();
 
-        selected = Selected.button1;
+        selected = Selected.backButton;
 
         // sets the sliders and buttons to the current values
         volumeSlider.value = gameManager.volume;
@@ -115,7 +116,7 @@ public class OptionsManager : MonoBehaviour
         assistTickVolume.value = gameManager.assistTickVolume;
         hitSoundVolume.value = gameManager.hitSoundVolume;
         AssistTick(); AssistTick(); // just clicks them twice, so if true in gameManager, it goes false then back to true ->
-        HitSound(); HitSound();     // we do this so it can check what the button bools are in the game manager
+        HitSound(); HitSound();     // we do this so it can check what the button bools are in the gameManager
 
         // Plays audio
         source = GetComponent<AudioSource>();
@@ -139,9 +140,9 @@ public class OptionsManager : MonoBehaviour
                 hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
                 switch (selected)
                 {
-                    case Selected.button1: // Back to menu
+                    case Selected.backButton: // Back to menu
                         // Selects the correct button
-                        EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                        EventSystem.current.SetSelectedGameObject(backButton.gameObject);
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.volumeSlider;
@@ -156,7 +157,7 @@ public class OptionsManager : MonoBehaviour
                         gameManager.volume = volumeSlider.value;
                         if (canMove && moveAmount.y > 0.1f)
                         {
-                            selected = Selected.button1;
+                            selected = Selected.backButton;
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
@@ -295,8 +296,8 @@ public class OptionsManager : MonoBehaviour
                 }
                 switch (selected)
                 {
-                    case Selected.button1: // Back to menu
-                                           // Selects the correct button
+                    case Selected.backButton: // Back to menu
+                                              // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(buttonP1.gameObject);
                         if (clickValue > 0)
                         {
@@ -315,7 +316,7 @@ public class OptionsManager : MonoBehaviour
                         scrollSpeedValueP1.text = (scrollSpeedP1.value * 10).ToString();
                         if (canMove && moveAmount.y > 0.1f)
                         {
-                            selected = Selected.button1;
+                            selected = Selected.backButton;
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
@@ -355,8 +356,8 @@ public class OptionsManager : MonoBehaviour
                 }
                 switch (selected)
                 {
-                    case Selected.button1: // Back to menu
-                                           // Selects the correct button
+                    case Selected.backButton: // Back to menu
+                                              // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(buttonP2.gameObject);
                         if (clickValue > 0)
                         {
@@ -375,7 +376,7 @@ public class OptionsManager : MonoBehaviour
                         scrollSpeedValueP2.text = (scrollSpeedP2.value * 10).ToString();
                         if (canMove && moveAmount.y > 0.1f)
                         {
-                            selected = Selected.button1;
+                            selected = Selected.backButton;
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)

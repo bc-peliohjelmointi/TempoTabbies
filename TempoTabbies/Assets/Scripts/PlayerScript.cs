@@ -11,7 +11,7 @@ public class PlayerScript : MonoBehaviour
 
     // Other scripts
     private _GameManager gameManager;
-    private UIPlayerBehaviour pauseMenu;
+    private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
 
@@ -90,7 +90,7 @@ public class PlayerScript : MonoBehaviour
             // gets the pause menu script
             if (pauseMenu == null)
             {
-                pauseMenu = FindFirstObjectByType<UIPlayerBehaviour>();
+                pauseMenu = FindFirstObjectByType<PauseMenuManager>();
             }
             // Checks if the pauseMenu is inactive
             if (!pauseMenu.isPauseMenuActive)

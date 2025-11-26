@@ -18,7 +18,7 @@ public class MainMenuManager : MonoBehaviour
     private JSON_Stuff json;
     private _GameManager gameManager;
 
-    // Player movement input
+    // Player movement, which is sent by the PlayerScript.cs Class
     [Header("Player input values")]
     public Vector2 moveAmount;
     public float clickValue;

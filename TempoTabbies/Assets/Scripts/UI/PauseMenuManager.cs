@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// The in game pause menu script
 /// </summary>
-public class UIPlayerBehaviour : MonoBehaviour
+public class PauseMenuManager : MonoBehaviour
 {
     // Player movement, which is sent by the PlayerScript.cs Class
     [Header("Player input values")]

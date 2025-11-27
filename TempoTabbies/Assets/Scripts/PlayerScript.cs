@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
     private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
+   [SerializeField] private CatSelectionManager catMenu;
 
     // The needed inputs
     [Header("The inputs we're using")]
@@ -26,6 +27,7 @@ public class PlayerScript : MonoBehaviour
     public List<CardDataScript.CardData> AllCards;
     public int Score;
     public int Combo;
+    public int cat; // use this to say which cat has been chosen for the player
 
     // Stored values that are player specific
     [Header("Stuff we save")]
@@ -53,72 +55,84 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         // Checks what state the game is currently in
-        if (gameManager.state == _GameManager.GameState.MainMenu)
+        switch (gameManager.state)
         {
-            // Gets the main menu script
-            if (mainMenu == null)
-            {
-                mainMenu = FindFirstObjectByType<MainMenuManager>();
-            }
-            if (_playerIndex == gameManager.whoGetsToPlay)
-            {
-                // Checks the movement that we need for menus
-                mainMenu.moveAmount = navigate.ReadValue<Vector2>();
-                mainMenu.clickValue = clickButton.ReadValue<float>();
-            }
-        }
-        else if (gameManager.state == _GameManager.GameState.Options)
-        {
-            // gets the options menu script
-            if (optionsMenu == null)
-            {
-                optionsMenu = FindFirstObjectByType<OptionsManager>();
-            }
-            if (_playerIndex == gameManager.whoGetsToPlay)
-            {
-                // Checks the movement that we need for menus
-                optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
-                optionsMenu.clickValue = clickButton.ReadValue<float>();
-            }
-        }
-        else if (gameManager.state == _GameManager.GameState.StageSelect)
-        {
-            // Not sure what to do here yet
-        }
-        else if (gameManager.state == _GameManager.GameState.Game)
-        {
-            // gets the pause menu script
-            if (pauseMenu == null)
-            {
-                pauseMenu = FindFirstObjectByType<PauseMenuManager>();
-            }
-            // Checks if the pauseMenu is inactive
-            if (!pauseMenu.isPauseMenuActive)
-            {
-                float submitValue = submit.ReadValue<float>();
-                if (submitValue > 0)
+            case _GameManager.GameState.MainMenu:
+                if (gameManager.state == _GameManager.GameState.MainMenu)
                 {
-                    // Makes this player the active player
-                    gameManager.whoGetsToPlay = _playerIndex;
-                    // Opens the pause menu
-                    pauseMenu.OpenPauseMenu();
-                    // Disables the other controllers
-                    DisableOthers();
+                    // Gets the main menu script
+                    if (mainMenu == null)
+                    {
+                        mainMenu = FindFirstObjectByType<MainMenuManager>();
+                    }
+                    if (_playerIndex == gameManager.whoGetsToPlay)
+                    {
+                        // Checks the movement that we need for menus
+                        mainMenu.moveAmount = navigate.ReadValue<Vector2>();
+                        mainMenu.clickValue = clickButton.ReadValue<float>();
+                    }
                 }
-            }
-            // Checks if this player should be moving in the menus
-            if (_playerIndex == gameManager.whoGetsToPlay && pauseMenu.isPauseMenuActive)
-            {
-                // Checks the movement that we need for menus
-                pauseMenu.moveAmount = navigate.ReadValue<Vector2>();
-                pauseMenu.clickValue = clickButton.ReadValue<float>();
-            }
-        }
+                break;
+            case _GameManager.GameState.Options:
+                // gets the options menu script
+                if (optionsMenu == null)
+                {
+                    optionsMenu = FindFirstObjectByType<OptionsManager>();
+                }
+                if (_playerIndex == gameManager.whoGetsToPlay)
+                {
+                    // Checks the movement that we need for menus
+                    optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
+                    optionsMenu.clickValue = clickButton.ReadValue<float>();
+                }
+                break;
+            case _GameManager.GameState.StageSelect:
+                // Not sure how the new stage select works
+                break;
+            case _GameManager.GameState.Game:
+                // gets the pause menu script
+                if (pauseMenu == null)
+                {
+                    pauseMenu = FindFirstObjectByType<PauseMenuManager>();
+                }
+                // Checks if the pauseMenu is inactive
+                if (!pauseMenu.isPauseMenuActive)
+                {
+                    float submitValue = submit.ReadValue<float>();
+                    if (submitValue > 0)
+                    {
+                        // Makes this player the active player
+                        gameManager.whoGetsToPlay = _playerIndex;
+                        // Opens the pause menu
+                        pauseMenu.OpenPauseMenu();
+                        // Disables the other controllers
+                        DisableOthers();
+                    }
+                }
+                // Checks if this player should be moving in the menus
+                if (_playerIndex == gameManager.whoGetsToPlay && pauseMenu.isPauseMenuActive)
+                {
+                    // Checks the movement that we need for menus
+                    pauseMenu.moveAmount = navigate.ReadValue<Vector2>();
+                    pauseMenu.clickValue = clickButton.ReadValue<float>();
+                }
+                break;
+            case _GameManager.GameState.CatSelect:
+                if (catMenu == null)
+                {
+                    catMenu = FindFirstObjectByType<CatSelectionManager>();
+                }
+                if (_playerIndex == gameManager.whoGetsToPlay)
+                {
+                    catMenu.moveAmount = navigate.ReadValue<Vector2>();
+                    catMenu.clickValue = clickButton.ReadValue<float>();
+                }
+                break;
 
-        if (gameManager.state == _GameManager.GameState.CardSelection)
-        {
-            // liikkuminenen            navigate.ReadValue<Vector2>();
-            // napin A painaminen       clickButton.ReadValue<float>();
+            case _GameManager.GameState.CardSelection:
+                // liikkuminenen            navigate.ReadValue<Vector2>();
+                // napin A painaminen       clickButton.ReadValue<float>();
+                break;
         }
     }
 

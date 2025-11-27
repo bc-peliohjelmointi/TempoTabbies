@@ -36,6 +36,7 @@ public class _GameManager : MonoBehaviour
         MainMenu, // The main menu
         Options, // The options menu
         StageSelect, // The song select screen
+        CatSelect, // Selecting a cat
         Game, // The songs being played
         CardSelection, // Selecting cards mid game
         Pause // Pausing mid game

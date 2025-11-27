@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7002779541319119183}
   - component: {fileID: 1979507657497492395}
   m_Layer: 5
-  m_Name: TxampleText
+  m_Name: ExampleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

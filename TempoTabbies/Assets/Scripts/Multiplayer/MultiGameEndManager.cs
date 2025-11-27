@@ -14,9 +14,16 @@ public class MultiGameEndManager : MonoBehaviour
     public Image fadeOverlay;
     public string stageSelectSceneName = "StageSelect";
 
-    public MultiNoteSpawner noteSpawner;
+    [Header("Note Spawners")]
+    public NoteSpawner noteSpawner_P1;
+    public NoteSpawner noteSpawner_P2;
+
+    [Header("Audio Reference")]
     public AudioSource music;
+
+    [Header("Evaluation Screen")]
     public EvalScreenManager evalScreenManager;
+
     private bool gameEnding = false;
     private bool gameEnded = false;
     private bool allNotesSpawned = false;
@@ -47,15 +54,20 @@ public class MultiGameEndManager : MonoBehaviour
     {
         if (gameEnding || gameEnded) return;
 
-        // Check if all notes have been spawned
-        if (noteSpawner != null && !allNotesSpawned && noteSpawner.IsChartComplete())
+        // Check if both players have spawned all their notes
+        if (noteSpawner_P1 != null && noteSpawner_P2 != null && !allNotesSpawned && BothSpawnersComplete())
         {
             allNotesSpawned = true;
-            Debug.Log($"[GameEndManager] All notes spawned, ending game in {endDelayAfterLastNote} seconds");
+            Debug.Log($"[GameEndManager] Both players completed, ending game in {endDelayAfterLastNote} seconds");
 
             // Start the end sequence after delay
             Invoke(nameof(StartEndSequence), endDelayAfterLastNote);
         }
+    }
+
+    private bool BothSpawnersComplete()
+    {
+        return noteSpawner_P1.IsChartComplete() && noteSpawner_P2.IsChartComplete();
     }
 
     private void StartEndSequence()
@@ -143,7 +155,6 @@ public class MultiGameEndManager : MonoBehaviour
         color.a = 0f;
         fadeOverlay.color = color;
 
-
         if (fadeOverlay.TryGetComponent<Image>(out var fadeImage))
         {
             fadeImage.raycastTarget = false;
@@ -202,5 +213,23 @@ public class MultiGameEndManager : MonoBehaviour
         {
             StartCoroutine(EndGame());
         }
+    }
+
+    // Helper method to get the last note time from either player
+    public float GetLastNoteTime()
+    {
+        float lastTime = 0f;
+
+        if (noteSpawner_P1 != null)
+        {
+            lastTime = Mathf.Max(lastTime, noteSpawner_P1.LastNoteTime);
+        }
+
+        if (noteSpawner_P2 != null)
+        {
+            lastTime = Mathf.Max(lastTime, noteSpawner_P2.LastNoteTime);
+        }
+
+        return lastTime;
     }
 }

@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MultiNoteSpawner : MonoBehaviour
-{
-    [Header("Audio + Timing")]
+{ }
+   /* [Header("Audio + Timing")]
     public AudioSource Music;
     public float ScrollSpeed = 6f;
     public float SpawnLeadTime = 2f;
@@ -68,10 +68,10 @@ public class MultiNoteSpawner : MonoBehaviour
     void Update()
     {
         if (notes == null || notes.Count == 0) return;
-        if (!Music || Lanes_P1 == null || Lanes_P1.Length == 0 || Lanes_P2 == null || Lanes_P2.Length == 0) return;
+        if (!IsAudioAndLanesValid()) return;
         if (!Music.isPlaying) return;
 
-        float songTime = GameManager.SongTime;
+        float songTime = MultiGameManager.SongTime;
 
         // ADD THIS DEBUG LOG:
         if (nextIndex == 0 && notes.Count > 0)
@@ -112,12 +112,57 @@ public class MultiNoteSpawner : MonoBehaviour
         }
     }
 
+    private bool IsAudioAndLanesValid()
+    {
+        if (Music == null) return false;
+        if (Lanes_P1 == null || Lanes_P1.Length == 0 || Lanes_P2 == null || Lanes_P2.Length == 0) return false;
+        if (HitLine_P1 == null || HitLine_P2 == null) return false;
+
+        // Check if any lane transforms are destroyed
+        foreach (var lane in Lanes_P1)
+        {
+            if (lane == null) return false;
+        }
+        foreach (var lane in Lanes_P2)
+        {
+            if (lane == null) return false;
+        }
+
+        return true;
+    }
+
     private void SpawnNoteForPlayer(int playerIndex, SMTiming.ParsedNote noteData, float songTime)
     {
         Transform[] lanes = playerIndex == 0 ? Lanes_P1 : Lanes_P2;
         Transform hitLine = playerIndex == 0 ? HitLine_P1 : HitLine_P2;
 
+        // Add comprehensive null checks
+        if (lanes == null || hitLine == null)
+        {
+            Debug.LogError($"Lanes or HitLine is null for player {playerIndex}");
+            return;
+        }
+
+        if (noteData.lane < 0 || noteData.lane >= lanes.Length)
+        {
+            Debug.LogWarning($"Invalid lane index {noteData.lane} for player {playerIndex}");
+            return;
+        }
+
         Transform lane = lanes[noteData.lane];
+        if (lane == null)
+        {
+            Debug.LogError($"Lane {noteData.lane} is null for player {playerIndex}");
+            return;
+        }
+
+        // Check if the objects are still valid
+        if (lane == null || hitLine == null)
+        {
+            Debug.LogError("Lane or HitLine has been destroyed");
+            return;
+        }
+
         float timeUntilHit = noteData.time - songTime;
         float spawnY = hitLine.position.y + timeUntilHit * ScrollSpeed;
         Vector3 spawnPos = new Vector3(lane.position.x, spawnY, lane.position.z);
@@ -147,9 +192,9 @@ public class MultiNoteSpawner : MonoBehaviour
                 GameObject bodyPrefab = GetHoldBodyPrefabForLane(noteData.lane);
                 GameObject endPrefab = GetHoldEndPrefabForLane(noteData.lane);
 
-                hold.Head = Instantiate(headPrefab, holdRoot.transform);
-                hold.Body = Instantiate(bodyPrefab, holdRoot.transform);
-                hold.End = Instantiate(endPrefab, holdRoot.transform);
+                if (headPrefab != null) hold.Head = Instantiate(headPrefab, holdRoot.transform);
+                if (bodyPrefab != null) hold.Body = Instantiate(bodyPrefab, holdRoot.transform);
+                if (endPrefab != null) hold.End = Instantiate(endPrefab, holdRoot.transform);
 
                 return;
             }
@@ -240,4 +285,4 @@ public class MultiNoteSpawner : MonoBehaviour
             _ => null,
         };
     }
-}
+}*/

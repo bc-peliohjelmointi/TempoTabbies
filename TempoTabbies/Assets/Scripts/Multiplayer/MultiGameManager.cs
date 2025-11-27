@@ -6,30 +6,32 @@ using System.IO;
 public class MultiGameManager : MonoBehaviour
 {
     [Header("References")]
-    public MultiNoteSpawner Spawner;
+    public NoteSpawner Spawner_P1;
+    public NoteSpawner Spawner_P2;
     public AudioSource Music;
+    public MultiHitManager HitManager;
 
-    [Header("Prefabs")]
-    public GameObject NotePrefab_TypeA;
-    public GameObject NotePrefab_TypeB;
-    public GameObject NotePrefab_TypeC;
-    public GameObject NotePrefab_TypeD;
+    [Header("Player 1 Prefabs")]
+    public GameObject NotePrefab_TypeA_P1;
+    public GameObject NotePrefab_TypeB_P1;
+    public GameObject NotePrefab_TypeC_P1;
+    public GameObject NotePrefab_TypeD_P1;
 
-    [Header("Layout - Player 1")]
+    [Header("Player 2 Prefabs")]
+    public GameObject NotePrefab_TypeA_P2;
+    public GameObject NotePrefab_TypeB_P2;
+    public GameObject NotePrefab_TypeC_P2;
+    public GameObject NotePrefab_TypeD_P2;
+
+    [Header("Player 1 Layout")]
     public Transform LaneParent_P1;
     public Transform HitLine_P1;
 
-    [Header("Layout - Player 2")]
+    [Header("Player 2 Layout")]
     public Transform LaneParent_P2;
     public Transform HitLine_P2;
 
-    private float audioOffset = 0f;
-    public static float GlobalMusicStartTime; // when audio actually starts
-    public static float ChartStartTime;       // when chart started (notes spawn relative to this)
-
     public static MultiGameManager Instance { get; private set; }
-
-    // Property to get corrected song time (without offset)
     public static float SongTime
     {
         get
@@ -38,9 +40,11 @@ public class MultiGameManager : MonoBehaviour
             {
                 return Instance.Music.time;
             }
-            return Time.time - ChartStartTime;
+            return 0f;
         }
     }
+
+    private bool initialized = false;
 
     void Awake()
     {
@@ -49,6 +53,29 @@ public class MultiGameManager : MonoBehaviour
 
     void Start()
     {
+        // Don't initialize immediately - wait one frame for everything to be set up
+        StartCoroutine(InitializeAfterFrame());
+    }
+
+    private IEnumerator InitializeAfterFrame()
+    {
+        // Wait for one frame to ensure all components are loaded
+        yield return null;
+        
+        InitializeGame();
+    }
+
+    private void InitializeGame()
+    {
+        if (initialized) return;
+
+        // Validate critical references first
+        if (!ValidateReferences())
+        {
+            Debug.LogError("Critical references are missing! Cannot initialize game.");
+            return;
+        }
+
         if (GameSession.SelectedSong == null || GameSession.SelectedChart == null)
         {
             Debug.LogError("No song or chart selected! Please load from Song Select first.");
@@ -59,47 +86,112 @@ public class MultiGameManager : MonoBehaviour
         SMChart chart = GameSession.SelectedChart;
 
         Debug.Log($"Now playing: {sm.Title} by {sm.Artist}");
-        Debug.Log($"Chart: {chart.Description} ({chart.Difficulty}) - {chart.Measures.Count} measures");
 
-        // Initialize both players' lanes
-        if (LaneParent_P1 == null || LaneParent_P2 == null)
+        try
         {
-            Debug.LogError("LaneParents are not assigned!");
+            // Initialize Player 1
+            InitializePlayer(0, Spawner_P1, LaneParent_P1, HitLine_P1, 
+                NotePrefab_TypeA_P1, NotePrefab_TypeB_P1, NotePrefab_TypeC_P1, NotePrefab_TypeD_P1);
+
+            // Initialize Player 2
+            InitializePlayer(1, Spawner_P2, LaneParent_P2, HitLine_P2,
+                NotePrefab_TypeA_P2, NotePrefab_TypeB_P2, NotePrefab_TypeC_P2, NotePrefab_TypeD_P2);
+
+            // Load chart for both players
+            Spawner_P1.LoadChart(sm, chart);
+            Spawner_P2.LoadChart(sm, chart);
+
+            // Start music loading
+            StartCoroutine(LoadAndStartMusic(sm));
+
+            initialized = true;
+            Debug.Log("MultiGameManager initialized successfully!");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Failed to initialize game: {e.Message}\n{e.StackTrace}");
+        }
+    }
+
+    private bool ValidateReferences()
+    {
+        bool valid = true;
+
+        if (Music == null)
+        {
+            Debug.LogError("Music AudioSource is not assigned!");
+            valid = false;
+        }
+
+        if (Spawner_P1 == null)
+        {
+            Debug.LogError("Spawner_P1 is not assigned!");
+            valid = false;
+        }
+
+        if (Spawner_P2 == null)
+        {
+            Debug.LogError("Spawner_P2 is not assigned!");
+            valid = false;
+        }
+
+        if (LaneParent_P1 == null)
+        {
+            Debug.LogError("LaneParent_P1 is not assigned!");
+            valid = false;
+        }
+
+        if (LaneParent_P2 == null)
+        {
+            Debug.LogError("LaneParent_P2 is not assigned!");
+            valid = false;
+        }
+
+        if (HitLine_P1 == null)
+        {
+            Debug.LogError("HitLine_P1 is not assigned!");
+            valid = false;
+        }
+
+        if (HitLine_P2 == null)
+        {
+            Debug.LogError("HitLine_P2 is not assigned!");
+            valid = false;
+        }
+
+        return valid;
+    }
+
+    private void InitializePlayer(int playerIndex, NoteSpawner spawner, Transform laneParent, Transform hitLine,
+        GameObject prefabA, GameObject prefabB, GameObject prefabC, GameObject prefabD)
+    {
+        if (spawner == null || laneParent == null || hitLine == null)
+        {
+            Debug.LogError($"Player {playerIndex + 1} has missing components!");
             return;
         }
 
-        // Set up Player 1
-        Transform[] lanes_P1 = new Transform[LaneParent_P1.childCount];
-        for (int i = 0; i < LaneParent_P1.childCount; i++)
-            lanes_P1[i] = LaneParent_P1.GetChild(i);
+        Transform[] lanes = new Transform[laneParent.childCount];
+        for (int i = 0; i < laneParent.childCount; i++)
+            lanes[i] = laneParent.GetChild(i);
 
-        // Set up Player 2
-        Transform[] lanes_P2 = new Transform[LaneParent_P2.childCount];
-        for (int i = 0; i < LaneParent_P2.childCount; i++)
-            lanes_P2[i] = LaneParent_P2.GetChild(i);
+        spawner.Music = Music;
+        spawner.HitLine = hitLine;
+        spawner.Lanes = lanes;
 
-        // Initialize spawner for both players
-        Spawner.Music = Music;
-        Spawner.Lanes_P1 = lanes_P1;
-        Spawner.Lanes_P2 = lanes_P2;
-        Spawner.HitLine_P1 = HitLine_P1;
-        Spawner.HitLine_P2 = HitLine_P2;
+        spawner.NotePrefab_TypeA = prefabA;
+        spawner.NotePrefab_TypeB = prefabB;
+        spawner.NotePrefab_TypeC = prefabC;
+        spawner.NotePrefab_TypeD = prefabD;
 
-        Spawner.NotePrefab_TypeA = NotePrefab_TypeA;
-        Spawner.NotePrefab_TypeB = NotePrefab_TypeB;
-        Spawner.NotePrefab_TypeC = NotePrefab_TypeC;
-        Spawner.NotePrefab_TypeD = NotePrefab_TypeD;
-
-        Spawner.LoadChart(sm, chart);
-
-        // Set chart start time before loading music
-        ChartStartTime = Time.time;
-
-        StartCoroutine(LoadAndStartMusic(sm));
+        Debug.Log($"Player {playerIndex + 1} initialized with {lanes.Length} lanes");
     }
 
     private IEnumerator LoadAndStartMusic(SMFile sm)
     {
+        // Wait a bit more to ensure everything is set up
+        yield return new WaitForSeconds(0.1f);
+
         string songDir = Path.GetDirectoryName(sm.FilePath);
         string songsRoot = Path.Combine(Application.dataPath, "Songs");
 
@@ -150,9 +242,16 @@ public class MultiGameManager : MonoBehaviour
             Music.clip = DownloadHandlerAudioClip.GetContent(www);
         }
 
-        Music.Play();
-        GlobalMusicStartTime = Time.time;
+        // Wait a bit more before starting music
+        yield return new WaitForSeconds(0.5f);
 
-        Debug.Log($"[GameManager] Music started at time 0, notes have offset applied");
+        Music.Play();
+        Debug.Log($"[MultiGameManager] Music started for both players");
+    }
+
+    public bool BothChartsComplete()
+    {
+        return Spawner_P1 != null && Spawner_P2 != null && 
+               Spawner_P1.IsChartComplete() && Spawner_P2.IsChartComplete();
     }
 }

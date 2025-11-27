@@ -245,4 +245,9 @@ public class HitManager : MonoBehaviour
         if (JudgmentDisplay != null)
             JudgmentDisplay.Show(label);
     }
+
+    public void SetGamepad(Gamepad pad)
+    {
+        gamepad = pad;
+    }
 }

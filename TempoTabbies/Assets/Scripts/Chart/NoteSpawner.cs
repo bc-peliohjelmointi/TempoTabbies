@@ -40,27 +40,43 @@ public class NoteSpawner : MonoBehaviour
 
     public void LoadChart(SMFile sm, SMChart chart)
     {
-        notes = SMTiming.GetNoteTimes(sm, chart);
-        notes.Sort((a, b) => a.time.CompareTo(b.time));
-        nextIndex = 0;
-        skipIndices.Clear();
+        Debug.Log($"[NoteSpawner] LoadChart started - SMFile: {sm != null}, SMChart: {chart != null}");
 
-        // Get EXACT judgment note count from the parser
-        int judgmentNotes = SMParser.CountJudgmentNotes(chart);
-
-        Debug.Log($"[Score Init] Total judgment notes: {judgmentNotes}");
-
-        // INITIALIZE SCORE MANAGER with exact count
-        if (hitManager != null)
+        try
         {
-            hitManager.InitializeChart(judgmentNotes);
-        }
-        else
-        {
-            Debug.LogError("HitManager reference is null in NoteSpawner!");
-        }
+            notes = SMTiming.GetNoteTimes(sm, chart);
+            Debug.Log($"[NoteSpawner] Got {notes?.Count ?? 0} parsed notes");
 
-        Debug.Log($"[NoteSpawner] Loaded chart with {judgmentNotes} judgment notes");
+            if (notes != null)
+            {
+                notes.Sort((a, b) => a.time.CompareTo(b.time));
+                Debug.Log($"[NoteSpawner] Notes sorted");
+            }
+
+            nextIndex = 0;
+            skipIndices.Clear();
+
+            // Get EXACT judgment note count from the parser
+            int judgmentNotes = SMParser.CountJudgmentNotes(chart);
+            Debug.Log($"[NoteSpawner] Judgment notes count: {judgmentNotes}");
+
+            // INITIALIZE SCORE MANAGER with exact count
+            if (hitManager != null)
+            {
+                hitManager.InitializeChart(judgmentNotes);
+                Debug.Log($"[NoteSpawner] HitManager initialized with {judgmentNotes} notes");
+            }
+            else
+            {
+                Debug.LogError("HitManager reference is null in NoteSpawner!");
+            }
+
+            Debug.Log($"[NoteSpawner] Loaded chart with {judgmentNotes} judgment notes");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"[NoteSpawner] Error loading chart: {e.Message}\n{e.StackTrace}");
+        }
     }
 
     void Update()

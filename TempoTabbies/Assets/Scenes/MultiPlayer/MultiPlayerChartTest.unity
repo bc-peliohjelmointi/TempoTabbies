@@ -273,8 +273,8 @@ MonoBehaviour:
   rightTriggerObject: {fileID: 1787727553}
   leftBumperObject: {fileID: 1852513343}
   rightBumperObject: {fileID: 1139140563}
-  leftStickObject: {fileID: 359857315}
-  rightStickObject: {fileID: 725637509}
+  leftStickObject: {fileID: 725637509}
+  rightStickObject: {fileID: 359857315}
   scoreManager: {fileID: 0}
   Music: {fileID: 1302133180}
   Spawner: {fileID: 1032708954}
@@ -928,8 +928,8 @@ MonoBehaviour:
   rightTriggerObject: {fileID: 100102574}
   leftBumperObject: {fileID: 1430889562}
   rightBumperObject: {fileID: 1780152980}
-  leftStickObject: {fileID: 1924188076}
-  rightStickObject: {fileID: 1791219162}
+  leftStickObject: {fileID: 1791219162}
+  rightStickObject: {fileID: 1924188076}
   scoreManager: {fileID: 0}
   Music: {fileID: 1302133180}
   Spawner: {fileID: 1956194373}

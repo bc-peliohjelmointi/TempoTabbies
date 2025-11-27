@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5f010440069102046a4e3382d5f4fcbb
+guid: 2cc0e36bd8be6714696b2f7a0c9fa83d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2359638610136418311
-    second: cat1_0
+      213: -476107505462600395
+    second: Tabby_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cat1_0
+      name: Tabby_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 194
-        height: 260
+        width: 567
+        height: 503
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9f7b58c9f21e04fd0800000000000000
-      internalID: -2359638610136418311
+      spriteID: 53d110e0fb68469f0800000000000000
+      internalID: -476107505462600395
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cat1_0: -2359638610136418311
+      Tabby_0: -476107505462600395
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

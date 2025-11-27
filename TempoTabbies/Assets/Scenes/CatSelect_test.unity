@@ -148,7 +148,7 @@ RectTransform:
   m_GameObject: {fileID: 59154721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 4.75, z: 0.75}
+  m_LocalScale: {x: 0.90269995, y: 4.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 449779220}
@@ -179,7 +179,8 @@ MonoBehaviour:
   p1: {fileID: 449779219}
   p2: {fileID: 1115782870}
   catName: Tabby
-  catDescription: This sneaky little kitty is smarter than most
+  catDescription: This sneaky little kitty likes to cuddle with everybody, sometimes
+    to their detriment, someone almost stole them once, and they did not care
 --- !u!114 &59154724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +245,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5f010440069102046a4e3382d5f4fcbb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cc0e36bd8be6714696b2f7a0c9fa83d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -649,7 +650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 74f12771de15ea648a0f659ea72e3537, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 573aadf1069ee394880f45ee502f297e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -678,7 +679,8 @@ MonoBehaviour:
   p1: {fileID: 1782714002}
   p2: {fileID: 1522183648}
   catName: Orange
-  catDescription: What this kitty lacks in braincells they make up for in cuteness
+  catDescription: What this kitty lacks in braincells they make up for in pure chaotic
+    energy, they can somehow find a way into any and all trashcans with food in them
 --- !u!222 &830102917
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -696,7 +698,7 @@ RectTransform:
   m_GameObject: {fileID: 830102913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 4.75, z: 0.75}
+  m_LocalScale: {x: 0.90269995, y: 4.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1782714005}
@@ -784,7 +786,7 @@ RectTransform:
   m_GameObject: {fileID: 1066526571}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.9849057, y: 5.9849057, z: 5.9849057}
+  m_LocalScale: {x: 5.9849057, y: 5.5659623, z: 5.9849057}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 146671742}
@@ -814,7 +816,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5f010440069102046a4e3382d5f4fcbb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2cc0e36bd8be6714696b2f7a0c9fa83d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1717,7 +1719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2569303842117827300, guid: cbd14d1e1503cfb45a97418c3dbe2053, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.8
+      value: -1.9
       objectReference: {fileID: 0}
     - target: {fileID: 2569303842117827300, guid: cbd14d1e1503cfb45a97418c3dbe2053, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1841,7 +1843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2066690245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1851,7 +1853,7 @@ RectTransform:
   m_GameObject: {fileID: 2066690244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.9849057, y: 5.9849057, z: 5.9849057}
+  m_LocalScale: {x: 5.9849057, y: 5.5659623, z: 5.9849057}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 146671742}
@@ -1881,7 +1883,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 74f12771de15ea648a0f659ea72e3537, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 573aadf1069ee394880f45ee502f297e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

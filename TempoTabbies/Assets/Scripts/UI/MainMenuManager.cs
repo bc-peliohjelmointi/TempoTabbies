@@ -11,14 +11,14 @@ public class MainMenuManager : MonoBehaviour
     // Menu objects
     [Header("The UI elements")]
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] UnityEngine.UI.Button button1;
-    [SerializeField] UnityEngine.UI.Button button2;
-    [SerializeField] UnityEngine.UI.Button button3;
+    [SerializeField] UnityEngine.UI.Button stageSelect;
+    [SerializeField] UnityEngine.UI.Button options;
+    [SerializeField] UnityEngine.UI.Button quit;
 
     private JSON_Stuff json;
     private _GameManager gameManager;
 
-    // Player movement input
+    // Player movement, which is sent by the PlayerScript.cs Class
     [Header("Player input values")]
     public Vector2 moveAmount;
     public float clickValue;
@@ -30,9 +30,9 @@ public class MainMenuManager : MonoBehaviour
     // State to know which button is being selected
     public enum ButtonSelect
     {
-        button1,
-        button2,
-        button3
+        stageSelect,
+        options,
+        quit
     }
     public ButtonSelect buttonSelect;
     // Timer to make movement between buttons better
@@ -41,12 +41,16 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(button1.gameObject);
+        EventSystem.current.SetSelectedGameObject(stageSelect.gameObject);
         json = FindAnyObjectByType<JSON_Stuff>();
         gameManager = FindAnyObjectByType<_GameManager>();
         source = GetComponent<AudioSource>();
         source.Play();
         source.loop = true;
+
+        json.LoadGameManager();
+        json.LoadPlayer1();
+        json.LoadPlayer2();
     }
 
     private void Update()
@@ -54,9 +58,9 @@ public class MainMenuManager : MonoBehaviour
         // Check which button is currently selected
         switch (buttonSelect)
         {
-            case ButtonSelect.button1: // Stage select
+            case ButtonSelect.stageSelect: // Stage select
                 // Selects the correct button
-                EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                EventSystem.current.SetSelectedGameObject(stageSelect.gameObject);
                 // Checks if the button is clicked
                 if (clickValue > 0)
                 {
@@ -65,38 +69,38 @@ public class MainMenuManager : MonoBehaviour
                 // Moves to the desired button
                 if (moveAmount.y < -0.1f && canMove)
                 {
-                    buttonSelect = ButtonSelect.button2;
+                    buttonSelect = ButtonSelect.options;
                     canMove = false;
                 }
                 break;
 
-            case ButtonSelect.button2: // Options
-                EventSystem.current.SetSelectedGameObject(button2.gameObject);
+            case ButtonSelect.options: // Options
+                EventSystem.current.SetSelectedGameObject(options.gameObject);
                 if (clickValue > 0)
                 {
                     OnOptionsClick();
                 }
                 if (moveAmount.y < -0.1f && canMove)
                 {
-                    buttonSelect = ButtonSelect.button3;
+                    buttonSelect = ButtonSelect.quit;
                     canMove = false;
                 }
                 else if (moveAmount.y > 0.1 && canMove)
                 {
-                    buttonSelect = ButtonSelect.button1;
+                    buttonSelect = ButtonSelect.stageSelect;
                     canMove = false;
                 }
                 break;
 
-            case ButtonSelect.button3: // Quit
-                EventSystem.current.SetSelectedGameObject(button3.gameObject);
+            case ButtonSelect.quit: // Quit
+                EventSystem.current.SetSelectedGameObject(quit.gameObject);
                 if (clickValue > 0)
                 {
                     OnQuitClick();
                 }
                 if (moveAmount.y > 0.1 && canMove)
                 {
-                    buttonSelect = ButtonSelect.button2;
+                    buttonSelect = ButtonSelect.options;
                     canMove = false;
                 }
                 break;

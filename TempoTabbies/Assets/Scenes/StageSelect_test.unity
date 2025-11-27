@@ -254,7 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2e6f83bd3a354429cdf7704b74f176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songsImage: {fileID: 1550795016}
 --- !u!82 &664670257
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1243,7 +1242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb2e6f83bd3a354429cdf7704b74f176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songsImage: {fileID: 2084723957}
 --- !u!82 &1798684959
 AudioSource:
   m_ObjectHideFlags: 0

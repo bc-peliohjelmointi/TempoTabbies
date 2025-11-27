@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// The in game pause menu script
 /// </summary>
-public class UIPlayerBehaviour : MonoBehaviour
+public class PauseMenuManager : MonoBehaviour
 {
     // Player movement, which is sent by the PlayerScript.cs Class
     [Header("Player input values")]
@@ -22,9 +22,8 @@ public class UIPlayerBehaviour : MonoBehaviour
 
     // Menu buttons
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] UnityEngine.UI.Button button1;
-    [SerializeField] UnityEngine.UI.Button button2;
-    [SerializeField] UnityEngine.UI.Button button3;
+    [SerializeField] UnityEngine.UI.Button resume;
+    [SerializeField] UnityEngine.UI.Button menu;
 
     // Short timer for when the menu goes away
     [SerializeField] private TextMeshProUGUI timerText;
@@ -33,9 +32,8 @@ public class UIPlayerBehaviour : MonoBehaviour
     // The state for which button is currently selected
     public enum ButtonSelect
     {
-        button1,
-        button2,
-        button3
+        resume,
+        menu
     }
     public ButtonSelect buttonSelect;
     // Movement timer to make movement in the menu better
@@ -55,8 +53,8 @@ public class UIPlayerBehaviour : MonoBehaviour
             // Check which button is meant to be selected
             switch (buttonSelect)
             {
-                case ButtonSelect.button1: // Continue
-                    EventSystem.current.SetSelectedGameObject(button1.gameObject);
+                case ButtonSelect.resume: // Continue
+                    EventSystem.current.SetSelectedGameObject(resume.gameObject);
                     if (clickValue > 0)
                     {
                         OnContinueClick();
@@ -64,26 +62,21 @@ public class UIPlayerBehaviour : MonoBehaviour
                     // Moves to the desired button
                     if (moveAmount.y < -0.1f && canMove)
                     {
-                        buttonSelect = ButtonSelect.button2;
+                        buttonSelect = ButtonSelect.menu;
                         canMove = false;
                     }
                     break;
 
-                case ButtonSelect.button2: // Options
-                    EventSystem.current.SetSelectedGameObject(button2.gameObject);
+                case ButtonSelect.menu: // Menu
+                    EventSystem.current.SetSelectedGameObject(menu.gameObject);
                     if (clickValue > 0)
                     {
                         OnMenuClick();
                     }
                     // Moves to the desired button
-                    if (moveAmount.y < -0.1f && canMove)
-                    {
-                        buttonSelect = ButtonSelect.button3;
-                        canMove = false;
-                    }
                     else if (moveAmount.y > 0.1 && canMove)
                     {
-                        buttonSelect = ButtonSelect.button1;
+                        buttonSelect = ButtonSelect.resume;
                         canMove = false;
                     }
                     break;
@@ -147,6 +140,6 @@ public class UIPlayerBehaviour : MonoBehaviour
         gameManager.state = _GameManager.GameState.Pause;
         isPauseMenuActive = true;
         timerText.gameObject.SetActive(false);
-        buttonSelect = ButtonSelect.button1;
+        buttonSelect = ButtonSelect.resume;
     }
 }

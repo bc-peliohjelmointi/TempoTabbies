@@ -13,8 +13,17 @@ public class CardDataScript : MonoBehaviour
     public enum EffectType
     {
         Empty,
-        ComboLeech
+        ComboLeech,
+        HitChange
     }
+
+    public enum EffectStatus
+    {
+        waiting,
+        active,
+        cooldown
+    }
+
     [CreateAssetMenu(fileName = "NewCard", menuName = "RhythmGame/Card", order = 0)]
     public class CardData : ScriptableObject
     {

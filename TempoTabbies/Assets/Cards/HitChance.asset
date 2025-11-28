@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: HitChance
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
-  CardName: Better Hit Chance
+  CardName: 
   description: 
   effectType: 2
   icon: {fileID: 21300000, guid: c2bba56189afeca4386017dbc63382e9, type: 3}

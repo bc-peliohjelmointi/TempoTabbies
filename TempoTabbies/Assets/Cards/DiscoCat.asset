@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Combo_Leech
+  m_Name: DiscoCat
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: 
   description: 
-  effectType: 1
-  icon: {fileID: 8540264543176896934, guid: bd0c7ad6f3f7fca429e794b2e1719ad9, type: 3}
+  effectType: 0
+  icon: {fileID: 5877953129647886523, guid: a0f8ca29a55ad9849b191c8d36c61622, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
-  value: 15
-  triggerThreshold: 40
+  value: 0
+  triggerThreshold: 0
   effectPrefab: {fileID: 0}

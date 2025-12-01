@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
@@ -143,6 +144,10 @@ public class OptionsManager : MonoBehaviour
                     case Selected.backButton: // Back to menu
                         // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(backButton.gameObject);
+                        if (clickValue > 0.1)
+                        {
+                            OnReturnClick();
+                        }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.volumeSlider;
@@ -301,7 +306,7 @@ public class OptionsManager : MonoBehaviour
                         EventSystem.current.SetSelectedGameObject(buttonP1.gameObject);
                         if (clickValue > 0)
                         {
-                            // Add a button event here
+                            OnPlayerReturnClick();
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
@@ -361,7 +366,7 @@ public class OptionsManager : MonoBehaviour
                         EventSystem.current.SetSelectedGameObject(buttonP2.gameObject);
                         if (clickValue > 0)
                         {
-                            // Add a button event here
+                            OnPlayerReturnClick();
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
@@ -433,6 +438,12 @@ public class OptionsManager : MonoBehaviour
         json.SavePlayer2();
 
         gameManager.state = _GameManager.GameState.MainMenu;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OnPlayerReturnClick()
+    {
+        player = Player.none;
     }
 
     public void AssistTick()

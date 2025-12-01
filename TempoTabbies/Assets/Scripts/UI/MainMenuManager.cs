@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /// <summary>
 /// Main menu script
@@ -10,10 +11,10 @@ public class MainMenuManager : MonoBehaviour
 {
     // Menu objects
     [Header("The UI elements")]
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] UnityEngine.UI.Button stageSelect;
-    [SerializeField] UnityEngine.UI.Button options;
-    [SerializeField] UnityEngine.UI.Button quit;
+    [SerializeField] Button catSelect;
+    [SerializeField] Button practise;
+    [SerializeField] Button options;
+    [SerializeField] Button quit;
 
     private JSON_Stuff json;
     private _GameManager gameManager;
@@ -30,7 +31,8 @@ public class MainMenuManager : MonoBehaviour
     // State to know which button is being selected
     public enum ButtonSelect
     {
-        stageSelect,
+        catSelect,
+        practice,
         options,
         quit
     }
@@ -41,7 +43,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(stageSelect.gameObject);
+        EventSystem.current.SetSelectedGameObject(catSelect.gameObject);
         json = FindAnyObjectByType<JSON_Stuff>();
         gameManager = FindAnyObjectByType<_GameManager>();
         source = GetComponent<AudioSource>();
@@ -58,13 +60,29 @@ public class MainMenuManager : MonoBehaviour
         // Check which button is currently selected
         switch (buttonSelect)
         {
-            case ButtonSelect.stageSelect: // Stage select
+            case ButtonSelect.catSelect: // cat select
                 // Selects the correct button
-                EventSystem.current.SetSelectedGameObject(stageSelect.gameObject);
+                EventSystem.current.SetSelectedGameObject(catSelect.gameObject);
                 // Checks if the button is clicked
                 if (clickValue > 0)
                 {
-                    OnStageSelectClick();
+                    OnCatSelectClick();
+                }
+                // Moves to the desired button
+                if (moveAmount.y < -0.1f && canMove)
+                {
+                    buttonSelect = ButtonSelect.practice;
+                    canMove = false;
+                }
+                break;
+
+            case ButtonSelect.practice:
+                // Selects the correct button
+                EventSystem.current.SetSelectedGameObject(practise.gameObject);
+                // Checks if the button is clicked
+                if (clickValue > 0)
+                {
+                    OnPractiseClick();
                 }
                 // Moves to the desired button
                 if (moveAmount.y < -0.1f && canMove)
@@ -87,7 +105,7 @@ public class MainMenuManager : MonoBehaviour
                 }
                 else if (moveAmount.y > 0.1 && canMove)
                 {
-                    buttonSelect = ButtonSelect.stageSelect;
+                    buttonSelect = ButtonSelect.practice;
                     canMove = false;
                 }
                 break;
@@ -121,10 +139,17 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    public void OnStageSelectClick()
+    public void OnCatSelectClick()
+    {
+        gameManager.state = _GameManager.GameState.CatSelect;
+        SceneManager.LoadScene("CatSelect");
+    }
+
+    public void OnPractiseClick()
     {
         gameManager.state = _GameManager.GameState.StageSelect;
-        SceneManager.LoadScene("MainGame");
+        gameManager.multiplayer = false;
+        SceneManager.LoadScene("StageSelect");
     }
 
     public void OnOptionsClick()

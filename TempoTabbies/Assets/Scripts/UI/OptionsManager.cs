@@ -434,8 +434,14 @@ public class OptionsManager : MonoBehaviour
     public void OnReturnClick()
     {
         json.SaveGameManager();
-        json.SavePlayer1();
-        json.SavePlayer2();
+        if (gameManager.p1 != null)
+        {
+            json.SavePlayer1();
+        }
+        if (gameManager.p2 != null)
+        {
+            json.SavePlayer2();
+        }
 
         gameManager.state = _GameManager.GameState.MainMenu;
         SceneManager.LoadScene("MainMenu");

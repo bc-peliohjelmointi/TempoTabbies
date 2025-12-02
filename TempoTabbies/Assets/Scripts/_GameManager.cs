@@ -35,9 +35,11 @@ public class _GameManager : MonoBehaviour
 
     public enum GameState
     {
+        Start, // Starting section where p1 is created
         MainMenu, // The main menu
         Options, // The options menu
         StageSelect, // The song select screen
+        Player2Confirmation, // confirms player 2s existence
         CatSelect, // Selecting a cat
         Practise, // The singleplayer practice mode
         Game, // The songs being played
@@ -65,15 +67,6 @@ public class _GameManager : MonoBehaviour
         if (p1 == null || p2 == null)
         {
             FindPlayers();
-        }
-        switch (state)
-        {
-            case GameState.Practise:
-                multiplayer = false;
-                break;
-            case GameState.CatSelect:
-                multiplayer = true;
-                break;
         }
     }
 

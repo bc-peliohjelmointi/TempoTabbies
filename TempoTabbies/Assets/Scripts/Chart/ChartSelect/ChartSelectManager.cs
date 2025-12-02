@@ -6,8 +6,6 @@ using UnityEngine.EventSystems;
 
 public class ChartSelectManager : MonoBehaviour
 {
-
-    public bool Multiplayer;
     [Header("UI References")]
     public Transform SongListParent;
     public GameObject SongButtonPrefab;
@@ -23,12 +21,15 @@ public class ChartSelectManager : MonoBehaviour
     private List<Selectable> allSelectables = new();
     private GameObject lastSelectedObject;
 
+    private _GameManager _gm;
+
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(InitialButton);
         lastSelectedObject = InitialButton;
         LoadAllSongs();
         PopulateSongList();
+        _gm = FindFirstObjectByType<_GameManager>();
     }
 
     void LoadAllSongs()
@@ -248,13 +249,13 @@ public class ChartSelectManager : MonoBehaviour
         PlayerPrefs.SetString("SelectedSongPath", song.Title);
         GameSession.SelectedSong = song;
         GameSession.SelectedChart = chart;
-        if (Multiplayer)
+        if (_gm.multiplayer)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MultiPlayerChartTest");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameMultiplayer");
         }
         else
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("ChartTest");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameSingleplayer");
         }
         }
 }

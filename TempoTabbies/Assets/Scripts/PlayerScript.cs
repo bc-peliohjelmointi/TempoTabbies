@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
-   [SerializeField] private CatSelectionManager catMenu;
+    [SerializeField] private CatSelectionManager catMenu;
 
     // The needed inputs
     [Header("The inputs we're using")]
@@ -54,6 +54,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        if (playerInput.currentControlScheme == "Keyboard&Mouse")
+        {
+            Destroy(gameObject);
+        }
         // Checks what state the game is currently in
         switch (gameManager.state)
         {

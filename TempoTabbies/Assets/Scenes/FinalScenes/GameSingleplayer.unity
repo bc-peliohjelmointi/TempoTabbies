@@ -4606,6 +4606,7 @@ AudioSource:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 547967049}
   - {fileID: 145709615}
   - {fileID: 1528058519}
   - {fileID: 768215863}
@@ -4619,4 +4620,3 @@ SceneRoots:
   - {fileID: 745692652}
   - {fileID: 703456447}
   - {fileID: 1697283205}
-  - {fileID: 547967049}

@@ -5,24 +5,30 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/StageSelectSMtest.unity
-    guid: c63d165c8f412404197d2b6bf9967922
+    path: Assets/Scenes/FinalScenes/Start.unity
+    guid: b7eb990d47e17154ea79700b100e0a6a
   - enabled: 1
-    path: Assets/Scenes/ChartTest.unity
-    guid: 015dbf86701dc734e9a03bb7320b9314
-  - enabled: 0
-    path: Assets/Scenes/MultiPlayer/MultiPlayerChartTestdfdfd.unity
-    guid: 289dcb41d94589a418fa3f44e842ba54
-  - enabled: 0
-    path: Assets/Scenes/MultiPlayer/MultiStageSelectSMtest.unity
-    guid: 19a9b4f84154d1e469c842b937e60ff2
-  - enabled: 0
-    path: Assets/Scenes/MultiPlayer/MultiPlayerChartTest.unity
-    guid: 80351a5545345f54d850a2103529c9e0
+    path: Assets/Scenes/FinalScenes/MainMenu.unity
+    guid: ef7c75d028a253d40a18c660a5a0b793
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/CatSelect.unity
+    guid: 009ad8f59c611bc4fb86507191234528
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/Options.unity
+    guid: fb30b7577c256124f95828c4db89c293
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/StageSelect.unity
+    guid: 2f368105535cb8f4197a8100abcbd8bd
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/GameMultiplayer.unity
+    guid: 788346fbe13b23e4ba2d768957c405bc
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/GameSingleplayer.unity
+    guid: c10b72b651ba7124cad14f3b5a8e6609
+  - enabled: 1
+    path: Assets/Scenes/FinalScenes/CardSelect.unity
+    guid: b7c7c64cc2cfbac42b0e46156dac4779
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4fd55f738dc0b5b448414f512ce963e0, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

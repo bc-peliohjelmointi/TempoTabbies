@@ -61,6 +61,8 @@ public class PlayerScript : MonoBehaviour
         // Checks what state the game is currently in
         switch (gameManager.state)
         {
+            case _GameManager.GameState.Start:
+                break;
             case _GameManager.GameState.MainMenu:
                 if (gameManager.state == _GameManager.GameState.MainMenu)
                 {

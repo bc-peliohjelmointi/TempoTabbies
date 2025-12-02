@@ -51,8 +51,14 @@ public class MainMenuManager : MonoBehaviour
         source.loop = true;
 
         json.LoadGameManager();
-        json.LoadPlayer1();
-        json.LoadPlayer2();
+        if (gameManager.p1 != null)
+        {
+            json.LoadPlayer1();
+        }
+        if (gameManager.p2 != null)
+        {
+            json.LoadPlayer2();
+        }
     }
 
     private void Update()
@@ -88,6 +94,11 @@ public class MainMenuManager : MonoBehaviour
                 if (moveAmount.y < -0.1f && canMove)
                 {
                     buttonSelect = ButtonSelect.options;
+                    canMove = false;
+                }
+                else if (moveAmount.y > 0.1 && canMove)
+                {
+                    buttonSelect = ButtonSelect.catSelect;
                     canMove = false;
                 }
                 break;
@@ -141,8 +152,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnCatSelectClick()
     {
-        gameManager.state = _GameManager.GameState.CatSelect;
-        SceneManager.LoadScene("CatSelect");
+        gameManager.state = _GameManager.GameState.Player2Confirmation;
+        gameManager.multiplayer = true;
+        SceneManager.LoadScene("Player2Confirmation");
     }
 
     public void OnPractiseClick()

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     private PlayerInput playerInput;
+
     // The players player number, 0 = player 1, 1 = player 2
     [Header("Who the player is")]
     public int _playerIndex;
@@ -32,7 +33,6 @@ public class PlayerScript : MonoBehaviour
     // Stored values that are player specific
     [Header("Stuff we save")]
     public float scrollSpeed;
-    public float stickSensitivity;
     public bool assistTick;
 
     private void Awake()
@@ -54,10 +54,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        if (playerInput.currentControlScheme == "Keyboard&Mouse")
+        /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
         {
             Destroy(gameObject);
-        }
+        }*/
         // Checks what state the game is currently in
         switch (gameManager.state)
         {
@@ -71,12 +71,10 @@ public class PlayerScript : MonoBehaviour
                     {
                         mainMenu = FindFirstObjectByType<MainMenuManager>();
                     }
-                    if (_playerIndex == gameManager.whoGetsToPlay)
-                    {
-                        // Checks the movement that we need for menus
-                        mainMenu.moveAmount = navigate.ReadValue<Vector2>();
-                        mainMenu.clickValue = clickButton.ReadValue<float>();
-                    }
+
+                    // Checks the movement that we need for menus
+                    mainMenu.moveAmount = navigate.ReadValue<Vector2>();
+                    mainMenu.clickValue = clickButton.ReadValue<float>();
                 }
                 break;
             case _GameManager.GameState.Options:
@@ -85,16 +83,20 @@ public class PlayerScript : MonoBehaviour
                 {
                     optionsMenu = FindFirstObjectByType<OptionsManager>();
                 }
-                if (_playerIndex == gameManager.whoGetsToPlay)
+
+                // Checks the movement that we need for menus
+                optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
+                optionsMenu.clickValue = clickButton.ReadValue<float>();
+                float click = clickButton.ReadValue<float>();
+                if (click > 0)
                 {
-                    // Checks the movement that we need for menus
-                    optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
-                    optionsMenu.clickValue = clickButton.ReadValue<float>();
+                    optionsMenu.currentPlayer = this;
                 }
                 break;
             case _GameManager.GameState.StageSelect:
                 // Not sure how the new stage select works
                 break;
+
             case _GameManager.GameState.Game:
                 // gets the pause menu script
                 if (pauseMenu == null)
@@ -123,6 +125,7 @@ public class PlayerScript : MonoBehaviour
                     pauseMenu.clickValue = clickButton.ReadValue<float>();
                 }
                 break;
+
             case _GameManager.GameState.CatSelect:
                 if (catMenu == null)
                 {

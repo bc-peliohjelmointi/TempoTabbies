@@ -1,14 +1,12 @@
 using System;
 using System.IO;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 // Placehodler for the PlayerScript things
 [Serializable]
 public class Player
 {
     public float scrollSpeed;
-    public float stickSensitivity;
     public bool assistTick;
 }
 
@@ -18,7 +16,6 @@ public class GM
 {
     public float volume;
     public float scrollSpeed;
-    public float stickSensitivity;
     public float audioOffset;
     public bool assistTick;
     public float assistTickVolume;
@@ -54,11 +51,10 @@ public class JSON_Stuff : MonoBehaviour
     public void SaveGameManager()
     {
         // Makes the placeholder class
-        GM gm = new GM();
+        GM gm = new();
         // Saves the values from _GameManager to the placeholder class
         gm.volume = gameManager.volume;
         gm.scrollSpeed = gameManager.scrollSpeed;
-        gm.stickSensitivity = gameManager.stickSensitivity;
         gm.audioOffset = gameManager.audioOffset;
         gm.assistTick = gameManager.assistTick;
         gm.assistTickVolume = gameManager.assistTickVolume;
@@ -74,7 +70,7 @@ public class JSON_Stuff : MonoBehaviour
     public void LoadGameManager()
     {
         // makes the placeholder class
-        GM gm = new GM();
+        GM gm = new();
         // Finds the currently existing JSON file needed
         json = File.ReadAllText("JSON/_GameManager");
         // Transform the JSON file into the placeholder class
@@ -82,7 +78,6 @@ public class JSON_Stuff : MonoBehaviour
         // Tranfers the values from the place holder class to the _GameManager
         gameManager.volume = gm.volume;
         gameManager.scrollSpeed = gm.scrollSpeed;
-        gameManager.stickSensitivity = gm.stickSensitivity;
         gameManager.audioOffset = gm.audioOffset;
         gameManager.assistTick = gm.assistTick;
         gameManager.assistTickVolume = gm.assistTickVolume;
@@ -93,9 +88,8 @@ public class JSON_Stuff : MonoBehaviour
     // Saves the data from Player1 to a JSON file
     public void SavePlayer1()
     {
-        Player player = new Player();
+        Player player = new();
         player.scrollSpeed = gameManager.p1.scrollSpeed;
-        player.stickSensitivity = gameManager.p1.stickSensitivity;
         player.assistTick = gameManager.p1.assistTick;
         json = JsonUtility.ToJson(player);
         File.WriteAllText("JSON/Player1", json);
@@ -104,20 +98,18 @@ public class JSON_Stuff : MonoBehaviour
     // Loads the data for Player1 from a JSON file
     public void LoadPlayer1()
     {
-        Player player = new Player();
+        Player player = new();
         json = File.ReadAllText("JSON/Player1");
         player = JsonUtility.FromJson<Player>(json);
         gameManager.p1.scrollSpeed = player.scrollSpeed;
-        gameManager.p1.stickSensitivity = player.stickSensitivity;
         gameManager.p1.assistTick = player.assistTick;
     }
 
     // Saves the data from Player2 to a JSON file
     public void SavePlayer2()
     {
-        Player player = new Player();
+        Player player = new();
         player.scrollSpeed = gameManager.p2.scrollSpeed;
-        player.stickSensitivity = gameManager.p2.stickSensitivity;
         player.assistTick = gameManager.p2.assistTick;
         json = JsonUtility.ToJson(player);
         File.WriteAllText("JSON/Player2", json);
@@ -126,11 +118,10 @@ public class JSON_Stuff : MonoBehaviour
     // Loads the data for Player2 from a JSON file
     public void LoadPlayer2()
     {
-        Player player = new Player();
+        Player player = new();
         json = File.ReadAllText("JSON/Player2");
         player = JsonUtility.FromJson<Player>(json);
         gameManager.p2.scrollSpeed = player.scrollSpeed;
-        gameManager.p2.stickSensitivity = player.stickSensitivity;
         gameManager.p2.assistTick = player.assistTick;
     }
 }

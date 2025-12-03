@@ -12,6 +12,7 @@ public class OptionsManager : MonoBehaviour
     public Vector2 moveAmount;
     [field: HideInInspector]
     public float clickValue;
+    public PlayerScript currentPlayer;
 
     [field: HideInInspector]
     public float audioOffsetFloat;
@@ -23,9 +24,9 @@ public class OptionsManager : MonoBehaviour
     // The UI elements
     [Header("Every UI element in the shared options")]
     public Button backButton;
+    public Button playerSpecific;
     public Slider volumeSlider;
     public Slider scrollSpeed;
-    public Slider stickSensitivity;
     public Button audioOffset1;
     public Button audioOffset2;
     public Button assistTick;
@@ -37,16 +38,12 @@ public class OptionsManager : MonoBehaviour
     [Header("Every UI element for player 1 options")]
     public Button buttonP1;
     public Slider scrollSpeedP1;
-    public Slider stickSensitivityP1;
     public TextMeshProUGUI scrollSpeedValueP1;
-    public TextMeshProUGUI stickSensitivityValueP1;
     // P2 specific
     [Header("Every UI element for player 2 options")]
     public Button buttonP2;
     public Slider scrollSpeedP2;
-    public Slider stickSensitivityP2;
     public TextMeshProUGUI scrollSpeedValueP2;
-    public TextMeshProUGUI stickSensitivityValueP2;
 
     // gameObjects to show button are on or off
     [Header("The images for buttons, to see if they are false or true")]
@@ -57,7 +54,6 @@ public class OptionsManager : MonoBehaviour
     [Header("Number text in the settings")]
     public TextMeshProUGUI volumeValue;
     public TextMeshProUGUI scrollSpeedValue;
-    public TextMeshProUGUI stickSensitivityValue;
     public TextMeshProUGUI audioOffsetValue;
     public TextMeshProUGUI assistTickVolumeValue;
     public TextMeshProUGUI hitSoundVolumeValue;
@@ -75,9 +71,9 @@ public class OptionsManager : MonoBehaviour
     public enum Selected
     {
         backButton,
+        playerSpecific,
         volumeSlider,
         scrollSpeed,
-        stickSensitivity,
         audioOffset1,
         audioOffset2,
         assistTick,
@@ -112,7 +108,6 @@ public class OptionsManager : MonoBehaviour
         // sets the sliders and buttons to the current values
         volumeSlider.value = gameManager.volume;
         scrollSpeed.value = gameManager.scrollSpeed;
-        stickSensitivity.value = gameManager.stickSensitivity;
         audioOffsetFloat = gameManager.audioOffset;
         assistTickVolume.value = gameManager.assistTickVolume;
         hitSoundVolume.value = gameManager.hitSoundVolume;
@@ -135,7 +130,6 @@ public class OptionsManager : MonoBehaviour
                 allOfP2.SetActive(false);
                 volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
                 scrollSpeedValue.text = ((int)(scrollSpeed.value * 10)).ToString();
-                stickSensitivityValue.text = ((int)(stickSensitivity.value * 10)).ToString();
                 audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
                 assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
                 hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
@@ -147,6 +141,24 @@ public class OptionsManager : MonoBehaviour
                         if (clickValue > 0.1)
                         {
                             OnReturnClick();
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.playerSpecific;
+                            canMove = false;
+                        }
+                        break;
+
+                    case Selected.playerSpecific:
+                        EventSystem.current.SetSelectedGameObject(playerSpecific.gameObject);
+                        if (clickValue > 0.1)
+                        {
+                            OnReturnClick();
+                        }
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.backButton;
+                            canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
@@ -162,7 +174,7 @@ public class OptionsManager : MonoBehaviour
                         gameManager.volume = volumeSlider.value;
                         if (canMove && moveAmount.y > 0.1f)
                         {
-                            selected = Selected.backButton;
+                            selected = Selected.playerSpecific;
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
@@ -182,21 +194,6 @@ public class OptionsManager : MonoBehaviour
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
-                            selected = Selected.stickSensitivity;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.stickSensitivity: // The stick sensitivity slider
-                        EventSystem.current.SetSelectedGameObject(stickSensitivity.gameObject);
-                        gameManager.stickSensitivity = stickSensitivity.value;
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.scrollSpeed;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
                             selected = Selected.audioOffset1;
                             canMove = false;
                         }
@@ -206,7 +203,7 @@ public class OptionsManager : MonoBehaviour
                         EventSystem.current.SetSelectedGameObject(audioOffset1.gameObject);
                         if (canMove && moveAmount.y > 0.1f)
                         {
-                            selected = Selected.stickSensitivity;
+                            selected = Selected.scrollSpeed;
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
@@ -289,15 +286,10 @@ public class OptionsManager : MonoBehaviour
                 allOfP1.SetActive(true);
                 allOfP2.SetActive(false);
                 scrollSpeedValueP1.text = (scrollSpeedP1.value * 10).ToString();
-                stickSensitivityValueP1.text = (stickSensitivityP1.value * 10).ToString();
                 gameManager.whoGetsToPlay = 0;
                 if (gameManager.p1.scrollSpeed != 0 && scrollSpeedP1.value == 0)
                 {
                     scrollSpeedP1.value = gameManager.p1.scrollSpeed;
-                }
-                if (gameManager.p1.stickSensitivity != 0 && scrollSpeedP1.value == 0)
-                {
-                    stickSensitivityP1.value = gameManager.p1.stickSensitivity;
                 }
                 switch (selected)
                 {
@@ -324,22 +316,6 @@ public class OptionsManager : MonoBehaviour
                             selected = Selected.backButton;
                             canMove = false;
                         }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.stickSensitivity;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.stickSensitivity: // The stick sensitivity slider
-                        EventSystem.current.SetSelectedGameObject(stickSensitivityP1.gameObject);
-                        gameManager.p1.stickSensitivity = stickSensitivityP1.value;
-                        stickSensitivityValueP1.text = (stickSensitivityP1.value * 10).ToString();
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.scrollSpeed;
-                            canMove = false;
-                        }
                         break;
                 }
                 break;
@@ -349,15 +325,10 @@ public class OptionsManager : MonoBehaviour
                 allOfP1.SetActive(false);
                 allOfP2.SetActive(true);
                 scrollSpeedValueP2.text = (scrollSpeedP2.value * 10).ToString();
-                stickSensitivityValueP2.text = (stickSensitivityP2.value * 10).ToString();
                 gameManager.whoGetsToPlay = 1;
                 if (gameManager.p2.scrollSpeed != 0 && scrollSpeedP2.value == 0)
                 {
                     scrollSpeedP2.value = gameManager.p2.scrollSpeed;
-                }
-                if (gameManager.p2.stickSensitivity != 0 && scrollSpeedP2.value == 0)
-                {
-                    stickSensitivityP2.value = gameManager.p2.stickSensitivity;
                 }
                 switch (selected)
                 {
@@ -382,22 +353,6 @@ public class OptionsManager : MonoBehaviour
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.backButton;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.stickSensitivity;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.stickSensitivity: // The stick sensitivity slider
-                        EventSystem.current.SetSelectedGameObject(stickSensitivityP2.gameObject);
-                        gameManager.p2.stickSensitivity = stickSensitivityP2.value;
-                        stickSensitivityValueP2.text = (stickSensitivityP2.value * 10).ToString();
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.scrollSpeed;
                             canMove = false;
                         }
                         break;
@@ -445,6 +400,18 @@ public class OptionsManager : MonoBehaviour
 
         gameManager.state = _GameManager.GameState.MainMenu;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OnPlayerSpecificClick()
+    {
+        if (currentPlayer == gameManager.p1)
+        {
+            player = Player.p1;
+        }
+        if (currentPlayer == gameManager.p2)
+        {
+            player = Player.p2;
+        }
     }
 
     public void OnPlayerReturnClick()

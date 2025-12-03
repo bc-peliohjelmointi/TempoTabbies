@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class Player2Confirmation : MonoBehaviour
 {
-    _GameManager gm;
+    private _GameManager gm;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

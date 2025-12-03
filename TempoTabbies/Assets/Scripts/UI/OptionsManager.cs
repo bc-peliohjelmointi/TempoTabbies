@@ -404,11 +404,11 @@ public class OptionsManager : MonoBehaviour
 
     public void OnPlayerSpecificClick()
     {
-        if (currentPlayer == gameManager.p1)
+        if (currentPlayer.gameObject == gameManager.p1.gameObject)
         {
             player = Player.p1;
         }
-        if (currentPlayer == gameManager.p2)
+        if (gameManager.p2 != null && currentPlayer.gameObject == gameManager.p2.gameObject)
         {
             player = Player.p2;
         }

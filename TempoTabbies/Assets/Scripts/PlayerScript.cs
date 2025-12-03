@@ -15,7 +15,8 @@ public class PlayerScript : MonoBehaviour
     private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
-    [SerializeField] private CatSelectionManager catMenu;
+    private CatSelectionManager catMenu;
+    private Player2Confirmation p2Confirm;
 
     // The needed inputs
     [Header("The inputs we're using")]
@@ -63,6 +64,17 @@ public class PlayerScript : MonoBehaviour
         {
             case _GameManager.GameState.Start:
                 break;
+            case _GameManager.GameState.Player2Confirmation:
+                if (p2Confirm == null)
+                {
+                    p2Confirm = FindFirstObjectByType<Player2Confirmation>();
+                }
+                float submitValue = submit.ReadValue<float>();
+                if (submitValue > 0)
+                {
+                    p2Confirm.submit = submitValue;
+                }
+                break;
             case _GameManager.GameState.MainMenu:
                 if (gameManager.state == _GameManager.GameState.MainMenu)
                 {
@@ -106,8 +118,8 @@ public class PlayerScript : MonoBehaviour
                 // Checks if the pauseMenu is inactive
                 if (!pauseMenu.isPauseMenuActive)
                 {
-                    float submitValue = submit.ReadValue<float>();
-                    if (submitValue > 0)
+                    float submitValue2 = submit.ReadValue<float>();
+                    if (submitValue2 > 0)
                     {
                         // Makes this player the active player
                         gameManager.whoGetsToPlay = _playerIndex;

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 /// This class is for buttons and changes what they do when selected
 /// </summary>
 [RequireComponent(typeof(AudioSource))]
-public class ButtonSelected : MonoBehaviour, ISelectHandler
+public class ButtonSelected : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     // The song attached to the button
     AudioSource source;
@@ -20,5 +20,12 @@ public class ButtonSelected : MonoBehaviour, ISelectHandler
         }
 
         source.PlayOneShot(source.clip);
+
+        gameObject.transform.localScale = new Vector3(4f, 4f, 4f);
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        gameObject.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
     }
 }

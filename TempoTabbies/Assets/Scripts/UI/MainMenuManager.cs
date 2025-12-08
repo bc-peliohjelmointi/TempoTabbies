@@ -59,6 +59,7 @@ public class MainMenuManager : MonoBehaviour
         {
             json.LoadPlayer2();
         }
+        EventSystem.current.SetSelectedGameObject(practise.gameObject);
     }
 
     private void Update()

@@ -1444,8 +1444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d5d361f82c4fe478a8e0e12f78a131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
-  spawner: {fileID: 0}
   stageID: 0
   whoGetsToPlay: 0
   volume: 0
@@ -1459,7 +1457,7 @@ MonoBehaviour:
   players: []
   p1: {fileID: 0}
   p2: {fileID: 0}
-  state: 4
+  state: 5
 --- !u!4 &1908520931
 Transform:
   m_ObjectHideFlags: 0

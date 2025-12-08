@@ -10,22 +10,44 @@ public class JudgmentDisplay : MonoBehaviour
     public Sprite BadSprite;
     public Sprite MissSprite;
 
+    [Header("Early/Late Indicator")]
+    public GameObject DirectionIndicator;
+    public Sprite EarlySprite;
+    public Sprite LateSprite;
+
     [Header("Animation Settings")]
     public float bounceDuration = 0.15f;
     public float bounceScale = 1.3f;
 
-    private SpriteRenderer spriteRenderer;
-    private Vector3 originalScale;
+    private SpriteRenderer judgmentSpriteRenderer;
+    private SpriteRenderer directionSpriteRenderer;
+    private Vector3 judgmentOriginalScale;
+    private Vector3 directionOriginalScale;
     private float bounceTimer;
     private bool isBouncing;
 
     public static JudgmentDisplay Instance { get; private set; }
+
     void Awake()
     {
         Instance = this;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        originalScale = transform.localScale;
-        spriteRenderer.enabled = false;
+        judgmentSpriteRenderer = GetComponent<SpriteRenderer>();
+        if (DirectionIndicator != null)
+        {
+            directionSpriteRenderer = DirectionIndicator.GetComponent<SpriteRenderer>();
+        }
+
+        judgmentOriginalScale = transform.localScale;
+        if (DirectionIndicator != null)
+        {
+            directionOriginalScale = DirectionIndicator.transform.localScale;
+        }
+
+        judgmentSpriteRenderer.enabled = false;
+        if (directionSpriteRenderer != null)
+        {
+            directionSpriteRenderer.enabled = false;
+        }
     }
 
     void Update()
@@ -37,35 +59,82 @@ public class JudgmentDisplay : MonoBehaviour
 
             // Smooth scaling curve (ease out)
             float scale = Mathf.Lerp(bounceScale, 1f, Mathf.SmoothStep(0, 1, t));
-            transform.localScale = originalScale * scale;
+            transform.localScale = judgmentOriginalScale * scale;
+
+            // Scale direction indicator along with judgment
+            if (DirectionIndicator != null)
+            {
+                DirectionIndicator.transform.localScale = directionOriginalScale * scale;
+            }
 
             if (t >= 1f)
             {
-                transform.localScale = originalScale;
+                transform.localScale = judgmentOriginalScale;
+                if (DirectionIndicator != null)
+                {
+                    DirectionIndicator.transform.localScale = directionOriginalScale;
+                }
                 isBouncing = false;
             }
         }
     }
 
-    public void Show(string label)
+    public void Show(string label, bool isEarly = false, bool isLate = false)
     {
-        if (spriteRenderer == null) return;
+        if (judgmentSpriteRenderer == null) return;
 
-        spriteRenderer.enabled = true;
+        // Show judgment
+        judgmentSpriteRenderer.enabled = true;
 
         switch (label)
         {
-            case "MARVELOUS": spriteRenderer.sprite = MarvelousSprite; break;
-            case "PERFECT": spriteRenderer.sprite = PerfectSprite; break;
-            case "GREAT": spriteRenderer.sprite = GreatSprite; break;
-            case "GOOD": spriteRenderer.sprite = GoodSprite; break;
-            case "BAD": spriteRenderer.sprite = BadSprite; break;
-            case "MISS": spriteRenderer.sprite = MissSprite; break;
-            default: spriteRenderer.enabled = false; return;
+            case "MARVELOUS": judgmentSpriteRenderer.sprite = MarvelousSprite; break;
+            case "PERFECT": judgmentSpriteRenderer.sprite = PerfectSprite; break;
+            case "GREAT": judgmentSpriteRenderer.sprite = GreatSprite; break;
+            case "GOOD": judgmentSpriteRenderer.sprite = GoodSprite; break;
+            case "BAD": judgmentSpriteRenderer.sprite = BadSprite; break;
+            case "MISS": judgmentSpriteRenderer.sprite = MissSprite; break;
+            default: judgmentSpriteRenderer.enabled = false; break;
         }
 
-        // Restart bounce
-        transform.localScale = originalScale * bounceScale;
+        // Handle direction indicator
+        if (directionSpriteRenderer != null && DirectionIndicator != null)
+        {
+            // Only show direction indicator if NOT MARVELOUS
+            if (label != "MARVELOUS")
+            {
+                if (isEarly)
+                {
+                    directionSpriteRenderer.enabled = true;
+                    directionSpriteRenderer.sprite = EarlySprite;
+                    DirectionIndicator.SetActive(true);
+                }
+                else if (isLate)
+                {
+                    directionSpriteRenderer.enabled = true;
+                    directionSpriteRenderer.sprite = LateSprite;
+                    DirectionIndicator.SetActive(true);
+                }
+                else
+                {
+                    directionSpriteRenderer.enabled = false;
+                    DirectionIndicator.SetActive(false);
+                }
+            }
+            else
+            {
+                // Always hide direction indicator for MARVELOUS
+                directionSpriteRenderer.enabled = false;
+                DirectionIndicator.SetActive(false);
+            }
+        }
+
+        // Restart bounce animation
+        transform.localScale = judgmentOriginalScale * bounceScale;
+        if (DirectionIndicator != null)
+        {
+            DirectionIndicator.transform.localScale = directionOriginalScale * bounceScale;
+        }
         bounceTimer = 0f;
         isBouncing = true;
     }

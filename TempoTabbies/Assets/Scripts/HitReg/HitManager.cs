@@ -12,6 +12,8 @@ public class HitManager : MonoBehaviour
     public GameObject leftStickObject;
     public GameObject rightStickObject;
 
+    [Header("Hit Effects")]
+    public SimpleHitSprite hitEffectManager;
     [Header("Score Management")]
     public ScoreManager scoreManager;
 
@@ -129,6 +131,7 @@ public class HitManager : MonoBehaviour
             TryStartHold(holdHead, lane, currentTime);
     }
 
+    // In the EvaluateHit method of HitManager:
     private void EvaluateHit(Note note, float currentTime)
     {
         float diff = currentTime - note.TargetTime;
@@ -147,12 +150,21 @@ public class HitManager : MonoBehaviour
 
         note.Hit = true;
         Destroy(note.gameObject);
-        ShowJudgment(label);
+
+        // Pass timing direction information
+        bool isEarly = diff < 0;
+        bool isLate = diff > 0;
+        ShowJudgment(label, isEarly, isLate);
 
         // ADD SCORE
         if (scoreManager != null)
         {
             scoreManager.AddJudgment(label);
+        }
+
+        if (hitEffectManager != null && label != "MISS")
+        {
+            hitEffectManager.PlayHitEffect(note.Lane, "DEFAULT");
         }
 
         Debug.Log($"[{label}] lane {note.Lane} ?t={diff * 1000f:F1}ms");
@@ -218,7 +230,7 @@ public class HitManager : MonoBehaviour
             if (currentTime > note.TargetTime + TimingWindows.Bad)
             {
                 note.Hit = true;
-                ShowJudgment("MISS");
+                ShowJudgment("MISS", false, false); // No direction for misses
 
                 // ADD MISS TO SCORE
                 if (scoreManager != null)
@@ -240,10 +252,10 @@ public class HitManager : MonoBehaviour
         }
     }
 
-    private void ShowJudgment(string label)
+    private void ShowJudgment(string label, bool isEarly = false, bool isLate = false)
     {
         if (JudgmentDisplay != null)
-            JudgmentDisplay.Show(label);
+            JudgmentDisplay.Show(label, isEarly, isLate);
     }
 
     public void SetGamepad(Gamepad pad)

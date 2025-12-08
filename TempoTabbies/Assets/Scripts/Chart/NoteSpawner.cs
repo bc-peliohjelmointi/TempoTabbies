@@ -36,7 +36,13 @@ public class NoteSpawner : MonoBehaviour
     private int nextIndex = 0;
     private HashSet<int> skipIndices = new HashSet<int>();
 
+    // SPAWN THROTTLE: maximum number of note GameObjects to instantiate per frame
+    [Header("Spawn Throttle (safety)")]
+    [Tooltip("Max number of notes this spawner will instantiate per frame to avoid freezes.")]
+    public int maxSpawnsPerFrame = 16;
 
+    // Optional runtime debug
+    private int lastFrameSpawnedCount = 0;
 
     public void LoadChart(SMFile sm, SMChart chart)
     {
@@ -81,20 +87,35 @@ public class NoteSpawner : MonoBehaviour
 
     void Update()
     {
+        // Basic early-exits
         if (notes == null || notes.Count == 0) return;
         if (!Music || !HitLine || Lanes == null || Lanes.Length == 0) return;
 
-        if (!Music.isPlaying) return;
+        // MUST NOT RUN until music is playing (prevents early massive spawn)
+        if (Music == null || !Music.isPlaying)
+            return;
 
         float songTime = GameManager.SongTime;
 
-        // ADD THIS DEBUG LOG:
+        // Debug for first note
         if (nextIndex == 0 && notes.Count > 0)
         {
             Debug.Log($"[NoteSpawner] First note time: {notes[0].time}, Current song time: {songTime}, Music.time: {Music.time}");
         }
+
+        lastFrameSpawnedCount = 0;
+
+        // Spawn up to maxSpawnsPerFrame notes this frame
         while (nextIndex < notes.Count && notes[nextIndex].time - songTime < SpawnLeadTime)
         {
+            // Throttle: if we've spawned enough this frame, break and continue next frame
+            if (lastFrameSpawnedCount >= maxSpawnsPerFrame)
+            {
+                // Optional: a lightweight debug to help tuning
+                // Debug.Log($"[NoteSpawner] Throttled spawning: spawned {lastFrameSpawnedCount} notes this frame, nextIndex={nextIndex}");
+                break;
+            }
+
             if (skipIndices.Contains(nextIndex))
             {
                 nextIndex++;
@@ -110,6 +131,7 @@ public class NoteSpawner : MonoBehaviour
                 {
                     AssistTickManager.Instance.ScheduleTick(noteData.time);
                 }
+
                 if (noteData.lane < 0 || noteData.lane >= Lanes.Length)
                 {
                     nextIndex++;
@@ -146,11 +168,13 @@ public class NoteSpawner : MonoBehaviour
                         GameObject bodyPrefab = GetHoldBodyPrefabForLane(noteData.lane);
                         GameObject endPrefab = GetHoldEndPrefabForLane(noteData.lane);
 
-                        hold.Head = Instantiate(headPrefab, holdRoot.transform);
-                        hold.Body = Instantiate(bodyPrefab, holdRoot.transform);
-                        hold.End = Instantiate(endPrefab, holdRoot.transform);
+                        // Null-check prefabs before instantiate
+                        if (headPrefab != null) hold.Head = Instantiate(headPrefab, holdRoot.transform);
+                        if (bodyPrefab != null) hold.Body = Instantiate(bodyPrefab, holdRoot.transform);
+                        if (endPrefab != null) hold.End = Instantiate(endPrefab, holdRoot.transform);
 
                         nextIndex++;
+                        lastFrameSpawnedCount++;
                         continue;
                     }
                 }
@@ -176,10 +200,20 @@ public class NoteSpawner : MonoBehaviour
                 }
 
                 nextIndex++;
+                lastFrameSpawnedCount++;
+            }
+            else
+            {
+                // If AssistTickManager is null, we still need to advance nextIndex to avoid infinite loops
+                nextIndex++;
             }
         }
 
+        // Optional debug: show if we are throttling heavily (enable when tuning)
+        // if (lastFrameSpawnedCount >= maxSpawnsPerFrame)
+        //     Debug.Log($"[NoteSpawner] Frame-spawn cap reached ({maxSpawnsPerFrame}). nextIndex={nextIndex}");
     }
+
     public bool IsChartComplete()
     {
         return notes != null && nextIndex >= notes.Count;
@@ -194,7 +228,6 @@ public class NoteSpawner : MonoBehaviour
             return notes[notes.Count - 1].time;
         }
     }
-
 
     private SMTiming.ParsedNote? FindHoldEnd(int lane, int startIndex)
     {

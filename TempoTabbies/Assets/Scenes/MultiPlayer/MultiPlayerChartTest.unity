@@ -4316,21 +4316,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Spawner_P1: {fileID: 1956194373}
-  Spawner_P2: {fileID: 1032708954}
-  Music: {fileID: 1302133180}
-  HitManager: {fileID: 466369732}
-  NotePrefab_TypeA_P1: {fileID: 4250342097177189302, guid: 0b408fd592630f645ac2e90350732862, type: 3}
-  NotePrefab_TypeB_P1: {fileID: 4778064962251987020, guid: 004a5be27d97c4748bf7e478bc692eaa, type: 3}
-  NotePrefab_TypeC_P1: {fileID: 7214182099033442407, guid: da3c6e31396a8044c93b7b23db7ea7c3, type: 3}
-  NotePrefab_TypeD_P1: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
-  NotePrefab_TypeA_P2: {fileID: 4250342097177189302, guid: 0b408fd592630f645ac2e90350732862, type: 3}
-  NotePrefab_TypeB_P2: {fileID: 4778064962251987020, guid: 004a5be27d97c4748bf7e478bc692eaa, type: 3}
-  NotePrefab_TypeC_P2: {fileID: 7214182099033442407, guid: da3c6e31396a8044c93b7b23db7ea7c3, type: 3}
-  NotePrefab_TypeD_P2: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
   LaneParent_P1: {fileID: 2144985823}
   HitLine_P1: {fileID: 2004550694}
+  NotePrefabA_P1: {fileID: 4250342097177189302, guid: 0b408fd592630f645ac2e90350732862, type: 3}
+  NotePrefabB_P1: {fileID: 4778064962251987020, guid: 004a5be27d97c4748bf7e478bc692eaa, type: 3}
+  NotePrefabC_P1: {fileID: 7214182099033442407, guid: da3c6e31396a8044c93b7b23db7ea7c3, type: 3}
+  NotePrefabD_P1: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
+  Spawner_P2: {fileID: 1032708954}
   LaneParent_P2: {fileID: 1011277680}
   HitLine_P2: {fileID: 848312119}
+  NotePrefabA_P2: {fileID: 4250342097177189302, guid: 0b408fd592630f645ac2e90350732862, type: 3}
+  NotePrefabB_P2: {fileID: 4778064962251987020, guid: 004a5be27d97c4748bf7e478bc692eaa, type: 3}
+  NotePrefabC_P2: {fileID: 7214182099033442407, guid: da3c6e31396a8044c93b7b23db7ea7c3, type: 3}
+  NotePrefabD_P2: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
+  Music: {fileID: 1302133180}
 --- !u!1 &1437452567
 GameObject:
   m_ObjectHideFlags: 0

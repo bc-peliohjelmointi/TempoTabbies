@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HoldNote : MonoBehaviour
@@ -15,6 +15,9 @@ public class HoldNote : MonoBehaviour
     public GameObject Body;
     public GameObject End;
 
+    [Header("Hit Effects")]
+    public SimpleHitSprite hitEffectManager; // Add this line - same as HitManager uses
+
     [Header("Body Settings")]
     public float BodyWidth = 0.25f;
 
@@ -29,7 +32,7 @@ public class HoldNote : MonoBehaviour
     private bool initialPressMissed = false;
     private bool releaseJudgmentGiven = false;
 
-    private const float ReleaseLeniency = 1.5f; // 1.5� timing window leniency
+    private const float ReleaseLeniency = 1.5f; // 1.5× timing window leniency
 
     void Start()
     {
@@ -74,6 +77,7 @@ public class HoldNote : MonoBehaviour
         if (!hasStartedHold)
         {
             transform.position = new Vector3(transform.position.x, startY, transform.position.z);
+
 
             // Check for MISS if we passed the hit window without pressing
             if (!initialPressScored && !initialPressMissed && songTime > StartTime + TimingWindows.Bad)
@@ -137,7 +141,7 @@ public class HoldNote : MonoBehaviour
         Debug.Log($"[HoldNote] MISSED initial press");
 
         if (JudgmentDisplay.Instance != null)
-            JudgmentDisplay.Instance.Show("MISS");
+            JudgmentDisplay.Instance.Show("MISS", false, false); // No direction for misses
 
         if (ScoreManager.Instance != null)
         {
@@ -153,7 +157,7 @@ public class HoldNote : MonoBehaviour
         Debug.Log($"[HoldNote] EARLY RELEASE - MISS");
 
         if (JudgmentDisplay.Instance != null)
-            JudgmentDisplay.Instance.Show("MISS");
+            JudgmentDisplay.Instance.Show("MISS", false, false); // No direction for misses
 
         if (ScoreManager.Instance != null)
         {
@@ -204,6 +208,7 @@ public class HoldNote : MonoBehaviour
         Body.transform.localScale = s;
     }
 
+    // In the ScoreInitialPress method of HoldNote:
     private void ScoreInitialPress(float currentTime)
     {
         float diff = currentTime - StartTime;
@@ -218,17 +223,23 @@ public class HoldNote : MonoBehaviour
         else if (absDiff <= TimingWindows.Bad) result = "BAD";
         else result = "MISS";
 
+        // Pass timing direction information
+        bool isEarly = diff < 0;
+        bool isLate = diff > 0;
+
         if (JudgmentDisplay.Instance != null)
-            JudgmentDisplay.Instance.Show(result);
+            JudgmentDisplay.Instance.Show(result, isEarly, isLate);
 
         if (ScoreManager.Instance != null)
         {
             ScoreManager.Instance.AddJudgment(result);
         }
 
+
         Debug.Log($"[HoldNote] Initial Press: {result} (?={diff * 1000f:F1} ms)");
     }
 
+    // In the RegisterReleaseJudgment method of HoldNote:
     private void RegisterReleaseJudgment(float currentTime)
     {
         if (releaseChecked) return;
@@ -259,8 +270,12 @@ public class HoldNote : MonoBehaviour
             absDiff <= good ? "GOOD" :
             absDiff <= bad ? "BAD" : "MISS";
 
+        // Pass timing direction information
+        bool isEarly = diff < 0;
+        bool isLate = diff > 0;
+
         if (JudgmentDisplay.Instance != null)
-            JudgmentDisplay.Instance.Show(result);
+            JudgmentDisplay.Instance.Show(result, isEarly, isLate);
 
         if (ScoreManager.Instance != null)
         {

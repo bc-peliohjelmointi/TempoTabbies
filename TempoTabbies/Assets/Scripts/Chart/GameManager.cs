@@ -30,15 +30,18 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (Instance != null && Instance.Music != null && Instance.Music.isPlaying)
-            {
-                // For positive offsets, Music.time starts from 0 after the delay
-                // For negative offsets, Music.time starts from the offset value
+            if (Instance == null || Instance.Music == null)
+                return 0f;
+
+            if (Instance.Music.isPlaying)
                 return Instance.Music.time;
-            }
-            return Time.time - ChartStartTime;
+
+            return 0f; // Freeze time until music starts
         }
     }
+
+
+
 
     void Awake()
     {

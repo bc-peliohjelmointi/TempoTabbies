@@ -14,7 +14,8 @@ public class CardDataScript : MonoBehaviour
     {
         Empty,
         ComboLeech,
-        HitChange
+        HitChange,
+        DiscoCat,
     }
 
     public enum EffectStatus

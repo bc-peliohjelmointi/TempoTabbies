@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using static CardDataScript;
 
 public class CardManagerScript : MonoBehaviour
@@ -23,7 +20,7 @@ public class CardManagerScript : MonoBehaviour
     void Start()
     {
         KorttiLista = new List<CardDataScript.CardData>();
-       // button = new Button();
+        // button = new Button();
 
         RandomizeCard();
     }
@@ -44,7 +41,7 @@ public class CardManagerScript : MonoBehaviour
             else //voi mennä eteenpäin
             {
                 // change scene !!!!
-                SceneManager.LoadScene("Korttiscene");
+                SceneManager.LoadScene("GameMultiplayer"); // temporary test scene
             }
         }
         else

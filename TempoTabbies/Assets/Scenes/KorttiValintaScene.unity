@@ -441,6 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageID: 0
   whoGetsToPlay: 0
+  multiplayer: 0
   volume: 0
   scrollSpeed: 0
   stickSensitivity: 0
@@ -452,7 +453,7 @@ MonoBehaviour:
   players: []
   p1: {fileID: 0}
   p2: {fileID: 0}
-  state: 0
+  state: 6
 --- !u!4 &658902571
 Transform:
   m_ObjectHideFlags: 0
@@ -2269,7 +2270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 762666210930608310, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
       propertyPath: AllCards.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 762666210930608310, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
       propertyPath: 'AllCards.Array.data[0]'
@@ -2286,7 +2287,7 @@ PrefabInstance:
     - target: {fileID: 762666210930608310, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
       propertyPath: 'AllCards.Array.data[3]'
       value: 
-      objectReference: {fileID: 11400000, guid: d89b93aecd139d04caa6650b5031c432, type: 2}
+      objectReference: {fileID: 11400000, guid: e0115704f77ee524990d5677624d2282, type: 2}
     - target: {fileID: 762666210930608310, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
       propertyPath: 'AllCards.Array.data[4]'
       value: 

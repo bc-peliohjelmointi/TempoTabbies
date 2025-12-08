@@ -104,10 +104,24 @@ public class PauseMenuManager : MonoBehaviour
             {
                 timer -= Time.deltaTime;
                 timerText.text = ((int)timer).ToString();
-                if (timer <= 0)
+                switch ((int)timer)
                 {
-                    timerText.gameObject.SetActive(false);
-                    // Make the game continue
+                    case 3:
+                        timerText.color = new Color(0.6f, 1, 0.5f);
+                        break;
+
+                    case 2:
+                        timerText.color = new Color(1, 0.8f, 0.4f);
+                        break;
+
+                    case 1:
+                        timerText.color = new Color(1, 0.5f, 0.5f);
+                        break;
+
+                    case 0:
+                        timerText.gameObject.SetActive(false);
+                        // Make the game continue
+                        break;
                 }
             }
         }

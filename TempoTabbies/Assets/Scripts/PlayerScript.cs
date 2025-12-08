@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerScript : MonoBehaviour
 {
     private PlayerInput playerInput;
+
     // The players player number, 0 = player 1, 1 = player 2
     [Header("Who the player is")]
     public int _playerIndex;
@@ -14,7 +15,8 @@ public class PlayerScript : MonoBehaviour
     private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
-   [SerializeField] private CatSelectionManager catMenu;
+    private CatSelectionManager catMenu;
+    private Player2Confirmation p2Confirm;
 
     // The needed inputs
     [Header("The inputs we're using")]
@@ -27,12 +29,11 @@ public class PlayerScript : MonoBehaviour
     public List<CardDataScript.CardData> AllCards;
     public int Score;
     public int Combo;
-    public int cat; // use this to say which cat has been chosen for the player
+    public int cat; // use this to say which cat has been chosen for the player, currently 1 = tabby, 2 = orange
 
     // Stored values that are player specific
     [Header("Stuff we save")]
     public float scrollSpeed;
-    public float stickSensitivity;
     public bool assistTick;
 
     private void Awake()
@@ -54,9 +55,26 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
+        {
+            Destroy(gameObject);
+        }*/
         // Checks what state the game is currently in
         switch (gameManager.state)
         {
+            case _GameManager.GameState.Start:
+                break;
+            case _GameManager.GameState.Player2Confirmation:
+                if (p2Confirm == null)
+                {
+                    p2Confirm = FindFirstObjectByType<Player2Confirmation>();
+                }
+                float submitValue = submit.ReadValue<float>();
+                if (submitValue > 0)
+                {
+                    p2Confirm.submit = submitValue;
+                }
+                break;
             case _GameManager.GameState.MainMenu:
                 if (gameManager.state == _GameManager.GameState.MainMenu)
                 {
@@ -65,12 +83,10 @@ public class PlayerScript : MonoBehaviour
                     {
                         mainMenu = FindFirstObjectByType<MainMenuManager>();
                     }
-                    if (_playerIndex == gameManager.whoGetsToPlay)
-                    {
-                        // Checks the movement that we need for menus
-                        mainMenu.moveAmount = navigate.ReadValue<Vector2>();
-                        mainMenu.clickValue = clickButton.ReadValue<float>();
-                    }
+
+                    // Checks the movement that we need for menus
+                    mainMenu.moveAmount = navigate.ReadValue<Vector2>();
+                    mainMenu.clickValue = clickButton.ReadValue<float>();
                 }
                 break;
             case _GameManager.GameState.Options:
@@ -79,16 +95,20 @@ public class PlayerScript : MonoBehaviour
                 {
                     optionsMenu = FindFirstObjectByType<OptionsManager>();
                 }
-                if (_playerIndex == gameManager.whoGetsToPlay)
+
+                // Checks the movement that we need for menus
+                optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
+                optionsMenu.clickValue = clickButton.ReadValue<float>();
+                float click = clickButton.ReadValue<float>();
+                if (click > 0)
                 {
-                    // Checks the movement that we need for menus
-                    optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
-                    optionsMenu.clickValue = clickButton.ReadValue<float>();
+                    optionsMenu.currentPlayer = this;
                 }
                 break;
             case _GameManager.GameState.StageSelect:
                 // Not sure how the new stage select works
                 break;
+
             case _GameManager.GameState.Game:
                 // gets the pause menu script
                 if (pauseMenu == null)
@@ -98,8 +118,8 @@ public class PlayerScript : MonoBehaviour
                 // Checks if the pauseMenu is inactive
                 if (!pauseMenu.isPauseMenuActive)
                 {
-                    float submitValue = submit.ReadValue<float>();
-                    if (submitValue > 0)
+                    float submitValue2 = submit.ReadValue<float>();
+                    if (submitValue2 > 0)
                     {
                         // Makes this player the active player
                         gameManager.whoGetsToPlay = _playerIndex;
@@ -117,6 +137,7 @@ public class PlayerScript : MonoBehaviour
                     pauseMenu.clickValue = clickButton.ReadValue<float>();
                 }
                 break;
+
             case _GameManager.GameState.CatSelect:
                 if (catMenu == null)
                 {

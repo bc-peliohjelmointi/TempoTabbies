@@ -77,6 +77,7 @@ public class CatSelectionManager : MonoBehaviour
         }
     }
 
+    // the first cats click event
     public void OnCat1Click()
     {
         if (gameManager.whoGetsToPlay == 0)
@@ -87,10 +88,11 @@ public class CatSelectionManager : MonoBehaviour
         else if (gameManager.whoGetsToPlay == 1)
         {
             gameManager.p2.cat = 1;
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("StageSelect");
         }
     }
 
+    // the second cats click event
     public void OnCat2Click()
     {
         if (gameManager.whoGetsToPlay == 0)
@@ -101,7 +103,7 @@ public class CatSelectionManager : MonoBehaviour
         else if (gameManager.whoGetsToPlay == 1)
         {
             gameManager.p2.cat = 2;
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("StageSelect");
         }
     }
 }

@@ -22,6 +22,7 @@ public class CatSelectButtons : MonoBehaviour, ISelectHandler, IDeselectHandler
         gm = FindFirstObjectByType<_GameManager>();
     }
 
+    // what happens when the object is selected
     public void OnSelect(BaseEventData eventData)
     {
         gameObject.transform.localScale = new Vector3(1.125f, 7.125f, 1.125f);
@@ -39,6 +40,7 @@ public class CatSelectButtons : MonoBehaviour, ISelectHandler, IDeselectHandler
         }
     }
 
+    // what happens when the button is deselected // So basically just undo whatever happens in OnSelect
     public void OnDeselect(BaseEventData eventData)
     {
         gameObject.transform.localScale = new Vector3(0.75f, 4.75f, 0.75f);

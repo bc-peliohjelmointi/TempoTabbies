@@ -14,11 +14,12 @@ public class _GameManager : MonoBehaviour
 
     public int whoGetsToPlay; // When 0, only player 1 gets to do stuff in menus, when 1, only player 2 gets to do stuff in menus
 
+    public bool multiplayer;
+
     // Setting values to remember
     [Header("Settings values to save")]
     public float volume;
     public float scrollSpeed;
-    public float stickSensitivity;
     public float audioOffset; // in ms
     public bool assistTick;
     public float assistTickVolume;
@@ -33,10 +34,13 @@ public class _GameManager : MonoBehaviour
 
     public enum GameState
     {
+        Start, // Starting section where p1 is created
         MainMenu, // The main menu
         Options, // The options menu
         StageSelect, // The song select screen
+        Player2Confirmation, // confirms player 2s existence
         CatSelect, // Selecting a cat
+        Practise, // The singleplayer practice mode
         Game, // The songs being played
         CardSelection, // Selecting cards mid game
         Pause // Pausing mid game
@@ -73,7 +77,7 @@ public class _GameManager : MonoBehaviour
         {
             p1 = players[0];
         }
-        if (players.Count > 1 && p2 == null)
+        if (multiplayer == true && players.Count > 1 && p2 == null)
         {
             // This works, since when you add a 2nd player, it goes to slot 0, even though when player 1 is added, it also goes to slot 0
             p2 = players[0];

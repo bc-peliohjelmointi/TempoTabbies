@@ -160,9 +160,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnPractiseClick()
     {
-        gameManager.state = _GameManager.GameState.StageSelect;
         gameManager.multiplayer = false;
-        SceneManager.LoadScene("StageSelect");
+        gameManager.state = _GameManager.GameState.CatSelect;
+        SceneManager.LoadScene("CatSelect");
     }
 
     public void OnOptionsClick()

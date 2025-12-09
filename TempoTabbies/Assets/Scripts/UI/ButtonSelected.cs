@@ -9,6 +9,7 @@ public class ButtonSelected : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     // The song attached to the button
     AudioSource source;
+    [SerializeField] bool makeBigger = false;
 
     // Input what happes when you select the button
     public void OnSelect(BaseEventData eventData)
@@ -21,7 +22,10 @@ public class ButtonSelected : MonoBehaviour, ISelectHandler, IDeselectHandler
 
         source.PlayOneShot(source.clip);
 
-        gameObject.transform.localScale = new Vector3(4f, 4f, 4f);
+        if (makeBigger)
+        {
+            gameObject.transform.localScale = new Vector3(4f, 4f, 4f);
+        }
     }
 
     public void OnDeselect(BaseEventData eventData)

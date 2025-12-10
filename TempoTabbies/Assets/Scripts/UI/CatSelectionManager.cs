@@ -83,6 +83,10 @@ public class CatSelectionManager : MonoBehaviour
         if (gameManager.whoGetsToPlay == 0)
         {
             gameManager.p1.cat = 1;
+            if (gameManager.multiplayer == false)
+            {
+                SceneManager.LoadScene("StageSelect");
+            }
             gameManager.whoGetsToPlay = 1;
         }
         else if (gameManager.whoGetsToPlay == 1)
@@ -98,6 +102,10 @@ public class CatSelectionManager : MonoBehaviour
         if (gameManager.whoGetsToPlay == 0)
         {
             gameManager.p1.cat = 2;
+            if (gameManager.multiplayer == false)
+            {
+                SceneManager.LoadScene("StageSelect");
+            }
             gameManager.whoGetsToPlay = 1;
         }
         else if (gameManager.whoGetsToPlay == 1)

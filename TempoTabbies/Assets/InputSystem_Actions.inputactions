@@ -1161,6 +1161,17 @@
                     "action": "ClickButton",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ea91d80-8b55-4144-b015-6f3a908e69d7",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ClickButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -255,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player 2, press any button
+  m_text: Player 2 press any button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cd04e334cfc43849a7a33caf88773d6, type: 2}
   m_sharedMaterial: {fileID: -5581058707818544328, guid: 3cd04e334cfc43849a7a33caf88773d6, type: 2}
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player 2, press any button
+  m_text: Player 2 press any button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3cd04e334cfc43849a7a33caf88773d6, type: 2}
   m_sharedMaterial: {fileID: -5581058707818544328, guid: 3cd04e334cfc43849a7a33caf88773d6, type: 2}

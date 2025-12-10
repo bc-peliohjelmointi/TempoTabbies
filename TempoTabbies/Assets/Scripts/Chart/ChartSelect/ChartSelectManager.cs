@@ -249,13 +249,13 @@ public class ChartSelectManager : MonoBehaviour
         PlayerPrefs.SetString("SelectedSongPath", song.Title);
         GameSession.SelectedSong = song;
         GameSession.SelectedChart = chart;
-        if (_gm.multiplayer)
+        //if (_gm.multiplayer)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameMultiplayer");
         }
-        else
+        //else
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameSingleplayer");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("ChartTest");
         }
         }
 }

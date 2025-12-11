@@ -120,7 +120,8 @@ public class EvalScreenManager : MonoBehaviour
         // Update all score information
         scoreText.text = $"{scoreManager.currentScore:N0}";
         gradeText.text = $" {scoreManager.GetGrade()}";
-        comboText.text = $"Max Combo: {scoreManager.GetComboInfo()}";
+        // CHANGE THIS LINE: Use maxCombo instead of GetComboInfo()
+        comboText.text = $"Max Combo: {scoreManager.maxCombo}x";
 
         // Update judgment breakdown
         if (marvelousText != null)

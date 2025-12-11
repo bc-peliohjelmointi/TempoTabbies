@@ -71,6 +71,8 @@ public class GameEndManager : MonoBehaviour
     {
         gameEnding = true;
         Debug.Log("[GameEndManager] Starting game end sequence with fade");
+        ScoreManager.Instance.FinalizeScore();
+        Debug.Log($"[GameEndManager] Finalized score. Max Combo: {ScoreManager.Instance.maxCombo}");
 
         // Start fade effects
         StartCoroutine(FadeMusic());

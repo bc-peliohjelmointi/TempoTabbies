@@ -115,16 +115,20 @@ public class ScoreManager : MonoBehaviour
         {
             // Increment combo for other judgments
             currentCombo++;
-
-            // Update max combo if current combo is higher
-            if (currentCombo > maxCombo)
-            {
-                maxCombo = currentCombo;
-            }
         }
 
         // Update combo UI/display
         OnComboChanged?.Invoke(currentCombo);
+    }
+
+    // Call this when the chart/song is complete
+    public void FinalizeScore()
+    {
+        // Finalize max combo - check the current combo at the end
+        if (currentCombo > maxCombo)
+        {
+            maxCombo = currentCombo;
+        }
     }
 
     private int CalculatePoints(string judgment)

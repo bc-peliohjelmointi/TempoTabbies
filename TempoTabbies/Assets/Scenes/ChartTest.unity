@@ -4455,7 +4455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Music: {fileID: 1302133180}
-  ScrollSpeed: 2
+  gm: {fileID: 0}
+  ScrollSpeed: 8.2
   SpawnLeadTime: 5
   Lanes:
   - {fileID: 566901084}

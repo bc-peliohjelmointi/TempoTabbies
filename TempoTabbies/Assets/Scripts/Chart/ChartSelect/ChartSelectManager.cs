@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ChartSelectManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class ChartSelectManager : MonoBehaviour
     private GameObject lastSelectedObject;
 
     private _GameManager _gm;
+    public float submitValue;
 
     void Start()
     {
@@ -178,6 +180,11 @@ public class ChartSelectManager : MonoBehaviour
                 lastSelectedObject = currentSelected;
             }
         }
+
+        if (submitValue >= 0.1f)
+        {
+            SceneManager.LoadScene("CatSelect");
+        }
     }
 
     private void ScrollToSelectedItem(GameObject selectedObject)
@@ -257,5 +264,5 @@ public class ChartSelectManager : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameSingleplayer");
         }
-        }
+    }
 }

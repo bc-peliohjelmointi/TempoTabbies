@@ -6,7 +6,6 @@ using UnityEngine.UI;
 /// <summary>
 /// Main menu script
 /// </summary>
-[RequireComponent(typeof(AudioSource))]
 public class MainMenuManager : MonoBehaviour
 {
     // Menu objects
@@ -24,9 +23,7 @@ public class MainMenuManager : MonoBehaviour
     public Vector2 moveAmount;
     public float clickValue;
 
-    // Audio
-    [Header("Audio file for background music")]
-    AudioSource source;
+    
 
     // State to know which button is being selected
     public enum ButtonSelect
@@ -46,9 +43,6 @@ public class MainMenuManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(catSelect.gameObject);
         json = FindAnyObjectByType<JSON_Stuff>();
         gameManager = FindAnyObjectByType<_GameManager>();
-        source = GetComponent<AudioSource>();
-        source.Play();
-        source.loop = true;
 
         json.LoadGameManager();
         if (gameManager.p1 != null)

@@ -8,6 +8,7 @@ public class CatSelectionManager : MonoBehaviour
     // Player movement, which is sent by the PlayerScript.cs Class
     public Vector2 moveAmount;
     public float clickValue;
+    public float submitValue;
 
     // Other scripts
     private _GameManager gameManager;
@@ -35,6 +36,10 @@ public class CatSelectionManager : MonoBehaviour
 
     private void Update()
     {
+        if (submitValue >= 0.1f)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
         switch (selected)
         {
             case Selected.cat1:

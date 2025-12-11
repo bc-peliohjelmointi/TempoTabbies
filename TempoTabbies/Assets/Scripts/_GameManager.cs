@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// General game manager
 /// </summary>
+[RequireComponent(typeof(AudioSource))]
 public class _GameManager : MonoBehaviour
 {
     public static _GameManager instance;
@@ -31,6 +32,10 @@ public class _GameManager : MonoBehaviour
     public List<PlayerScript> players;
     public PlayerScript p1;
     public PlayerScript p2;
+
+    // Audio
+    [Header("Audio file for background music")]
+    AudioSource source;
 
     public enum GameState
     {
@@ -58,6 +63,9 @@ public class _GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        source = GetComponent<AudioSource>();
+        source.Play();
+        source.loop = true;
     }
 
     private void Update()
@@ -66,6 +74,17 @@ public class _GameManager : MonoBehaviour
         if (p1 == null || p2 == null)
         {
             FindPlayers();
+        }
+        if (state == GameState.Game)
+        {
+            source.Stop();
+        }
+        else
+        {
+            if (!source.isPlaying)
+            {
+                source.Play();
+            }
         }
     }
 

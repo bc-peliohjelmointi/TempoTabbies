@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
 
     // Other scripts
     private _GameManager gameManager;
+    private ChartSelectManager chartManager;
     private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
@@ -106,7 +107,11 @@ public class PlayerScript : MonoBehaviour
                 }
                 break;
             case _GameManager.GameState.StageSelect:
-                // Not sure how the new stage select works
+                if (chartManager == null)
+                {
+                    chartManager = FindFirstObjectByType<ChartSelectManager>();
+                }
+                chartManager.submitValue = submit.ReadValue<float>();
                 break;
 
             case _GameManager.GameState.Game:
@@ -148,6 +153,7 @@ public class PlayerScript : MonoBehaviour
                     catMenu.moveAmount = navigate.ReadValue<Vector2>();
                     catMenu.clickValue = clickButton.ReadValue<float>();
                 }
+                catMenu.submitValue = submit.ReadValue<float>();
                 break;
 
             case _GameManager.GameState.CardSelection:

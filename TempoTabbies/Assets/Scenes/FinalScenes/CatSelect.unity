@@ -570,7 +570,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 965705829}
         m_TargetAssemblyTypeName: CatSelectionManager, Assembly-CSharp
-        m_MethodName: OnCat1Click
+        m_MethodName: OnCat3Click
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -35,7 +35,7 @@ public class _GameManager : MonoBehaviour
 
     // Audio
     [Header("Audio file for background music")]
-    AudioSource source;
+    public AudioSource source;
 
     public enum GameState
     {

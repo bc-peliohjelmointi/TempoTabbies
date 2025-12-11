@@ -30,6 +30,9 @@ public class ButtonSelected : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnDeselect(BaseEventData eventData)
     {
-        gameObject.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
+        if (makeBigger)
+        {
+            gameObject.transform.localScale = new Vector3(3.5f, 3.5f, 3.5f);
+        }
     }
 }

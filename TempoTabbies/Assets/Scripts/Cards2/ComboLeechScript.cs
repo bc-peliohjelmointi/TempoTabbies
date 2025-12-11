@@ -3,7 +3,7 @@ using UnityEngine;
 using static CardDataScript;
 using static PlayerStatsScript;
 using static GameManager;
-using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 // Efekti joka siirtää comboa toiselta pelaajalta toiselle ajan myötä.
 // Käytetään yhdellä koneella kahden pelaajan välillä.

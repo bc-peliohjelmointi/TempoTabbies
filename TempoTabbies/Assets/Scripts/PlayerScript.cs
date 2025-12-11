@@ -56,10 +56,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
+        if (playerInput.currentControlScheme == "Keyboard&Mouse")
         {
             Destroy(gameObject);
-        }*/
+        }
         // Checks what state the game is currently in
         switch (gameManager.state)
         {
@@ -100,6 +100,7 @@ public class PlayerScript : MonoBehaviour
                 // Checks the movement that we need for menus
                 optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
                 optionsMenu.clickValue = clickButton.ReadValue<float>();
+                optionsMenu.submitValue = submit.ReadValue<float>();
                 float click = clickButton.ReadValue<float>();
                 if (click > 0)
                 {

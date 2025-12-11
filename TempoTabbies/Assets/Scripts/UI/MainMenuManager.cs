@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -40,7 +41,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(catSelect.gameObject);
+        StartCoroutine(WaitAFrame());
         json = FindAnyObjectByType<JSON_Stuff>();
         gameManager = FindAnyObjectByType<_GameManager>();
 
@@ -53,7 +54,15 @@ public class MainMenuManager : MonoBehaviour
         {
             json.LoadPlayer2();
         }
+    }
+
+    IEnumerator WaitAFrame()
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(quit.gameObject);
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(practise.gameObject);
+        buttonSelect = ButtonSelect.practice;
     }
 
     private void Update()
@@ -91,11 +100,11 @@ public class MainMenuManager : MonoBehaviour
                     buttonSelect = ButtonSelect.options;
                     canMove = false;
                 }
-                else if (moveAmount.y > 0.1 && canMove)
+                /*else if (moveAmount.y > 0.1 && canMove)
                 {
                     buttonSelect = ButtonSelect.catSelect;
                     canMove = false;
-                }
+                }*/
                 break;
 
             case ButtonSelect.options: // Options

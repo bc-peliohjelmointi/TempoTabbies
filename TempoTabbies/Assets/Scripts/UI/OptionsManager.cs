@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,8 @@ public class OptionsManager : MonoBehaviour
     public Vector2 moveAmount;
     [field: HideInInspector]
     public float clickValue;
+    [field: HideInInspector]
+    public float submitValue;
     public PlayerScript currentPlayer;
 
     [field: HideInInspector]
@@ -99,7 +102,7 @@ public class OptionsManager : MonoBehaviour
 
     void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(backButton.gameObject);
+        WaitAFrame();
         gameManager = FindAnyObjectByType<_GameManager>();
         json = FindAnyObjectByType<JSON_Stuff>();
 
@@ -120,8 +123,31 @@ public class OptionsManager : MonoBehaviour
         source.loop = true;
     }
 
+    IEnumerator WaitAFrame()
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(backButton.gameObject);
+    }
+
+
     private void Update()
     {
+        if (submitValue > 0.1f)
+        {
+            json.SaveGameManager();
+            if (gameManager.p1 != null)
+            {
+                json.SavePlayer1();
+            }
+            if (gameManager.p2 != null)
+            {
+                json.SavePlayer2();
+            }
+
+            gameManager.state = _GameManager.GameState.MainMenu;
+            SceneManager.LoadScene("MainMenu");
+        }
         switch (player)
         {
             case Player.none:

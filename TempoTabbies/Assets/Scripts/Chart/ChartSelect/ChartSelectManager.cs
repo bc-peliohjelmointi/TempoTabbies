@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -27,11 +28,19 @@ public class ChartSelectManager : MonoBehaviour
 
     void Start()
     {
-        EventSystem.current.SetSelectedGameObject(InitialButton);
+        WaitAFrame();
+        
         lastSelectedObject = InitialButton;
         LoadAllSongs();
         PopulateSongList();
         _gm = FindFirstObjectByType<_GameManager>();
+    }
+
+    IEnumerator WaitAFrame()
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(InitialButton);
     }
 
     void LoadAllSongs()
@@ -181,9 +190,10 @@ public class ChartSelectManager : MonoBehaviour
             }
         }
 
-        if (submitValue >= 0.1f)
+        if (submitValue > 0.1f)
         {
-            SceneManager.LoadScene("CatSelect");
+            _gm.state = _GameManager.GameState.MainMenu;
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

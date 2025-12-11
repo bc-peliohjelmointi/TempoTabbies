@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -30,8 +31,16 @@ public class CatSelectionManager : MonoBehaviour
 
     private void Awake()
     {
-        EventSystem.current.SetSelectedGameObject(cat1.gameObject);
+        WaitAFrame();
+
         gameManager = FindFirstObjectByType<_GameManager>();
+    }
+
+    IEnumerator WaitAFrame()
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(cat1.gameObject);
     }
 
     private void Update()
@@ -39,6 +48,7 @@ public class CatSelectionManager : MonoBehaviour
         if (submitValue >= 0.1f)
         {
             SceneManager.LoadScene("MainMenu");
+            gameManager.state = _GameManager.GameState.MainMenu;
         }
         switch (selected)
         {
@@ -92,13 +102,17 @@ public class CatSelectionManager : MonoBehaviour
             {
                 SceneManager.LoadScene("StageSelect");
             }
-            gameManager.whoGetsToPlay = 1;
+            else
+            {
+                gameManager.whoGetsToPlay = 1;
+            }
         }
         else if (gameManager.whoGetsToPlay == 1)
         {
             gameManager.p2.cat = 1;
             SceneManager.LoadScene("StageSelect");
         }
+        gameManager.state = _GameManager.GameState.StageSelect;
     }
 
     // the second cats click event
@@ -111,13 +125,17 @@ public class CatSelectionManager : MonoBehaviour
             {
                 SceneManager.LoadScene("StageSelect");
             }
-            gameManager.whoGetsToPlay = 1;
+            else
+            {
+                gameManager.whoGetsToPlay = 1;
+            }
         }
         else if (gameManager.whoGetsToPlay == 1)
         {
             gameManager.p2.cat = 2;
             SceneManager.LoadScene("StageSelect");
         }
+        gameManager.state = _GameManager.GameState.StageSelect;
     }
 }
 

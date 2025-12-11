@@ -255,7 +255,7 @@ public class ChartSelectManager : MonoBehaviour
         }
         //else
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("ChartTest");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameSingleplayer");
         }
         }
 }

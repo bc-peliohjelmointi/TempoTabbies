@@ -297,7 +297,7 @@ public class EvalScreenManager : MonoBehaviour
         GameSession.SelectedChart = null;
 
         // Load stage select scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StageSelectSMtest");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("StageSelect");
     }
 
     // Update display in case scores change (though they shouldn't after game ends)

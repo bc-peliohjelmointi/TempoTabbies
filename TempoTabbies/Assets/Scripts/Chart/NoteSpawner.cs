@@ -5,7 +5,8 @@ public class NoteSpawner : MonoBehaviour
 {
     [Header("Audio + Timing")]
     public AudioSource Music;
-    public float ScrollSpeed = 6f;
+    public _GameManager gm;
+    public float ScrollSpeed = 8f;
     public float SpawnLeadTime = 2f;
 
     [Header("Lane Setup")]
@@ -44,6 +45,17 @@ public class NoteSpawner : MonoBehaviour
     // Optional runtime debug
     private int lastFrameSpawnedCount = 0;
 
+    private void Awake()
+    {
+        // Get reference to GameManager
+        gm = _GameManager.instance;
+
+        // Initialize ScrollSpeed with value from GameManager
+        if (gm != null)
+        {
+            ScrollSpeed = gm.scrollSpeed;
+        }
+    }
     public void LoadChart(SMFile sm, SMChart chart)
     {
         Debug.Log($"[NoteSpawner] LoadChart started - SMFile: {sm != null}, SMChart: {chart != null}");

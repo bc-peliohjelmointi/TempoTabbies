@@ -30,7 +30,7 @@ public class PlayerScript : MonoBehaviour
     public List<CardDataScript.CardData> AllCards;
     public int Score;
     public int Combo;
-    public int cat; // use this to say which cat has been chosen for the player, currently 1 = tabby, 2 = orange
+    public int cat; // use this to say which cat has been chosen for the player, currently 1 = tabby, 2 = orange, 3 = nothing
 
     // Stored values that are player specific
     [Header("Stuff we save")]

@@ -24,11 +24,13 @@ public class ChartSelectManager : MonoBehaviour
     private GameObject lastSelectedObject;
 
     private _GameManager _gm;
+    public AudioSource menuMusic;
     public float submitValue;
 
     void Start()
     {
-        WaitAFrame();
+        menuMusic.volume = 100;
+        StartCoroutine(WaitAFrame());
         
         lastSelectedObject = InitialButton;
         LoadAllSongs();
@@ -269,10 +271,12 @@ public class ChartSelectManager : MonoBehaviour
         //if (_gm.multiplayer)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameMultiplayer");
+            menuMusic.volume = 0;
         }
         //else
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameSingleplayer");
+            menuMusic.volume = 0;
         }
     }
 }

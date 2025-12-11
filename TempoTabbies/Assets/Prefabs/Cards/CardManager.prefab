@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllCards:
-  - {fileID: 11400000, guid: d8119ce22ed87954cbe44f138b0d09b3, type: 2}
-  - {fileID: 11400000, guid: d89b93aecd139d04caa6650b5031c432, type: 2}
-  - {fileID: 11400000, guid: 3324b73afd48e104b9a60b3d5a36572a, type: 2}
   - {fileID: 11400000, guid: 269359fb917f72c4eaf2e2aeb950ff72, type: 2}
+  - {fileID: 11400000, guid: e0115704f77ee524990d5677624d2282, type: 2}
+  - {fileID: 11400000, guid: fa6733141b87d1341bff8b400c6387ca, type: 2}
+  - {fileID: 11400000, guid: d8119ce22ed87954cbe44f138b0d09b3, type: 2}
   Score: {fileID: 0}
   ValittuPelaaja: {fileID: 0}

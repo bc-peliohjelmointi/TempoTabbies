@@ -16,7 +16,6 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
     [Header("Scoring Settings")]
     public int maxScore = 1010000;    // All Marvelous
     public int perfectScore = 1000000; // All Perfect
@@ -27,6 +26,7 @@ public class ScoreManager : MonoBehaviour
     public int notesHit = 0;
     public int currentCombo = 0;
 
+
     // Judgment counters
     public int marvelousCount = 0;
     public int perfectCount = 0;
@@ -35,7 +35,6 @@ public class ScoreManager : MonoBehaviour
     public int badCount = 0;
     public int missCount = 0;
 
-    // MAX COMBO - tracks the highest combo reached during gameplay
     public int maxCombo = 0;
 
     private int pointsPerNote;
@@ -53,7 +52,10 @@ public class ScoreManager : MonoBehaviour
 
         if (totalNotes > 0)
         {
+            // Calculate how many points to deduct for each judgment type
             pointsPerNote = perfectScore / totalNotes;
+
+            // Start with maximum possible score (all Marvelous)
             currentScore = maxScore;
         }
         else
@@ -90,10 +92,11 @@ public class ScoreManager : MonoBehaviour
         // Update combo system
         UpdateCombo(judgment);
 
-        // Calculate total score
-        currentScore = CalculatePoints(judgment);
+        // Calculate points based on judgment
+        int pointsEarned = CalculatePoints(judgment);
+        currentScore = pointsEarned; // Just set to calculated total
 
-        Debug.Log($"{judgment}: Score: {currentScore}, Combo: {currentCombo}, Max Combo: {maxCombo}");
+        Debug.Log($"{judgment}: Score: {currentScore}, Combo: {currentCombo}");
 
         // Trigger updates
         OnScoreChanged?.Invoke(currentScore);
@@ -103,37 +106,34 @@ public class ScoreManager : MonoBehaviour
 
     public void UpdateCombo(string judgment)
     {
+        // Reset combo on miss or bad
         if (judgment == "MISS" || judgment == "BAD")
         {
-            // Before resetting combo, check if this was the highest combo
-            if (currentCombo > maxCombo)
-            {
-                maxCombo = currentCombo;
-                Debug.Log($"New Max Combo Reached: {maxCombo}");
-            }
-
             currentCombo = 0;
         }
         else
         {
-            // Increment combo
+            // Increment combo for other judgments
             currentCombo++;
-
-            // Check if this increment created a new max combo
-            if (currentCombo > maxCombo)
-            {
-                maxCombo = currentCombo;
-                Debug.Log($"New Max Combo Reached: {maxCombo}");
-            }
         }
 
         // Update combo UI/display
         OnComboChanged?.Invoke(currentCombo);
     }
 
-    // Calculate points based on all judgments so far
+    // Call this when the chart/song is complete
+    public void FinalizeScore()
+    {
+        // Finalize max combo - check the current combo at the end
+        if (currentCombo > maxCombo)
+        {
+            maxCombo = currentCombo;
+        }
+    }
+
     private int CalculatePoints(string judgment)
     {
+        // Calculate total points from all judgments so far
         int totalPoints = 0;
 
         totalPoints += marvelousCount * Mathf.RoundToInt(pointsPerNote * 1.01f);
@@ -141,19 +141,9 @@ public class ScoreManager : MonoBehaviour
         totalPoints += greatCount * Mathf.RoundToInt(pointsPerNote * 0.75f);
         totalPoints += goodCount * Mathf.RoundToInt(pointsPerNote * 0.30f);
         totalPoints += badCount * Mathf.RoundToInt(pointsPerNote * 0.15f);
+        // Misses add 0 points
 
         return totalPoints;
-    }
-
-    // Call this at the end of the song to finalize max combo
-    public void FinalizeMaxCombo()
-    {
-        // Check one final time in case the player ended with a combo
-        if (currentCombo > maxCombo)
-        {
-            maxCombo = currentCombo;
-            Debug.Log($"Final Max Combo After Song End: {maxCombo}");
-        }
     }
 
     // Calculate accuracy percentage
@@ -174,6 +164,8 @@ public class ScoreManager : MonoBehaviour
     // Get current grade based on accuracy
     public string GetGrade()
     {
+        float accuracy = GetAccuracy();
+
         if (currentScore >= 1010000) return "MAX";
         if (currentScore >= 1009000) return "SSS+";
         if (currentScore >= 1007500) return "SSS";
@@ -223,16 +215,11 @@ public class ScoreManager : MonoBehaviour
 
     public string GetScoreBreakdown()
     {
-        return $"Score: {currentScore:N0}\nAccuracy: {GetAccuracy():F2}%\nGrade: {GetGrade()}\nMax Combo: {maxCombo}x";
+        return $"Score: {currentScore:N0}\nAccuracy: {GetAccuracy():F2}%\nGrade: {GetGrade()}";
     }
 
-    public string GetCurrentComboInfo()
+    public string GetComboInfo()
     {
         return $"{currentCombo}x";
-    }
-
-    public string GetMaxComboInfo()
-    {
-        return $"{maxCombo}x";
     }
 }

@@ -21,9 +21,7 @@ public class ScoreDisplay : MonoBehaviour
             scoreText.text = $"Score: {scoreManager.currentScore:N0}";
             accuracyText.text = $"Accuracy: {scoreManager.GetAccuracy():F2}%";
             gradeText.text = $"Grade: {scoreManager.GetGrade()}";
-
-            // FIXED: Use GetCurrentComboInfo() instead of GetComboInfo()
-            comboText.text = scoreManager.GetCurrentComboInfo();
+            comboText.text = scoreManager.GetComboInfo();
 
             // Update judgment counters
             judgmentText.text = $"MARV: {scoreManager.marvelousCount}\n" +

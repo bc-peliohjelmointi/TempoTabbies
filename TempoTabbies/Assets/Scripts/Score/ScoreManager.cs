@@ -109,6 +109,10 @@ public class ScoreManager : MonoBehaviour
         // Reset combo on miss or bad
         if (judgment == "MISS" || judgment == "BAD")
         {
+            if (currentCombo > maxCombo)
+            {
+                maxCombo = currentCombo;
+            }
             currentCombo = 0;
         }
         else

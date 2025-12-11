@@ -164,10 +164,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.backButton: // Back to menu
                         // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(backButton.gameObject);
-                        if (clickValue > 0.1)
-                        {
-                            OnReturnClick();
-                        }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.playerSpecific;
@@ -322,10 +318,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.backButton: // Back to menu
                                               // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(buttonP1.gameObject);
-                        if (clickValue > 0)
-                        {
-                            OnPlayerReturnClick();
-                        }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.scrollSpeed;
@@ -361,10 +353,6 @@ public class OptionsManager : MonoBehaviour
                     case Selected.backButton: // Back to menu
                                               // Selects the correct button
                         EventSystem.current.SetSelectedGameObject(buttonP2.gameObject);
-                        if (clickValue > 0)
-                        {
-                            OnPlayerReturnClick();
-                        }
                         if (canMove && moveAmount.y < -0.1f)
                         {
                             selected = Selected.scrollSpeed;
@@ -438,11 +426,13 @@ public class OptionsManager : MonoBehaviour
         {
             player = Player.p2;
         }
+        selected = Selected.backButton;
     }
 
     public void OnPlayerReturnClick()
     {
         player = Player.none;
+        selected = Selected.backButton;
     }
 
     public void AssistTick()

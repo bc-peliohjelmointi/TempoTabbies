@@ -56,10 +56,6 @@ public class CatSelectionManager : MonoBehaviour
         {
             case Selected.cat1:
                 EventSystem.current.SetSelectedGameObject(cat1.gameObject);
-                if (clickValue > 0)
-                {
-                    OnCat1Click();
-                }
                 if (canMove && (moveAmount.y < -0.1f || moveAmount.x > 0.1f))
                 {
                     selected = Selected.cat2;

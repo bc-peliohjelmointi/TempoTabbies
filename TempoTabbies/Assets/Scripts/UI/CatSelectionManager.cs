@@ -17,6 +17,7 @@ public class CatSelectionManager : MonoBehaviour
     // UI Objects
     [SerializeField] Button cat1;
     [SerializeField] Button cat2;
+    [SerializeField] Button cat3;
 
     // player movement timer
     bool canMove;
@@ -25,7 +26,8 @@ public class CatSelectionManager : MonoBehaviour
     public enum Selected
     {
         cat1,
-        cat2
+        cat2,
+        cat3
     }
     public Selected selected;
 
@@ -74,6 +76,23 @@ public class CatSelectionManager : MonoBehaviour
                 if (canMove && (moveAmount.y > 0.1f || moveAmount.x < -0.1f))
                 {
                     selected = Selected.cat1;
+                    canMove = false;
+                }
+                if (canMove && (moveAmount.y < -0.1f || moveAmount.x > 0.1f))
+                {
+                    selected = Selected.cat3;
+                    canMove = false;
+                }
+                break;
+            case Selected.cat3:
+                EventSystem.current.SetSelectedGameObject(cat3.gameObject);
+                if (clickValue > 0)
+                {
+                    OnCat3Click();
+                }
+                if (canMove && (moveAmount.y > 0.1f || moveAmount.x < -0.1f))
+                {
+                    selected = Selected.cat2;
                     canMove = false;
                 }
                 break;
@@ -133,6 +152,28 @@ public class CatSelectionManager : MonoBehaviour
         else if (gameManager.whoGetsToPlay == 1)
         {
             gameManager.p2.cat = 2;
+            SceneManager.LoadScene("StageSelect");
+        }
+        gameManager.state = _GameManager.GameState.StageSelect;
+    }
+
+    public void OnCat3Click()
+    {
+        if (gameManager.whoGetsToPlay == 0)
+        {
+            gameManager.p1.cat = 3;
+            if (gameManager.multiplayer == false)
+            {
+                SceneManager.LoadScene("StageSelect");
+            }
+            else
+            {
+                gameManager.whoGetsToPlay = 1;
+            }
+        }
+        else if (gameManager.whoGetsToPlay == 1)
+        {
+            gameManager.p2.cat = 3;
             SceneManager.LoadScene("StageSelect");
         }
         gameManager.state = _GameManager.GameState.StageSelect;

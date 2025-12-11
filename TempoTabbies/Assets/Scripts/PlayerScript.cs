@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     // The players player number, 0 = player 1, 1 = player 2
     [Header("Who the player is")]

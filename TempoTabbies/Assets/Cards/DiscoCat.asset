@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: 
   description: 
-  effectType: 0
+  effectType: 3
   icon: {fileID: 5877953129647886523, guid: a0f8ca29a55ad9849b191c8d36c61622, type: 3}
   duration: 10
   cooldown: 30

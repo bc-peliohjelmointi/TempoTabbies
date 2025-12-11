@@ -16,7 +16,7 @@ public class GameEndManager : MonoBehaviour
 
     public NoteSpawner noteSpawner;
     public AudioSource music;
-    public EvalScreenManager evalScreenManager;
+    public ScoreManager scoreManager;
     private bool gameEnding = false;
     private bool gameEnded = false;
     private bool allNotesSpawned = false;
@@ -30,7 +30,6 @@ public class GameEndManager : MonoBehaviour
 
     void Start()
     {
-
         // Initialize fade overlay
         if (fadeOverlay != null)
         {
@@ -71,8 +70,13 @@ public class GameEndManager : MonoBehaviour
     {
         gameEnding = true;
         Debug.Log("[GameEndManager] Starting game end sequence with fade");
-        ScoreManager.Instance.FinalizeScore();
-        Debug.Log($"[GameEndManager] Finalized score. Max Combo: {ScoreManager.Instance.maxCombo}");
+
+        // FINALIZE MAX COMBO AT THE END
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.FinalizeMaxCombo();
+            Debug.Log($"[GameEndManager] Final max combo: {ScoreManager.Instance.maxCombo}");
+        }
 
         // Start fade effects
         StartCoroutine(FadeMusic());
@@ -146,7 +150,7 @@ public class GameEndManager : MonoBehaviour
         color.a = 0f;
         fadeOverlay.color = color;
 
-        
+
         if (fadeOverlay.TryGetComponent<Image>(out var fadeImage))
         {
             fadeImage.raycastTarget = false;
@@ -159,10 +163,19 @@ public class GameEndManager : MonoBehaviour
         {
             evalScreen.SetActive(true);
 
+            // Force refresh the evaluation screen to show final scores
             EvalScreenManager evalManager = evalScreen.GetComponent<EvalScreenManager>();
             if (evalManager != null)
             {
+                // Assign the score manager reference if not already set
+                if (evalManager.scoreManager == null && ScoreManager.Instance != null)
+                {
+                    evalManager.scoreManager = ScoreManager.Instance;
+                }
+
+                // Refresh the display to show updated max combo
                 evalManager.RefreshDisplay();
+                Debug.Log($"[GameEndManager] Evaluation screen refreshed. Max Combo: {ScoreManager.Instance?.maxCombo}");
             }
             else
             {
@@ -181,6 +194,12 @@ public class GameEndManager : MonoBehaviour
     public void ReturnToStageSelect()
     {
         Debug.Log("[GameEndManager] Returning to stage selection");
+
+        // Reset the score manager
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.ResetScore();
+        }
 
         // RESET THE GAME SESSION DATA
         GameSession.SelectedSong = null;

@@ -45,10 +45,15 @@ public class EvalScreenManager : MonoBehaviour
 
     void Start()
     {
-
         // Get the current song and chart from GameSession
         currentSong = GameSession.SelectedSong;
         currentChart = GameSession.SelectedChart;
+
+        // Try to get ScoreManager if not assigned
+        if (scoreManager == null && ScoreManager.Instance != null)
+        {
+            scoreManager = ScoreManager.Instance;
+        }
 
         // Set up the evaluation screen
         SetupSongInfo();
@@ -90,7 +95,7 @@ public class EvalScreenManager : MonoBehaviour
                 StartCoroutine(LoadBannerImage(currentSong.Banner, currentSong.DirectoryPath));
             }
 
-            // CHANGE THIS: Load _stagefile.png instead of banner for background
+            // Load _stagefile.png instead of banner for background
             StartCoroutine(LoadStageBackground(currentSong.DirectoryPath));
         }
         else
@@ -110,17 +115,28 @@ public class EvalScreenManager : MonoBehaviour
         else
         {
             Debug.LogWarning("ScoreManager not found for evaluation screen");
+            // Try to find it
+            scoreManager = FindObjectOfType<ScoreManager>();
+            if (scoreManager != null)
+            {
+                UpdateScoreDisplay();
+            }
         }
     }
 
     private void UpdateScoreDisplay()
     {
-        if (scoreManager == null) return;
+        if (scoreManager == null)
+        {
+            Debug.LogWarning("ScoreManager is null in UpdateScoreDisplay");
+            return;
+        }
 
         // Update all score information
         scoreText.text = $"{scoreManager.currentScore:N0}";
         gradeText.text = $" {scoreManager.GetGrade()}";
-        // CHANGE THIS LINE: Use maxCombo instead of GetComboInfo()
+
+        // DISPLAY MAX COMBO - this is the key fix
         comboText.text = $"Max Combo: {scoreManager.maxCombo}x";
 
         // Update judgment breakdown
@@ -128,18 +144,16 @@ public class EvalScreenManager : MonoBehaviour
             marvelousText.text = $"{scoreManager.marvelousCount}";
         if (perfectText != null)
             perfectText.text = $"{scoreManager.perfectCount}";
-
         if (greatText != null)
             greatText.text = $"{scoreManager.greatCount}";
-
         if (goodText != null)
             goodText.text = $"{scoreManager.goodCount}";
-
         if (badText != null)
             badText.text = $"{scoreManager.badCount}";
-
         if (missText != null)
             missText.text = $"{scoreManager.missCount}";
+
+        Debug.Log($"[EvalScreenManager] Display updated. Max Combo: {scoreManager.maxCombo}");
     }
 
     private void SetDifficultyColor(string difficulty)
@@ -158,14 +172,10 @@ public class EvalScreenManager : MonoBehaviour
             else if (diffLower.Contains("hard")) colorToUse = hardColor;
             else if (diffLower.Contains("challenge")) colorToUse = challengeColor;
             else if (diffLower.Contains("edit")) colorToUse = editColor;
-            // Fallback to editColor if no match
         }
 
         difficultyBackground.color = colorToUse;
     }
-
-
-
 
     private void SetupNavigation()
     {
@@ -177,59 +187,52 @@ public class EvalScreenManager : MonoBehaviour
         }
     }
 
-
     private IEnumerator LoadBannerImage(string bannerFilename, string songDirectory)
-{
-    if (string.IsNullOrEmpty(bannerFilename) || bannerImage == null)
-        yield break;
-
-    string bannerPath = Path.Combine(songDirectory, bannerFilename);
-
-    if (!File.Exists(bannerPath))
     {
-        // Try to find the file in the Songs folder
-        string songsRoot = Path.Combine(Application.dataPath, "Songs");
-        string[] foundFiles = Directory.GetFiles(songsRoot, bannerFilename, SearchOption.AllDirectories);
-        if (foundFiles.Length > 0)
+        if (string.IsNullOrEmpty(bannerFilename) || bannerImage == null)
+            yield break;
+
+        string bannerPath = Path.Combine(songDirectory, bannerFilename);
+
+        if (!File.Exists(bannerPath))
         {
-            bannerPath = foundFiles[0];
+            // Try to find the file in the Songs folder
+            string songsRoot = Path.Combine(Application.dataPath, "Songs");
+            string[] foundFiles = Directory.GetFiles(songsRoot, bannerFilename, SearchOption.AllDirectories);
+            if (foundFiles.Length > 0)
+            {
+                bannerPath = foundFiles[0];
+            }
+            else
+            {
+                Debug.LogWarning($"Banner file not found: {bannerFilename}");
+                yield break;
+            }
+        }
+
+        byte[] fileData = File.ReadAllBytes(bannerPath);
+        Texture2D texture = new Texture2D(2, 2);
+
+        if (texture.LoadImage(fileData))
+        {
+            texture.filterMode = FilterMode.Point;
+            texture.wrapMode = TextureWrapMode.Clamp;
+
+            Sprite bannerSprite = Sprite.Create(texture,
+                new Rect(0, 0, texture.width, texture.height),
+                new Vector2(0.5f, 0.5f), 100f);
+
+            bannerImage.sprite = bannerSprite;
+            bannerImage.preserveAspect = false;
+            bannerImage.type = Image.Type.Simple;
+
+            Debug.Log($"[EvalScreenManager] Banner loaded without aspect preservation: {texture.width}x{texture.height}");
         }
         else
         {
-            Debug.LogWarning($"Banner file not found: {bannerFilename}");
-            yield break;
+            Debug.LogWarning("Failed to load banner image from file data");
         }
     }
-
-    // Load the file directly as bytes to avoid compression
-    byte[] fileData = File.ReadAllBytes(bannerPath);
-    Texture2D texture = new Texture2D(2, 2);
-    
-    // Load the image without compression
-    if (texture.LoadImage(fileData))
-    {
-        // Disable compression for this texture
-        texture.filterMode = FilterMode.Point;
-        texture.wrapMode = TextureWrapMode.Clamp;
-        
-        // Create sprite
-        Sprite bannerSprite = Sprite.Create(texture,
-            new Rect(0, 0, texture.width, texture.height),
-            new Vector2(0.5f, 0.5f), 100f);
-        
-        bannerImage.sprite = bannerSprite;
-        
-        // Don't preserve aspect - let it stretch to fill the RectTransform
-        bannerImage.preserveAspect = false;
-        bannerImage.type = Image.Type.Simple;
-        
-        Debug.Log($"[EvalScreenManager] Banner loaded without aspect preservation: {texture.width}x{texture.height}");
-    }
-    else
-    {
-        Debug.LogWarning("Failed to load banner image from file data");
-    }
-}
 
     private IEnumerator LoadStageBackground(string songDirectory)
     {
@@ -274,9 +277,9 @@ public class EvalScreenManager : MonoBehaviour
 
                 // Make background darker without changing opacity
                 Color bgColor = backgroundImage.color;
-                bgColor.r *= 0.4f; // Reduce red channel to 40%
-                bgColor.g *= 0.4f; // Reduce green channel to 40%  
-                bgColor.b *= 0.4f; // Reduce blue channel to 40%
+                bgColor.r *= 0.4f;
+                bgColor.g *= 0.4f;
+                bgColor.b *= 0.4f;
                 backgroundImage.color = bgColor;
 
                 Debug.Log($"[EvalScreenManager] Stage background loaded and darkened");
@@ -296,19 +299,27 @@ public class EvalScreenManager : MonoBehaviour
         GameSession.SelectedSong = null;
         GameSession.SelectedChart = null;
 
+        // Reset the score manager
+        if (ScoreManager.Instance != null)
+        {
+            ScoreManager.Instance.ResetScore();
+        }
+
         // Load stage select scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("StageSelectSMtest");
-    }
-
-    // Update display in case scores change (though they shouldn't after game ends)
-    void Update()
-    {
-        UpdateScoreDisplay();
     }
 
     // Public method to refresh display (can be called from GameEndManager)
     public void RefreshDisplay()
     {
+        Debug.Log("[EvalScreenManager] Refreshing display");
+
+        // Re-get score manager if needed
+        if (scoreManager == null && ScoreManager.Instance != null)
+        {
+            scoreManager = ScoreManager.Instance;
+        }
+
         SetupSongInfo();
         UpdateScoreDisplay();
     }

@@ -129,7 +129,7 @@ public class OptionsManager : MonoBehaviour
                 allOfP1.SetActive(false);
                 allOfP2.SetActive(false);
                 volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
-                scrollSpeedValue.text = ((int)(scrollSpeed.value * 10)).ToString();
+                scrollSpeedValue.text = scrollSpeed.value.ToString();
                 audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
                 assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
                 hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
@@ -285,7 +285,7 @@ public class OptionsManager : MonoBehaviour
                 allOfIt.SetActive(false);
                 allOfP1.SetActive(true);
                 allOfP2.SetActive(false);
-                scrollSpeedValueP1.text = (scrollSpeedP1.value * 10).ToString();
+                scrollSpeedValueP1.text = scrollSpeedP1.value.ToString();
                 gameManager.whoGetsToPlay = 0;
                 if (gameManager.p1.scrollSpeed != 0 && scrollSpeedP1.value == 0)
                 {
@@ -310,7 +310,7 @@ public class OptionsManager : MonoBehaviour
                     case Selected.scrollSpeed: // The scroll speed slider
                         EventSystem.current.SetSelectedGameObject(scrollSpeedP1.gameObject);
                         gameManager.p1.scrollSpeed = scrollSpeedP1.value;
-                        scrollSpeedValueP1.text = (scrollSpeedP1.value * 10).ToString();
+                        scrollSpeedValueP1.text = scrollSpeedP1.value.ToString();
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.backButton;
@@ -324,7 +324,7 @@ public class OptionsManager : MonoBehaviour
                 allOfIt.SetActive(false);
                 allOfP1.SetActive(false);
                 allOfP2.SetActive(true);
-                scrollSpeedValueP2.text = (scrollSpeedP2.value * 10).ToString();
+                scrollSpeedValueP2.text = scrollSpeedP2.value.ToString();
                 gameManager.whoGetsToPlay = 1;
                 if (gameManager.p2.scrollSpeed != 0 && scrollSpeedP2.value == 0)
                 {
@@ -349,7 +349,7 @@ public class OptionsManager : MonoBehaviour
                     case Selected.scrollSpeed: // The scroll speed slider
                         EventSystem.current.SetSelectedGameObject(scrollSpeedP2.gameObject);
                         gameManager.p2.scrollSpeed = scrollSpeedP2.value;
-                        scrollSpeedValueP2.text = (scrollSpeedP2.value * 10).ToString();
+                        scrollSpeedValueP2.text = scrollSpeedP2.value.ToString();
                         if (canMove && moveAmount.y > 0.1f)
                         {
                             selected = Selected.backButton;

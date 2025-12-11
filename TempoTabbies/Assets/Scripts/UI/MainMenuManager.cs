@@ -71,10 +71,10 @@ public class MainMenuManager : MonoBehaviour
                 // Selects the correct button
                 EventSystem.current.SetSelectedGameObject(catSelect.gameObject);
                 // Checks if the button is clicked
-                if (clickValue > 0)
+                /*if (clickValue > 0)
                 {
                     OnCatSelectClick();
-                }
+                }*/
                 // Moves to the desired button
                 if (moveAmount.y < -0.1f && canMove)
                 {

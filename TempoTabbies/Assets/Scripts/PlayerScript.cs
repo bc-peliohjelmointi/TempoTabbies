@@ -111,10 +111,8 @@ public class PlayerScript : MonoBehaviour
                 if (chartManager == null)
                 {
                     chartManager = FindFirstObjectByType<ChartSelectManager>();
-                    Debug.Log("Error");
                 }
                 chartManager.submitValue = submit.ReadValue<float>();
-                Debug.Log(chartManager.submitValue);
                 break;
 
             case _GameManager.GameState.Game:
@@ -179,7 +177,6 @@ public class PlayerScript : MonoBehaviour
         {
             if (allControllers[i] != myDevice)
             {
-                Debug.Log(i);
                 InputSystem.DisableDevice(allControllers[i]);
             }
         }

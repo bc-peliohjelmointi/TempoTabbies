@@ -11,7 +11,6 @@ public class ChartSelectManager : MonoBehaviour
     [Header("UI References")]
     public Transform SongListParent;
     public GameObject SongButtonPrefab;
-    public GameObject InitialButton;
     public ScrollRect songsScrollRect;
 
     [Header("Song Folder")]
@@ -24,26 +23,15 @@ public class ChartSelectManager : MonoBehaviour
     private GameObject lastSelectedObject;
 
     private _GameManager _gm;
-    
+
     public float submitValue;
 
     void Start()
     {
-        
-        StartCoroutine(WaitAFrame());
-        
-        lastSelectedObject = InitialButton;
         LoadAllSongs();
         PopulateSongList();
         _gm = FindFirstObjectByType<_GameManager>();
         _gm.source.volume = 100;
-    }
-
-    IEnumerator WaitAFrame()
-    {
-        yield return null;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(InitialButton);
     }
 
     void LoadAllSongs()
@@ -80,7 +68,6 @@ public class ChartSelectManager : MonoBehaviour
         {
             GameObject buttonObj = Instantiate(SongButtonPrefab, SongListParent);
             SongButton btn = buttonObj.GetComponent<SongButton>();
-
             if (btn != null)
             {
                 btn.Setup(sm, this);
@@ -93,6 +80,8 @@ public class ChartSelectManager : MonoBehaviour
                 }
             }
         }
+        lastSelectedObject = songButtons[0].transform.GetChild(0).gameObject;
+        EventSystem.current.SetSelectedGameObject(songButtons[0].transform.GetChild(0).gameObject);
     }
 
     public void SetOtherSongButtonsInteractable(bool interactable, SongButton exceptThisOne)

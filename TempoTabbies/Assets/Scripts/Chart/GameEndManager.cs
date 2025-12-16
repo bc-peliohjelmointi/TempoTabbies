@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEditor.PackageManager;
+using UnityEngine.EventSystems;
 
 public class GameEndManager : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class GameEndManager : MonoBehaviour
 
     [Header("UI References")]
     public GameObject evalScreen;
+    public GameObject returnButton;
     public Image fadeOverlay;
     public string stageSelectSceneName = "StageSelect";
 
@@ -158,6 +161,7 @@ public class GameEndManager : MonoBehaviour
         if (evalScreen != null)
         {
             evalScreen.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(returnButton);
 
             EvalScreenManager evalManager = evalScreen.GetComponent<EvalScreenManager>();
             if (evalManager != null)

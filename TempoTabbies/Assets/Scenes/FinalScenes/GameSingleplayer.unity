@@ -1642,6 +1642,7 @@ MonoBehaviour:
   endDelayAfterLastNote: 5
   fadeDuration: 1.5
   evalScreen: {fileID: 2029610054}
+  returnButton: {fileID: 2029610049}
   fadeOverlay: {fileID: 2029610053}
   stageSelectSceneName: StageSelect
   noteSpawner: {fileID: 1519786609}
@@ -5131,24 +5132,24 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1061633677}
   - {fileID: 2029610048}
+  - {fileID: 1431055408}
   - {fileID: 1519786610}
-  - {fileID: 1679093608}
   - {fileID: 1489999071}
-  - {fileID: 564379876}
-  - {fileID: 144102722}
-  - {fileID: 1226751784}
-  - {fileID: 616277453}
-  - {fileID: 1729740986}
-  - {fileID: 387631744}
   - {fileID: 628688428}
   - {fileID: 1747282063}
-  - {fileID: 1431055408}
-  - {fileID: 847163587}
-  - {fileID: 275084307}
+  - {fileID: 144102722}
   - {fileID: 1509357026}
+  - {fileID: 387631744}
+  - {fileID: 1729740986}
+  - {fileID: 616277453}
+  - {fileID: 1226751784}
+  - {fileID: 793039414}
+  - {fileID: 564379876}
+  - {fileID: 847163587}
   - {fileID: 797076457}
   - {fileID: 319012139}
-  - {fileID: 1061633677}
-  - {fileID: 793039414}
+  - {fileID: 1679093608}
   - {fileID: 967665397}
+  - {fileID: 275084307}

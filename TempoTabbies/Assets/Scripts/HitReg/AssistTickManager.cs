@@ -1,8 +1,10 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class AssistTickManager : MonoBehaviour
 {
+    public _GameManager gm;
+
     public AudioSource tickSoundSource;
     public AudioClip tickSoundClip;
 
@@ -21,6 +23,12 @@ public class AssistTickManager : MonoBehaviour
     }
 
     void Update()
+    {
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+        }
+        if (gm.assistTick)
         {
             if (tickSoundSource == null || tickSoundClip == null) return;
             if (!GameManager.Instance.Music.isPlaying) return;
@@ -35,7 +43,8 @@ public class AssistTickManager : MonoBehaviour
                 lastProcessedTime = tickTime;
             }
         }
-        
+    }
+
 
     public void ScheduleTick(float targetTime)
     {

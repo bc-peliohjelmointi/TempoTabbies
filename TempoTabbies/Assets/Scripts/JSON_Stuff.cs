@@ -21,6 +21,7 @@ public class GM
     public float assistTickVolume;
     public bool hitSound;
     public float hitSoundVolume;
+    public bool showButtons;
 }
 
 public class JSON_Stuff : MonoBehaviour
@@ -60,6 +61,7 @@ public class JSON_Stuff : MonoBehaviour
         gm.assistTickVolume = gameManager.assistTickVolume;
         gm.hitSound = gameManager.hitSound;
         gm.hitSoundVolume = gameManager.hitSoundVolume;
+        gm.showButtons = gameManager.showButtons;
         // Turns the placeholder class into a JSON string
         json = JsonUtility.ToJson(gm);
         // Turns the newly made JSON string into a JSON file
@@ -83,6 +85,7 @@ public class JSON_Stuff : MonoBehaviour
         gameManager.assistTickVolume = gm.assistTickVolume;
         gameManager.hitSound = gm.hitSound;
         gameManager.hitSoundVolume = gm.hitSoundVolume;
+        gameManager.showButtons = gm.showButtons;
     }
 
     // Saves the data from Player1 to a JSON file

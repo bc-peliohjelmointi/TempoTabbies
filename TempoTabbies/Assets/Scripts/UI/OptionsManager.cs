@@ -29,6 +29,7 @@ public class OptionsManager : MonoBehaviour
     public Button backButton;
     public Button playerSpecific;
     public Slider volumeSlider;
+    public Button showButton;
     public Slider scrollSpeed;
     public Button audioOffset1;
     public Button audioOffset2;
@@ -52,6 +53,7 @@ public class OptionsManager : MonoBehaviour
     [Header("The images for buttons, to see if they are false or true")]
     public Image assistTickConfirmation;
     public Image hitSoundConfirmation;
+    public Image showButtonConfirmation;
 
     // Slider value text
     [Header("Number text in the settings")]
@@ -76,6 +78,7 @@ public class OptionsManager : MonoBehaviour
         backButton,
         playerSpecific,
         volumeSlider,
+        showButtons,
         scrollSpeed,
         audioOffset1,
         audioOffset2,
@@ -116,6 +119,7 @@ public class OptionsManager : MonoBehaviour
         hitSoundVolume.value = gameManager.hitSoundVolume;
         AssistTick(); AssistTick(); // just clicks them twice, so if true in gameManager, it goes false then back to true ->
         HitSound(); HitSound();     // we do this so it can check what the button bools are in the gameManager
+        ShowButtons(); ShowButtons();
 
         // Plays audio
         source = GetComponent<AudioSource>();
@@ -201,17 +205,30 @@ public class OptionsManager : MonoBehaviour
                         }
                         if (canMove && moveAmount.y < -0.1f)
                         {
-                            selected = Selected.scrollSpeed;
+                            selected = Selected.showButtons;
                             canMove = false;
                         }
                         break;
 
+                    case Selected.showButtons:
+                        EventSystem.current.SetSelectedGameObject(showButton.gameObject);
+                        if (canMove && moveAmount.y > 0.1f)
+                        {
+                            selected = Selected.volumeSlider;
+                            canMove = false;
+                        }
+                        if (canMove && moveAmount.y < -0.1f)
+                        {
+                            selected = Selected.scrollSpeed;
+                            canMove = false;
+                        }
+                        break;
                     case Selected.scrollSpeed: // The scroll speed slider
                         EventSystem.current.SetSelectedGameObject(scrollSpeed.gameObject);
                         gameManager.scrollSpeed = scrollSpeed.value;
                         if (canMove && moveAmount.y > 0.1f)
                         {
-                            selected = Selected.volumeSlider;
+                            selected = Selected.showButtons;
                             canMove = false;
                         }
                         if (canMove && moveAmount.y < -0.1f)
@@ -437,29 +454,43 @@ public class OptionsManager : MonoBehaviour
 
     public void AssistTick()
     {
-        if (gameManager.assistTick == false)
+        if (gameManager.assistTick == true)
         {
-            gameManager.assistTick = true;
+            gameManager.assistTick = false;
             assistTickConfirmation.color = Color.softRed;
         }
         else
         {
-            gameManager.assistTick = false;
+            gameManager.assistTick = true;
             assistTickConfirmation.color = Color.limeGreen;
         }
     }
 
     public void HitSound()
     {
-        if (gameManager.hitSound == false)
+        if (gameManager.hitSound == true)
         {
-            gameManager.hitSound = true;
+            gameManager.hitSound = false;
             hitSoundConfirmation.color = Color.softRed;
         }
         else
         {
-            gameManager.hitSound = false;
+            gameManager.hitSound = true;
             hitSoundConfirmation.color = Color.limeGreen;
+        }
+    }
+
+    public void ShowButtons()
+    {
+        if (gameManager.showButtons == true)
+        {
+            gameManager.showButtons = false;
+            showButtonConfirmation.color = Color.softRed;
+        }
+        else
+        {
+            gameManager.showButtons = true;
+            showButtonConfirmation.color = Color.limeGreen;
         }
     }
 }

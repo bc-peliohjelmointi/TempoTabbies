@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEditor.PackageManager;
 using UnityEngine.EventSystems;
 
 public class GameEndManager : MonoBehaviour

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     public NoteSpawner Spawner;
     public AudioSource Music;
+    public _GameManager gm;
 
     [Header("Prefabs")]
     public GameObject NotePrefab_TypeA;
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     public static float GlobalMusicStartTime; // when audio actually starts
     public static float ChartStartTime;       // when chart started (notes spawn relative to this)
                                               // ADD THIS - Make GameManager a singleton for easy access
+
+    public GameObject buttons;
     public static GameManager Instance { get; private set; }
 
     // ADD THIS - Property to get corrected song time (without offset)
@@ -39,9 +42,6 @@ public class GameManager : MonoBehaviour
             return 0f; // Freeze time until music starts
         }
     }
-
-
-
 
     void Awake()
     {
@@ -88,6 +88,19 @@ public class GameManager : MonoBehaviour
         ChartStartTime = Time.time;
 
         StartCoroutine(LoadAndStartMusic(sm));
+
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+        }
+        if (gm.showButtons)
+        {
+            buttons.SetActive(true);
+        }
+        else
+        {
+            buttons.SetActive(false);
+        }
     }
 
 

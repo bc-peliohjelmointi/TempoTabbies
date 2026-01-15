@@ -1981,6 +1981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20520222e576fa448ba124be73eb308b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
   tickSoundSource: {fileID: 552271984}
   tickSoundClip: {fileID: 8300000, guid: 8da82ee2c7853414eaea3730db51f952, type: 3}
   tickLeadTime: 0
@@ -3680,12 +3681,12 @@ MonoBehaviour:
   NotePrefab_TypeD: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
   HoldBodyPrefab_TypeA: {fileID: 7616786001258505359, guid: 1dbe7007570613a42b24c4acefdcc6a1, type: 3}
   HoldBodyPrefab_TypeB: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
-  HoldBodyPrefab_TypeC: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
-  HoldBodyPrefab_TypeD: {fileID: 7616786001258505359, guid: 1dbe7007570613a42b24c4acefdcc6a1, type: 3}
+  HoldBodyPrefab_TypeC: {fileID: 6957338224734186665, guid: 482e4ab6a5e93df48b02eb4e2a8c8f07, type: 3}
+  HoldBodyPrefab_TypeD: {fileID: 2776019150494415633, guid: c73d1421e2772624085d65a9276da774, type: 3}
   HoldEndPrefab_TypeA: {fileID: 775594856530101656, guid: c8cca72113b95354fb9c101b549338f6, type: 3}
   HoldEndPrefab_TypeB: {fileID: 1996908913226298683, guid: 898e34daf7780844aa8e1c8166dfb2ed, type: 3}
-  HoldEndPrefab_TypeC: {fileID: 1996908913226298683, guid: 898e34daf7780844aa8e1c8166dfb2ed, type: 3}
-  HoldEndPrefab_TypeD: {fileID: 775594856530101656, guid: c8cca72113b95354fb9c101b549338f6, type: 3}
+  HoldEndPrefab_TypeC: {fileID: 5256536170669766737, guid: 1c3d172cde1645c4ab1ee99fbd464428, type: 3}
+  HoldEndPrefab_TypeD: {fileID: 3082347994106870054, guid: 5446edcc77d6ad6429390e16edb1dab5, type: 3}
   maxSpawnsPerFrame: 16
 --- !u!4 &1519786610
 Transform:

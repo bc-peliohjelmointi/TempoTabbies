@@ -34,6 +34,14 @@ public class HoldNote : MonoBehaviour
 
     private const float ReleaseLeniency = 1.5f; // 1.5× timing window leniency
 
+    // Previous-frame held states for gamepad buttons/sticks (used to detect press-this-frame)
+    private bool prevLeftTriggerHeld = false;
+    private bool prevRightTriggerHeld = false;
+    private bool prevLeftShoulderHeld = false;
+    private bool prevRightShoulderHeld = false;
+    private bool prevStickLeftHeld = false;
+    private bool prevStickRightHeld = false;
+
     void Start()
     {
         if (Body != null)
@@ -65,6 +73,9 @@ public class HoldNote : MonoBehaviour
         if (!Music || !HitLine || hasEnded) return;
 
         gamepad = Gamepad.current;
+        var keyboard = Keyboard.current;
+
+        // Current song time
         float songTime = GameManager.SongTime;
 
         float timeUntilStart = StartTime - songTime;
@@ -73,21 +84,42 @@ public class HoldNote : MonoBehaviour
         float startY = HitLine.position.y + timeUntilStart * ScrollSpeed;
         float endY = HitLine.position.y + timeUntilEnd * ScrollSpeed;
 
+        // Compute current held states (gamepad OR keyboard)
+        bool curLeftTriggerHeld = (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+        bool curLeftShoulderHeld = (gamepad != null && gamepad.leftShoulder.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+        bool curRightShoulderHeld = (gamepad != null && gamepad.rightShoulder.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
+        bool curRightTriggerHeld = (gamepad != null && gamepad.rightTrigger.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
+
+        bool curStickLeftHeld = false;
+        bool curStickRightHeld = false;
+        if (gamepad != null)
+        {
+            curStickLeftHeld = gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f;
+            curStickRightHeld = gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f;
+        }
+
         // --- BEFORE HOLD START ---
         if (!hasStartedHold)
         {
             transform.position = new Vector3(transform.position.x, startY, transform.position.z);
-
 
             // Check for MISS if we passed the hit window without pressing
             if (!initialPressScored && !initialPressMissed && songTime > StartTime + TimingWindows.Bad)
             {
                 MissInitialPress();
                 initialPressMissed = true;
+
+                // update prev states and exit
+                UpdatePrevHeldStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
+                return;
             }
 
-            // start holding if pressed near receptor
-            if (songTime >= StartTime - 0.05f && songTime <= StartTime + 0.1f && IsPressedForLane(Lane))
+            // Determine press-this-frame for the lane (require an edge/wasPressedThisFrame)
+            bool pressedThisFrame = IsPressedThisFrameForLane(Lane, keyboard,
+                curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
+
+            // start holding only if the input was pressed THIS FRAME within the timing window
+            if (songTime >= StartTime - 0.05f && songTime <= StartTime + 0.1f && pressedThisFrame)
             {
                 hasStartedHold = true;
                 transform.position = new Vector3(transform.position.x, HitLine.position.y, transform.position.z);
@@ -98,9 +130,16 @@ public class HoldNote : MonoBehaviour
                     ScoreInitialPress(songTime);
                     initialPressScored = true;
                 }
+
+                // update prev states and continue (we'll handle body in next block)
+                UpdatePrevHeldStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
+                return;
             }
 
             UpdateBodyWorld(startY, endY);
+
+            // update prev states for edge detection next frame
+            UpdatePrevHeldStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
             return;
         }
 
@@ -114,6 +153,7 @@ public class HoldNote : MonoBehaviour
         if (!stillHolding && songTime < EndTime - TimingWindows.Bad)
         {
             EarlyReleaseMiss();
+            UpdatePrevHeldStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
             return;
         }
 
@@ -133,6 +173,9 @@ public class HoldNote : MonoBehaviour
             hasEnded = true;
             DestroyHold();
         }
+
+        // update prev states for edge detection next frame
+        UpdatePrevHeldStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
     }
 
 
@@ -308,5 +351,38 @@ public class HoldNote : MonoBehaviour
             5 => gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f,
             _ => false,
         };
+    }
+
+    // Detect a press that occurred this frame for the given lane (supports keyboard and gamepad)
+    private bool IsPressedThisFrameForLane(int lane, Keyboard keyboard,
+        bool curLeftTriggerHeld, bool curRightTriggerHeld, bool curLeftShoulderHeld, bool curRightShoulderHeld,
+        bool curStickLeftHeld, bool curStickRightHeld)
+    {
+        // Keyboard mapping: S -> left trigger (lane 0), D -> left bumper (lane 1), , -> right bumper (lane 2), . -> right trigger (lane 3)
+        bool kbLeftTriggerPressed = keyboard != null && keyboard.sKey.wasPressedThisFrame;
+        bool kbLeftBumperPressed = keyboard != null && keyboard.dKey.wasPressedThisFrame;
+        bool kbRightBumperPressed = keyboard != null && keyboard.commaKey.wasPressedThisFrame;
+        bool kbRightTriggerPressed = keyboard != null && keyboard.periodKey.wasPressedThisFrame;
+
+        return lane switch
+        {
+            0 => (gamepad != null && curLeftTriggerHeld && !prevLeftTriggerHeld) || kbLeftTriggerPressed,
+            1 => (gamepad != null && curLeftShoulderHeld && !prevLeftShoulderHeld) || kbLeftBumperPressed,
+            2 => (gamepad != null && curRightShoulderHeld && !prevRightShoulderHeld) || kbRightBumperPressed,
+            3 => (gamepad != null && curRightTriggerHeld && !prevRightTriggerHeld) || kbRightTriggerPressed,
+            4 => (gamepad != null && curStickLeftHeld && !prevStickLeftHeld), // stick presses only from gamepad
+            5 => (gamepad != null && curStickRightHeld && !prevStickRightHeld), // stick presses only from gamepad
+            _ => false,
+        };
+    }
+
+    private void UpdatePrevHeldStates(bool curLeftTriggerHeld, bool curRightTriggerHeld, bool curLeftShoulderHeld, bool curRightShoulderHeld, bool curStickLeftHeld, bool curStickRightHeld)
+    {
+        prevLeftTriggerHeld = (gamepad != null) && curLeftTriggerHeld;
+        prevRightTriggerHeld = (gamepad != null) && curRightTriggerHeld;
+        prevLeftShoulderHeld = (gamepad != null) && curLeftShoulderHeld;
+        prevRightShoulderHeld = (gamepad != null) && curRightShoulderHeld;
+        prevStickLeftHeld = (gamepad != null) && curStickLeftHeld;
+        prevStickRightHeld = (gamepad != null) && curStickRightHeld;
     }
 }

@@ -181,18 +181,4 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
-
-    // Turns on other players controls
-    public void EnableOthers()
-    {
-        var allControllers = InputSystem.devices;
-        var myDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
-        for (int i = 0; i < allControllers.Count; i++)
-        {
-            if (allControllers[i] != myDevice)
-            {
-                InputSystem.EnableDevice(allControllers[i]);
-            }
-        }
-    }
 }

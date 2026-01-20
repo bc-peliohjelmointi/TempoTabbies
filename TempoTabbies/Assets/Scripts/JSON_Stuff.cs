@@ -29,6 +29,7 @@ public class JSON_Stuff : MonoBehaviour
     public static JSON_Stuff instance;
 
     public _GameManager gameManager;
+    public Create_LoadPlayer maker;
 
     // String used to save and find JSON files
     string json;
@@ -46,6 +47,7 @@ public class JSON_Stuff : MonoBehaviour
         }
 
         gameManager = FindAnyObjectByType<_GameManager>();
+        maker = FindAnyObjectByType<Create_LoadPlayer>();
     }
 
     // Saves the data from _GameManager to a JSON file
@@ -74,7 +76,7 @@ public class JSON_Stuff : MonoBehaviour
         // makes the placeholder class
         GM gm = new();
         // Finds the currently existing JSON file needed
-        json = File.ReadAllText("JSON/_GameManager");
+        json = File.ReadAllText("JSON/GameManager/_GameManager");
         // Transform the JSON file into the placeholder class
         gm = JsonUtility.FromJson<GM>(json);
         // Tranfers the values from the place holder class to the _GameManager
@@ -86,6 +88,35 @@ public class JSON_Stuff : MonoBehaviour
         gameManager.hitSound = gm.hitSound;
         gameManager.hitSoundVolume = gm.hitSoundVolume;
         gameManager.showButtons = gm.showButtons;
+    }
+
+    public void SavePlayer(string name, float scrollSpeed, bool assistTick)
+    {
+        Player player = new();
+        player.scrollSpeed = scrollSpeed;
+        player.assistTick = assistTick;
+        json = JsonUtility.ToJson(player);
+        File.WriteAllText($"JSON/{name}", json);
+        maker.MakeButtons();
+    }
+
+    public void LoadPlayer(string name, int playerNumber)
+    {
+        Player player = new();
+        json = File.ReadAllText($"JSON/{name}");
+        player = JsonUtility.FromJson<Player>(json);
+        if (playerNumber == 0)
+        {
+            gameManager.p1.scrollSpeed = player.scrollSpeed;
+            gameManager.p1.assistTick = player.assistTick;
+        }
+        else
+        {
+            gameManager.p2.scrollSpeed = player.scrollSpeed;
+            gameManager.p2.assistTick = player.assistTick;
+        }
+        maker.scrollSpeed = player.scrollSpeed;
+        maker.assistTick = player.assistTick;
     }
 
     // Saves the data from Player1 to a JSON file

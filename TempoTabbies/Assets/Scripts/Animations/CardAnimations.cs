@@ -13,12 +13,7 @@ public class CardAnimations : MonoBehaviour
 
     public void Draw()
     {
-        DrawCard(cardToDraw);
-    }
-
-    public void DrawCard(GameObject card)
-    {
-        Animator animator = card.GetComponent<Animator>();
+        Animator animator = cardToDraw.GetComponent<Animator>();
         animator.SetTrigger("Active");
     }
 

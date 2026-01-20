@@ -91,8 +91,6 @@ public class MainMenuManager : MonoBehaviour
             case ButtonSelect.practice:
                 // Selects the correct button
                 EventSystem.current.SetSelectedGameObject(practise.gameObject);
-                // Checks if the button is clicked
-
                 // Moves to the desired button
                 if (moveAmount.y < -0.1f && canMove)
                 {

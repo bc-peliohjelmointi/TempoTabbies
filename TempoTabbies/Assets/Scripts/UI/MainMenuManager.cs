@@ -15,6 +15,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] Button practise;
     [SerializeField] Button options;
     [SerializeField] Button quit;
+    [SerializeField] Button multiplayer;
 
     private JSON_Stuff json;
     private _GameManager gameManager;
@@ -29,6 +30,7 @@ public class MainMenuManager : MonoBehaviour
     // State to know which button is being selected
     public enum ButtonSelect
     {
+        multiplayer,
         catSelect,
         practice,
         options,
@@ -169,6 +171,12 @@ public class MainMenuManager : MonoBehaviour
     {
         gameManager.state = _GameManager.GameState.Options;
         SceneManager.LoadScene("Options");
+    }
+
+    public void OnMultiplayerClick()
+    {
+        gameManager.multiplayer = true;
+        SceneManager.LoadScene("MultiplayerStageSelect");
     }
 
     public void OnQuitClick()

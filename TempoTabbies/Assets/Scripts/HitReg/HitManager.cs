@@ -11,7 +11,7 @@ public class HitManager : MonoBehaviour
     public GameObject rightBumperObject;
     public GameObject leftStickObject;
     public GameObject rightStickObject;
-
+     
     [Header("Hit Effects")]
     public SimpleHitSprite hitEffectManager;
     [Header("Score Management")]
@@ -43,22 +43,41 @@ public class HitManager : MonoBehaviour
     void Update()
     {
         gamepad = Gamepad.current;
-        if (gamepad == null) return;
+        var keyboard = Keyboard.current;
 
-        // --- Input visuals (unchanged) ---
+        // TEMPORARY KEYBOARD INPUT
+        bool kbLeftTriggerPressed = keyboard != null && keyboard.sKey.wasPressedThisFrame;
+        bool kbLeftTriggerHeld = keyboard != null && keyboard.sKey.isPressed;
+
+        bool kbLeftBumperPressed = keyboard != null && keyboard.dKey.wasPressedThisFrame;
+        bool kbLeftBumperHeld = keyboard != null && keyboard.dKey.isPressed;
+
+        bool kbRightBumperPressed = keyboard != null && keyboard.commaKey.wasPressedThisFrame;
+        bool kbRightBumperHeld = keyboard != null && keyboard.commaKey.isPressed;
+
+        bool kbRightTriggerPressed = keyboard != null && keyboard.periodKey.wasPressedThisFrame;
+        bool kbRightTriggerHeld = keyboard != null && keyboard.periodKey.isPressed;
+
+        // --- Input visuals (supports both gamepad and keyboard) ---
         if (leftTriggerObject != null)
-            leftTriggerObject.SetActive(gamepad.leftTrigger.isPressed);
+            leftTriggerObject.SetActive((gamepad != null && gamepad.leftTrigger.isPressed) || kbLeftTriggerHeld);
         if (rightTriggerObject != null)
-            rightTriggerObject.SetActive(gamepad.rightTrigger.isPressed);
+            rightTriggerObject.SetActive((gamepad != null && gamepad.rightTrigger.isPressed) || kbRightTriggerHeld);
         if (leftBumperObject != null)
-            leftBumperObject.SetActive(gamepad.leftShoulder.isPressed);
+            leftBumperObject.SetActive((gamepad != null && gamepad.leftShoulder.isPressed) || kbLeftBumperHeld);
         if (rightBumperObject != null)
-            rightBumperObject.SetActive(gamepad.rightShoulder.isPressed);
+            rightBumperObject.SetActive((gamepad != null && gamepad.rightShoulder.isPressed) || kbRightBumperHeld);
 
-        bool stickLeftHeld = gamepad.leftStick.ReadValue().x < -0.5f ||
-                    gamepad.rightStick.ReadValue().x < -0.5f;
-        bool stickRightHeld = gamepad.leftStick.ReadValue().x > 0.5f ||
+        bool stickLeftHeld = false;
+        bool stickRightHeld = false;
+
+        if (gamepad != null)
+        {
+            stickLeftHeld = gamepad.leftStick.ReadValue().x < -0.5f ||
+                            gamepad.rightStick.ReadValue().x < -0.5f;
+            stickRightHeld = gamepad.leftStick.ReadValue().x > 0.5f ||
                              gamepad.rightStick.ReadValue().x > 0.5f;
+        }
 
         bool stickLeftPressed = stickLeftHeld && !stickLeftInitialPress;
         bool stickRightPressed = stickRightHeld && !stickRightInitialPress;
@@ -75,10 +94,10 @@ public class HitManager : MonoBehaviour
         float songTime = GameManager.SongTime;
 
         // Tap / hold start detection
-        if (gamepad.leftTrigger.wasPressedThisFrame) TryHit(leftTriggerLane, songTime);
-        if (gamepad.leftShoulder.wasPressedThisFrame) TryHit(leftBumperLane, songTime);
-        if (gamepad.rightShoulder.wasPressedThisFrame) TryHit(rightBumperLane, songTime);
-        if (gamepad.rightTrigger.wasPressedThisFrame) TryHit(rightTriggerLane, songTime);
+        if ((gamepad != null && gamepad.leftTrigger.wasPressedThisFrame) || kbLeftTriggerPressed) TryHit(leftTriggerLane, songTime);
+        if ((gamepad != null && gamepad.leftShoulder.wasPressedThisFrame) || kbLeftBumperPressed) TryHit(leftBumperLane, songTime);
+        if ((gamepad != null && gamepad.rightShoulder.wasPressedThisFrame) || kbRightBumperPressed) TryHit(rightBumperLane, songTime);
+        if ((gamepad != null && gamepad.rightTrigger.wasPressedThisFrame) || kbRightTriggerPressed) TryHit(rightTriggerLane, songTime);
         if (stickLeftPressed) TryHit(leftStickLane, songTime);
         if (stickRightPressed) TryHit(rightStickLane, songTime);
 
@@ -204,18 +223,20 @@ public class HitManager : MonoBehaviour
 
     private bool IsLanePressed(int lane)
     {
-        if (gamepad == null) return false;
+        var keyboard = Keyboard.current;
 
-        if (lane == leftTriggerLane) return gamepad.leftTrigger.isPressed;
-        if (lane == rightTriggerLane) return gamepad.rightTrigger.isPressed;
-        if (lane == leftBumperLane) return gamepad.leftShoulder.isPressed;
-        if (lane == rightBumperLane) return gamepad.rightShoulder.isPressed;
+        if (lane == leftTriggerLane)
+            return (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+        if (lane == rightTriggerLane)
+            return (gamepad != null && gamepad.rightTrigger.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
+        if (lane == leftBumperLane)
+            return (gamepad != null && gamepad.leftShoulder.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+        if (lane == rightBumperLane)
+            return (gamepad != null && gamepad.rightShoulder.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
         if (lane == leftStickLane)
-            return gamepad.leftStick.ReadValue().x < -0.5f ||
-                   gamepad.rightStick.ReadValue().x < -0.5f;
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f));
         if (lane == rightStickLane)
-            return gamepad.leftStick.ReadValue().x > 0.5f ||
-                   gamepad.rightStick.ReadValue().x > 0.5f;
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f));
 
         return false;
     }

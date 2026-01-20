@@ -310,7 +310,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5433878104890603057, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 813356880}
   m_SourcePrefab: {fileID: 100100000, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
 --- !u!1 &334615280
 GameObject:
@@ -709,6 +712,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686139803}
   m_CullTransparentMesh: 1
+--- !u!1 &813356877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5433878104890603057, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
+  m_PrefabInstance: {fileID: 153105367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &813356880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813356877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3b558db80a1a34dafd07cff317b4ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1310866152
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,8 +761,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageID: 0
   whoGetsToPlay: 0
-  multiplayer: 0
+  multiplayer: 1
   volume: 0
+  showButtons: 0
   scrollSpeed: 0
   audioOffset: 0
   assistTick: 0
@@ -752,6 +773,7 @@ MonoBehaviour:
   players: []
   p1: {fileID: 0}
   p2: {fileID: 0}
+  source: {fileID: 0}
   state: 0
 --- !u!4 &1310866154
 Transform:

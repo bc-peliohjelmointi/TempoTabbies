@@ -56,10 +56,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        if (playerInput.currentControlScheme == "Keyboard&Mouse")
+       /* if (playerInput.currentControlScheme == "Keyboard&Mouse")
         {
             Destroy(gameObject);
-        }
+        }*/
         // Checks what state the game is currently in
         switch (gameManager.state)
         {

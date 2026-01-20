@@ -26,6 +26,9 @@ public class ChartSelectManager : MonoBehaviour
 
     public float submitValue;
 
+    // if player 1 has selected
+    private bool waitingForSecondPlayer = false;
+
     void Start()
     {
         LoadAllSongs();
@@ -80,8 +83,12 @@ public class ChartSelectManager : MonoBehaviour
                 }
             }
         }
-        lastSelectedObject = songButtons[0].transform.GetChild(0).gameObject;
-        EventSystem.current.SetSelectedGameObject(songButtons[0].transform.GetChild(0).gameObject);
+
+        if (songButtons.Count > 0)
+        {
+            lastSelectedObject = songButtons[0].transform.GetChild(0).gameObject;
+            EventSystem.current.SetSelectedGameObject(songButtons[0].transform.GetChild(0).gameObject);
+        }
     }
 
     public void SetOtherSongButtonsInteractable(bool interactable, SongButton exceptThisOne)
@@ -255,18 +262,47 @@ public class ChartSelectManager : MonoBehaviour
 
     public void OnChartSelected(SMFile song, SMChart chart)
     {
+        // Save last selection for debugging / persistence
         PlayerPrefs.SetString("SelectedSongPath", song.Title);
-        GameSession.SelectedSong = song;
-        GameSession.SelectedChart = chart;
-        //if (_gm.multiplayer)
+
+        // If multiplayer is off, behave exactly as before
+        if (_gm == null)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameMultiplayer");
-            _gm.source.volume = 0;
+            _gm = FindFirstObjectByType<_GameManager>();
         }
-        //else
+
+        if (!_gm.multiplayer)
         {
+            GameSession.SelectedSong = song;
+            GameSession.SelectedChart = chart;
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameSingleplayer");
             _gm.source.volume = 0;
+            return;
         }
+
+        // first selection goes to player 1, second to player 2
+        if (!waitingForSecondPlayer)
+        {
+            GameSession.SelectedSongP1 = song;
+            GameSession.SelectedChartP1 = chart;
+            waitingForSecondPlayer = true;
+
+            // Give control to player 2 in input handling if you use whoGetsToPlay
+            _gm.whoGetsToPlay = 1;
+
+            Debug.Log($"Player 1 selected: {song.Title} / {chart.Description}. Waiting for Player 2 to choose.");
+            // tee tahan jotain mika indikoi etta pelaaja 2 vuoro
+            return;
+        }
+
+       
+        GameSession.SelectedSongP2 = song;
+        GameSession.SelectedChartP2 = chart;
+        waitingForSecondPlayer = false;
+        _gm.whoGetsToPlay = 0;
+
+        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MultiPlayerChartTest");
+        _gm.source.volume = 0;
     }
 }

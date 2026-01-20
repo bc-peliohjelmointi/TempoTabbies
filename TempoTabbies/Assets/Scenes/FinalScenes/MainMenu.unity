@@ -1116,6 +1116,7 @@ MonoBehaviour:
   practise: {fileID: 1868220631}
   options: {fileID: 1978779707}
   quit: {fileID: 907967181}
+  multiplayer: {fileID: 0}
   moveAmount: {x: 0, y: 0}
   clickValue: 0
   buttonSelect: 0
@@ -2196,7 +2197,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6199672377654524051}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1149239102}
+        m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
+        m_MethodName: OnCatSelectClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &3781438284834610433
 RectTransform:
   m_ObjectHideFlags: 0

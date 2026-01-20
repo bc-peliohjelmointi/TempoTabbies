@@ -32,7 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FinalScenes/CardSelect.unity
     guid: b7c7c64cc2cfbac42b0e46156dac4779
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MultiPlayer/MultiPlayerChartTest.unity
     guid: 80351a5545345f54d850a2103529c9e0
   - enabled: 0

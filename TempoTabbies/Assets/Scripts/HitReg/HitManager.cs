@@ -11,7 +11,7 @@ public class HitManager : MonoBehaviour
     public GameObject rightBumperObject;
     public GameObject leftStickObject;
     public GameObject rightStickObject;
-     
+
     [Header("Hit Effects")]
     public SimpleHitSprite hitEffectManager;
     [Header("Score Management")]
@@ -33,82 +33,121 @@ public class HitManager : MonoBehaviour
     public int leftStickLane = 4;
     public int rightStickLane = 5;
 
+    [Header("Input options")]
+    [Tooltip("When true this HitManager will also accept keyboard fallback input (useful for player 1).")]
+    public bool AcceptKeyboard = true;
+
     private bool stickLeftInitialPress = false;
     private bool stickRightInitialPress = false;
 
-
-    private Gamepad gamepad;
+    private Gamepad gamepad;              // currently-used gamepad for this HitManager (kept for legacy use)
+    private Gamepad assignedGamepad;      // explicitly assigned device from MultiHitManager
     private readonly Dictionary<int, HoldNote> activeHolds = new();
+
+    // Previous-frame gamepad-held states (used to detect press-this-frame reliably)
+    private bool prevGamepadLeftTriggerHeld = false;
+    private bool prevGamepadRightTriggerHeld = false;
+    private bool prevGamepadLeftShoulderHeld = false;
+    private bool prevGamepadRightShoulderHeld = false;
+    private bool prevGamepadStickLeftHeld = false;
+    private bool prevGamepadStickRightHeld = false;
 
     void Update()
     {
-        gamepad = Gamepad.current;
-        var keyboard = Keyboard.current;
+        // Prefer an explicitly assigned gamepad (from MultiHitManager). If none assigned, fall back to Gamepad.current.
+        gamepad = assignedGamepad ?? Gamepad.current;
 
-        // TEMPORARY KEYBOARD INPUT
-        bool kbLeftTriggerPressed = keyboard != null && keyboard.sKey.wasPressedThisFrame;
-        bool kbLeftTriggerHeld = keyboard != null && keyboard.sKey.isPressed;
+        // Read keyboard only if configured to accept it. This prevents keyboard from controlling both players.
+        var keyboard = AcceptKeyboard ? Keyboard.current : null;
 
-        bool kbLeftBumperPressed = keyboard != null && keyboard.dKey.wasPressedThisFrame;
-        bool kbLeftBumperHeld = keyboard != null && keyboard.dKey.isPressed;
+        // Current held states (gamepad OR keyboard)
+        bool curLeftTriggerHeld = (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+        bool curLeftBumperHeld = (gamepad != null && gamepad.leftShoulder.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+        bool curRightBumperHeld = (gamepad != null && gamepad.rightShoulder.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
+        bool curRightTriggerHeld = (gamepad != null && gamepad.rightTrigger.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
 
-        bool kbRightBumperPressed = keyboard != null && keyboard.commaKey.wasPressedThisFrame;
-        bool kbRightBumperHeld = keyboard != null && keyboard.commaKey.isPressed;
-
-        bool kbRightTriggerPressed = keyboard != null && keyboard.periodKey.wasPressedThisFrame;
-        bool kbRightTriggerHeld = keyboard != null && keyboard.periodKey.isPressed;
-
-        // --- Input visuals (supports both gamepad and keyboard) ---
-        if (leftTriggerObject != null)
-            leftTriggerObject.SetActive((gamepad != null && gamepad.leftTrigger.isPressed) || kbLeftTriggerHeld);
-        if (rightTriggerObject != null)
-            rightTriggerObject.SetActive((gamepad != null && gamepad.rightTrigger.isPressed) || kbRightTriggerHeld);
-        if (leftBumperObject != null)
-            leftBumperObject.SetActive((gamepad != null && gamepad.leftShoulder.isPressed) || kbLeftBumperHeld);
-        if (rightBumperObject != null)
-            rightBumperObject.SetActive((gamepad != null && gamepad.rightShoulder.isPressed) || kbRightBumperHeld);
-
-        bool stickLeftHeld = false;
-        bool stickRightHeld = false;
-
+        bool curStickLeftHeld = false;
+        bool curStickRightHeld = false;
         if (gamepad != null)
         {
-            stickLeftHeld = gamepad.leftStick.ReadValue().x < -0.5f ||
-                            gamepad.rightStick.ReadValue().x < -0.5f;
-            stickRightHeld = gamepad.leftStick.ReadValue().x > 0.5f ||
-                             gamepad.rightStick.ReadValue().x > 0.5f;
+            curStickLeftHeld = gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f;
+            curStickRightHeld = gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f;
         }
 
-        bool stickLeftPressed = stickLeftHeld && !stickLeftInitialPress;
-        bool stickRightPressed = stickRightHeld && !stickRightInitialPress;
+        // 
+        bool leftTriggerPressedThisFrame = (gamepad != null && gamepad.leftTrigger.isPressed && !prevGamepadLeftTriggerHeld)
+                                           || (keyboard != null && keyboard.sKey.wasPressedThisFrame);
 
+        bool leftBumperPressedThisFrame = (gamepad != null && gamepad.leftShoulder.isPressed && !prevGamepadLeftShoulderHeld)
+                                          || (keyboard != null && keyboard.dKey.wasPressedThisFrame);
+
+        bool rightBumperPressedThisFrame = (gamepad != null && gamepad.rightShoulder.isPressed && !prevGamepadRightShoulderHeld)
+                                           || (keyboard != null && keyboard.commaKey.wasPressedThisFrame);
+
+        bool rightTriggerPressedThisFrame = (gamepad != null && gamepad.rightTrigger.isPressed && !prevGamepadRightTriggerHeld)
+                                            || (keyboard != null && keyboard.periodKey.wasPressedThisFrame);
+
+        bool stickLeftPressed = (curStickLeftHeld && !prevGamepadStickLeftHeld);
+        bool stickRightPressed = (curStickRightHeld && !prevGamepadStickRightHeld);
+
+
+        // Input visuals (supports both gamepad and keyboard held states)
+        if (leftTriggerObject != null)
+            leftTriggerObject.SetActive(curLeftTriggerHeld);
+        if (rightTriggerObject != null)
+            rightTriggerObject.SetActive(curRightTriggerHeld);
+        if (leftBumperObject != null)
+            leftBumperObject.SetActive(curLeftBumperHeld);
+        if (rightBumperObject != null)
+            rightBumperObject.SetActive(curRightBumperHeld);
 
         if (leftStickObject != null)
-            leftStickObject.SetActive(stickLeftHeld);
+            leftStickObject.SetActive(curStickLeftHeld);
         if (rightStickObject != null)
-            rightStickObject.SetActive(stickRightHeld);
+            rightStickObject.SetActive(curStickRightHeld);
 
         if (Music == null || Spawner == null)
+        {
+            // update previous-frame gamepad states before returning
+            UpdatePrevGamepadStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftBumperHeld, curRightBumperHeld, curStickLeftHeld, curStickRightHeld);
             return;
+        }
 
         float songTime = GameManager.SongTime;
 
-        // Tap / hold start detection
-        if ((gamepad != null && gamepad.leftTrigger.wasPressedThisFrame) || kbLeftTriggerPressed) TryHit(leftTriggerLane, songTime);
-        if ((gamepad != null && gamepad.leftShoulder.wasPressedThisFrame) || kbLeftBumperPressed) TryHit(leftBumperLane, songTime);
-        if ((gamepad != null && gamepad.rightShoulder.wasPressedThisFrame) || kbRightBumperPressed) TryHit(rightBumperLane, songTime);
-        if ((gamepad != null && gamepad.rightTrigger.wasPressedThisFrame) || kbRightTriggerPressed) TryHit(rightTriggerLane, songTime);
+        // Tap / hold start detection (only on press-this-frame events)
+        if (leftTriggerPressedThisFrame) TryHit(leftTriggerLane, songTime);
+        if (leftBumperPressedThisFrame) TryHit(leftBumperLane, songTime);
+        if (rightBumperPressedThisFrame) TryHit(rightBumperLane, songTime);
+        if (rightTriggerPressedThisFrame) TryHit(rightTriggerLane, songTime);
         if (stickLeftPressed) TryHit(leftStickLane, songTime);
         if (stickRightPressed) TryHit(rightStickLane, songTime);
 
-        stickLeftInitialPress = stickLeftHeld;
-        stickRightInitialPress = stickRightHeld;
+        // Track stick initial press state for non-gamepad fallbacks
+        stickLeftInitialPress = curStickLeftHeld;
+        stickRightInitialPress = curStickRightHeld;
 
-        // Update hold tracking
+        // Update hold tracking (uses held states)
         UpdateHolds(songTime);
 
         // Detect misses
         CheckForMisses(songTime);
+
+        // store previous gamepad-held states for next-frame edge detection
+        UpdatePrevGamepadStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftBumperHeld, curRightBumperHeld, curStickLeftHeld, curStickRightHeld);
+    }
+
+    private void UpdatePrevGamepadStates(bool leftTriggerHeld, bool rightTriggerHeld, bool leftBumperHeld, bool rightBumperHeld, bool stickLeftHeld, bool stickRightHeld)
+    {
+        // Only track previous states for an actual gamepad device (avoid treating keyboard-only as gamepad edge)
+        bool haveGamepad = assignedGamepad != null || Gamepad.current != null;
+
+        prevGamepadLeftTriggerHeld = haveGamepad && leftTriggerHeld;
+        prevGamepadRightTriggerHeld = haveGamepad && rightTriggerHeld;
+        prevGamepadLeftShoulderHeld = haveGamepad && leftBumperHeld;
+        prevGamepadRightShoulderHeld = haveGamepad && rightBumperHeld;
+        prevGamepadStickLeftHeld = haveGamepad && stickLeftHeld;
+        prevGamepadStickRightHeld = haveGamepad && stickRightHeld;
     }
 
     private void TryHit(int lane, float currentTime)
@@ -191,6 +230,7 @@ public class HitManager : MonoBehaviour
 
     private void TryStartHold(HoldNote hold, int lane, float currentTime)
     {
+        // Only allow starting a hold when the input was a press THIS FRAME
         float diff = Mathf.Abs(hold.StartTime - currentTime);
         if (diff <= TimingWindows.Great && !activeHolds.ContainsKey(lane))
         {
@@ -223,7 +263,7 @@ public class HitManager : MonoBehaviour
 
     private bool IsLanePressed(int lane)
     {
-        var keyboard = Keyboard.current;
+        var keyboard = AcceptKeyboard ? Keyboard.current : null;
 
         if (lane == leftTriggerLane)
             return (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
@@ -279,8 +319,12 @@ public class HitManager : MonoBehaviour
             JudgmentDisplay.Show(label, isEarly, isLate);
     }
 
+    // Called by MultiHitManager to explicitly bind a gamepad to this HitManager.
     public void SetGamepad(Gamepad pad)
     {
-        gamepad = pad;
+        assignedGamepad = pad;
+        // If an explicit pad was provided, set 'gamepad' now so visuals respond immediately
+        if (assignedGamepad != null)
+            gamepad = assignedGamepad;
     }
 }

@@ -115,14 +115,6 @@ public class OptionsManager : MonoBehaviour
         if (submitValue > 0.1f)
         {
             json.SaveGameManager();
-            if (gameManager.p1 != null)
-            {
-                json.SavePlayer1();
-            }
-            if (gameManager.p2 != null)
-            {
-                json.SavePlayer2();
-            }
 
             gameManager.state = _GameManager.GameState.MainMenu;
             SceneManager.LoadScene("MainMenu");

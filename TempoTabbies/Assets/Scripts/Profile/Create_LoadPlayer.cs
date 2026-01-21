@@ -72,7 +72,10 @@ public class Create_LoadPlayer : MonoBehaviour
 
     public void SaveName()
     {
-        json.SavePlayer(player, scrollSpeed, assistTick);
+        if (chosenName.text.ToLower() != "name of profile")
+        {
+            json.SavePlayer(player, scrollSpeed, assistTick);
+        }
     }
 
     public void LoadName()

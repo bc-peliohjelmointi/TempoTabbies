@@ -112,43 +112,4 @@ public class JSON_Stuff : MonoBehaviour
         maker.assistTick = player.assistTick;
     }
 
-    // Saves the data from Player1 to a JSON file
-    public void SavePlayer1()
-    {
-        Player player = new();
-        player.scrollSpeed = gameManager.p1.scrollSpeed;
-        player.assistTick = gameManager.p1.assistTick;
-        json = JsonUtility.ToJson(player);
-        File.WriteAllText("JSON/Player1", json);
-    }
-
-    // Loads the data for Player1 from a JSON file
-    public void LoadPlayer1()
-    {
-        Player player = new();
-        json = File.ReadAllText("JSON/Player1");
-        player = JsonUtility.FromJson<Player>(json);
-        gameManager.p1.scrollSpeed = player.scrollSpeed;
-        gameManager.p1.assistTick = player.assistTick;
-    }
-
-    // Saves the data from Player2 to a JSON file
-    public void SavePlayer2()
-    {
-        Player player = new();
-        player.scrollSpeed = gameManager.p2.scrollSpeed;
-        player.assistTick = gameManager.p2.assistTick;
-        json = JsonUtility.ToJson(player);
-        File.WriteAllText("JSON/Player2", json);
-    }
-
-    // Loads the data for Player2 from a JSON file
-    public void LoadPlayer2()
-    {
-        Player player = new();
-        json = File.ReadAllText("JSON/Player2");
-        player = JsonUtility.FromJson<Player>(json);
-        gameManager.p2.scrollSpeed = player.scrollSpeed;
-        gameManager.p2.assistTick = player.assistTick;
-    }
 }

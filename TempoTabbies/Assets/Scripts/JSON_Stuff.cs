@@ -97,23 +97,16 @@ public class JSON_Stuff : MonoBehaviour
         player.assistTick = assistTick;
         json = JsonUtility.ToJson(player);
         File.WriteAllText($"JSON/{name}", json);
-        maker.MakeButtons();
     }
 
-    public void LoadPlayer(string name, int playerNumber)
+    public void LoadPlayer(string name)
     {
         Player player = new();
         json = File.ReadAllText($"JSON/{name}");
         player = JsonUtility.FromJson<Player>(json);
-        if (playerNumber == 0)
+        if (maker == null)
         {
-            gameManager.p1.scrollSpeed = player.scrollSpeed;
-            gameManager.p1.assistTick = player.assistTick;
-        }
-        else
-        {
-            gameManager.p2.scrollSpeed = player.scrollSpeed;
-            gameManager.p2.assistTick = player.assistTick;
+            maker = FindFirstObjectByType<Create_LoadPlayer>();
         }
         maker.scrollSpeed = player.scrollSpeed;
         maker.assistTick = player.assistTick;

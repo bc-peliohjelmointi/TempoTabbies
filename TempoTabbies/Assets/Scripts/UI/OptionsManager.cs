@@ -38,17 +38,6 @@ public class OptionsManager : MonoBehaviour
     public Button hitSound;
     public Slider hitSoundVolume;
 
-    // P1 specific
-    [Header("Every UI element for player 1 options")]
-    public Button buttonP1;
-    public Slider scrollSpeedP1;
-    public TextMeshProUGUI scrollSpeedValueP1;
-    // P2 specific
-    [Header("Every UI element for player 2 options")]
-    public Button buttonP2;
-    public Slider scrollSpeedP2;
-    public TextMeshProUGUI scrollSpeedValueP2;
-
     // gameObjects to show button are on or off
     [Header("The images for buttons, to see if they are false or true")]
     public Image assistTickConfirmation;
@@ -62,12 +51,6 @@ public class OptionsManager : MonoBehaviour
     public TextMeshProUGUI audioOffsetValue;
     public TextMeshProUGUI assistTickVolumeValue;
     public TextMeshProUGUI hitSoundVolumeValue;
-
-    // The parent object of every UI item
-    [Header("All the objects that contain everything")]
-    public GameObject allOfIt;
-    public GameObject allOfP1;
-    public GameObject allOfP2;
 
     // Audio
     AudioSource source;
@@ -88,16 +71,8 @@ public class OptionsManager : MonoBehaviour
         hitSoundVolume
     }
 
-    public enum Player
-    {
-        none,
-        p1,
-        p2
-    }
-
     [Header("The current option state")]
     public Selected selected;
-    public Player player;
 
     // player movement timer
     bool canMove;
@@ -155,9 +130,6 @@ public class OptionsManager : MonoBehaviour
         if ((int)volumeSlider.value != volumeSlider.value) { volumeSlider.value = (int)volumeSlider.value; }
         if ((int)scrollSpeed.value != scrollSpeed.value) { scrollSpeed.value = (int)scrollSpeed.value; }
 
-        allOfIt.SetActive(true);
-        allOfP1.SetActive(false);
-        allOfP2.SetActive(false);
         volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
         scrollSpeedValue.text = scrollSpeed.value.ToString();
         audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
@@ -355,13 +327,8 @@ public class OptionsManager : MonoBehaviour
 
     public void OnProfileClick()
     {
+        gameManager.state = _GameManager.GameState.Profiles;
         SceneManager.LoadScene("Profiles");
-    }
-
-    public void OnPlayerReturnClick()
-    {
-        player = Player.none;
-        selected = Selected.backButton;
     }
 
     public void AssistTick()

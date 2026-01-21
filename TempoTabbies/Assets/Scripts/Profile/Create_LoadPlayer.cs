@@ -26,7 +26,6 @@ public class Create_LoadPlayer : MonoBehaviour
     public bool assistTick;
     public Image assistImage;
 
-    public int playerNumber;
     public GameObject playerPrefab;
     public GameObject playerParent;
     public List<GameObject> playerList;
@@ -36,6 +35,10 @@ public class Create_LoadPlayer : MonoBehaviour
         MakeButtons();
         AssistTick(); AssistTick();
         SwapToSection1();
+        if (json == null)
+        {
+            json = FindFirstObjectByType<JSON_Stuff>();
+        }
     }
 
     private void Update()
@@ -74,7 +77,7 @@ public class Create_LoadPlayer : MonoBehaviour
 
     public void LoadName()
     {
-        json.LoadPlayer(player, playerNumber);
+        json.LoadPlayer(player);
     }
 
     public void DeleteName()

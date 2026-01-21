@@ -738,7 +738,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1499954823}
         m_TargetAssemblyTypeName: OptionsManager, Assembly-CSharp
         m_MethodName: OnProfileClick
         m_Mode: 1
@@ -6512,36 +6512,26 @@ MonoBehaviour:
   submitValue: 0
   currentPlayer: {fileID: 0}
   audioOffsetFloat: 0
-  backButton: {fileID: 0}
-  profiles: {fileID: 0}
-  volumeSlider: {fileID: 0}
-  showButton: {fileID: 0}
-  scrollSpeed: {fileID: 0}
-  audioOffset1: {fileID: 0}
-  audioOffset2: {fileID: 0}
-  assistTick: {fileID: 0}
-  assistTickVolume: {fileID: 0}
-  hitSound: {fileID: 0}
-  hitSoundVolume: {fileID: 0}
-  buttonP1: {fileID: 0}
-  scrollSpeedP1: {fileID: 0}
-  scrollSpeedValueP1: {fileID: 0}
-  buttonP2: {fileID: 0}
-  scrollSpeedP2: {fileID: 0}
-  scrollSpeedValueP2: {fileID: 0}
-  assistTickConfirmation: {fileID: 0}
-  hitSoundConfirmation: {fileID: 0}
-  showButtonConfirmation: {fileID: 0}
-  volumeValue: {fileID: 0}
-  scrollSpeedValue: {fileID: 0}
-  audioOffsetValue: {fileID: 0}
-  assistTickVolumeValue: {fileID: 0}
-  hitSoundVolumeValue: {fileID: 0}
-  allOfIt: {fileID: 0}
-  allOfP1: {fileID: 0}
-  allOfP2: {fileID: 0}
+  backButton: {fileID: 1239050818}
+  profiles: {fileID: 150232259}
+  volumeSlider: {fileID: 264309992}
+  showButton: {fileID: 1818317275}
+  scrollSpeed: {fileID: 517931118}
+  audioOffset1: {fileID: 366418007}
+  audioOffset2: {fileID: 1247889875}
+  assistTick: {fileID: 953246732}
+  assistTickVolume: {fileID: 1265936673}
+  hitSound: {fileID: 1980347641}
+  hitSoundVolume: {fileID: 958820012}
+  assistTickConfirmation: {fileID: 193152269}
+  hitSoundConfirmation: {fileID: 1356584248}
+  showButtonConfirmation: {fileID: 927117160}
+  volumeValue: {fileID: 2059435352}
+  scrollSpeedValue: {fileID: 176102575}
+  audioOffsetValue: {fileID: 296612041}
+  assistTickVolumeValue: {fileID: 1050504478}
+  hitSoundVolumeValue: {fileID: 1626027967}
   selected: 1
-  player: 0
 --- !u!4 &1499954824
 Transform:
   m_ObjectHideFlags: 0

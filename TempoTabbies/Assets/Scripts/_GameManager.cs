@@ -43,6 +43,7 @@ public class _GameManager : MonoBehaviour
         Start, // Starting section where p1 is created
         MainMenu, // The main menu
         Options, // The options menu
+        Profiles, // The menu you make personal settings in
         StageSelect, // The song select screen
         Player2Confirmation, // confirms player 2s existence
         CatSelect, // Selecting a cat

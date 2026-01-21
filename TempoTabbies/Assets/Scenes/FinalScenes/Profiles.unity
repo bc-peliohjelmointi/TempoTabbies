@@ -549,8 +549,6 @@ GameObject:
   m_Component:
   - component: {fileID: 227833788}
   - component: {fileID: 227833787}
-  - component: {fileID: 227833786}
-  - component: {fileID: 227833785}
   - component: {fileID: 227833784}
   m_Layer: 0
   m_Name: Manager
@@ -656,48 +654,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &227833785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227833783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d5d361f82c4fe478a8e0e12f78a131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageID: 0
-  whoGetsToPlay: 0
-  multiplayer: 0
-  volume: 0
-  showButtons: 0
-  scrollSpeed: 0
-  audioOffset: 0
-  assistTick: 0
-  assistTickVolume: 0
-  hitSound: 0
-  hitSoundVolume: 0
-  players: []
-  p1: {fileID: 0}
-  p2: {fileID: 0}
-  source: {fileID: 0}
-  state: 0
---- !u!114 &227833786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 227833783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f0d91ced9cfcf24cb3cb6218c2908b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 227833785}
-  maker: {fileID: 0}
 --- !u!114 &227833787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,19 +666,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363afa8a0340d23409e1882691bb9f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  json: {fileID: 227833786}
+  json: {fileID: 0}
   player: 
   section1: {fileID: 1315759940}
-  s1Start: {fileID: 0}
+  s1Start: {fileID: 746858872}
   section2: {fileID: 680296015}
-  s2Start: {fileID: 0}
+  s2Start: {fileID: 941660007}
   scrollSpeed: 0
   scrollSlider: {fileID: 1055765033}
   scrollValue: {fileID: 1407502571}
   chosenName: {fileID: 815649134}
   assistTick: 0
   assistImage: {fileID: 1534855214}
-  playerNumber: 0
   playerPrefab: {fileID: 4214845840997965734}
   playerParent: {fileID: 1722928899}
   playerList: []
@@ -1556,7 +1511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316e574e0dc01f0409fb763c4ed42bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  json: {fileID: 227833786}
+  json: {fileID: 0}
   maker: {fileID: 227833787}
   text: {fileID: 838959590}
 --- !u!114 &561390516
@@ -1833,7 +1788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316e574e0dc01f0409fb763c4ed42bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  json: {fileID: 227833786}
+  json: {fileID: 0}
   maker: {fileID: 227833787}
   text: {fileID: 1484501753}
 --- !u!114 &746858875
@@ -2444,7 +2399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316e574e0dc01f0409fb763c4ed42bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  json: {fileID: 227833786}
+  json: {fileID: 0}
   maker: {fileID: 227833787}
   text: {fileID: 1006097178}
 --- !u!114 &941660010
@@ -2494,6 +2449,18 @@ MonoBehaviour:
       - m_Target: {fileID: 227833787}
         m_TargetAssemblyTypeName: Create_LoadPlayer, Assembly-CSharp
         m_MethodName: SwapToSection1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 227833787}
+        m_TargetAssemblyTypeName: Create_LoadPlayer, Assembly-CSharp
+        m_MethodName: MakeButtons
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4060,63 +4027,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929566250}
   m_CullTransparentMesh: 1
---- !u!1001 &1995432312
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5433878104890603057, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_Name
-      value: PlayerManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 225.12498
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8972109995115737188, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2a42a07279737f94c94a60694e5f0892, type: 3}
 --- !u!114 &696289260467891606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4680,7 +4590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316e574e0dc01f0409fb763c4ed42bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  json: {fileID: 227833786}
+  json: {fileID: 0}
   maker: {fileID: 227833787}
   text: {fileID: 7223576830989371848}
 --- !u!1660057539 &9223372036854775807
@@ -4690,6 +4600,5 @@ SceneRoots:
   - {fileID: 547451455}
   - {fileID: 268414295}
   - {fileID: 227833788}
-  - {fileID: 1995432312}
   - {fileID: 568963216}
   - {fileID: 4321545420265500102}

@@ -12,6 +12,10 @@ public class ProfileButton : MonoBehaviour
     {
         name = name.Replace("(Clone)", "");
         text.text = name;
+        if (json == null)
+        {
+            json = FindFirstObjectByType<JSON_Stuff>();
+        }
     }
 
     public void NullName()
@@ -21,7 +25,7 @@ public class ProfileButton : MonoBehaviour
 
     public void LoadJSON()
     {
-        json.LoadPlayer(name, maker.playerNumber);
+        json.LoadPlayer(name);
         maker.chosenName.text = name;
         maker.scrollSlider.value = maker.scrollSpeed;
         maker.AssistTick(); maker.AssistTick();

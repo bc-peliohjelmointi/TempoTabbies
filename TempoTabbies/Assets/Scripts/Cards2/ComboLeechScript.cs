@@ -9,7 +9,7 @@ using static GameManager;
 // K‰ytet‰‰n yhdell‰ koneella kahden pelaajan v‰lill‰.
 public class ComboLeechScript : MonoBehaviour
 {
-   /* public RhythmGameManager Game;
+   /*public RhythmGameManager Game;
 
     /// <summary>
     /// K‰ynnist‰‰ efektin (esim. kun kortti valitaan).

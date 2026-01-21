@@ -67,7 +67,7 @@ public class JSON_Stuff : MonoBehaviour
         // Turns the placeholder class into a JSON string
         json = JsonUtility.ToJson(gm);
         // Turns the newly made JSON string into a JSON file
-        File.WriteAllText("JSON/_GameManager", json);
+        File.WriteAllText("JSON/GameManager/_GameManager", json);
     }
 
     // Load the data for _GameManager from a JSON file

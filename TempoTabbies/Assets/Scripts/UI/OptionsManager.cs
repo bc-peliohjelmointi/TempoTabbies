@@ -27,7 +27,7 @@ public class OptionsManager : MonoBehaviour
     // The UI elements
     [Header("Every UI element in the shared options")]
     public Button backButton;
-    public Button playerSpecific;
+    public Button profiles;
     public Slider volumeSlider;
     public Button showButton;
     public Slider scrollSpeed;
@@ -76,7 +76,7 @@ public class OptionsManager : MonoBehaviour
     public enum Selected
     {
         backButton,
-        playerSpecific,
+        profiles,
         volumeSlider,
         showButtons,
         scrollSpeed,
@@ -152,243 +152,171 @@ public class OptionsManager : MonoBehaviour
             gameManager.state = _GameManager.GameState.MainMenu;
             SceneManager.LoadScene("MainMenu");
         }
-        switch (player)
+        if ((int)volumeSlider.value != volumeSlider.value) { volumeSlider.value = (int)volumeSlider.value; }
+        if ((int)scrollSpeed.value != scrollSpeed.value) { scrollSpeed.value = (int)scrollSpeed.value; }
+
+        allOfIt.SetActive(true);
+        allOfP1.SetActive(false);
+        allOfP2.SetActive(false);
+        volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
+        scrollSpeedValue.text = scrollSpeed.value.ToString();
+        audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
+        assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
+        hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
+        switch (selected)
         {
-            case Player.none:
-                allOfIt.SetActive(true);
-                allOfP1.SetActive(false);
-                allOfP2.SetActive(false);
-                volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
-                scrollSpeedValue.text = scrollSpeed.value.ToString();
-                audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
-                assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
-                hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
-                switch (selected)
+            case Selected.backButton: // Back to menu
+                                      // Selects the correct button
+                EventSystem.current.SetSelectedGameObject(backButton.gameObject);
+                if (canMove && moveAmount.y < -0.1f)
                 {
-                    case Selected.backButton: // Back to menu
-                        // Selects the correct button
-                        EventSystem.current.SetSelectedGameObject(backButton.gameObject);
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.playerSpecific;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.playerSpecific:
-                        EventSystem.current.SetSelectedGameObject(playerSpecific.gameObject);
-                        if (clickValue > 0.1)
-                        {
-                            OnReturnClick();
-                        }
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.backButton;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.volumeSlider;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.volumeSlider: // The volume slider
-                        // Selects the slider
-                        EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
-                        AudioListener.volume = volumeSlider.value;
-                        gameManager.volume = volumeSlider.value;
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.playerSpecific;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.showButtons;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.showButtons:
-                        EventSystem.current.SetSelectedGameObject(showButton.gameObject);
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.volumeSlider;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.scrollSpeed;
-                            canMove = false;
-                        }
-                        break;
-                    case Selected.scrollSpeed: // The scroll speed slider
-                        EventSystem.current.SetSelectedGameObject(scrollSpeed.gameObject);
-                        gameManager.scrollSpeed = scrollSpeed.value;
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.showButtons;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.audioOffset1;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.audioOffset1: // The audio offset slider
-                        EventSystem.current.SetSelectedGameObject(audioOffset1.gameObject);
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.scrollSpeed;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.audioOffset2;
-                            canMove = false;
-                        }
-                        break;
-                    case Selected.audioOffset2: // The audio offset slider
-                        EventSystem.current.SetSelectedGameObject(audioOffset2.gameObject);
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.audioOffset1;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.assistTick;
-                            canMove = false;
-                        }
-                        break;
-                    case Selected.assistTick:
-                        EventSystem.current.SetSelectedGameObject(assistTick.gameObject);
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.audioOffset2;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.assistTickVolume;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.assistTickVolume:
-                        EventSystem.current.SetSelectedGameObject(assistTickVolume.gameObject);
-                        gameManager.assistTickVolume = assistTickVolume.value;
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.assistTick;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.hitSound;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.hitSound:
-                        EventSystem.current.SetSelectedGameObject(hitSound.gameObject);
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.assistTickVolume;
-                            canMove = false;
-                        }
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.hitSoundVolume;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.hitSoundVolume:
-                        EventSystem.current.SetSelectedGameObject(hitSoundVolume.gameObject);
-                        gameManager.hitSoundVolume = hitSoundVolume.value;
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.hitSound;
-                            canMove = false;
-                        }
-                        break;
-
+                    selected = Selected.profiles;
+                    canMove = false;
                 }
                 break;
 
-            case Player.p1:
-                allOfIt.SetActive(false);
-                allOfP1.SetActive(true);
-                allOfP2.SetActive(false);
-                scrollSpeedValueP1.text = scrollSpeedP1.value.ToString();
-                gameManager.whoGetsToPlay = 0;
-                if (gameManager.p1.scrollSpeed != 0 && scrollSpeedP1.value == 0)
+            case Selected.profiles:
+                EventSystem.current.SetSelectedGameObject(profiles.gameObject);
+                if (clickValue > 0.1)
                 {
-                    scrollSpeedP1.value = gameManager.p1.scrollSpeed;
+                    OnReturnClick();
                 }
-                switch (selected)
+                if (canMove && moveAmount.y > 0.1f)
                 {
-                    case Selected.backButton: // Back to menu
-                                              // Selects the correct button
-                        EventSystem.current.SetSelectedGameObject(buttonP1.gameObject);
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.scrollSpeed;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.scrollSpeed: // The scroll speed slider
-                        EventSystem.current.SetSelectedGameObject(scrollSpeedP1.gameObject);
-                        gameManager.p1.scrollSpeed = scrollSpeedP1.value;
-                        scrollSpeedValueP1.text = scrollSpeedP1.value.ToString();
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.backButton;
-                            canMove = false;
-                        }
-                        break;
+                    selected = Selected.backButton;
+                    canMove = false;
+                }
+                if (canMove && moveAmount.y < -0.1f)
+                {
+                    selected = Selected.volumeSlider;
+                    canMove = false;
                 }
                 break;
 
-            case Player.p2:
-                allOfIt.SetActive(false);
-                allOfP1.SetActive(false);
-                allOfP2.SetActive(true);
-                scrollSpeedValueP2.text = scrollSpeedP2.value.ToString();
-                gameManager.whoGetsToPlay = 1;
-                if (gameManager.p2.scrollSpeed != 0 && scrollSpeedP2.value == 0)
+            case Selected.volumeSlider: // The volume slider
+                                        // Selects the slider
+                EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
+                AudioListener.volume = volumeSlider.value;
+                gameManager.volume = volumeSlider.value;
+                if (canMove && moveAmount.y > 0.1f)
                 {
-                    scrollSpeedP2.value = gameManager.p2.scrollSpeed;
+                    selected = Selected.profiles;
+                    canMove = false;
                 }
-                switch (selected)
+                if (canMove && moveAmount.y < -0.1f)
                 {
-                    case Selected.backButton: // Back to menu
-                                              // Selects the correct button
-                        EventSystem.current.SetSelectedGameObject(buttonP2.gameObject);
-                        if (canMove && moveAmount.y < -0.1f)
-                        {
-                            selected = Selected.scrollSpeed;
-                            canMove = false;
-                        }
-                        break;
-
-                    case Selected.scrollSpeed: // The scroll speed slider
-                        EventSystem.current.SetSelectedGameObject(scrollSpeedP2.gameObject);
-                        gameManager.p2.scrollSpeed = scrollSpeedP2.value;
-                        scrollSpeedValueP2.text = scrollSpeedP2.value.ToString();
-                        if (canMove && moveAmount.y > 0.1f)
-                        {
-                            selected = Selected.backButton;
-                            canMove = false;
-                        }
-                        break;
+                    selected = Selected.showButtons;
+                    canMove = false;
                 }
                 break;
+
+            case Selected.showButtons:
+                EventSystem.current.SetSelectedGameObject(showButton.gameObject);
+                if (canMove && moveAmount.y > 0.1f)
+                {
+                    selected = Selected.volumeSlider;
+                    canMove = false;
+                }
+                if (canMove && moveAmount.y < -0.1f)
+                {
+                    selected = Selected.scrollSpeed;
+                    canMove = false;
+                }
+                break;
+            case Selected.scrollSpeed: // The scroll speed slider
+                EventSystem.current.SetSelectedGameObject(scrollSpeed.gameObject);
+                gameManager.scrollSpeed = scrollSpeed.value;
+                if (canMove && moveAmount.y > 0.1f)
+                {
+                    selected = Selected.showButtons;
+                    canMove = false;
+                }
+                if (canMove && moveAmount.y < -0.1f)
+                {
+                    selected = Selected.audioOffset1;
+                    canMove = false;
+                }
+                break;
+
+            case Selected.audioOffset1: // The audio offset slider
+                EventSystem.current.SetSelectedGameObject(audioOffset1.gameObject);
+                if (canMove && moveAmount.y > 0.1f)
+                {
+                    selected = Selected.scrollSpeed;
+                    canMove = false;
+                }
+                if (canMove && moveAmount.y < -0.1f)
+                {
+                    selected = Selected.audioOffset2;
+                    canMove = false;
+                }
+                break;
+            case Selected.audioOffset2: // The audio offset slider
+                EventSystem.current.SetSelectedGameObject(audioOffset2.gameObject);
+                if (canMove && moveAmount.y > 0.1f)
+                {
+                    selected = Selected.audioOffset1;
+                    canMove = false;
+                }
+                if (canMove && moveAmount.y < -0.1f)
+                {
+                    selected = Selected.assistTick;
+                    canMove = false;
+                }
+                break;
+            case Selected.assistTick:
+                EventSystem.current.SetSelectedGameObject(assistTick.gameObject);
+                if (canMove && moveAmount.y > 0.1f)
+                {
+                    selected = Selected.audioOffset2;
+                    canMove = false;
+                }
+                if (canMove && moveAmount.y < -0.1f)
+                {
+                    selected = Selected.assistTickVolume;
+                    canMove = false;
+                }
+                break;
+
+            case Selected.assistTickVolume:
+                EventSystem.current.SetSelectedGameObject(assistTickVolume.gameObject);
+                gameManager.assistTickVolume = assistTickVolume.value;
+                if (canMove && moveAmount.y > 0.1f)
+                {
+                    selected = Selected.assistTick;
+                    canMove = false;
+                }
+                if (canMove && moveAmount.y < -0.1f)
+                {
+                    selected = Selected.hitSound;
+                    canMove = false;
+                }
+                break;
+
+            case Selected.hitSound:
+                EventSystem.current.SetSelectedGameObject(hitSound.gameObject);
+                if (canMove && moveAmount.y > 0.1f)
+                {
+                    selected = Selected.assistTickVolume;
+                    canMove = false;
+                }
+                if (canMove && moveAmount.y < -0.1f)
+                {
+                    selected = Selected.hitSoundVolume;
+                    canMove = false;
+                }
+                break;
+
+            case Selected.hitSoundVolume:
+                EventSystem.current.SetSelectedGameObject(hitSoundVolume.gameObject);
+                gameManager.hitSoundVolume = hitSoundVolume.value;
+                if (canMove && moveAmount.y > 0.1f)
+                {
+                    selected = Selected.hitSound;
+                    canMove = false;
+                }
+                break;
+
         }
 
         if (!canMove)
@@ -420,30 +348,14 @@ public class OptionsManager : MonoBehaviour
     public void OnReturnClick()
     {
         json.SaveGameManager();
-        if (gameManager.p1 != null)
-        {
-            json.SavePlayer1();
-        }
-        if (gameManager.p2 != null)
-        {
-            json.SavePlayer2();
-        }
 
         gameManager.state = _GameManager.GameState.MainMenu;
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void OnPlayerSpecificClick()
+    public void OnProfileClick()
     {
-        if (currentPlayer.gameObject == gameManager.p1.gameObject)
-        {
-            player = Player.p1;
-        }
-        if (gameManager.p2 != null && currentPlayer.gameObject == gameManager.p2.gameObject)
-        {
-            player = Player.p2;
-        }
-        selected = Selected.backButton;
+        SceneManager.LoadScene("Profiles");
     }
 
     public void OnPlayerReturnClick()

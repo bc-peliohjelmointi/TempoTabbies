@@ -122,7 +122,7 @@ public class OptionsManager : MonoBehaviour
         if ((int)volumeSlider.value != volumeSlider.value) { volumeSlider.value = (int)volumeSlider.value; }
         if ((int)scrollSpeed.value != scrollSpeed.value) { scrollSpeed.value = (int)scrollSpeed.value; }
 
-        volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
+        volumeValue.text = (volumeSlider.value).ToString();
         scrollSpeedValue.text = scrollSpeed.value.ToString();
         audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
         assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
@@ -160,7 +160,7 @@ public class OptionsManager : MonoBehaviour
             case Selected.volumeSlider: // The volume slider
                                         // Selects the slider
                 EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
-                AudioListener.volume = volumeSlider.value;
+                AudioListener.volume = volumeSlider.value/10;
                 gameManager.volume = volumeSlider.value;
                 if (canMove && moveAmount.y > 0.1f)
                 {

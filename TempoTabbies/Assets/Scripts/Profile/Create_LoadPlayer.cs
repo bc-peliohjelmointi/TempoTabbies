@@ -32,7 +32,6 @@ public class Create_LoadPlayer : MonoBehaviour
     public GameObject playerParent; // the placement of the copies original spot
     public List<GameObject> playerList; // list of created plyer buttons
 
-
     [Header("Where buttons go when changing sides")]
     public GameObject startButton; // the button that we start on
     public GameObject startOfEdit; // the button the editing starts on
@@ -83,34 +82,42 @@ public class Create_LoadPlayer : MonoBehaviour
             Button btn = button.GetComponent<Button>(); // Gets the new buttons Button component
             button.name = file.Replace("JSON\\", ""); // Change the buttons name
             button.name.Replace("(Clone)", "");
-            button.transform.position += new Vector3(0, placement, 0); // Put the button in the right place
-            button.SetActive(true);
-            placement -= 40; // Changes placement for the next button
-
-            // Changes the starting buttons navigation to go to the first created button
-            if (playerList.Count == 0)
-            {
-                nav = newPlayer.navigation;
-                nav.selectOnDown = btn;
-                newPlayer.navigation = nav;
+            // if the name is one of the base classes, don't maake the button
+            if (button.name.ToLower() == "beginner" || button.name.ToLower() == "seasoned" || button.name.ToLower() == "expert")
+            { 
+                Destroy(button);
             }
-
-            // Changes every button except the last to have vertical navigation
-            if (!file.Equals(last))
-            {
-                nav.mode = Navigation.Mode.Vertical;
-                btn.navigation = nav;
-            }
-            // The last buttons navigation goes vertical but can't go down
             else
             {
-                nav.mode = Navigation.Mode.Explicit;
-                nav.selectOnDown = null;
-                nav.selectOnUp = playerList[playerList.Count - 1].GetComponent<Button>();
-                btn.navigation = nav;
-            }
+                button.transform.position += new Vector3(0, placement, 0); // Put the button in the right place
+                button.SetActive(true);
+                placement -= 40; // Changes placement for the next button
 
-            playerList.Add(button);
+                // Changes the starting buttons navigation to go to the first created button
+                if (playerList.Count == 0)
+                {
+                    nav = newPlayer.navigation;
+                    nav.selectOnDown = btn;
+                    newPlayer.navigation = nav;
+                }
+
+                // Changes every button except the last to have vertical navigation
+                if (!file.Equals(last))
+                {
+                    nav.mode = Navigation.Mode.Vertical;
+                    btn.navigation = nav;
+                }
+                // The last buttons navigation goes vertical but can't go down
+                else
+                {
+                    nav.mode = Navigation.Mode.Explicit;
+                    nav.selectOnDown = null;
+                    nav.selectOnUp = playerList[playerList.Count - 1].GetComponent<Button>();
+                    btn.navigation = nav;
+                }
+
+                playerList.Add(button);
+            }
         }
     }
 

@@ -5,22 +5,12 @@ using UnityEngine.UI;
 public class StageButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     public Image paw;
-    public bool changeSize;
-    public bool starting = false;
-    public bool verticalLock;
+    public bool changeSize; // does the object change size when selected (from 1 to 1.05)
+    public bool starting = false; // is this the starting object
 
     private void Awake()
     {
         paw.gameObject.SetActive(starting);
-    }
-
-    private void Update()
-    {
-        if (verticalLock)
-        {
-            Navigation navigation = new Navigation();
-            navigation.mode = Navigation.Mode.Vertical;
-        }
     }
 
     private void OnDisable()

@@ -805,6 +805,7 @@ MonoBehaviour:
   paw: {fileID: 1784645905}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &176102573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,7 +1218,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 781652209}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 10
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -1238,6 +1239,7 @@ MonoBehaviour:
   paw: {fileID: 1681273222}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &265672589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,6 +1773,7 @@ MonoBehaviour:
   paw: {fileID: 1736258384}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &418814516
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,6 +2168,7 @@ MonoBehaviour:
   paw: {fileID: 1412133135}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &519338502
 GameObject:
   m_ObjectHideFlags: 0
@@ -4125,6 +4129,7 @@ MonoBehaviour:
   paw: {fileID: 352411125}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &958820008
 GameObject:
   m_ObjectHideFlags: 0
@@ -4346,6 +4351,7 @@ MonoBehaviour:
   paw: {fileID: 0}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &968248092
 GameObject:
   m_ObjectHideFlags: 0
@@ -5566,6 +5572,7 @@ MonoBehaviour:
   paw: {fileID: 1710440018}
   changeSize: 0
   starting: 1
+  verticalLock: 0
 --- !u!1 &1247889873
 GameObject:
   m_ObjectHideFlags: 0
@@ -5716,6 +5723,7 @@ MonoBehaviour:
   paw: {fileID: 1821932396}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &1260106780
 GameObject:
   m_ObjectHideFlags: 0
@@ -6074,6 +6082,7 @@ MonoBehaviour:
   paw: {fileID: 2079921033}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &1272598718
 GameObject:
   m_ObjectHideFlags: 0
@@ -8724,6 +8733,7 @@ MonoBehaviour:
   paw: {fileID: 1272598720}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &1821932394
 GameObject:
   m_ObjectHideFlags: 0
@@ -9319,6 +9329,7 @@ MonoBehaviour:
   paw: {fileID: 968248094}
   changeSize: 0
   starting: 0
+  verticalLock: 0
 --- !u!1 &1997098439
 GameObject:
   m_ObjectHideFlags: 0

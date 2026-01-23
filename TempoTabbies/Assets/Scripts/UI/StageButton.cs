@@ -6,10 +6,11 @@ public class StageButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     public Image paw;
     public bool changeSize;
+    public bool starting = false;
 
     private void Awake()
     {
-        paw.gameObject.SetActive(false);
+        paw.gameObject.SetActive(starting);
     }
 
     private void OnDisable()

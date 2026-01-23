@@ -8,6 +8,7 @@ public class Player
 {
     public float scrollSpeed;
     public bool assistTick;
+    public bool showButtons;
 }
 
 // Placeholder for the _GameManager things
@@ -90,11 +91,12 @@ public class JSON_Stuff : MonoBehaviour
         gameManager.showButtons = gm.showButtons;
     }
 
-    public void SavePlayer(string name, float scrollSpeed, bool assistTick)
+    public void SavePlayer(string name, float scrollSpeed, bool assistTick, bool showButtons)
     {
         Player player = new();
         player.scrollSpeed = scrollSpeed;
         player.assistTick = assistTick;
+        player.showButtons = showButtons;
         json = JsonUtility.ToJson(player);
         File.WriteAllText($"JSON/{name}", json);
     }
@@ -110,6 +112,6 @@ public class JSON_Stuff : MonoBehaviour
         }
         maker.scrollSpeed = player.scrollSpeed;
         maker.assistTick = player.assistTick;
+        maker.showButtons = player.showButtons;
     }
-
 }

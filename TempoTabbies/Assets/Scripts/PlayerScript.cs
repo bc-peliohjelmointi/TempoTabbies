@@ -37,6 +37,7 @@ public class PlayerScript : MonoBehaviour
     [Header("Stuff we save")]
     public float scrollSpeed;
     public bool assistTick;
+    public bool showButtons;
 
     private void Awake()
     {

@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 public class Create_LoadPlayer : MonoBehaviour
 {
+    [field: HideInInspector]
+    public _GameManager _gm;
+
     public JSON_Stuff json; // JSON script
     public string player; // string that we put in JSON to store names
 
@@ -30,11 +33,11 @@ public class Create_LoadPlayer : MonoBehaviour
     public List<GameObject> playerList; // list of created plyer buttons
 
 
-    [Header("Where buttons go when changin sides")]
+    [Header("Where buttons go when changing sides")]
     public GameObject startButton; // the button that we start on
     public GameObject startOfEdit; // the button the editing starts on
 
-    [field:HideInInspector]
+    [field: HideInInspector]
     public Button newPlayer;
 
     private void Awake()
@@ -45,6 +48,10 @@ public class Create_LoadPlayer : MonoBehaviour
         if (json == null)
         {
             json = FindFirstObjectByType<JSON_Stuff>();
+        }
+        if (_gm == null)
+        {
+            _gm = FindFirstObjectByType<_GameManager>();
         }
     }
 
@@ -60,42 +67,49 @@ public class Create_LoadPlayer : MonoBehaviour
     /// </summary>
     public void MakeButtons()
     {
+        // Removs pre existing buttons
         foreach (GameObject player in playerList)
         {
             Destroy(player);
         }
         playerList.Clear();
-        int placement = -80;
-        var last = Directory.GetFiles("JSON").LastOrDefault();
+
+        int placement = -80; // The Y axis of the current button being made
+        var last = Directory.GetFiles("JSON").LastOrDefault(); // Checks wether this is the last loop of foreach
         foreach (string file in Directory.GetFiles("JSON"))
         {
-            GameObject button = Instantiate(playerPrefab, playerParent.transform);
-            button.name = file.Replace("JSON\\", "");
+            Navigation nav = new Navigation(); // A placeholder navigation for buttons
+            GameObject button = Instantiate(playerPrefab, playerParent.transform); // Makes the button
+            Button btn = button.GetComponent<Button>(); // Gets the new buttons Button component
+            button.name = file.Replace("JSON\\", ""); // Change the buttons name
             button.name.Replace("(Clone)", "");
-            button.transform.position += new Vector3(0, placement, 0);
+            button.transform.position += new Vector3(0, placement, 0); // Put the button in the right place
             button.SetActive(true);
-            placement -= 40;
+            placement -= 40; // Changes placement for the next button
+
+            // Changes the starting buttons navigation to go to the first created button
             if (playerList.Count == 0)
             {
-                Navigation nav = new Navigation();
                 nav = newPlayer.navigation;
-                nav.selectOnDown = button.GetComponent<Button>();
+                nav.selectOnDown = btn;
                 newPlayer.navigation = nav;
             }
-            Button btn = button.GetComponent<Button>();
-            Navigation nav2 = new Navigation();
+
+            // Changes every button except the last to have vertical navigation
             if (!file.Equals(last))
             {
-                nav2.mode = Navigation.Mode.Vertical;
-                btn.navigation = nav2;
+                nav.mode = Navigation.Mode.Vertical;
+                btn.navigation = nav;
             }
+            // The last buttons navigation goes vertical but can't go down
             else
             {
-                nav2.mode = Navigation.Mode.Explicit;
-                nav2.selectOnDown = null;
-                nav2.selectOnUp = playerList[playerList.Count - 1].GetComponent<Button>();
-                btn.navigation = nav2;
+                nav.mode = Navigation.Mode.Explicit;
+                nav.selectOnDown = null;
+                nav.selectOnUp = playerList[playerList.Count - 1].GetComponent<Button>();
+                btn.navigation = nav;
             }
+
             playerList.Add(button);
         }
     }
@@ -118,7 +132,10 @@ public class Create_LoadPlayer : MonoBehaviour
     // Deletes whatever JSON file shares a name with what is in the input field
     public void DeleteName()
     {
-        File.Delete($"JSON/{chosenName.text}");
+        if (File.Exists(chosenName.text))
+        {
+            File.Delete($"JSON/{chosenName.text}");
+        }
     }
 
     // Makes sure the scroll speed doesn't have 300 decimals
@@ -177,5 +194,6 @@ public class Create_LoadPlayer : MonoBehaviour
     public void BackToOptions()
     {
         SceneManager.LoadScene("Options");
+        _gm.state = _GameManager.GameState.Options;
     }
 }

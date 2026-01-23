@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 173596614}
   - component: {fileID: 173596616}
   - component: {fileID: 173596615}
+  - component: {fileID: 173596617}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.18431373, g: 0.18431373, b: 0.18431373, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -195,6 +196,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173596613}
   m_CullTransparentMesh: 1
+--- !u!114 &173596617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173596613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc798a33d5bf10343a2248d243aa810b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &442933746
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,6 +220,7 @@ GameObject:
   - component: {fileID: 442933750}
   - component: {fileID: 442933749}
   - component: {fileID: 442933748}
+  - component: {fileID: 442933751}
   m_Layer: 5
   m_Name: BG2
   m_TagString: Untagged
@@ -277,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.8974056, g: 1, b: 0.83584905, a: 0.24313726}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -301,6 +315,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 442933746}
   m_CullTransparentMesh: 1
+--- !u!114 &442933751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 442933746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc798a33d5bf10343a2248d243aa810b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &511387598
 GameObject:
   m_ObjectHideFlags: 0

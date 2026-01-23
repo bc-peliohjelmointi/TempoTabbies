@@ -139,7 +139,7 @@ public class ChartSelectManager : MonoBehaviour
             if (selectable != null)
             {
                 Navigation nav = selectable.navigation;
-                nav.mode = allowedSelectables.Contains(selectable) ? Navigation.Mode.Automatic : Navigation.Mode.None;
+                nav.mode = allowedSelectables.Contains(selectable) ? Navigation.Mode.Vertical : Navigation.Mode.None;
                 selectable.navigation = nav;
             }
         }
@@ -154,7 +154,7 @@ public class ChartSelectManager : MonoBehaviour
                     if (chartSelectable != null)
                     {
                         Navigation nav = chartSelectable.navigation;
-                        nav.mode = allowedSelectables.Contains(chartSelectable) ? Navigation.Mode.Automatic : Navigation.Mode.None;
+                        nav.mode = allowedSelectables.Contains(chartSelectable) ? Navigation.Mode.Vertical : Navigation.Mode.None;
                         chartSelectable.navigation = nav;
                     }
                 }

@@ -824,17 +824,17 @@ MonoBehaviour:
   scrollSpeed: 0
   scrollSlider: {fileID: 1055765033}
   scrollValue: {fileID: 1407502571}
-  chosenName: {fileID: 815649134}
   assistTick: 0
   assistImage: {fileID: 1534855214}
   showButtons: 0
   buttonImage: {fileID: 411605862}
+  chosenName: {fileID: 815649134}
   playerPrefab: {fileID: 4214845840997965734}
   playerParent: {fileID: 1722928899}
   playerList: []
-  newPlayer: {fileID: 561390516}
   startButton: {fileID: 746858872}
   startOfEdit: {fileID: 7664375601713642084}
+  newPlayer: {fileID: 561390516}
 --- !u!4 &227833788
 Transform:
   m_ObjectHideFlags: 0
@@ -4202,18 +4202,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 227833787}
-        m_TargetAssemblyTypeName: Create_LoadPlayer, Assembly-CSharp
-        m_MethodName: ScrollSpeed
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1055765033}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

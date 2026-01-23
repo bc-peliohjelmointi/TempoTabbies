@@ -137,6 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paw: {fileID: 8388703580155653685}
   changeSize: 0
+  starting: 0
+  verticalLock: 1
 --- !u!1 &4566371805641757261
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,10 +7,20 @@ public class StageButton : MonoBehaviour, ISelectHandler, IDeselectHandler
     public Image paw;
     public bool changeSize;
     public bool starting = false;
+    public bool verticalLock;
 
     private void Awake()
     {
         paw.gameObject.SetActive(starting);
+    }
+
+    private void Update()
+    {
+        if (verticalLock)
+        {
+            Navigation navigation = new Navigation();
+            navigation.mode = Navigation.Mode.Vertical;
+        }
     }
 
     private void OnDisable()

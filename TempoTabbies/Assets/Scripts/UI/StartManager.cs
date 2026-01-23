@@ -14,7 +14,7 @@ public class StartManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gm.p1 != null && gm.p1.playerInput.currentControlScheme != "Keyboard&Mouse")
+        if (gm.p1 != null)
         {
             gm.state = _GameManager.GameState.MainMenu;
             SceneManager.LoadScene("MainMenu");

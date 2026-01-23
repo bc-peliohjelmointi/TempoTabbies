@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
+    private Create_LoadPlayer profilesMenu;
     private CatSelectionManager catMenu;
     private Player2Confirmation p2Confirm;
 
@@ -36,6 +37,7 @@ public class PlayerScript : MonoBehaviour
     [Header("Stuff we save")]
     public float scrollSpeed;
     public bool assistTick;
+    public bool showButtons;
 
     private void Awake()
     {
@@ -76,6 +78,7 @@ public class PlayerScript : MonoBehaviour
                     p2Confirm.submit = submitValue;
                 }
                 break;
+
             case _GameManager.GameState.MainMenu:
                 if (gameManager.state == _GameManager.GameState.MainMenu)
                 {
@@ -90,6 +93,7 @@ public class PlayerScript : MonoBehaviour
                     mainMenu.clickValue = clickButton.ReadValue<float>();
                 }
                 break;
+
             case _GameManager.GameState.Options:
                 // gets the options menu script
                 if (optionsMenu == null)
@@ -107,6 +111,7 @@ public class PlayerScript : MonoBehaviour
                     optionsMenu.currentPlayer = this;
                 }
                 break;
+
             case _GameManager.GameState.StageSelect:
                 if (chartManager == null)
                 {

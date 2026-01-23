@@ -33,18 +33,21 @@ EditorBuildSettings:
     path: Assets/Scenes/FinalScenes/CardSelect.unity
     guid: b7c7c64cc2cfbac42b0e46156dac4779
   - enabled: 1
+    path: Assets/Scenes/FinalScenes/Profiles.unity
+    guid: ac023aafe6fcc1147b1202179e4f3653
+  - enabled: 1
     path: Assets/Scenes/MultiPlayer/MultiPlayerChartTest.unity
-    guid: 80351a5545345f54d850a2103529c9e0
+    guid: 7395dbe0fb2e85043bf35a1c1480f687
   - enabled: 0
     path: Assets/Scenes/MultiPlayer/MultiPlayerChartTestdfdfd.unity
     guid: 289dcb41d94589a418fa3f44e842ba54
   - enabled: 0
     path: Assets/Scenes/MultiPlayer/MultiStageSelectSMtest.unity
     guid: 19a9b4f84154d1e469c842b937e60ff2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ChartTest.unity
     guid: 015dbf86701dc734e9a03bb7320b9314
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StageSelectSMtest.unity
     guid: c63d165c8f412404197d2b6bf9967922
   m_configObjects:

@@ -8,6 +8,7 @@ public class Player
 {
     public float scrollSpeed;
     public bool assistTick;
+    public bool showButtons;
 }
 
 // Placeholder for the _GameManager things
@@ -67,7 +68,7 @@ public class JSON_Stuff : MonoBehaviour
         // Turns the placeholder class into a JSON string
         json = JsonUtility.ToJson(gm);
         // Turns the newly made JSON string into a JSON file
-        File.WriteAllText("JSON/_GameManager", json);
+        File.WriteAllText("JSON/GameManager/_GameManager", json);
     }
 
     // Load the data for _GameManager from a JSON file
@@ -90,72 +91,27 @@ public class JSON_Stuff : MonoBehaviour
         gameManager.showButtons = gm.showButtons;
     }
 
-    public void SavePlayer(string name, float scrollSpeed, bool assistTick)
+    public void SavePlayer(string name, float scrollSpeed, bool assistTick, bool showButtons)
     {
         Player player = new();
         player.scrollSpeed = scrollSpeed;
         player.assistTick = assistTick;
+        player.showButtons = showButtons;
         json = JsonUtility.ToJson(player);
         File.WriteAllText($"JSON/{name}", json);
-        maker.MakeButtons();
     }
 
-    public void LoadPlayer(string name, int playerNumber)
+    public void LoadPlayer(string name)
     {
         Player player = new();
         json = File.ReadAllText($"JSON/{name}");
         player = JsonUtility.FromJson<Player>(json);
-        if (playerNumber == 0)
+        if (maker == null)
         {
-            gameManager.p1.scrollSpeed = player.scrollSpeed;
-            gameManager.p1.assistTick = player.assistTick;
-        }
-        else
-        {
-            gameManager.p2.scrollSpeed = player.scrollSpeed;
-            gameManager.p2.assistTick = player.assistTick;
+            maker = FindFirstObjectByType<Create_LoadPlayer>();
         }
         maker.scrollSpeed = player.scrollSpeed;
         maker.assistTick = player.assistTick;
-    }
-
-    // Saves the data from Player1 to a JSON file
-    public void SavePlayer1()
-    {
-        Player player = new();
-        player.scrollSpeed = gameManager.p1.scrollSpeed;
-        player.assistTick = gameManager.p1.assistTick;
-        json = JsonUtility.ToJson(player);
-        File.WriteAllText("JSON/Player1", json);
-    }
-
-    // Loads the data for Player1 from a JSON file
-    public void LoadPlayer1()
-    {
-        Player player = new();
-        json = File.ReadAllText("JSON/Player1");
-        player = JsonUtility.FromJson<Player>(json);
-        gameManager.p1.scrollSpeed = player.scrollSpeed;
-        gameManager.p1.assistTick = player.assistTick;
-    }
-
-    // Saves the data from Player2 to a JSON file
-    public void SavePlayer2()
-    {
-        Player player = new();
-        player.scrollSpeed = gameManager.p2.scrollSpeed;
-        player.assistTick = gameManager.p2.assistTick;
-        json = JsonUtility.ToJson(player);
-        File.WriteAllText("JSON/Player2", json);
-    }
-
-    // Loads the data for Player2 from a JSON file
-    public void LoadPlayer2()
-    {
-        Player player = new();
-        json = File.ReadAllText("JSON/Player2");
-        player = JsonUtility.FromJson<Player>(json);
-        gameManager.p2.scrollSpeed = player.scrollSpeed;
-        gameManager.p2.assistTick = player.assistTick;
+        maker.showButtons = player.showButtons;
     }
 }

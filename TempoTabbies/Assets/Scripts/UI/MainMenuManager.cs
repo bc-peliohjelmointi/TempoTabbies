@@ -48,14 +48,6 @@ public class MainMenuManager : MonoBehaviour
         gameManager = FindAnyObjectByType<_GameManager>();
 
         json.LoadGameManager();
-        if (gameManager.p1 != null)
-        {
-            json.LoadPlayer1();
-        }
-        if (gameManager.p2 != null)
-        {
-            json.LoadPlayer2();
-        }
     }
 
     IEnumerator WaitAFrame()

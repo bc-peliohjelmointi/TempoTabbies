@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: "T\xE4pT\xE4p"
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
-  CardName: New Card
+  CardName: "t\xE4pt\xE4p"
   description: 
   effectType: 0
   icon: {fileID: 6503466328739821764, guid: 26af91fb05324a542b2f192601c9ee60, type: 3}

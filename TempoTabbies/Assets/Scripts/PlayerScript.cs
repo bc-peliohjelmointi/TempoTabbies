@@ -186,4 +186,12 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+    public void ApplyProfile(PlayerProfileData data)
+    {
+        scrollSpeed = data.scrollSpeed;
+        assistTick = data.assistTick;
+        showButtons = data.showButtons;
+
+        Debug.Log($"Player {_playerIndex + 1} profiili ladattu");
+    }
 }

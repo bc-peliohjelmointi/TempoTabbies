@@ -44,6 +44,9 @@ public class HitManager : MonoBehaviour
     private Gamepad assignedGamepad;      // explicitly assigned device from MultiHitManager
     private readonly Dictionary<int, HoldNote> activeHolds = new();
 
+    // expose assigned gamepad to HoldNote
+    public Gamepad AssignedGamepad => assignedGamepad;
+
     // Previous-frame gamepad-held states (used to detect press-this-frame reliably)
     private bool prevGamepadLeftTriggerHeld = false;
     private bool prevGamepadRightTriggerHeld = false;
@@ -235,7 +238,14 @@ public class HitManager : MonoBehaviour
         if (diff <= TimingWindows.Great && !activeHolds.ContainsKey(lane))
         {
             activeHolds[lane] = hold;
-            ShowJudgment("MARVELOUS");
+            // inform hold about start so it uses the correct HitManager input mapping
+            hold.OwnerHitManager = this;
+            hold.StartHoldFromHitManager(currentTime);
+
+            // Play hit effect for hold start, but DO NOT show a hard-coded judgment here.
+            if (hitEffectManager != null)
+                hitEffectManager.PlayHitEffect(lane, "DEFAULT");
+
             Debug.Log($"[HOLD START] lane {lane}");
         }
     }

@@ -3618,6 +3618,7 @@ MonoBehaviour:
   rightTriggerLane: 3
   leftStickLane: 4
   rightStickLane: 5
+  AcceptKeyboard: 0
 --- !u!4 &1509357026
 Transform:
   m_ObjectHideFlags: 0

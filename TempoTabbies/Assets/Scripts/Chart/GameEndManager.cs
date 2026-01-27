@@ -73,8 +73,18 @@ public class GameEndManager : MonoBehaviour
     {
         gameEnding = true;
         Debug.Log("[GameEndManager] Starting game end sequence with fade");
-        ScoreManager.Instance.FinalizeScore();
-        Debug.Log($"[GameEndManager] Finalized score. Max Combo: {ScoreManager.Instance.maxCombo}");
+
+        // Finalize the score using the ScoreManager attached to the noteSpawner's HitManager (if present)
+        if (noteSpawner != null && noteSpawner.hitManager != null && noteSpawner.hitManager.scoreManager != null)
+        {
+            var sm = noteSpawner.hitManager.scoreManager;
+            sm.FinalizeScore();
+            Debug.Log($"[GameEndManager] Finalized score. Max Combo: {sm.maxCombo}");
+        }
+        else
+        {
+            Debug.LogWarning("[GameEndManager] No ScoreManager found on the noteSpawner's HitManager to finalize.");
+        }
 
         // Start fade effects
         StartCoroutine(FadeMusic());
@@ -148,7 +158,7 @@ public class GameEndManager : MonoBehaviour
         color.a = 0f;
         fadeOverlay.color = color;
 
-        
+
         if (fadeOverlay.TryGetComponent<Image>(out var fadeImage))
         {
             fadeImage.raycastTarget = false;

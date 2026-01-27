@@ -6,10 +6,10 @@ public class Player2Confirmation : MonoBehaviour
     private _GameManager gm;
     public float submit;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         gm = FindFirstObjectByType<_GameManager>();
+        gm.state = _GameManager.GameState.Player2Confirmation;
     }
 
     // Update is called once per frame

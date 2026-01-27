@@ -58,10 +58,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-       /* if (playerInput.currentControlScheme == "Keyboard&Mouse")
-        {
-            Destroy(gameObject);
-        }*/
+        /* if (playerInput.currentControlScheme == "Keyboard&Mouse")
+         {
+             Destroy(gameObject);
+         }*/
         // Checks what state the game is currently in
         switch (gameManager.state)
         {
@@ -72,11 +72,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     p2Confirm = FindFirstObjectByType<Player2Confirmation>();
                 }
-                float submitValue = submit.ReadValue<float>();
-                if (submitValue > 0)
-                {
-                    p2Confirm.submit = submitValue;
-                }
+                p2Confirm.submit = submit.ReadValue<float>();
                 break;
 
             case _GameManager.GameState.MainMenu:
@@ -110,6 +106,15 @@ public class PlayerScript : MonoBehaviour
                 {
                     optionsMenu.currentPlayer = this;
                 }
+                break;
+
+            case _GameManager.GameState.Profiles:
+                if (profilesMenu == null)
+                {
+                    profilesMenu = FindFirstObjectByType<Create_LoadPlayer>();
+                }
+
+                profilesMenu.submit = submit.ReadValue<float>();
                 break;
 
             case _GameManager.GameState.StageSelect:

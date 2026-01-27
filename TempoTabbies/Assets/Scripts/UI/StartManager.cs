@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class StartManager : MonoBehaviour
 {
     private _GameManager gm;
+    public MenuAnimations anims;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,8 +17,8 @@ public class StartManager : MonoBehaviour
     {
         if (gm.p1 != null)
         {
-            gm.state = _GameManager.GameState.MainMenu;
-            SceneManager.LoadScene("MainMenu");
+            anims.scene = "MainMenu";
+            anims.PawStB();
         }
     }
 }

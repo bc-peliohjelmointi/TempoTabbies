@@ -25,7 +25,7 @@ public class CatSelectButtons : MonoBehaviour, ISelectHandler, IDeselectHandler
     // what happens when the object is selected
     public void OnSelect(BaseEventData eventData)
     {
-        gameObject.transform.localScale = new Vector3(1.125f, 7.125f, 1.125f);
+        gameObject.transform.localScale = new Vector3(0.64f, 3.2f, 1.125f);
         bigImage.SetActive(true);
         catNameText.text = catName;
         catDescriptionText.text = catDescription;
@@ -43,7 +43,7 @@ public class CatSelectButtons : MonoBehaviour, ISelectHandler, IDeselectHandler
     // what happens when the button is deselected // So basically just undo whatever happens in OnSelect
     public void OnDeselect(BaseEventData eventData)
     {
-        gameObject.transform.localScale = new Vector3(0.75f, 4.75f, 0.75f);
+        gameObject.transform.localScale = new Vector3(0.4f, 2f, 0.75f);
         bigImage.SetActive(false);
         thisButton.image.color = new Color(0.6f, 0.6f, 0.6f);
         if (gm.whoGetsToPlay == 0)

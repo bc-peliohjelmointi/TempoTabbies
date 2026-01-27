@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 13df52092ad41514986c702c5063244c
+guid: cd7ea3d2f2455f044b748aedaa3bef50
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -365840457502674671
-    second: Paw Print Cartoon_0
+      213: 1344090322135694489
+    second: Paw Print OG_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,11 +113,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Paw Print Cartoon_0
+      name: Paw Print OG_0
       rect:
         serializedVersion: 2
-        x: 46
-        y: 14
+        x: 29
+        y: 31
         width: 476
         height: 479
       alignment: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 111361eca064ceaf0800000000000000
-      internalID: -365840457502674671
+      spriteID: 99c30f4d60b27a210800000000000000
+      internalID: 1344090322135694489
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Paw Print Cartoon_0: -365840457502674671
+      Paw Print OG_0: 1344090322135694489
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(AudioSource))]
 public class OptionsManager : MonoBehaviour
 {
     // Player movement, which is sent by the PlayerScript.cs Class
@@ -23,6 +22,7 @@ public class OptionsManager : MonoBehaviour
     // Other scripts
     private _GameManager gameManager;
     private JSON_Stuff json;
+    public MenuAnimations anims;
 
     // The UI elements
     [Header("Every UI element in the shared options")]
@@ -52,9 +52,6 @@ public class OptionsManager : MonoBehaviour
     public TextMeshProUGUI assistTickVolumeValue;
     public TextMeshProUGUI hitSoundVolumeValue;
 
-    // Audio
-    AudioSource source;
-
     // Enum to check what is selected
     public enum Selected
     {
@@ -80,8 +77,9 @@ public class OptionsManager : MonoBehaviour
 
     void Awake()
     {
-        WaitAFrame();
         gameManager = FindAnyObjectByType<_GameManager>();
+        gameManager.state = _GameManager.GameState.Options;
+        WaitAFrame();
         json = FindAnyObjectByType<JSON_Stuff>();
 
         selected = Selected.backButton;
@@ -95,11 +93,6 @@ public class OptionsManager : MonoBehaviour
         AssistTick(); AssistTick(); // just clicks them twice, so if true in gameManager, it goes false then back to true ->
         HitSound(); HitSound();     // we do this so it can check what the button bools are in the gameManager
         ShowButtons(); ShowButtons();
-
-        // Plays audio
-        source = GetComponent<AudioSource>();
-        source.Play();
-        source.loop = true;
     }
 
     IEnumerator WaitAFrame()
@@ -116,13 +109,12 @@ public class OptionsManager : MonoBehaviour
         {
             json.SaveGameManager();
 
-            gameManager.state = _GameManager.GameState.MainMenu;
-            SceneManager.LoadScene("MainMenu");
+            backButton.onClick.Invoke();
         }
         if ((int)volumeSlider.value != volumeSlider.value) { volumeSlider.value = (int)volumeSlider.value; }
         if ((int)scrollSpeed.value != scrollSpeed.value) { scrollSpeed.value = (int)scrollSpeed.value; }
 
-        volumeValue.text = ((int)(volumeSlider.value * 10)).ToString();
+        volumeValue.text = (volumeSlider.value).ToString();
         scrollSpeedValue.text = scrollSpeed.value.ToString();
         audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
         assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
@@ -143,7 +135,7 @@ public class OptionsManager : MonoBehaviour
                 EventSystem.current.SetSelectedGameObject(profiles.gameObject);
                 if (clickValue > 0.1)
                 {
-                    OnReturnClick();
+                    OnProfileClick();
                 }
                 if (canMove && moveAmount.y > 0.1f)
                 {
@@ -160,7 +152,7 @@ public class OptionsManager : MonoBehaviour
             case Selected.volumeSlider: // The volume slider
                                         // Selects the slider
                 EventSystem.current.SetSelectedGameObject(volumeSlider.gameObject);
-                AudioListener.volume = volumeSlider.value;
+                AudioListener.volume = volumeSlider.value/10;
                 gameManager.volume = volumeSlider.value;
                 if (canMove && moveAmount.y > 0.1f)
                 {
@@ -313,14 +305,12 @@ public class OptionsManager : MonoBehaviour
     {
         json.SaveGameManager();
 
-        gameManager.state = _GameManager.GameState.MainMenu;
-        SceneManager.LoadScene("MainMenu");
+        anims.scene = "MainMenu";
     }
 
     public void OnProfileClick()
     {
-        gameManager.state = _GameManager.GameState.Profiles;
-        SceneManager.LoadScene("Profiles");
+        anims.scene = "Profiles";
     }
 
     public void AssistTick()

@@ -11,7 +11,6 @@ public class ProfileButton : MonoBehaviour
 
     private void Awake()
     {
-        name = name.Replace("(Clone)", "");
         text.text = name;
         if (json == null)
         {

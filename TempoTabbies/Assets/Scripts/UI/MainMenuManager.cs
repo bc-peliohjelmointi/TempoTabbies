@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -19,13 +18,14 @@ public class MainMenuManager : MonoBehaviour
 
     private JSON_Stuff json;
     private _GameManager gameManager;
+    public MenuAnimations paw;
 
     // Player movement, which is sent by the PlayerScript.cs Class
     [Header("Player input values")]
     public Vector2 moveAmount;
     public float clickValue;
 
-    
+
 
     // State to know which button is being selected
     public enum ButtonSelect
@@ -43,9 +43,10 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindAnyObjectByType<_GameManager>();
+        gameManager.state = _GameManager.GameState.MainMenu;
         StartCoroutine(WaitAFrame());
         json = FindAnyObjectByType<JSON_Stuff>();
-        gameManager = FindAnyObjectByType<_GameManager>();
 
         json.LoadGameManager();
     }
@@ -145,28 +146,25 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnCatSelectClick()
     {
-        gameManager.state = _GameManager.GameState.Player2Confirmation;
         gameManager.multiplayer = true;
-        SceneManager.LoadScene("Player2Confirmation");
+        paw.scene = "Player2Confirmation";
     }
 
     public void OnPractiseClick()
     {
         gameManager.multiplayer = false;
-        gameManager.state = _GameManager.GameState.CatSelect;
-        SceneManager.LoadScene("CatSelect");
+        paw.scene = "CatSelect";
     }
 
     public void OnOptionsClick()
     {
-        gameManager.state = _GameManager.GameState.Options;
-        SceneManager.LoadScene("Options");
+        paw.scene = "Options";
     }
 
     public void OnMultiplayerClick()
     {
         gameManager.multiplayer = true;
-        SceneManager.LoadScene("MultiplayerStageSelect");
+        paw.scene = "MultiplayerStageSelect";
     }
 
     public void OnQuitClick()

@@ -895,8 +895,8 @@ MonoBehaviour:
   returnButton: {fileID: 2029610050}
   initialSelectedButton: {fileID: 202309492}
   difficultyBackground: {fileID: 2029610051}
-  scoreManager: {fileID: 925474176}
-  scoreManager2: {fileID: 1489999072}
+  scoreManager: {fileID: 1489999072}
+  scoreManager2: {fileID: 925474176}
   gm: {fileID: 0}
   beginnerColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
   easyColor: {r: 0.2, g: 0.6, b: 1, a: 1}
@@ -1173,6 +1173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4acd5d593023e849a6a6d9f35c1f7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: 2
   Music: {fileID: 387631743}
   gm: {fileID: 0}
   ScrollSpeed: 2
@@ -5935,6 +5936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4acd5d593023e849a6a6d9f35c1f7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerID: 1
   Music: {fileID: 387631743}
   gm: {fileID: 0}
   ScrollSpeed: 2

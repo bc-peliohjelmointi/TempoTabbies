@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
 {
+    public int playerID;
     [Header("Audio + Timing")]
     public AudioSource Music;
     public _GameManager gm;
@@ -47,6 +48,7 @@ public class NoteSpawner : MonoBehaviour
 
     private void Awake()
     {
+
         // Get reference to GameManager
         gm = _GameManager.instance;
 
@@ -54,6 +56,15 @@ public class NoteSpawner : MonoBehaviour
         if (gm != null)
         {
             ScrollSpeed = gm.scrollSpeed;
+        }
+
+        if (playerID == 1)
+        {
+            ScrollSpeed = gm.p1.scrollSpeed;
+        }
+        if (playerID == 2)
+        {
+            ScrollSpeed = gm.p2.scrollSpeed;
         }
     }
     public void LoadChart(SMFile sm, SMChart chart)

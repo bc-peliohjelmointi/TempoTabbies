@@ -246,4 +246,9 @@ public class Create_LoadPlayer : MonoBehaviour
         anims.scene = "Options";
         anims.PawStB();
     }
+
+    public void LoadPlayerToPlayer(int number)
+    {
+        json.LoadPlayerToPlayer(player, number);
+    }
 }

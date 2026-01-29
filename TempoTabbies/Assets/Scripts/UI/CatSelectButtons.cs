@@ -20,6 +20,35 @@ public class CatSelectButtons : MonoBehaviour, ISelectHandler, IDeselectHandler
     private void Awake()
     {
         gm = FindFirstObjectByType<_GameManager>();
+    }   
+
+    private void Update()
+    {
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        if (EventSystem.current.currentSelectedGameObject == thisButton.gameObject)
+        {
+            Debug.Log(this);
+            Debug.Log(gm.whoGetsToPlay);
+            if (gm.whoGetsToPlay == 0)
+            {
+                p1.SetActive(true);
+            }
+            else if (gm.whoGetsToPlay == 1)
+            {
+                p2.SetActive(true);
+            }
+        }
+        else
+        {
+            if (gm.whoGetsToPlay == 0)
+            {
+                p1.SetActive(false);
+            }
+            else if (gm.whoGetsToPlay == 1)
+            {
+                p2.SetActive(false);
+            }
+        }
     }
 
     // what happens when the object is selected
@@ -30,14 +59,7 @@ public class CatSelectButtons : MonoBehaviour, ISelectHandler, IDeselectHandler
         catNameText.text = catName;
         catDescriptionText.text = catDescription;
         thisButton.image.color = new Color(1, 1, 1);
-        if (gm.whoGetsToPlay == 0)
-        {
-            p1.SetActive(true);
-        }
-        else if (gm.whoGetsToPlay == 1)
-        {
-            p2.SetActive(true);
-        }
+
     }
 
     // what happens when the button is deselected // So basically just undo whatever happens in OnSelect

@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.Networking;
 using System.Collections;
 using System.IO;
+using UnityEngine;
+using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+
+        gm = FindFirstObjectByType<_GameManager>();
+        gm.state = _GameManager.GameState.Game;////////////////////////////////
     }
 
     void Start()

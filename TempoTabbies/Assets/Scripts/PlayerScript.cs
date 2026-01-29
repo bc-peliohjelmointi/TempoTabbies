@@ -177,6 +177,7 @@ public class PlayerScript : MonoBehaviour
     // Turns off other players controls
     public void DisableOthers()
     {
+        gameManager.whoGetsToPlay = _playerIndex;
         // All the controllers (keyboards, gamepads etc.)
         var allControllers = InputSystem.devices;
         // THIS controller

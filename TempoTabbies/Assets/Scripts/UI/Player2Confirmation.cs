@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Player2Confirmation : MonoBehaviour
 {
     private _GameManager gm;
+    public MenuAnimations anims;
     public float submit;
 
     private void Awake()
@@ -17,13 +18,16 @@ public class Player2Confirmation : MonoBehaviour
     {
         if (submit > 0)
         {
-            gm.state = _GameManager.GameState.MainMenu;
-            SceneManager.LoadScene("MainMenu");
+            anims.scene = "MainMenu";
+            anims.PawStB();
         }
         if (gm.p2 != null)
         {
-            gm.state = _GameManager.GameState.CatSelect;
-            SceneManager.LoadScene("CatSelect");
+            anims.scene = "CatSelect";
+            if (anims.animator.GetCurrentAnimatorStateInfo(0).length < anims.animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
+            {
+                anims.PawStB();
+            }
         }
     }
 }

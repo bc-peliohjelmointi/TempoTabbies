@@ -38,6 +38,8 @@ public class CatSelectionManager : MonoBehaviour
 
         gameManager = FindFirstObjectByType<_GameManager>();
         gameManager.state = _GameManager.GameState.CatSelect;
+
+        gameManager.p1.DisableOthers();
     }
 
     IEnumerator WaitAFrame()
@@ -49,6 +51,7 @@ public class CatSelectionManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(moveAmount);
         if (canMove && submitValue >= 0.1f)
         {
             if (gameManager.whoGetsToPlay == 0)
@@ -58,7 +61,9 @@ public class CatSelectionManager : MonoBehaviour
             }
             else
             {
+                gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 0;
+                gameManager.p1.DisableOthers();
             }
         }
         switch (selected)
@@ -129,7 +134,9 @@ public class CatSelectionManager : MonoBehaviour
             }
             else
             {
+                gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
+                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)
@@ -137,6 +144,7 @@ public class CatSelectionManager : MonoBehaviour
             gameManager.p2.cat = 1;
             anims.scene = "StageSelect";
             anims.PawStB();
+            gameManager.whoGetsToPlay = 0;
         }
     }
 
@@ -153,7 +161,9 @@ public class CatSelectionManager : MonoBehaviour
             }
             else
             {
+                gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
+                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)
@@ -161,6 +171,7 @@ public class CatSelectionManager : MonoBehaviour
             gameManager.p2.cat = 2;
             anims.scene = "StageSelect";
             anims.PawStB();
+            gameManager.whoGetsToPlay = 0;
         }
     }
 
@@ -176,7 +187,9 @@ public class CatSelectionManager : MonoBehaviour
             }
             else
             {
+                gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
+                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)
@@ -184,6 +197,7 @@ public class CatSelectionManager : MonoBehaviour
             gameManager.p2.cat = 3;
             anims.scene = "StageSelect";
             anims.PawStB();
+            gameManager.whoGetsToPlay = 0;
         }
     }
 }

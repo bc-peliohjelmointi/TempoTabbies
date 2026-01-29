@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChartSelectManager : MonoBehaviour
@@ -11,6 +11,9 @@ public class ChartSelectManager : MonoBehaviour
     public Transform SongListParent;
     public GameObject SongButtonPrefab;
     public ScrollRect songsScrollRect;
+    public TextMeshProUGUI p1ScoreText;
+    public TextMeshProUGUI p2ScoreText;
+    public MenuAnimations anims;
 
     [Header("Song Folder")]
     public string SongsFolder = "Songs";
@@ -23,7 +26,17 @@ public class ChartSelectManager : MonoBehaviour
 
     private _GameManager _gm;
 
+   // [field: HideInInspector]
     public float submitValue;
+    public float timer;
+    private float timerMax = 0.5f;
+
+    public enum State
+    {
+        bigButton,
+        smallButton
+    }
+    public State state;
 
     // if player 1 has selected
     private bool waitingForSecondPlayer = false;
@@ -33,7 +46,18 @@ public class ChartSelectManager : MonoBehaviour
         LoadAllSongs();
         PopulateSongList();
         _gm = FindFirstObjectByType<_GameManager>();
+        _gm.state = _GameManager.GameState.StageSelect;
         _gm.source.volume = 100;
+        if (_gm.multiplayer)
+        {
+            p1ScoreText.text = _gm.p1Score.ToString();
+            p2ScoreText.text = _gm.p2Score.ToString();
+        }
+        else
+        {
+            p1ScoreText.gameObject.SetActive(false);
+            p2ScoreText.gameObject.SetActive(false);
+        }
     }
 
     void LoadAllSongs()
@@ -188,10 +212,31 @@ public class ChartSelectManager : MonoBehaviour
             }
         }
 
-        if (submitValue > 0.1f)
+        if (state == State.bigButton)
         {
-            _gm.state = _GameManager.GameState.MainMenu;
-            SceneManager.LoadScene("MainMenu");
+            if (submitValue > 0 && timerMax <= timer)
+            {
+                anims.scene = "MainMenu";
+                anims.PawStB();
+                timer = 0;
+            }
+            else if (timerMax > timer)
+            {
+                timer += Time.deltaTime;
+            }
+        }
+        else if (state == State.smallButton)
+        {
+            if (submitValue > 0 && timerMax <= timer)
+            {
+                state = State.bigButton;
+                EventSystem.current.SetSelectedGameObject(songButtons[0].transform.GetChild(0).gameObject);
+                timer = 0;
+            }
+            else if (timerMax > timer)
+            {
+                timer += Time.deltaTime;
+            }
         }
     }
 
@@ -269,7 +314,7 @@ public class ChartSelectManager : MonoBehaviour
         {
             _gm = FindFirstObjectByType<_GameManager>();
         }
-
+        _gm.EnableControllers();
         if (!_gm.multiplayer)
         {
             GameSession.SelectedSong = song;
@@ -290,18 +335,20 @@ public class ChartSelectManager : MonoBehaviour
             _gm.whoGetsToPlay = 1;
 
             Debug.Log($"Player 1 selected: {song.Title} / {chart.Description}. Waiting for Player 2 to choose.");
+            _gm.p2.DisableOthers();
             // tee tahan jotain mika indikoi etta pelaaja 2 vuoro
             return;
         }
 
-       
+
         GameSession.SelectedSongP2 = song;
         GameSession.SelectedChartP2 = chart;
         waitingForSecondPlayer = false;
         _gm.whoGetsToPlay = 0;
 
-        
+
         UnityEngine.SceneManagement.SceneManager.LoadScene("MultiPlayerChartTest");
         _gm.source.volume = 0;
+        _gm.EnableControllers();
     }
 }

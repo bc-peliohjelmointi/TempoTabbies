@@ -56,8 +56,8 @@ public class MainMenuManager : MonoBehaviour
         yield return null;
         EventSystem.current.SetSelectedGameObject(quit.gameObject);
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(practise.gameObject);
-        buttonSelect = ButtonSelect.practice;
+        EventSystem.current.SetSelectedGameObject(catSelect.gameObject);
+        buttonSelect = ButtonSelect.catSelect;
     }
 
     private void Update()
@@ -90,11 +90,11 @@ public class MainMenuManager : MonoBehaviour
                     buttonSelect = ButtonSelect.options;
                     canMove = false;
                 }
-                /*else if (moveAmount.y > 0.1 && canMove)
+                else if (moveAmount.y > 0.1 && canMove)
                 {
                     buttonSelect = ButtonSelect.catSelect;
                     canMove = false;
-                }*/
+                }
                 break;
 
             case ButtonSelect.options: // Options
@@ -147,7 +147,14 @@ public class MainMenuManager : MonoBehaviour
     public void OnCatSelectClick()
     {
         gameManager.multiplayer = true;
-        paw.scene = "Player2Confirmation";
+        if (gameManager.p2 == null)
+        {
+            paw.scene = "Player2Confirmation";
+        }
+        else
+        {
+            paw.scene = "CatSelect";
+        }
     }
 
     public void OnPractiseClick()

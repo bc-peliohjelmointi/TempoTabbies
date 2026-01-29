@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     // The players player number, 0 = player 1, 1 = player 2
     [Header("Who the player is")]
     public int _playerIndex;
+    public InputDevice inputDevice;
 
     // Other scripts
     private _GameManager gameManager;
@@ -172,6 +173,11 @@ public class PlayerScript : MonoBehaviour
                 // napin A painaminen       clickButton.ReadValue<float>();
                 break;
         }
+
+
+        var allControllers = InputSystem.devices;
+        // THIS controller
+        inputDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
     }
 
     // Turns off other players controls
@@ -191,5 +197,10 @@ public class PlayerScript : MonoBehaviour
                 InputSystem.DisableDevice(allControllers[i]);
             }
         }
+    }
+
+    public void findGamepad()
+    {
+
     }
 }

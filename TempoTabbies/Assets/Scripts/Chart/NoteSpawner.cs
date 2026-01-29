@@ -61,10 +61,17 @@ public class NoteSpawner : MonoBehaviour
         if (playerID == 1)
         {
             ScrollSpeed = gm.p1.scrollSpeed;
+
         }
         if (playerID == 2)
         {
             ScrollSpeed = gm.p2.scrollSpeed;
+        }
+
+        // band-aid fix
+        if (ScrollSpeed < 1)
+        {
+            ScrollSpeed = 9;
         }
     }
     public void LoadChart(SMFile sm, SMChart chart)

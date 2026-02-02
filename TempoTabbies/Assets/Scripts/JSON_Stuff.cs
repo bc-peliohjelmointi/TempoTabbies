@@ -105,6 +105,7 @@ public class JSON_Stuff : MonoBehaviour
         Player player = new();
         json = File.ReadAllText($"JSON/{name}");
         player = JsonUtility.FromJson<Player>(json);
+        Debug.Log(player.scrollSpeed);
         if (playerIndex == 0)
         {
             gameManager.p1.scrollSpeed = player.scrollSpeed;

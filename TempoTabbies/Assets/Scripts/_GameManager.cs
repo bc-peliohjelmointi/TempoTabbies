@@ -41,6 +41,8 @@ public class _GameManager : MonoBehaviour
     [Header("Audio file for background music")]
     public AudioSource source;
 
+    private JSON_Stuff json;
+
     public enum GameState
     {
         Start, // Starting section where p1 is created
@@ -68,6 +70,7 @@ public class _GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        json = FindFirstObjectByType<JSON_Stuff>();
         source = GetComponent<AudioSource>();
         source.Play();
         source.loop = true;

@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
 
     // Other scripts
     private _GameManager gameManager;
+    private GameManager gm;
     private ChartSelectManager chartManager;
     private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
@@ -127,31 +128,13 @@ public class PlayerScript : MonoBehaviour
                 break;
 
             case _GameManager.GameState.Game:
-                // gets the pause menu script
-                if (pauseMenu == null)
+                if (gm == null)
                 {
-                    pauseMenu = FindFirstObjectByType<PauseMenuManager>();
+                    gm = FindFirstObjectByType<GameManager>();
                 }
-                // Checks if the pauseMenu is inactive
-                if (!pauseMenu.isPauseMenuActive)
+                else
                 {
-                    float submitValue2 = submit.ReadValue<float>();
-                    if (submitValue2 > 0)
-                    {
-                        // Makes this player the active player
-                        gameManager.whoGetsToPlay = _playerIndex;
-                        // Opens the pause menu
-                        pauseMenu.OpenPauseMenu();
-                        // Disables the other controllers
-                        DisableOthers();
-                    }
-                }
-                // Checks if this player should be moving in the menus
-                if (_playerIndex == gameManager.whoGetsToPlay && pauseMenu.isPauseMenuActive)
-                {
-                    // Checks the movement that we need for menus
-                    pauseMenu.moveAmount = navigate.ReadValue<Vector2>();
-                    pauseMenu.clickValue = clickButton.ReadValue<float>();
+                    gm.submit = submit.ReadValue<float>();
                 }
                 break;
 

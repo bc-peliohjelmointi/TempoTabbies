@@ -45,10 +45,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiPlayer/MultiStageSelectSMtest.unity
     guid: 19a9b4f84154d1e469c842b937e60ff2
   - enabled: 0
-    path: Assets/Scenes/ChartTest.unity
+    path: Assets/Scenes/TestScenes/ChartTest.unity
     guid: 015dbf86701dc734e9a03bb7320b9314
   - enabled: 0
-    path: Assets/Scenes/StageSelectSMtest.unity
+    path: Assets/Scenes/TestScenes/StageSelectSMtest.unity
     guid: c63d165c8f412404197d2b6bf9967922
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 4fd55f738dc0b5b448414f512ce963e0, type: 2}

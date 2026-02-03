@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class HitPointManager : MonoBehaviour
 {
     public float hp;
+    public float hpMax;
     int multiplier;
-    public List<float> diffMultiplierList;
+    public List<int> diffMultiplierList;
     public float diffMultiplier;
     float timer;
     public float maxTimer = 2;
@@ -26,6 +27,11 @@ public class HitPointManager : MonoBehaviour
         difficult
     }
     public State state;
+
+    private void Awake()
+    {
+        hp = hpMax;
+    }
 
     public void Update()
     {
@@ -58,6 +64,7 @@ public class HitPointManager : MonoBehaviour
                 if (hp == 0)
                 {
                     state = State.easy;
+                    hp = hpMax;
                 }
                 break;
             case State.hard:
@@ -66,6 +73,7 @@ public class HitPointManager : MonoBehaviour
                 if (hp == 0)
                 {
                     state = State.normal;
+                    hp = hpMax;
                 }
                 break;
             case State.difficult:
@@ -74,6 +82,7 @@ public class HitPointManager : MonoBehaviour
                 if (hp == 0)
                 {
                     state = State.hard;
+                    hp = hpMax;
                 }
                 break;
         }
@@ -97,6 +106,7 @@ public class HitPointManager : MonoBehaviour
         {
             diffMultiplier = diffMultiplierList[3];
         }
+        diffMultiplier /= 10;
         if (hitType == "MARVELOUS") { hp += 2 * diffMultiplier; }
         else if (hitType == "PERFECT") { hp += 1 * diffMultiplier; }
         else if (hitType == "GREAT") { }

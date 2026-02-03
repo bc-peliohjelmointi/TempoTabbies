@@ -7,6 +7,7 @@ public class NoteSpawner : MonoBehaviour
     [Header("Audio + Timing")]
     public AudioSource Music;
     public _GameManager gm;
+    public HitPointManager hpManager;
     public float ScrollSpeed = 8f;
     public float SpawnLeadTime = 2f;
 
@@ -88,6 +89,9 @@ public class NoteSpawner : MonoBehaviour
                 notes.Sort((a, b) => a.time.CompareTo(b.time));
                 Debug.Log($"[NoteSpawner] Notes sorted");
             }
+
+            hpManager.diffMultiplier = sm.SubtitleValues;
+            hpManager.difficulty = chart.Difficulty;
 
             nextIndex = 0;
             skipIndices.Clear();

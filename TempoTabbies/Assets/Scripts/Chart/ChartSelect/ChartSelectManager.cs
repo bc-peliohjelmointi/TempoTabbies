@@ -217,6 +217,7 @@ public class ChartSelectManager : MonoBehaviour
             if (submitValue > 0 && timerMax <= timer)
             {
                 anims.scene = "MainMenu";
+                _gm.EnableControllers();
                 anims.PawStB();
                 timer = 0;
             }

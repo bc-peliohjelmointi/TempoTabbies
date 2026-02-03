@@ -10,6 +10,7 @@ public class SMChart
     public string Difficulty;
     public int Meter;
     public List<List<string>> Measures = new();
+    public List<int> SubtitleValues = new();
 }
 
 public class SMFile
@@ -20,6 +21,7 @@ public class SMFile
     public float Offset;
     public string Banner;
     public Dictionary<float, float> Bpms = new();
+    public List<int> SubtitleValues = new();
     public List<SMChart> Charts = new();
 
     public string FilePath;  // full path to the .sm file
@@ -47,6 +49,15 @@ public static class SMParser
         sm.Offset = float.Parse(GetTag(data, "OFFSET", "0"), System.Globalization.CultureInfo.InvariantCulture);
         sm.Bpms = ParseBpms(GetTag(data, "BPMS"));
         sm.Banner = GetTag(data, "BANNER");
+        string subtitle = GetTag(data, "SUBTITLE");
+        if (!string.IsNullOrEmpty(subtitle))
+        {
+            foreach (string v in subtitle.Split(','))
+            {
+                if (int.TryParse(v.Trim(), out int n))
+                    sm.SubtitleValues.Add(n);
+            }
+        }
 
         var noteBlocks = Regex.Matches(data, @"#NOTES:(.*?);", RegexOptions.Singleline);
         foreach (Match m in noteBlocks)

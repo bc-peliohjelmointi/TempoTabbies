@@ -90,8 +90,11 @@ public class NoteSpawner : MonoBehaviour
                 Debug.Log($"[NoteSpawner] Notes sorted");
             }
 
-            hpManager.diffMultiplierList = sm.SubtitleValues;
-            hpManager.difficulty = chart.Difficulty;
+            if (hpManager != null)
+            {
+                hpManager.diffMultiplierList = sm.SubtitleValues;
+                hpManager.difficulty = chart.Difficulty;
+            }
 
             nextIndex = 0;
             skipIndices.Clear();

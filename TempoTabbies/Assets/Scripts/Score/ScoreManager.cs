@@ -81,7 +81,10 @@ public class ScoreManager : MonoBehaviour
         // Update combo system
         UpdateCombo(judgment);
 
-        hpManager.HPChange(judgment);
+        if (hpManager != null)
+        {
+            hpManager.HPChange(judgment);
+        }
 
         // Calculate points based on judgment
         int pointsEarned = CalculatePoints(judgment);

@@ -25,6 +25,8 @@ public class KayttajaValintaScript : MonoBehaviour
     private int[] playerSelections;
 
     private int currentPlayerTurn = 0;
+
+    _GameManager gm;
     void Start()
     {
         playerLocked = new bool[maxPlayers];
@@ -40,7 +42,32 @@ public class KayttajaValintaScript : MonoBehaviour
             Debug.Log("JSON-kansio luotu: " + UserFolder);
         }
         LoadAllJSONs(UserFolder);
-        // UpdateTurn();
+
+
+        // Use _GameManager singleton when available
+        gm = _GameManager.instance ?? FindAnyObjectByType<_GameManager>();
+        if (gm != null)
+        {
+            // Make sure gm has found player objects
+            gm.FindPlayers();
+            // Decide maxPlayers based on gm state (multiplayer) and known players
+            if (gm.multiplayer)
+            {
+                maxPlayers = Mathf.Max(2, gm.players != null ? gm.players.Count : 2);
+            }
+            else
+            {
+                maxPlayers = 1;
+            }
+        }
+        else
+        {
+            // fallback to public players list length if set in Inspector
+            maxPlayers = players != null ? players.Count : maxPlayers;
+        }
+
+
+        UpdateTurn();
         EventSystem.current.SetSelectedGameObject(myDropdown.gameObject);
     }
     void LoadAllJSONs(string UserFolder)
@@ -54,6 +81,7 @@ public class KayttajaValintaScript : MonoBehaviour
         {
             options.Add(Path.GetFileNameWithoutExtension(file));
             fullPaths.Add(file); // talletetaan koko polku
+            Debug.Log("Käyttäjän tekemä JSON "+ file);
         }
         foreach (object asset in OURCreatedJSONs)
         {
@@ -68,7 +96,7 @@ public class KayttajaValintaScript : MonoBehaviour
     public void OnJsonSelected(int index)
     {
         string json = "";
-        if (index >= 0 && index >= fullPaths.Count)
+        if (index >= 0 && index <= fullPaths.Count)
         {
             json = File.ReadAllText(fullPaths[index]);
            
@@ -87,7 +115,8 @@ public class KayttajaValintaScript : MonoBehaviour
 
             PlayerProfileData data = JsonUtility.FromJson<PlayerProfileData>(json);
 
-        // ANNA JSON TIEDOT OIKEALLE PELAAJALLE
+        /* VAnha player valinta
+         // ANNA JSON TIEDOT OIKEALLE PELAAJALLE
         if (currentPlayerTurn < players.Count)
         {
             players[currentPlayerTurn].ApplyProfile(data);

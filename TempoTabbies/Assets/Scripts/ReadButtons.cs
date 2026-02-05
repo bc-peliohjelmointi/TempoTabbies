@@ -20,6 +20,7 @@ public class ReadButtons : MonoBehaviour
             if (key.wasPressedThisFrame)
             {
                 text.text = key.displayName;
+                Debug.Log(key);
             }
         }
 
@@ -32,6 +33,7 @@ public class ReadButtons : MonoBehaviour
             if (control is ButtonControl button && button.wasPressedThisFrame)
             {
                 textController.text = control.displayName;
+                Debug.Log(control);
             }
         }
     }

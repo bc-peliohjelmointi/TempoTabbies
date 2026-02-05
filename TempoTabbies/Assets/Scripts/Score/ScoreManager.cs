@@ -84,6 +84,7 @@ public class ScoreManager : MonoBehaviour
         if (hpManager != null)
         {
             hpManager.HPChange(judgment);
+            Debug.Log(judgment);
         }
 
         // Calculate points based on judgment

@@ -15,7 +15,6 @@ public class PlayerScript : MonoBehaviour
     private _GameManager gameManager;
     private GameManager gm;
     private ChartSelectManager chartManager;
-    private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
     private Create_LoadPlayer profilesMenu;

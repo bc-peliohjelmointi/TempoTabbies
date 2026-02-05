@@ -15,7 +15,6 @@ public class HitPointManager : MonoBehaviour
     public string difficulty;
 
     public Image mask;
-    public TextMeshProUGUI text;
     public float fillamount = 0.5f;
 
 
@@ -31,11 +30,17 @@ public class HitPointManager : MonoBehaviour
     private void Awake()
     {
         hp = hpMax;
+        state = State.difficult;
     }
 
     public void Update()
     {
+        if (hp > hpMax)
+        {
+            hp = hpMax;
+        }
         fillamount = hp / 100;
+        mask.fillAmount = fillamount;
         switch (state)
         {
             case State.easy:
@@ -90,21 +95,32 @@ public class HitPointManager : MonoBehaviour
 
     public void HPChange(string hitType)
     {
-        if (difficulty.ToLower() == "beginner")
+        if (diffMultiplierList.Count > 0)
         {
-            diffMultiplier = diffMultiplierList[0];
+            if (difficulty.ToLower() == "beginner")
+            {
+                diffMultiplier = diffMultiplierList[0];
+            }
+            else if (difficulty.ToLower() == "medium")
+            {
+                diffMultiplier = diffMultiplierList[1];
+            }
+            else if (difficulty.ToLower() == "hard")
+            {
+                diffMultiplier = diffMultiplierList[2];
+            }
+            else if (difficulty.ToLower() == "challenge")
+            {
+                diffMultiplier = diffMultiplierList[3];
+            }
         }
-        else if (difficulty.ToLower() == "medium")
+        else
         {
-            diffMultiplier = diffMultiplierList[1];
+            diffMultiplier = 10;
         }
-        else if (difficulty.ToLower() == "hard")
+        if (diffMultiplier <= 0)
         {
-            diffMultiplier = diffMultiplierList[2];
-        }
-        else if (difficulty.ToLower() == "challenge")
-        {
-            diffMultiplier = diffMultiplierList[3];
+            diffMultiplier = 10;
         }
         diffMultiplier /= 10;
         if (hitType == "MARVELOUS") { hp += 2 * diffMultiplier; }
@@ -113,5 +129,6 @@ public class HitPointManager : MonoBehaviour
         else if (hitType == "GOOD") { if (hp != 0) { hp -= (1 * multiplier) * diffMultiplier; } }
         else if (hitType == "BAD") { if (hp != 0) { hp -= (3 * multiplier) * diffMultiplier; if (hp < 0) { hp = 0; } } }
         else if (hitType == "MISS") { if (hp != 0) { hp -= (4 * multiplier) * diffMultiplier; if (hp < 0) { hp = 0; } } }
+        else { return; }
     }
 }

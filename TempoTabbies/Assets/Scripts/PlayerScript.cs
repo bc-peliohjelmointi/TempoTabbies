@@ -185,4 +185,31 @@ public class PlayerScript : MonoBehaviour
     {
 
     }
+
+    public void ApplyProfile(PlayerProfileData data)
+    {
+        if (data == null)
+        {
+            Debug.LogWarning($"ApplyProfile called with null data for Player {_playerIndex}");
+            return;
+        }
+
+        // Copy values from the profile to the player instance
+        scrollSpeed = data.scrollSpeed;
+        assistTick = data.assistTick;
+        showButtons = data.showButtons;
+
+        // If you need to push these values to other systems, do it here.
+        // Example: update global game manager defaults (if appropriate)
+        var gm = FindFirstObjectByType<_GameManager>();
+        if (gm != null)
+        {
+            // optional: apply defaults to game manager if the profile should change them
+            // gm.scrollSpeed = scrollSpeed;
+            // gm.assistTick = assistTick;
+            // gm.showButtons = showButtons;
+        }
+
+        Debug.Log($"Player {_playerIndex + 1} profile applied: scrollSpeed={scrollSpeed}, assistTick={assistTick}, showButtons={showButtons}");
+    }
 }

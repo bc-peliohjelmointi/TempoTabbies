@@ -251,4 +251,22 @@ public class Create_LoadPlayer : MonoBehaviour
     {
         json.LoadPlayerToPlayer(player, number);
     }
+    public void ApplyProfileToPlayer(PlayerScript player)
+    {
+        if (player == null) return;
+
+        player.scrollSpeed = scrollSpeed;
+        player.assistTick = assistTick;
+        player.showButtons = showButtons;
+
+        Debug.Log($"Profile annettu Player {player._playerIndex + 1}");
+    }
+    public void ApplyProfileToActivePlayer()
+    {
+        PlayerScript target = _gm.players
+            .FirstOrDefault(p => p._playerIndex == _gm.whoGetsToPlay);
+
+        ApplyProfileToPlayer(target);
+    }
+
 }

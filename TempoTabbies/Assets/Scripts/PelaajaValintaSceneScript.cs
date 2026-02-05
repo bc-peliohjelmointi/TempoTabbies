@@ -41,6 +41,6 @@ public class PelaajaValintaSceneScript : MonoBehaviour
         }*/
 
         //gameManager.whoGetsToPlay = _playerIndex;
-        gameManager.whoGetsToPlay = _playerIndex;
+        //gameManager.whoGetsToPlay = _playerIndex;
     }
 }

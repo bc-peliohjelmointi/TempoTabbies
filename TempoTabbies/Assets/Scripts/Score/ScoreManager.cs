@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour
 
     private int pointsPerNote;
 
+    public HitPointManager hpManager;
+
     // Events for real-time updates
     public System.Action<int> OnScoreChanged;
     public System.Action<float> OnAccuracyChanged;
@@ -78,6 +80,11 @@ public class ScoreManager : MonoBehaviour
 
         // Update combo system
         UpdateCombo(judgment);
+
+        if (hpManager != null)
+        {
+            hpManager.HPChange(judgment);
+        }
 
         // Calculate points based on judgment
         int pointsEarned = CalculatePoints(judgment);

@@ -9,8 +9,10 @@ using UnityEngine.InputSystem;
 public class KayttajaValintaScript : MonoBehaviour
 {
     public TMP_Dropdown myDropdown; // Make sure to assign this
-    public string folderPath;
+    public string UserFolder; //Pelaajan tekem‰t JSON-tiedostot tallennetaan t‰h‰n kansioon
     private List<string> fullPaths = new List<string>();
+    private Object[] OURCreatedJSONs; // Lataa kaikki JSON-tiedostot Resources/JSON-kansiosta
+    private List<TextAsset> OURJsonAssets = new List<TextAsset>();
 
     //pelaaja asioita
     public List<PlayerScript> players;
@@ -29,22 +31,23 @@ public class KayttajaValintaScript : MonoBehaviour
         playerSelections = new int[maxPlayers];
         myDropdown.ClearOptions();//tyhjent‰‰ listan
 
-        folderPath = Path.Combine(Application.persistentDataPath, "JSON");
+        UserFolder = Path.Combine(Application.persistentDataPath, "JSON");
+        OURCreatedJSONs = Resources.LoadAll("JSON", typeof(TextAsset)); // Lataa kaikki JSON-tiedostot Resources/JSON-kansiosta
 
-        if (!Directory.Exists(folderPath))
+        if (!Directory.Exists(UserFolder))
         {
-            Directory.CreateDirectory(folderPath);
-            Debug.Log("JSON-kansio luotu: " + folderPath);
+            Directory.CreateDirectory(UserFolder);
+            Debug.Log("JSON-kansio luotu: " + UserFolder);
         }
-        LoadJsonFiles();
+        LoadAllJSONs(UserFolder);
         // UpdateTurn();
         EventSystem.current.SetSelectedGameObject(myDropdown.gameObject);
     }
-    void LoadJsonFiles()
+    void LoadAllJSONs(string UserFolder)
     {
         fullPaths.Clear();
 
-        string[] files = Directory.GetFiles("JSON", "*.json");
+        string[] files = Directory.GetFiles(UserFolder, "*.json");
         List<string> options = new List<string>();
 
         foreach (string file in files)
@@ -52,17 +55,37 @@ public class KayttajaValintaScript : MonoBehaviour
             options.Add(Path.GetFileNameWithoutExtension(file));
             fullPaths.Add(file); // talletetaan koko polku
         }
+        foreach (object asset in OURCreatedJSONs)
+        {
+            options.Add(Path.GetFileNameWithoutExtension(((TextAsset)asset).name));
+            OURJsonAssets.Add((TextAsset)asset);
+        }
+
         myDropdown.ClearOptions();
         myDropdown.AddOptions(options);
     }
 
     public void OnJsonSelected(int index)
     {
-        if (index < 0 || index >= fullPaths.Count)
-            return;
+        string json = "";
+        if (index >= 0 && index >= fullPaths.Count)
+        {
+            json = File.ReadAllText(fullPaths[index]);
+           
+        }
 
-        string json = File.ReadAllText(fullPaths[index]);
-        PlayerProfileData data = JsonUtility.FromJson<PlayerProfileData>(json);
+        else if (index >= 0 && index < fullPaths.Count + OURJsonAssets.Count)
+        {
+             json = OURJsonAssets[index - fullPaths.Count].text;
+        }
+
+        else
+        {
+            Debug.LogError("JSONina ei L÷YDYYYYY!!!:(");
+            return;
+        }
+
+            PlayerProfileData data = JsonUtility.FromJson<PlayerProfileData>(json);
 
         // ANNA JSON TIEDOT OIKEALLE PELAAJALLE
         if (currentPlayerTurn < players.Count)

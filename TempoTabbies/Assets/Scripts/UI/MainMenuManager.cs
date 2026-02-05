@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -19,13 +18,14 @@ public class MainMenuManager : MonoBehaviour
 
     private JSON_Stuff json;
     private _GameManager gameManager;
+    public MenuAnimations paw;
 
     // Player movement, which is sent by the PlayerScript.cs Class
     [Header("Player input values")]
     public Vector2 moveAmount;
     public float clickValue;
 
-    
+
 
     // State to know which button is being selected
     public enum ButtonSelect
@@ -43,9 +43,10 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
+        gameManager = FindAnyObjectByType<_GameManager>();
+        gameManager.state = _GameManager.GameState.MainMenu;
         StartCoroutine(WaitAFrame());
         json = FindAnyObjectByType<JSON_Stuff>();
-        gameManager = FindAnyObjectByType<_GameManager>();
 
         json.LoadGameManager();
     }
@@ -55,8 +56,8 @@ public class MainMenuManager : MonoBehaviour
         yield return null;
         EventSystem.current.SetSelectedGameObject(quit.gameObject);
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(practise.gameObject);
-        buttonSelect = ButtonSelect.practice;
+        EventSystem.current.SetSelectedGameObject(catSelect.gameObject);
+        buttonSelect = ButtonSelect.catSelect;
     }
 
     private void Update()
@@ -89,11 +90,11 @@ public class MainMenuManager : MonoBehaviour
                     buttonSelect = ButtonSelect.options;
                     canMove = false;
                 }
-                /*else if (moveAmount.y > 0.1 && canMove)
+                else if (moveAmount.y > 0.1 && canMove)
                 {
                     buttonSelect = ButtonSelect.catSelect;
                     canMove = false;
-                }*/
+                }
                 break;
 
             case ButtonSelect.options: // Options
@@ -145,28 +146,32 @@ public class MainMenuManager : MonoBehaviour
 
     public void OnCatSelectClick()
     {
-        gameManager.state = _GameManager.GameState.Player2Confirmation;
         gameManager.multiplayer = true;
-        SceneManager.LoadScene("Player2Confirmation");
+        if (gameManager.p2 == null)
+        {
+            paw.scene = "Player2Confirmation";
+        }
+        else
+        {
+            paw.scene = "CatSelect";
+        }
     }
 
     public void OnPractiseClick()
     {
         gameManager.multiplayer = false;
-        gameManager.state = _GameManager.GameState.CatSelect;
-        SceneManager.LoadScene("CatSelect");
+        paw.scene = "CatSelect";
     }
 
     public void OnOptionsClick()
     {
-        gameManager.state = _GameManager.GameState.Options;
-        SceneManager.LoadScene("Options");
+        paw.scene = "Options";
     }
 
     public void OnMultiplayerClick()
     {
         gameManager.multiplayer = true;
-        SceneManager.LoadScene("MultiplayerStageSelect");
+        paw.scene = "MultiplayerStageSelect";
     }
 
     public void OnQuitClick()

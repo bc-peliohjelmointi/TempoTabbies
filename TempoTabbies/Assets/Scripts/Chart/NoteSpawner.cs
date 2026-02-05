@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class NoteSpawner : MonoBehaviour
 {
+    public int playerID;
     [Header("Audio + Timing")]
     public AudioSource Music;
     public _GameManager gm;
@@ -47,6 +48,7 @@ public class NoteSpawner : MonoBehaviour
 
     private void Awake()
     {
+
         // Get reference to GameManager
         gm = _GameManager.instance;
 
@@ -54,6 +56,22 @@ public class NoteSpawner : MonoBehaviour
         if (gm != null)
         {
             ScrollSpeed = gm.scrollSpeed;
+        }
+
+        if (playerID == 1)
+        {
+            ScrollSpeed = gm.p1.scrollSpeed;
+
+        }
+        if (playerID == 2)
+        {
+            ScrollSpeed = gm.p2.scrollSpeed;
+        }
+
+        // band-aid fix
+        if (ScrollSpeed < 1)
+        {
+            ScrollSpeed = 9;
         }
     }
     public void LoadChart(SMFile sm, SMChart chart)
@@ -78,7 +96,22 @@ public class NoteSpawner : MonoBehaviour
             int judgmentNotes = SMParser.CountJudgmentNotes(chart);
             Debug.Log($"[NoteSpawner] Judgment notes count: {judgmentNotes}");
 
-            // INITIALIZE SCORE MANAGER with exact count
+            // Ensure HitManager has a ScoreManager assigned (fallback to any in-scene ScoreManager)
+            if (hitManager != null && hitManager.scoreManager == null)
+            {
+                var found = FindObjectOfType<ScoreManager>();
+                if (found != null)
+                {
+                    hitManager.scoreManager = found;
+                    Debug.Log("[NoteSpawner] Assigned Scene ScoreManager to HitManager as fallback.");
+                }
+                else
+                {
+                    Debug.LogWarning("[NoteSpawner] No ScoreManager assigned to HitManager and none found in scene.");
+                }
+            }
+
+            // INITIALIZE HITMANAGER/SCORE MANAGER with exact count
             if (hitManager != null)
             {
                 hitManager.InitializeChart(judgmentNotes);
@@ -123,8 +156,6 @@ public class NoteSpawner : MonoBehaviour
             // Throttle: if we've spawned enough this frame, break and continue next frame
             if (lastFrameSpawnedCount >= maxSpawnsPerFrame)
             {
-                // Optional: a lightweight debug to help tuning
-                // Debug.Log($"[NoteSpawner] Throttled spawning: spawned {lastFrameSpawnedCount} notes this frame, nextIndex={nextIndex}");
                 break;
             }
 
@@ -155,7 +186,7 @@ public class NoteSpawner : MonoBehaviour
                 float spawnY = HitLine.position.y + timeUntilHit * ScrollSpeed;
                 Vector3 spawnPos = new Vector3(lane.position.x, spawnY, lane.position.z);
 
-                // Handle hold notes as before
+                // Handle hold notes
                 if (noteData.type == '2')
                 {
                     var endNote = FindHoldEnd(noteData.lane, nextIndex);
@@ -184,6 +215,14 @@ public class NoteSpawner : MonoBehaviour
                         if (headPrefab != null) hold.Head = Instantiate(headPrefab, holdRoot.transform);
                         if (bodyPrefab != null) hold.Body = Instantiate(bodyPrefab, holdRoot.transform);
                         if (endPrefab != null) hold.End = Instantiate(endPrefab, holdRoot.transform);
+
+                        // Assign per-player managers (score, hit effects) and owner so HoldNote uses the correct input device
+                        if (hitManager != null)
+                        {
+                            hold.hitEffectManager = hitManager.hitEffectManager;
+                            hold.scoreManager = hitManager.scoreManager;
+                            hold.OwnerHitManager = hitManager;
+                        }
 
                         nextIndex++;
                         lastFrameSpawnedCount++;
@@ -216,14 +255,10 @@ public class NoteSpawner : MonoBehaviour
             }
             else
             {
-                // If AssistTickManager is null, we still need to advance nextIndex to avoid infinite loops
+                // If AssistTickManager is null, advance nextIndex to avoid infinite loops
                 nextIndex++;
             }
         }
-
-        // Optional debug: show if we are throttling heavily (enable when tuning)
-        // if (lastFrameSpawnedCount >= maxSpawnsPerFrame)
-        //     Debug.Log($"[NoteSpawner] Frame-spawn cap reached ({maxSpawnsPerFrame}). nextIndex={nextIndex}");
     }
 
     public bool IsChartComplete()

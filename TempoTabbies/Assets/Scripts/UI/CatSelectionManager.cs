@@ -13,6 +13,7 @@ public class CatSelectionManager : MonoBehaviour
 
     // Other scripts
     private _GameManager gameManager;
+    public MenuAnimations anims;
 
     // UI Objects
     [SerializeField] Button cat1;
@@ -36,6 +37,9 @@ public class CatSelectionManager : MonoBehaviour
         WaitAFrame();
 
         gameManager = FindFirstObjectByType<_GameManager>();
+        gameManager.state = _GameManager.GameState.CatSelect;
+
+        gameManager.p1.DisableOthers();
     }
 
     IEnumerator WaitAFrame()
@@ -47,10 +51,20 @@ public class CatSelectionManager : MonoBehaviour
 
     private void Update()
     {
-        if (submitValue >= 0.1f)
+        Debug.Log(moveAmount);
+        if (canMove && submitValue >= 0.1f)
         {
-            SceneManager.LoadScene("MainMenu");
-            gameManager.state = _GameManager.GameState.MainMenu;
+            if (gameManager.whoGetsToPlay == 0)
+            {
+                anims.scene = "MainMenu";
+                anims.PawStB();
+            }
+            else
+            {
+                gameManager.EnableControllers();
+                gameManager.whoGetsToPlay = 0;
+                gameManager.p1.DisableOthers();
+            }
         }
         switch (selected)
         {
@@ -115,19 +129,23 @@ public class CatSelectionManager : MonoBehaviour
             gameManager.p1.cat = 1;
             if (gameManager.multiplayer == false)
             {
-                SceneManager.LoadScene("StageSelect");
+                anims.scene = "StageSelect";
+                anims.PawStB();
             }
             else
             {
+                gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
+                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)
         {
             gameManager.p2.cat = 1;
-            SceneManager.LoadScene("StageSelect");
+            anims.scene = "StageSelect";
+            anims.PawStB();
+            gameManager.whoGetsToPlay = 0;
         }
-        gameManager.state = _GameManager.GameState.StageSelect;
     }
 
     // the second cats click event
@@ -138,19 +156,23 @@ public class CatSelectionManager : MonoBehaviour
             gameManager.p1.cat = 2;
             if (gameManager.multiplayer == false)
             {
-                SceneManager.LoadScene("StageSelect");
+                anims.scene = "StageSelect";
+                anims.PawStB();
             }
             else
             {
+                gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
+                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)
         {
             gameManager.p2.cat = 2;
-            SceneManager.LoadScene("StageSelect");
+            anims.scene = "StageSelect";
+            anims.PawStB();
+            gameManager.whoGetsToPlay = 0;
         }
-        gameManager.state = _GameManager.GameState.StageSelect;
     }
 
     public void OnCat3Click()
@@ -160,19 +182,23 @@ public class CatSelectionManager : MonoBehaviour
             gameManager.p1.cat = 3;
             if (gameManager.multiplayer == false)
             {
-                SceneManager.LoadScene("StageSelect");
+                anims.scene = "StageSelect";
+                anims.PawStB();
             }
             else
             {
+                gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
+                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)
         {
             gameManager.p2.cat = 3;
-            SceneManager.LoadScene("StageSelect");
+            anims.scene = "StageSelect";
+            anims.PawStB();
+            gameManager.whoGetsToPlay = 0;
         }
-        gameManager.state = _GameManager.GameState.StageSelect;
     }
 }
 

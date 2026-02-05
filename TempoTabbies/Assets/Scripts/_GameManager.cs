@@ -34,9 +34,14 @@ public class _GameManager : MonoBehaviour
     public PlayerScript p1;
     public PlayerScript p2;
 
+    public int p1Score;
+    public int p2Score;
+
     // Audio
     [Header("Audio file for background music")]
     public AudioSource source;
+
+    private JSON_Stuff json;
 
     public enum GameState
     {
@@ -65,6 +70,7 @@ public class _GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        json = FindFirstObjectByType<JSON_Stuff>();
         source = GetComponent<AudioSource>();
         source.Play();
         source.loop = true;
@@ -86,6 +92,19 @@ public class _GameManager : MonoBehaviour
             if (!source.isPlaying)
             {
                 source.Play();
+            }
+        }
+        if (multiplayer)
+        {
+            if (p1Score == 3)
+            {
+                p1Score = 1;
+                p2Score = 0;
+            }
+            if (p2Score == 3)
+            {
+                p2Score = 1;
+                p1Score = 0;
             }
         }
     }

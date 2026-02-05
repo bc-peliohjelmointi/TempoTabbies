@@ -18,6 +18,12 @@ public class HoldNote : MonoBehaviour
     [Header("Hit Effects")]
     public SimpleHitSprite hitEffectManager; // Add this line - same as HitManager uses
 
+    [Header("Per-note score manager (set by spawner)")]
+    public ScoreManager scoreManager;
+
+    [Header("Owner HitManager (set by spawner / HitManager when starting hold)")]
+    public HitManager OwnerHitManager;
+
     [Header("Body Settings")]
     public float BodyWidth = 0.25f;
 
@@ -66,14 +72,70 @@ public class HoldNote : MonoBehaviour
             s.x = BodyWidth;
             Head.transform.localScale = s;
         }
+
+        // --- Robust fallback binding for singleplayer ---
+        // If OwnerHitManager wasn't provided by the spawner, try to bind a sensible HitManager now.
+        if (OwnerHitManager == null)
+        {
+            // Prefer HitManager referenced on the parent NoteSpawner (if any)
+            var parentSpawner = GetComponentInParent<NoteSpawner>();
+            if (parentSpawner != null && parentSpawner.hitManager != null)
+            {
+                OwnerHitManager = parentSpawner.hitManager;
+            }
+            else
+            {
+                // Last resort: pick any HitManager in the scene (singleplayer fallback)
+                OwnerHitManager = FindObjectOfType<HitManager>();
+            }
+
+            if (OwnerHitManager != null)
+            {
+                Debug.Log($"[HoldNote] Bound to HitManager '{OwnerHitManager.name}' via fallback in Start().");
+                // Copy missing managers from owner so this hold uses the same Score/Judgment/Effects
+                if (scoreManager == null)
+                    scoreManager = OwnerHitManager.scoreManager;
+                if (hitEffectManager == null)
+                    hitEffectManager = OwnerHitManager.hitEffectManager;
+            }
+            else
+            {
+                Debug.LogWarning("[HoldNote] No HitManager found for fallback binding; keyboard/gamepad fallback will still be used.");
+            }
+        }
     }
 
+    [System.Obsolete]
     void Update()
     {
         if (!Music || !HitLine || hasEnded) return;
 
-        gamepad = Gamepad.current;
-        var keyboard = Keyboard.current;
+        // Use owner hit manager's assigned pad when available.
+        // FIX: fall back to Gamepad.current when AssignedGamepad is null (singleplayer)
+        gamepad = OwnerHitManager?.AssignedGamepad ?? Gamepad.current;
+
+        // Decide keyboard usage:
+        // - if no OwnerHitManager -> allow keyboard
+        // - if OwnerHitManager.AcceptKeyboard -> allow keyboard
+        // - otherwise, if there is no gamepad present/assigned -> allow keyboard as fallback
+        bool allowKeyboard;
+        if (OwnerHitManager == null)
+        {
+            allowKeyboard = true;
+        }
+        else
+        {
+            allowKeyboard = OwnerHitManager.AcceptKeyboard;
+            if (!allowKeyboard)
+            {
+                // If owner disallows keyboard but there is no gamepad available, enable keyboard fallback
+                bool hasAssignedPad = (OwnerHitManager.AssignedGamepad != null) || (Gamepad.current != null);
+                if (!hasAssignedPad)
+                    allowKeyboard = true;
+            }
+        }
+
+        var keyboard = allowKeyboard ? Keyboard.current : null;
 
         // Current song time
         float songTime = GameManager.SongTime;
@@ -123,6 +185,22 @@ public class HoldNote : MonoBehaviour
             {
                 hasStartedHold = true;
                 transform.position = new Vector3(transform.position.x, HitLine.position.y, transform.position.z);
+
+                // Ensure OwnerHitManager is set when the hold starts (helps consistent input logic)
+                if (OwnerHitManager == null)
+                {
+                    var parentSpawner = GetComponentInParent<NoteSpawner>();
+                    if (parentSpawner != null && parentSpawner.hitManager != null)
+                        OwnerHitManager = parentSpawner.hitManager;
+                    else if (OwnerHitManager == null)
+                        OwnerHitManager = FindObjectOfType<HitManager>();
+
+                    if (OwnerHitManager != null)
+                    {
+                        if (scoreManager == null) scoreManager = OwnerHitManager.scoreManager;
+                        if (hitEffectManager == null) hitEffectManager = OwnerHitManager.hitEffectManager;
+                      }
+                }
 
                 // ADD INITIAL PRESS SCORING
                 if (!initialPressScored)
@@ -178,17 +256,15 @@ public class HoldNote : MonoBehaviour
         UpdatePrevHeldStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
     }
 
-
     private void MissInitialPress()
     {
         Debug.Log($"[HoldNote] MISSED initial press");
 
-        if (JudgmentDisplay.Instance != null)
-            JudgmentDisplay.Instance.Show("MISS", false, false); // No direction for misses
+        ShowJudgment("MISS", false, false); // No direction for misses
 
-        if (ScoreManager.Instance != null)
+        if (scoreManager != null)
         {
-            ScoreManager.Instance.AddJudgment("MISS");
+            scoreManager.AddJudgment("MISS");
         }
 
         // Destroy the hold note since initial press was missed
@@ -199,12 +275,11 @@ public class HoldNote : MonoBehaviour
     {
         Debug.Log($"[HoldNote] EARLY RELEASE - MISS");
 
-        if (JudgmentDisplay.Instance != null)
-            JudgmentDisplay.Instance.Show("MISS", false, false); // No direction for misses
+        ShowJudgment("MISS", false, false); // No direction for misses
 
-        if (ScoreManager.Instance != null)
+        if (scoreManager != null)
         {
-            ScoreManager.Instance.AddJudgment("MISS");
+            scoreManager.AddJudgment("MISS");
         }
 
         DestroyHold();
@@ -251,6 +326,22 @@ public class HoldNote : MonoBehaviour
         Body.transform.localScale = s;
     }
 
+    // Called by HitManager when it starts this hold
+    public void StartHoldFromHitManager(float songTime)
+    {
+        if (!hasStartedHold)
+        {
+            hasStartedHold = true;
+            transform.position = new Vector3(transform.position.x, HitLine.position.y, transform.position.z);
+
+            if (!initialPressScored)
+            {
+                ScoreInitialPress(songTime);
+                initialPressScored = true;
+            }
+        }
+    }
+
     // In the ScoreInitialPress method of HoldNote:
     private void ScoreInitialPress(float currentTime)
     {
@@ -270,12 +361,11 @@ public class HoldNote : MonoBehaviour
         bool isEarly = diff < 0;
         bool isLate = diff > 0;
 
-        if (JudgmentDisplay.Instance != null)
-            JudgmentDisplay.Instance.Show(result, isEarly, isLate);
+        ShowJudgment(result, isEarly, isLate);
 
-        if (ScoreManager.Instance != null)
+        if (scoreManager != null)
         {
-            ScoreManager.Instance.AddJudgment(result);
+            scoreManager.AddJudgment(result);
         }
 
 
@@ -317,12 +407,11 @@ public class HoldNote : MonoBehaviour
         bool isEarly = diff < 0;
         bool isLate = diff > 0;
 
-        if (JudgmentDisplay.Instance != null)
-            JudgmentDisplay.Instance.Show(result, isEarly, isLate);
+        ShowJudgment(result, isEarly, isLate);
 
-        if (ScoreManager.Instance != null)
+        if (scoreManager != null)
         {
-            ScoreManager.Instance.AddJudgment(result);
+            scoreManager.AddJudgment(result);
         }
 
         Debug.Log($"[HoldNote] Release Judgment: {result} (?={diff * 1000f:F1} ms)");
@@ -339,18 +428,23 @@ public class HoldNote : MonoBehaviour
 
     private bool IsPressedForLane(int lane)
     {
-        if (gamepad == null) return false;
+        // Allow keyboard fallback for singleplayer or when OwnerHitManager permits it
+        var keyboard = (OwnerHitManager != null ? OwnerHitManager.AcceptKeyboard : true) ? Keyboard.current : null;
 
-        return lane switch
-        {
-            0 => gamepad.leftTrigger.isPressed,
-            1 => gamepad.leftShoulder.isPressed,
-            2 => gamepad.rightShoulder.isPressed,
-            3 => gamepad.rightTrigger.isPressed,
-            4 => gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f,
-            5 => gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f,
-            _ => false,
-        };
+        if (lane == 0)
+            return (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+        if (lane == 1)
+            return (gamepad != null && gamepad.leftShoulder.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+        if (lane == 2)
+            return (gamepad != null && gamepad.rightShoulder.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
+        if (lane == 3)
+            return (gamepad != null && gamepad.rightTrigger.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
+        if (lane == 4)
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f));
+        if (lane == 5)
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f));
+
+        return false;
     }
 
     // Detect a press that occurred this frame for the given lane (supports keyboard and gamepad)
@@ -384,5 +478,18 @@ public class HoldNote : MonoBehaviour
         prevRightShoulderHeld = (gamepad != null) && curRightShoulderHeld;
         prevStickLeftHeld = (gamepad != null) && curStickLeftHeld;
         prevStickRightHeld = (gamepad != null) && curStickRightHeld;
+    }
+
+    // Show judgment on the correct player's display (owner HitManager), fallback to scene instance
+    private void ShowJudgment(string label, bool isEarly = false, bool isLate = false)
+    {
+        JudgmentDisplay jd = null;
+        if (OwnerHitManager != null)
+            jd = OwnerHitManager.JudgmentDisplay;
+        if (jd == null)
+            jd = FindObjectOfType<JudgmentDisplay>(); // fallback
+
+        if (jd != null)
+            jd.Show(label, isEarly, isLate);
     }
 }

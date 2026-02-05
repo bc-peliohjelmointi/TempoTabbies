@@ -20,8 +20,11 @@ public class SongButton : MonoBehaviour
     private bool chartsVisible = false;
     private GameObject previouslySelectedObject;
 
+    private _GameManager _gm;
+
     void Awake()
     {
+        _gm = FindFirstObjectByType<_GameManager>();
         Button button = GetComponent<Button>();
         if (button != null)
         {
@@ -184,11 +187,15 @@ public class SongButton : MonoBehaviour
     {
         if (!chartsVisible)
         {
+            _gm.EnableControllers();
+            _gm.p1.DisableOthers();
             ExpandCharts();
+            manager.state = ChartSelectManager.State.smallButton;
         }
         else
         {
             CollapseCharts();
+            manager.state = ChartSelectManager.State.bigButton;
         }
     }
 

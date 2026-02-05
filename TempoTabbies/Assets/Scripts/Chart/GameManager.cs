@@ -1,7 +1,9 @@
-using UnityEngine;
-using UnityEngine.Networking;
 using System.Collections;
 using System.IO;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +30,8 @@ public class GameManager : MonoBehaviour
     public GameObject buttons;
     public static GameManager Instance { get; private set; }
 
+    public float submit;
+
     // ADD THIS - Property to get corrected song time (without offset)
     public static float SongTime
     {
@@ -43,9 +47,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (submit >0)
+        {
+            SceneManager.LoadScene("StageSelect");
+        }
+    }
+
     void Awake()
     {
         Instance = this;
+
+        gm = FindFirstObjectByType<_GameManager>();
+        gm.state = _GameManager.GameState.Game;
     }
 
     void Start()

@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: -365840457502674671
     second: Paw Print Cartoon_0
-  - first:
-      213: -7687722718723484105
-    second: Paw Print Cartoon_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -119,53 +116,20 @@ TextureImporter:
       name: Paw Print Cartoon_0
       rect:
         serializedVersion: 2
-        x: 74
-        y: 184
+        x: 46
+        y: 14
         width: 476
         height: 479
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline:
-      - - {x: 167, y: -230.5}
-        - {x: 238, y: -91.5}
-        - {x: 238, y: 86.5}
-        - {x: 197, y: 142.5}
-        - {x: 100, y: 239.5}
-        - {x: -144, y: 239.5}
-        - {x: -238, y: 62.5}
-        - {x: -238, y: -94.5}
-        - {x: -149, y: -217.5}
-        - {x: -86, y: -239.5}
-        - {x: 102, y: -239.5}
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 111361eca064ceaf0800000000000000
-      internalID: -365840457502674671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Paw Print Cartoon_1
-      rect:
-        serializedVersion: 2
-        x: 533
-        y: 413
-        width: 473
-        height: 483
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 73659ca2be8bf4590800000000000000
-      internalID: -7687722718723484105
+      spriteID: 111361eca064ceaf0800000000000000
+      internalID: -365840457502674671
       vertices: []
       indices: 
       edges: []
@@ -174,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 56084eeb37c348b44b0a89012c0d5bd3
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -185,7 +149,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Paw Print Cartoon_0: -365840457502674671
-      Paw Print Cartoon_1: -7687722718723484105
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

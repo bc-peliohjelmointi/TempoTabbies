@@ -9,9 +9,11 @@ public class PlayerScript : MonoBehaviour
     // The players player number, 0 = player 1, 1 = player 2
     [Header("Who the player is")]
     public int _playerIndex;
+    public InputDevice inputDevice;
 
     // Other scripts
     private _GameManager gameManager;
+    private GameManager gm;
     private ChartSelectManager chartManager;
     private PauseMenuManager pauseMenu;
     private MainMenuManager mainMenu;
@@ -58,10 +60,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-       /* if (playerInput.currentControlScheme == "Keyboard&Mouse")
-        {
-            Destroy(gameObject);
-        }*/
+        /* if (playerInput.currentControlScheme == "Keyboard&Mouse")
+         {
+             Destroy(gameObject);
+         }*/
         // Checks what state the game is currently in
         switch (gameManager.state)
         {
@@ -72,11 +74,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     p2Confirm = FindFirstObjectByType<Player2Confirmation>();
                 }
-                float submitValue = submit.ReadValue<float>();
-                if (submitValue > 0)
-                {
-                    p2Confirm.submit = submitValue;
-                }
+                p2Confirm.submit = submit.ReadValue<float>();
                 break;
 
             case _GameManager.GameState.MainMenu:
@@ -112,6 +110,15 @@ public class PlayerScript : MonoBehaviour
                 }
                 break;
 
+            case _GameManager.GameState.Profiles:
+                if (profilesMenu == null)
+                {
+                    profilesMenu = FindFirstObjectByType<Create_LoadPlayer>();
+                }
+
+                profilesMenu.submit = submit.ReadValue<float>();
+                break;
+
             case _GameManager.GameState.StageSelect:
                 if (chartManager == null)
                 {
@@ -121,31 +128,13 @@ public class PlayerScript : MonoBehaviour
                 break;
 
             case _GameManager.GameState.Game:
-                // gets the pause menu script
-                if (pauseMenu == null)
+                if (gm == null)
                 {
-                    pauseMenu = FindFirstObjectByType<PauseMenuManager>();
+                    gm = FindFirstObjectByType<GameManager>();
                 }
-                // Checks if the pauseMenu is inactive
-                if (!pauseMenu.isPauseMenuActive)
+                else
                 {
-                    float submitValue2 = submit.ReadValue<float>();
-                    if (submitValue2 > 0)
-                    {
-                        // Makes this player the active player
-                        gameManager.whoGetsToPlay = _playerIndex;
-                        // Opens the pause menu
-                        pauseMenu.OpenPauseMenu();
-                        // Disables the other controllers
-                        DisableOthers();
-                    }
-                }
-                // Checks if this player should be moving in the menus
-                if (_playerIndex == gameManager.whoGetsToPlay && pauseMenu.isPauseMenuActive)
-                {
-                    // Checks the movement that we need for menus
-                    pauseMenu.moveAmount = navigate.ReadValue<Vector2>();
-                    pauseMenu.clickValue = clickButton.ReadValue<float>();
+                    gm.submit = submit.ReadValue<float>();
                 }
                 break;
 
@@ -167,11 +156,17 @@ public class PlayerScript : MonoBehaviour
                 // napin A painaminen       clickButton.ReadValue<float>();
                 break;
         }
+
+
+        var allControllers = InputSystem.devices;
+        // THIS controller
+        inputDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
     }
 
     // Turns off other players controls
     public void DisableOthers()
     {
+        gameManager.whoGetsToPlay = _playerIndex;
         // All the controllers (keyboards, gamepads etc.)
         var allControllers = InputSystem.devices;
         // THIS controller
@@ -186,12 +181,36 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+
+    public void findGamepad()
+    {
+
+    }
+
     public void ApplyProfile(PlayerProfileData data)
     {
+        if (data == null)
+        {
+            Debug.LogWarning($"ApplyProfile called with null data for Player {_playerIndex}");
+            return;
+        }
+
+        // Copy values from the profile to the player instance
         scrollSpeed = data.scrollSpeed;
         assistTick = data.assistTick;
         showButtons = data.showButtons;
 
-        Debug.Log($"Player {_playerIndex + 1} profiili ladattu");
+        // If you need to push these values to other systems, do it here.
+        // Example: update global game manager defaults (if appropriate)
+        var gm = FindFirstObjectByType<_GameManager>();
+        if (gm != null)
+        {
+            // optional: apply defaults to game manager if the profile should change them
+            // gm.scrollSpeed = scrollSpeed;
+            // gm.assistTick = assistTick;
+            // gm.showButtons = showButtons;
+        }
+
+        Debug.Log($"Player {_playerIndex + 1} profile applied: scrollSpeed={scrollSpeed}, assistTick={assistTick}, showButtons={showButtons}");
     }
 }

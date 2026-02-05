@@ -3,19 +3,6 @@ using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
     [Header("Scoring Settings")]
     public int maxScore = 1010000;    // All Marvelous
     public int perfectScore = 1000000; // All Perfect

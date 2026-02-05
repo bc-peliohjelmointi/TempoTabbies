@@ -143,7 +143,6 @@ public class PauseMenuManager : MonoBehaviour
     // What happens when you click the Menu button
     public void OnMenuClick()
     {
-        gameManager.state = _GameManager.GameState.MainMenu;
         SceneManager.LoadScene("Options");
     }
 
@@ -151,7 +150,6 @@ public class PauseMenuManager : MonoBehaviour
     public void OpenPauseMenu()
     {
         pauseMenu.SetActive(true);
-        gameManager.state = _GameManager.GameState.Pause;
         isPauseMenuActive = true;
         timerText.gameObject.SetActive(false);
         buttonSelect = ButtonSelect.resume;

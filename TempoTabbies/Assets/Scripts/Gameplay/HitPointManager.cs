@@ -39,14 +39,14 @@ public class HitPointManager : MonoBehaviour
         {
             hp = hpMax;
         }
-        fillamount = hp / 100;
+        fillamount = hp / hpMax;
         mask.fillAmount = fillamount;
         switch (state)
         {
             case State.easy:
                 multiplier = 1;
                 mask.color = new Color(0.53f, 1, 0.5f);
-                if (hp > 90)
+                if (hp > hpMax - (hpMax*0.1f))
                 {
                     if (timer < maxTimer)
                     {
@@ -78,7 +78,9 @@ public class HitPointManager : MonoBehaviour
                 if (hp == 0)
                 {
                     state = State.normal;
+                    hpMax *= 3;
                     hp = hpMax;
+                    
                 }
                 break;
             case State.difficult:
@@ -86,7 +88,9 @@ public class HitPointManager : MonoBehaviour
                 mask.color = new Color(0.85f, 0.5f, 1);
                 if (hp == 0)
                 {
+
                     state = State.hard;
+                    hpMax *= 2;
                     hp = hpMax;
                 }
                 break;
@@ -116,19 +120,20 @@ public class HitPointManager : MonoBehaviour
         }
         else
         {
-            diffMultiplier = 10;
+            diffMultiplier = 5;
         }
         if (diffMultiplier <= 0)
         {
-            diffMultiplier = 10;
+            diffMultiplier = 5;
         }
-        diffMultiplier /= 10;
-        if (hitType == "MARVELOUS") { hp += 2 * diffMultiplier; }
-        else if (hitType == "PERFECT") { hp += 1 * diffMultiplier; }
-        else if (hitType == "GREAT") { }
-        else if (hitType == "GOOD") { if (hp != 0) { hp -= (1 * multiplier) * diffMultiplier; } }
+        Debug.Log("HP:" + hp);
+        if (hitType == "MARVELOUS") { hp += 0.5f * diffMultiplier; }
+        else if (hitType == "PERFECT") { }
+        else if (hitType == "GREAT") { if (hp != 0) { hp -= (1 * multiplier) * diffMultiplier; } }
+        else if (hitType == "GOOD") { if (hp != 0) { hp -= (2 * multiplier) * diffMultiplier; } }
         else if (hitType == "BAD") { if (hp != 0) { hp -= (3 * multiplier) * diffMultiplier; if (hp < 0) { hp = 0; } } }
         else if (hitType == "MISS") { if (hp != 0) { hp -= (4 * multiplier) * diffMultiplier; if (hp < 0) { hp = 0; } } }
         else { return; }
+        Debug.Log("HP after change:" + hp);
     }
 }

@@ -122,7 +122,8 @@ public class Create_LoadPlayer : MonoBehaviour
             GameObject button = Instantiate(playerPrefab, playerParent.transform); // Makes the button
             Button btn = button.GetComponent<Button>(); // Gets the new buttons Button component
             button.name = file.Replace("JSON\\", ""); // Change the buttons name
-            button.name.Replace("(Clone)", "");
+            button.name = button.name.Replace(".json", "");
+
             // if the name is one of the base classes, don't maake the button
             if (button.name.ToLower() == "beginner" || button.name.ToLower() == "seasoned" || button.name.ToLower() == "expert")
             {
@@ -130,9 +131,11 @@ public class Create_LoadPlayer : MonoBehaviour
             }
             else
             {
-                button.transform.position += new Vector3(0, placement, 0); // Put the button in the right place
-                button.SetActive(true);
+                RectTransform rt = button.GetComponent<RectTransform>();
+                rt.anchoredPosition = new Vector2(0, placement);
                 placement -= 40; // Changes placement for the next button
+                button.SetActive(true);
+                Debug.Log(placement);
 
                 // Changes the starting buttons navigation to go to the first created button
                 if (playerList.Count == 0)
@@ -182,7 +185,7 @@ public class Create_LoadPlayer : MonoBehaviour
     {
         if (File.Exists(chosenName.text))
         {
-            File.Delete($"JSON/{chosenName.text}");
+            File.Delete($"JSON/{chosenName.text}.json");
         }
     }
 

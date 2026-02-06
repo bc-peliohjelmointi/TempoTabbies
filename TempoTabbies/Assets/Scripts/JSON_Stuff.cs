@@ -68,7 +68,7 @@ public class JSON_Stuff : MonoBehaviour
         // Turns the placeholder class into a JSON string
         json = JsonUtility.ToJson(gm);
         // Turns the newly made JSON string into a JSON file
-        File.WriteAllText("JSON/GameManager/_GameManager", json);
+        File.WriteAllText("JSON/GameManager/_GameManager.json", json);
     }
 
     // Load the data for _GameManager from a JSON file
@@ -77,7 +77,7 @@ public class JSON_Stuff : MonoBehaviour
         // makes the placeholder class
         GM gm = new();
         // Finds the currently existing JSON file needed
-        json = File.ReadAllText("JSON/GameManager/_GameManager");
+        json = File.ReadAllText("JSON/GameManager/_GameManager.json");
         // Transform the JSON file into the placeholder class
         gm = JsonUtility.FromJson<GM>(json);
         // Tranfers the values from the place holder class to the _GameManager
@@ -98,12 +98,12 @@ public class JSON_Stuff : MonoBehaviour
         player.assistTick = assistTick;
         player.showButtons = showButtons;
         json = JsonUtility.ToJson(player);
-        File.WriteAllText($"JSON/{name}", json);
+        File.WriteAllText($"JSON/{name}.json", json);
     }
     public void LoadPlayerToPlayer(string name, int playerIndex)
     {
         Player player = new();
-        json = File.ReadAllText($"JSON/{name}");
+        json = File.ReadAllText($"JSON/{name}.json");
         player = JsonUtility.FromJson<Player>(json);
         Debug.Log(player.scrollSpeed);
         if (playerIndex == 0)
@@ -119,7 +119,7 @@ public class JSON_Stuff : MonoBehaviour
     public void LoadPlayer(string name)
     {
         Player player = new();
-        json = File.ReadAllText($"JSON/{name}");
+        json = File.ReadAllText($"JSON/{name}.json");
         player = JsonUtility.FromJson<Player>(json);
         if (maker == null)
         {

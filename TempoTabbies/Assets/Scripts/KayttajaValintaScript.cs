@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public class KayttajaValintaScript : MonoBehaviour
@@ -20,15 +21,25 @@ public class KayttajaValintaScript : MonoBehaviour
     public int _playerIndex;
     private int currentPlayer = 0;
     private int maxPlayers = 2;
-
+    public int PlayerWhoGetsDropdown; //0 player 1, 1 player 2
     private bool[] playerLocked;
     private int[] playerSelections;
 
     private int currentPlayerTurn = 0;
 
+    enum MikaKontrolleri
+    {
+        Keyboard,
+        Xbox,
+        PlayStation,
+        Nothing
+    }
+    private Image MikaKontrolleriKuva;
+
     _GameManager gm;
     void Start()
     {
+        MikaKontrolleriKuva = gameObject.GetComponent<Image>();
         playerLocked = new bool[maxPlayers];
         playerSelections = new int[maxPlayers];
         myDropdown.ClearOptions();//tyhjentää listan
@@ -81,7 +92,7 @@ public class KayttajaValintaScript : MonoBehaviour
         {
             options.Add(Path.GetFileNameWithoutExtension(file));
             fullPaths.Add(file); // talletetaan koko polku
-            Debug.Log("Käyttäjän tekemä JSON "+ file);
+            Debug.Log("Käyttäjän tekemä JSON " + file);
         }
         foreach (object asset in OURCreatedJSONs)
         {
@@ -99,12 +110,12 @@ public class KayttajaValintaScript : MonoBehaviour
         if (index >= 0 && index <= fullPaths.Count)
         {
             json = File.ReadAllText(fullPaths[index]);
-           
+
         }
 
         else if (index >= 0 && index < fullPaths.Count + OURJsonAssets.Count)
         {
-             json = OURJsonAssets[index - fullPaths.Count].text;
+            json = OURJsonAssets[index - fullPaths.Count].text;
         }
 
         else
@@ -113,7 +124,7 @@ public class KayttajaValintaScript : MonoBehaviour
             return;
         }
 
-            PlayerProfileData data = JsonUtility.FromJson<PlayerProfileData>(json);
+        PlayerProfileData data = JsonUtility.FromJson<PlayerProfileData>(json);
 
         /* VAnha player valinta
          // ANNA JSON TIEDOT OIKEALLE PELAAJALLE
@@ -139,13 +150,78 @@ public class KayttajaValintaScript : MonoBehaviour
 
         string json = File.ReadAllText(fullPaths[index]);
         Debug.Log($"Player {currentPlayer + 1} valitsi:\n" + json);*/
+        // Determine the correct PlayerScript target using _GameManager when available
+        int selectedPlayerIndex = PlayerWhoGetsDropdown >= 0 ? PlayerWhoGetsDropdown : currentPlayerTurn;
+
+
+
+        PlayerScript target = null;
+
+        if (gm != null)
+        {
+            // Ensure gm has up-to-date player list
+            gm.FindPlayers();
+
+            // Singleplayer: always apply to p1
+            if (!gm.multiplayer)
+            {
+                target = gm.p1;
+            }
+            else
+            {
+                // Try direct p1/p2 references if they exist
+                if (selectedPlayerIndex == 0)
+                {
+                    target = gm.p1 ?? (gm.players != null && gm.players.Count > 0 ? gm.players[0] : null);
+                }
+                else if (selectedPlayerIndex == 1)
+                {
+                    target = gm.p2 ?? (gm.players != null && gm.players.Count > 1 ? gm.players[1] : null);
+                }
+                else if (gm.players != null && selectedPlayerIndex >= 0 && selectedPlayerIndex < gm.players.Count)
+                {
+                    target = gm.players[selectedPlayerIndex];
+                }
+            }
+        }
+
+        // Fallback to local players list if _GameManager not available or target still null
+        if (target == null && players != null && selectedPlayerIndex >= 0 && selectedPlayerIndex < players.Count)
+        {
+            target = players[selectedPlayerIndex];
+        }
+
+        if (target != null)
+        {
+            target.ApplyProfile(data);
+            Debug.Log($"JSON {(index < fullPaths.Count ? fullPaths[index] : "[builtin asset]")} applied to Player {(target._playerIndex + 1)}");
+        }
+        else
+        {
+            Debug.LogError("No target player found to apply profile for index " + selectedPlayerIndex);
+            return;
+        }
+
+        // If using default turn-based selection (PlayerWhoGetsDropdown < 0) advance the turn and disable when finished.
+        if (PlayerWhoGetsDropdown < 0)
+        {
+            // Siirry seuraavaan pelaajaan
+            currentPlayerTurn++;
+
+            int totalPlayers = (gm != null) ? (gm.multiplayer ? gm.players.Count : 1) : (players != null ? players.Count : maxPlayers);
+            if (currentPlayerTurn >= totalPlayers)
+            {
+                Debug.Log("Kaikki pelaajat valinneet profiilin");
+                myDropdown.interactable = false;  // estä lisävalinta
+            }
+        }
     }
 
     void UpdateTurn()
     {
         Debug.Log($"Player {currentPlayer + 1} turn");
 
-        myDropdown.interactable = !playerLocked[currentPlayer];
+        //myDropdown.interactable = !playerLocked[currentPlayer];
     }
     public void LockSelection()
     {
@@ -163,20 +239,28 @@ public class KayttajaValintaScript : MonoBehaviour
 
         //UpdateTurn();
     }
-    /*
-        public void Kayttaja()
+    public void PelaajanKontrolleri()
+    {
+        if (currentPlayer == 0)
         {
-
-            Debug.Log("Player 1 turn");
-            CompareTag("Player");
-            //pelaajan 1 vuoro
-            //pelaaja valitsee ja painaa nappia
-
-
-
-
-            Debug.Log("Player 2 turn");
-            //pelaajan 2 vuoro
-
-        }*/
+            // Map the string control scheme to the MikaKontrolleri enum
+            MikaKontrolleri kontrolleri;
+            switch (playerInput.currentControlScheme)
+            {
+                case "Keyboard&Mouse":
+                case "Keyboard":
+                    kontrolleri = MikaKontrolleri.Keyboard;
+                    //MikaKontrolleriKuva.sprite= 
+                    break;
+                case "Gamepad":
+                    if(playerInput.currentControlScheme.Contains("Xbox"))
+                        kontrolleri = MikaKontrolleri.Xbox;
+                    if (playerInput.currentControlScheme.Contains("PlayStation"))
+                        kontrolleri = MikaKontrolleri.PlayStation; 
+                    else
+                         kontrolleri = MikaKontrolleri.Nothing;
+                    break;               
+            }           
+        }
+    }
 }

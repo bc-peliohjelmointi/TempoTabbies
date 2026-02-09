@@ -123,11 +123,21 @@ public class ScoreManager : MonoBehaviour
     // Call this when the chart/song is complete
     public void FinalizeScore()
     {
-        // Finalize max combo - check the current combo at the end
         if (currentCombo > maxCombo)
-        {
             maxCombo = currentCombo;
-        }
+
+        
+        string profileName = "test player";
+        string mapName = "placeholder map";
+
+        ScoreDatabase.SaveScore(
+            profileName,
+            mapName,
+            currentScore,
+            GetAccuracy(),
+            GetGrade(),
+            maxCombo
+        );
     }
 
     private int CalculatePoints(string judgment)
@@ -221,4 +231,6 @@ public class ScoreManager : MonoBehaviour
     {
         return $"{currentCombo}x";
     }
+
+
 }

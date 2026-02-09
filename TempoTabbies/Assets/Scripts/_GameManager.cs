@@ -70,6 +70,7 @@ public class _GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        ScoreDatabase.Initialize();
         json = FindFirstObjectByType<JSON_Stuff>();
         source = GetComponent<AudioSource>();
         source.Play();

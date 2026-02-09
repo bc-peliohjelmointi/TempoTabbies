@@ -70,7 +70,7 @@ public class EvalScreenManager : MonoBehaviour
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(initialSelectedButton);
     }
 
-    private void SetupSongInfo()
+    public void SetupSongInfo()
     {
         if (currentSong != null)
         {

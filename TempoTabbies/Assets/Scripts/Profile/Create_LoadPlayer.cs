@@ -32,6 +32,7 @@ public class Create_LoadPlayer : MonoBehaviour
     public Image buttonImage; // the image to show if showing button inputs is off or on;
 
     public TMP_InputField chosenName; // the input field we get players to input file names
+    public string chosenNameBackup; // backup of the input field name in case of deletion
 
     [Header("GameObjects to keep track of the JSON file buttons")]
     public GameObject playerPrefab; // the object we copy for players

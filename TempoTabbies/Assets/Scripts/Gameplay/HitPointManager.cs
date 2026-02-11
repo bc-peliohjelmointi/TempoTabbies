@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,7 +45,7 @@ public class HitPointManager : MonoBehaviour
             case State.easy:
                 multiplier = 1;
                 mask.color = new Color(0.53f, 1, 0.5f);
-                if (hp > hpMax - (hpMax*0.1f))
+                if (hp > hpMax - (hpMax * 0.1f))
                 {
                     if (timer < maxTimer)
                     {
@@ -69,7 +68,7 @@ public class HitPointManager : MonoBehaviour
                 if (hp == 0)
                 {
                     state = State.easy;
-                    hp = hpMax;
+                    hp = hpMax * 0.7f;
                 }
                 break;
             case State.hard:
@@ -79,8 +78,8 @@ public class HitPointManager : MonoBehaviour
                 {
                     state = State.normal;
                     hpMax *= 3;
-                    hp = hpMax;
-                    
+                    hp = hpMax * 0.7f;
+
                 }
                 break;
             case State.difficult:
@@ -91,7 +90,7 @@ public class HitPointManager : MonoBehaviour
 
                     state = State.hard;
                     hpMax *= 2;
-                    hp = hpMax;
+                    hp = hpMax * 0.7f;
                 }
                 break;
         }

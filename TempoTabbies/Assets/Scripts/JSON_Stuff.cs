@@ -109,10 +109,12 @@ public class JSON_Stuff : MonoBehaviour
         if (playerIndex == 0)
         {
             gameManager.p1.scrollSpeed = player.scrollSpeed;
+            gameManager.p1.name = name;
         }
         else if (playerIndex == 1)
         {
             gameManager.p2.scrollSpeed = player.scrollSpeed;
+            gameManager.p2.name = name;
         }
     }
 

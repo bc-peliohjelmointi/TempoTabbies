@@ -32,8 +32,10 @@ public class ReadButtons : MonoBehaviour
         {
             if (control is ButtonControl button && button.wasPressedThisFrame)
             {
-                textController.text = control.displayName;
                 Debug.Log(control);
+                Debug.Log("display" + control.displayName);
+                Debug.Log(".name" + control.name);
+                textController.text = control.name;
             }
         }
     }

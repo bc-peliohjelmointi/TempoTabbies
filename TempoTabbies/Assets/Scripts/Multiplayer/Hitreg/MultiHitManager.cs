@@ -35,11 +35,11 @@ public class MultiHitManager : MonoBehaviour
         if (gamepad_P2 == null && gamepads.Count >= 2) gamepad_P2 = gamepads[1];
 
         // Pass the correct gamepad to each HitManager
-        if (hitManager_P1 != null)
+        /*if (hitManager_P1 != null)
             hitManager_P1.SetGamepad(gamepad_P1);
 
         if (hitManager_P2 != null)
-            hitManager_P2.SetGamepad(gamepad_P2);
+            hitManager_P2.SetGamepad(gamepad_P2);*/
     }
 
     // Safe converter: cast if already a Gamepad, otherwise match by deviceId

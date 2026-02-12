@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
     public int maxCombo = 0;
 
     private int pointsPerNote;
+    private bool hasSavedScore = false;
 
     public HitPointManager hpManager;
 
@@ -123,12 +124,46 @@ public class ScoreManager : MonoBehaviour
     // Call this when the chart/song is complete
     public void FinalizeScore()
     {
-        // Finalize max combo - check the current combo at the end
+        if (hasSavedScore)
+            return;
+
+        hasSavedScore = true;
+
         if (currentCombo > maxCombo)
-        {
             maxCombo = currentCombo;
+
+        if (GameSession.SelectedSong == null || GameSession.SelectedChart == null)
+        {
+            Debug.LogWarning("[ScoreManager] No song/chart info. Skipping DB save.");
+            return;
         }
+
+        string profileName = this.name;
+        string mapName = GameSession.SelectedSong.Title;
+        string difficulty = GameSession.SelectedChart.Difficulty;
+
+        string clearType = "Failed";
+
+        if (hpManager != null)
+            clearType = hpManager.GetClearType(this).ToString();
+
+        Debug.Log(
+            $"[FINALIZE SAVE] {profileName} | {mapName} | {difficulty} | {currentScore} | {clearType}"
+        );
+
+        ScoreDatabase.SaveScore(
+            profileName,
+            mapName,
+            difficulty,
+            currentScore,
+            GetAccuracy(),
+            GetGrade(),
+            maxCombo,
+            clearType
+        );
     }
+
+
 
     private int CalculatePoints(string judgment)
     {
@@ -221,4 +256,6 @@ public class ScoreManager : MonoBehaviour
     {
         return $"{currentCombo}x";
     }
+
+
 }

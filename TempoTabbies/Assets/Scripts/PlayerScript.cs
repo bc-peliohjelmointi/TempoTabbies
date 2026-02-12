@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class PlayerScript : MonoBehaviour
     [Header("Who the player is")]
     public int _playerIndex;
     public InputDevice inputDevice;
+    public Gamepad gamepad;
 
     // Other scripts
     private _GameManager gameManager;
+    public JSON_Stuff json;
     private GameManager gm;
     private ChartSelectManager chartManager;
     private MainMenuManager mainMenu;
@@ -39,6 +42,10 @@ public class PlayerScript : MonoBehaviour
     public float scrollSpeed;
     public bool assistTick;
     public bool showButtons;
+    public ButtonControl button1;
+    public ButtonControl button2;
+    public ButtonControl button3;
+    public ButtonControl button4;
 
     private void Awake()
     {
@@ -155,11 +162,43 @@ public class PlayerScript : MonoBehaviour
                 // napin A painaminen       clickButton.ReadValue<float>();
                 break;
         }
-
+        if (button1 != null)
+        {
+            Debug.Log($"player {_playerIndex} buttons {button1?.name} {button2?.name} {button3?.name} {button4?.name}");
+        }
 
         var allControllers = InputSystem.devices;
         // THIS controller
         inputDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
+    }
+
+    public void SetDefaultButtons()
+    {
+        if (inputDevice == null)
+        {
+            Debug.LogWarning($"Player {_playerIndex + 1} has no input device assigned.");
+            return;
+        }
+        // Assuming a standard gamepad layout, you can map buttons like this:
+        button1 = inputDevice.TryGetChildControl<ButtonControl>("leftTrigger"); 
+        button2 = inputDevice.TryGetChildControl<ButtonControl>("leftShouler");  
+        button3 = inputDevice.TryGetChildControl<ButtonControl>("rightShoulder");
+        button4 = inputDevice.TryGetChildControl<ButtonControl>("rightTrigger"); 
+        Debug.Log($"Player {_playerIndex + 1} buttons set: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");
+    }
+
+    public void SetNewButtons(string newButton1, string newButton2, string newButton3, string newButton4)
+    {
+        if (inputDevice == null)
+        {
+            Debug.LogWarning($"Player {_playerIndex + 1} has no input device assigned.");
+            return;
+        }
+        button1 = inputDevice.TryGetChildControl<ButtonControl>(newButton1);
+        button2 = inputDevice.TryGetChildControl<ButtonControl>(newButton2);
+        button3 = inputDevice.TryGetChildControl<ButtonControl>(newButton3);
+        button4 = inputDevice.TryGetChildControl<ButtonControl>(newButton4);
+        Debug.Log($"Player {_playerIndex + 1} buttons updated: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");
     }
 
     // Turns off other players controls

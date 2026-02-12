@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +16,16 @@ public class HitPointManager : MonoBehaviour
     public Image mask;
     public float fillamount = 0.5f;
 
+    public enum ClearType
+    {
+        Failed,
+        EasyClear,
+        NormalClear,
+        HardClear,
+        DifficultClear,
+        FullCombo,
+        PerfectFullCombo
+    }
 
     public enum State
     {
@@ -46,7 +55,7 @@ public class HitPointManager : MonoBehaviour
             case State.easy:
                 multiplier = 1;
                 mask.color = new Color(0.53f, 1, 0.5f);
-                if (hp > hpMax - (hpMax*0.1f))
+                if (hp > hpMax - (hpMax * 0.1f))
                 {
                     if (timer < maxTimer)
                     {
@@ -69,7 +78,7 @@ public class HitPointManager : MonoBehaviour
                 if (hp == 0)
                 {
                     state = State.easy;
-                    hp = hpMax;
+                    hp = hpMax * 0.7f;
                 }
                 break;
             case State.hard:
@@ -79,8 +88,8 @@ public class HitPointManager : MonoBehaviour
                 {
                     state = State.normal;
                     hpMax *= 3;
-                    hp = hpMax;
-                    
+                    hp = hpMax * 0.7f;
+
                 }
                 break;
             case State.difficult:
@@ -91,11 +100,52 @@ public class HitPointManager : MonoBehaviour
 
                     state = State.hard;
                     hpMax *= 2;
-                    hp = hpMax;
+                    hp = hpMax * 0.7f;
                 }
                 break;
         }
     }
+
+    public ClearType GetClearType(ScoreManager scoreManager)
+    {
+        // Failed if HP ended at 0
+        if (hp <= 0)
+            return ClearType.Failed;
+
+        bool isFullCombo =
+            scoreManager.missCount == 0 &&
+            scoreManager.badCount == 0;
+
+        bool isPerfectFullCombo =
+            isFullCombo &&
+            scoreManager.greatCount == 0 &&
+            scoreManager.goodCount == 0;
+
+        if (isPerfectFullCombo)
+            return ClearType.PerfectFullCombo;
+
+        if (isFullCombo)
+            return ClearType.FullCombo;
+
+        // Otherwise use HP state tier
+        switch (state)
+        {
+            case State.easy:
+                return ClearType.EasyClear;
+
+            case State.normal:
+                return ClearType.NormalClear;
+
+            case State.hard:
+                return ClearType.HardClear;
+
+            case State.difficult:
+                return ClearType.DifficultClear;
+        }
+
+        return ClearType.NormalClear;
+    }
+
 
     public void HPChange(string hitType)
     {

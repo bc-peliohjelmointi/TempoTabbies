@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 // Placehodler for the PlayerScript things
 [Serializable]
@@ -9,6 +10,10 @@ public class Player
     public float scrollSpeed;
     public bool assistTick;
     public bool showButtons;
+    public string button1;
+    public string button2;
+    public string button3;
+    public string button4;
 }
 
 // Placeholder for the _GameManager things
@@ -91,17 +96,22 @@ public class JSON_Stuff : MonoBehaviour
         gameManager.showButtons = gm.showButtons;
     }
 
-    public void SavePlayer(string name, float scrollSpeed, bool assistTick, bool showButtons)
+    public void SavePlayer(string name, float scrollSpeed, bool assistTick, bool showButtons, string button1, string button2, string button3, string button4)
     {
         Player player = new();
         player.scrollSpeed = scrollSpeed;
         player.assistTick = assistTick;
         player.showButtons = showButtons;
+        player.button1 = button1;
+        player.button2 = button2;
+        player.button3 = button3;
+        player.button4 = button4;
         json = JsonUtility.ToJson(player);
-        File.WriteAllText($"JSON/{name}.json", json);
+        File.WriteAllText($"JSON/{name}.json".Replace("\u200B", ""), json);
     }
     public void LoadPlayerToPlayer(string name, int playerIndex)
     {
+        Debug.Log("Started loading player");
         Player player = new();
         json = File.ReadAllText($"JSON/{name}.json");
         player = JsonUtility.FromJson<Player>(json);
@@ -109,10 +119,14 @@ public class JSON_Stuff : MonoBehaviour
         if (playerIndex == 0)
         {
             gameManager.p1.scrollSpeed = player.scrollSpeed;
+            gameManager.p1.name = name;
+            gameManager.p1.SetNewButtons(player.button1, player.button2, player.button3, player.button4);
         }
         else if (playerIndex == 1)
         {
             gameManager.p2.scrollSpeed = player.scrollSpeed;
+            gameManager.p2.name = name;
+            gameManager.p2.SetNewButtons(player.button1, player.button2, player.button3, player.button4);
         }
     }
 

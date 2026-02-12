@@ -26,6 +26,7 @@ public class ProfileButton : MonoBehaviour
     public void NullName()
     {
         maker.chosenName.text = "Name of profile";
+        maker.chosenNameBackup = "Name of profile";
     }
 
     // Loads the JSON file attached to this object

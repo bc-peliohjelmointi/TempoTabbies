@@ -147,10 +147,10 @@ public class HoldNote : MonoBehaviour
         float endY = HitLine.position.y + timeUntilEnd * ScrollSpeed;
 
         // Compute current held states (gamepad OR keyboard)
-        bool curLeftTriggerHeld = (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
-        bool curLeftShoulderHeld = (gamepad != null && gamepad.leftShoulder.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
-        bool curRightShoulderHeld = (gamepad != null && gamepad.rightShoulder.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
-        bool curRightTriggerHeld = (gamepad != null && gamepad.rightTrigger.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
+        bool curLeftTriggerHeld = (gamepad != null && OwnerHitManager.button1.IsPressed()) || (keyboard != null && keyboard.sKey.isPressed);
+        bool curLeftShoulderHeld = (gamepad != null && OwnerHitManager.button2.IsPressed()) || (keyboard != null && keyboard.dKey.isPressed);
+        bool curRightShoulderHeld = (gamepad != null && OwnerHitManager.button3.IsPressed()) || (keyboard != null && keyboard.commaKey.isPressed);
+        bool curRightTriggerHeld = (gamepad != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && keyboard.periodKey.isPressed);
 
         bool curStickLeftHeld = false;
         bool curStickRightHeld = false;
@@ -432,13 +432,13 @@ public class HoldNote : MonoBehaviour
         var keyboard = (OwnerHitManager != null ? OwnerHitManager.AcceptKeyboard : true) ? Keyboard.current : null;
 
         if (lane == 0)
-            return (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+            return (gamepad != null && OwnerHitManager.button1.IsPressed()) || (keyboard != null && keyboard.sKey.isPressed);
         if (lane == 1)
-            return (gamepad != null && gamepad.leftShoulder.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+            return (gamepad != null && OwnerHitManager.button2.IsPressed()) || (keyboard != null && keyboard.dKey.isPressed);
         if (lane == 2)
-            return (gamepad != null && gamepad.rightShoulder.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
+            return (gamepad != null && OwnerHitManager.button3.IsPressed()) || (keyboard != null && keyboard.commaKey.isPressed);
         if (lane == 3)
-            return (gamepad != null && gamepad.rightTrigger.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
+            return (gamepad != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && keyboard.periodKey.isPressed);
         if (lane == 4)
             return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f));
         if (lane == 5)

@@ -72,6 +72,10 @@ public class HitManager : MonoBehaviour
         if (playerNumber == 1)
         {
             assignedGamepad = ConvertToGamepad(_gm.p1.inputDevice);
+            if (_gm.p1.button1 == null)
+            {
+                _gm.p1.SetDefaultButtons();
+            }
             button1 = _gm.p1.button1;
             button2 = _gm.p1.button2;
             button3 = _gm.p1.button3;
@@ -80,6 +84,10 @@ public class HitManager : MonoBehaviour
         else if (playerNumber == 2)
         {
             assignedGamepad = ConvertToGamepad(_gm.p2.inputDevice);
+            if (_gm.p2.button1 == null)
+            {
+                _gm.p2.SetDefaultButtons();
+            }
             button1 = _gm.p2.button1;
             button2 = _gm.p2.button2;
             button3 = _gm.p2.button3;

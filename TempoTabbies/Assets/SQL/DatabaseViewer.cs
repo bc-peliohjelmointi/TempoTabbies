@@ -20,11 +20,14 @@ public class ScoreDatabaseViewer : MonoBehaviour
             Debug.Log(
                 $"Profile: {s.profileName} | " +
                 $"Map: {s.mapName} | " +
+                $"Diff: {s.difficulty} | " +
                 $"Score: {s.score:N0} | " +
                 $"Acc: {s.accuracy:F2}% | " +
                 $"Grade: {s.grade} | " +
-                $"Combo: {s.maxCombo}"
+                $"Combo: {s.maxCombo} | " +
+                $"Clear: {s.clearType}"
             );
+
         }
     }
 }

@@ -161,9 +161,6 @@ public class MainMenuManager : MonoBehaviour
     public void OnPractiseClick()
     {
         gameManager.multiplayer = false;
-        Debug.Log(Path.GetFullPath("JSON/sa.json"));
-        Debug.Log(Directory.GetCurrentDirectory());
-        json.LoadPlayerToPlayer("sa", 0);
         paw.scene = "CatSelect";
     }
 

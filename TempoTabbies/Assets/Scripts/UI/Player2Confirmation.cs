@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class Player2Confirmation : MonoBehaviour
 {
     private _GameManager gm;
+    private JSON_Stuff json;
     public MenuAnimations anims;
     public float submit;
 

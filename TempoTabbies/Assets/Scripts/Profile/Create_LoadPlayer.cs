@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 
 public class Create_LoadPlayer : MonoBehaviour
@@ -14,7 +17,7 @@ public class Create_LoadPlayer : MonoBehaviour
     [field: HideInInspector]
     public float submit;
     private float timer;
-    private float timerMax = 0.5f;
+    private float timerMax = 0.2f;
 
     public MenuAnimations anims;
 
@@ -34,6 +37,8 @@ public class Create_LoadPlayer : MonoBehaviour
     public TMP_InputField chosenName; // the input field we get players to input file names
     public string chosenNameBackup; // backup of the input field name in case of deletion
 
+    public Button newPlayerBtn;
+
     [Header("GameObjects to keep track of the JSON file buttons")]
     public GameObject playerPrefab; // the object we copy for players
     public GameObject playerParent; // the placement of the copies original spot
@@ -43,10 +48,31 @@ public class Create_LoadPlayer : MonoBehaviour
     public GameObject startButton; // the button that we start on
     public GameObject startOfEdit; // the button the editing starts on
 
+    [Header("Sections of buttons")]
+    public GameObject startingSection;
+    public GameObject buttonEditSection;
+
+    [Header("Buttons")]
+    public ButtonControl button1;
+    public ButtonControl button2;
+    public ButtonControl button3;
+    public ButtonControl button4;
+    private string button1name;
+    private string button2name;
+    private string button3name;
+    private string button4name;
+
+    [Header("Images")]
+    public GameObject button1Image;
+    public GameObject button2Image;
+    public GameObject button3Image;
+    public GameObject button4Image;
+
     public enum State
     {
         start,
-        edit
+        edit,
+        buttons
     }
     public State state;
 
@@ -98,6 +124,96 @@ public class Create_LoadPlayer : MonoBehaviour
                     timer += Time.deltaTime;
                 }
                 break;
+
+            case State.buttons:
+                if (submit > 0 && timerMax <= timer)
+                {
+                    BackToEditing();
+                    GoToStartOfEdit();
+                    timer = 0;
+                    button1Image.SetActive(false);
+                    button2Image.SetActive(false);
+                    button3Image.SetActive(false);
+                    button4Image.SetActive(false);
+                }
+                else if (timerMax > timer)
+                {
+                    timer += Time.deltaTime;
+                }
+                if (button1 == null && timerMax <= timer)
+                {
+                    button1Image.SetActive(true);
+                    var gamepad = Gamepad.current;
+                    if (gamepad == null) return;
+
+                    foreach (var control in gamepad.allControls)
+                    {
+                        if (control is ButtonControl button && button.wasPressedThisFrame)
+                        {
+                            button1 = button;
+                            timer = 0;
+                            button1Image.SetActive(false);
+                            button2Image.SetActive(true);
+                        }
+                    }
+                }
+                else if (button2 == null && timerMax <= timer)
+                {
+                    button2Image.SetActive(true);
+                    var gamepad = Gamepad.current;
+                    if (gamepad == null) return;
+
+                    foreach (var control in gamepad.allControls)
+                    {
+                        if (control is ButtonControl button && button.wasPressedThisFrame)
+                        {
+                            button2 = button;
+                            timer = 0;
+                            button2Image.SetActive(false);
+                            button3Image.SetActive(true);
+                        }
+                    }
+                }
+                else if (button3 == null && timerMax <= timer)
+                {
+                    button3Image.SetActive(true);
+                    var gamepad = Gamepad.current;
+                    if (gamepad == null) return;
+
+                    foreach (var control in gamepad.allControls)
+                    {
+                        if (control is ButtonControl button && button.wasPressedThisFrame)
+                        {
+                            button3 = button;
+                            timer = 0;
+                            button3Image.SetActive(false);
+                            button4Image.SetActive(true);
+                        }
+                    }
+                }
+                else if (button4 == null && timerMax <= timer)
+                {
+                    button4Image.SetActive(true);
+                    var gamepad = Gamepad.current;
+                    if (gamepad == null) return;
+
+                    foreach (var control in gamepad.allControls)
+                    {
+                        if (control is ButtonControl button && button.wasPressedThisFrame)
+                        {
+                            button4 = button;
+                            timer = 0;
+                            button4Image.SetActive(false);
+                        }
+                    }
+                }
+                else if (timerMax <= timer)
+                {
+                    BackToEditing();
+                    GoToStartOfEdit();
+                    timer = 0;
+                }
+                break;
         }
     }
 
@@ -145,11 +261,16 @@ public class Create_LoadPlayer : MonoBehaviour
                     nav.selectOnDown = btn;
                     newPlayer.navigation = nav;
                 }
-
-                // Changes every button except the last to have vertical navigation
-                if (!file.Equals(last))
+                if (Directory.GetFiles("JSON").Count() == 1)
+                {
+                    nav.selectOnDown = null;
+                    nav.selectOnUp = newPlayerBtn;
+                    btn.navigation = nav;
+                }
+                else if (!file.Equals(last)) // Changes every button except the last to have vertical navigation
                 {
                     nav.mode = Navigation.Mode.Vertical;
+
                     btn.navigation = nav;
                 }
                 // The last buttons navigation goes vertical but can't go down
@@ -175,9 +296,24 @@ public class Create_LoadPlayer : MonoBehaviour
     // Saves the given details into a JSON file, excluding some names
     public void SaveName()
     {
+        Debug.Log(button4);
+        if (button4 == null)
+        {
+            button1name = "leftTrigger";
+            button2name = "leftShoulder";
+            button3name = "rightShoulder";
+            button4name = "rightTrigger";
+        }
+        else
+        {
+            button1name = button1.name;
+            button2name = button2.name;
+            button3name = button3.name;
+            button4name = button4.name;
+        }
         if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert")
         {
-            json.SavePlayer(player, scrollSpeed, assistTick, showButtons);
+            json.SavePlayer(player, scrollSpeed, assistTick, showButtons, button1name, button2name, button3name, button4name);
         }
     }
 
@@ -249,6 +385,30 @@ public class Create_LoadPlayer : MonoBehaviour
     {
         anims.scene = "Options";
         anims.PawStB();
+    }
+
+    public void NullButtons()
+    {
+        button1 = null;
+        button2 = null;
+        button3 = null;
+        button4 = null;
+    }
+
+    public void StartButtonChange()
+    {
+        timer = 0;
+        button1Image.SetActive(true);
+        state = State.buttons;
+        startingSection.SetActive(false);
+        buttonEditSection.SetActive(true);
+    }
+
+    public void BackToEditing()
+    {
+        state = State.edit;
+        startingSection.SetActive(true);
+        buttonEditSection.SetActive(false);
     }
 
     public void LoadPlayerToPlayer(int number)

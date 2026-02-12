@@ -164,7 +164,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (button1 != null)
         {
-            Debug.LogError($"player {_playerIndex} buttons {button1?.name} {button2?.name} {button3?.name} {button4?.name}");
+            Debug.Log($"player {_playerIndex} buttons {button1?.name} {button2?.name} {button3?.name} {button4?.name}");
         }
 
         var allControllers = InputSystem.devices;
@@ -198,7 +198,7 @@ public class PlayerScript : MonoBehaviour
         button2 = inputDevice.TryGetChildControl<ButtonControl>(newButton2);
         button3 = inputDevice.TryGetChildControl<ButtonControl>(newButton3);
         button4 = inputDevice.TryGetChildControl<ButtonControl>(newButton4);
-        Debug.LogError($"Player {_playerIndex + 1} buttons updated: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");
+        Debug.Log($"Player {_playerIndex + 1} buttons updated: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");
     }
 
     // Turns off other players controls

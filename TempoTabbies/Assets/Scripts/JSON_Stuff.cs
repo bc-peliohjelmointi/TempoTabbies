@@ -111,7 +111,7 @@ public class JSON_Stuff : MonoBehaviour
     }
     public void LoadPlayerToPlayer(string name, int playerIndex)
     {
-        Debug.LogError("Started loading player");
+        Debug.Log("Started loading player");
         Player player = new();
         json = File.ReadAllText($"JSON/{name}.json");
         player = JsonUtility.FromJson<Player>(json);

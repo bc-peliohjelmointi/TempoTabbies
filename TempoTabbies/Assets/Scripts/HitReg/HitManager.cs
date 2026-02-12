@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine.InputSystem.Controls;
+using JetBrains.Annotations;
 
 public class HitManager : MonoBehaviour
 {
@@ -55,8 +57,53 @@ public class HitManager : MonoBehaviour
     private bool prevGamepadStickLeftHeld = false;
     private bool prevGamepadStickRightHeld = false;
 
+    [Header("player button changes")]
+    public int playerNumber;
+    public ButtonControl button1;
+    public ButtonControl button2;
+    public ButtonControl button3;
+    public ButtonControl button4;
+
+    private _GameManager _gm;
+
+    private void Awake()
+    {
+        _gm = FindFirstObjectByType<_GameManager>();
+        if (playerNumber == 1)
+        {
+            assignedGamepad = ConvertToGamepad(_gm.p1.inputDevice);
+            button1 = _gm.p1.button1;
+            button2 = _gm.p1.button2;
+            button3 = _gm.p1.button3;
+            button4 = _gm.p1.button4;
+        }
+        else if (playerNumber == 2)
+        {
+            assignedGamepad = ConvertToGamepad(_gm.p2.inputDevice);
+            button1 = _gm.p2.button1;
+            button2 = _gm.p2.button2;
+            button3 = _gm.p2.button3;
+            button4 = _gm.p2.button4;
+        }
+    }
+    private Gamepad ConvertToGamepad(InputDevice device)
+    {
+        if (device == null) return null;
+
+        if (device is Gamepad gp) return gp;
+
+        foreach (var g in Gamepad.all)
+        {
+            if (g.deviceId == device.deviceId)
+                return g;
+        }
+
+        return null;
+    }
+
     void Update()
     {
+        Debug.Log($"HitManager buttons {button1?.name} {button2?.name} {button3?.name} {button4?.name}");
         // Prefer an explicitly assigned gamepad (from MultiHitManager). If none assigned, fall back to Gamepad.current.
         gamepad = assignedGamepad ?? Gamepad.current;
 
@@ -64,10 +111,10 @@ public class HitManager : MonoBehaviour
         var keyboard = AcceptKeyboard ? Keyboard.current : null;
 
         // Current held states (gamepad OR keyboard)
-        bool curLeftTriggerHeld = (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
-        bool curLeftBumperHeld = (gamepad != null && gamepad.leftShoulder.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
-        bool curRightBumperHeld = (gamepad != null && gamepad.rightShoulder.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
-        bool curRightTriggerHeld = (gamepad != null && gamepad.rightTrigger.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
+        bool curLeftTriggerHeld = (gamepad != null && button1.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+        bool curLeftBumperHeld = (gamepad != null && button2.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+        bool curRightBumperHeld = (gamepad != null && button3.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
+        bool curRightTriggerHeld = (gamepad != null && button4.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
 
         bool curStickLeftHeld = false;
         bool curStickRightHeld = false;
@@ -78,16 +125,16 @@ public class HitManager : MonoBehaviour
         }
 
         // 
-        bool leftTriggerPressedThisFrame = (gamepad != null && gamepad.leftTrigger.isPressed && !prevGamepadLeftTriggerHeld)
+        bool leftTriggerPressedThisFrame = (gamepad != null && button1.isPressed && !prevGamepadLeftTriggerHeld)
                                            || (keyboard != null && keyboard.sKey.wasPressedThisFrame);
 
-        bool leftBumperPressedThisFrame = (gamepad != null && gamepad.leftShoulder.isPressed && !prevGamepadLeftShoulderHeld)
+        bool leftBumperPressedThisFrame = (gamepad != null && button2.isPressed && !prevGamepadLeftShoulderHeld)
                                           || (keyboard != null && keyboard.dKey.wasPressedThisFrame);
 
-        bool rightBumperPressedThisFrame = (gamepad != null && gamepad.rightShoulder.isPressed && !prevGamepadRightShoulderHeld)
+        bool rightBumperPressedThisFrame = (gamepad != null && button3.isPressed && !prevGamepadRightShoulderHeld)
                                            || (keyboard != null && keyboard.commaKey.wasPressedThisFrame);
 
-        bool rightTriggerPressedThisFrame = (gamepad != null && gamepad.rightTrigger.isPressed && !prevGamepadRightTriggerHeld)
+        bool rightTriggerPressedThisFrame = (gamepad != null && button4.isPressed && !prevGamepadRightTriggerHeld)
                                             || (keyboard != null && keyboard.periodKey.wasPressedThisFrame);
 
         bool stickLeftPressed = (curStickLeftHeld && !prevGamepadStickLeftHeld);
@@ -276,13 +323,13 @@ public class HitManager : MonoBehaviour
         var keyboard = AcceptKeyboard ? Keyboard.current : null;
 
         if (lane == leftTriggerLane)
-            return (gamepad != null && gamepad.leftTrigger.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+            return (gamepad != null && button1.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
         if (lane == rightTriggerLane)
-            return (gamepad != null && gamepad.rightTrigger.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
+            return (gamepad != null && button4.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
         if (lane == leftBumperLane)
-            return (gamepad != null && gamepad.leftShoulder.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+            return (gamepad != null && button2.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
         if (lane == rightBumperLane)
-            return (gamepad != null && gamepad.rightShoulder.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
+            return (gamepad != null && button3.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
         if (lane == leftStickLane)
             return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f));
         if (lane == rightStickLane)

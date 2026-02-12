@@ -1099,19 +1099,18 @@ MonoBehaviour:
   buttonImage: {fileID: 411605862}
   chosenName: {fileID: 815649134}
   chosenNameBackup: 
+  newPlayerBtn: {fileID: 561390516}
   playerPrefab: {fileID: 4214845840997965734}
   playerParent: {fileID: 1722928899}
   playerList: []
   startButton: {fileID: 746858872}
   startOfEdit: {fileID: 7664375601713642084}
-  makePlayer: {fileID: 561390513}
-  startSection: {fileID: 1722928899}
-  profileSection: {fileID: 1019225842}
-  buttonChangeSection: {fileID: 327387176}
-  lane1Select: {fileID: 337499959}
-  lane2Select: {fileID: 450940909}
-  lane3Select: {fileID: 823420844}
-  lane4Select: {fileID: 274998257}
+  startingSection: {fileID: 1923216715}
+  buttonEditSection: {fileID: 327387176}
+  button1Image: {fileID: 337499959}
+  button2Image: {fileID: 450940909}
+  button3Image: {fileID: 823420844}
+  button4Image: {fileID: 274998257}
   state: 0
   newPlayer: {fileID: 561390516}
 --- !u!4 &227833788
@@ -1224,8 +1223,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1780314255}
-  - {fileID: 1722928900}
-  - {fileID: 1019225843}
+  - {fileID: 1923216716}
   - {fileID: 327387177}
   - {fileID: 6891149}
   m_Father: {fileID: 0}
@@ -5281,7 +5279,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1019225842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5293,7 +5291,7 @@ RectTransform:
   - {fileID: 352832961}
   - {fileID: 277600314}
   - {fileID: 2085237189}
-  m_Father: {fileID: 268414295}
+  m_Father: {fileID: 1923216716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6426,7 +6424,7 @@ RectTransform:
   - {fileID: 4321545420265500102}
   - {fileID: 746858873}
   - {fileID: 561390514}
-  m_Father: {fileID: 268414295}
+  m_Father: {fileID: 1923216716}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7165,6 +7163,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914266955}
   m_CullTransparentMesh: 1
+--- !u!1 &1923216715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1923216716}
+  m_Layer: 5
+  m_Name: StartingEditingSection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1923216716
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923216715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1722928900}
+  - {fileID: 1019225843}
+  m_Father: {fileID: 268414295}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1929566250
 GameObject:
   m_ObjectHideFlags: 0
@@ -7454,7 +7489,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 227833787}
         m_TargetAssemblyTypeName: Create_LoadPlayer, Assembly-CSharp
-        m_MethodName: ResetButtons
+        m_MethodName: NullButtons
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7466,7 +7501,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 227833787}
         m_TargetAssemblyTypeName: Create_LoadPlayer, Assembly-CSharp
-        m_MethodName: ButtonChange
+        m_MethodName: StartButtonChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

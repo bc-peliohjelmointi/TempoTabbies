@@ -154,7 +154,7 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
-            paw.scene = "CatSelect";
+            paw.scene = "PlayerSelect";
         }
     }
 

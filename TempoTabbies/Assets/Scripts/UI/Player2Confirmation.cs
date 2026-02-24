@@ -24,7 +24,7 @@ public class Player2Confirmation : MonoBehaviour
         }
         if (gm.p2 != null)
         {
-            anims.scene = "CatSelect";
+            anims.scene = "PlayerSelect";
             if (anims.animator.GetCurrentAnimatorStateInfo(0).length < anims.animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
             {
                 anims.PawStB();

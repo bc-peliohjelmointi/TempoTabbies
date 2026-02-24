@@ -28,7 +28,10 @@ public class StageButton : MonoBehaviour, ISelectHandler, IDeselectHandler
             source = GetComponent<AudioSource>();
         }
 
-        source.PlayOneShot(source.clip);
+        if (source != null)
+        {
+            source.PlayOneShot(source.clip);
+        }
     }
 
     public void OnDeselect(BaseEventData eventData)

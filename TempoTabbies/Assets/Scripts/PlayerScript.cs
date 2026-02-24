@@ -66,10 +66,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-         if (playerInput.currentControlScheme == "Keyboard&Mouse")
-         {
-             Destroy(gameObject);
-         }
+        if (playerInput.currentControlScheme == "Keyboard&Mouse")
+        {
+            Destroy(gameObject);
+        }
         // Checks what state the game is currently in
         switch (gameManager.state)
         {
@@ -180,10 +180,10 @@ public class PlayerScript : MonoBehaviour
             return;
         }
         // Assuming a standard gamepad layout, you can map buttons like this:
-        button1 = inputDevice.TryGetChildControl<ButtonControl>("leftTrigger"); 
-        button2 = inputDevice.TryGetChildControl<ButtonControl>("leftShouler");  
+        button1 = inputDevice.TryGetChildControl<ButtonControl>("leftTrigger");
+        button2 = inputDevice.TryGetChildControl<ButtonControl>("leftShouler");
         button3 = inputDevice.TryGetChildControl<ButtonControl>("rightShoulder");
-        button4 = inputDevice.TryGetChildControl<ButtonControl>("rightTrigger"); 
+        button4 = inputDevice.TryGetChildControl<ButtonControl>("rightTrigger");
         Debug.Log($"Player {_playerIndex + 1} buttons set: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");
     }
 
@@ -225,30 +225,4 @@ public class PlayerScript : MonoBehaviour
 
     }
 
-    public void ApplyProfile(PlayerProfileData data)
-    {
-        if (data == null)
-        {
-            Debug.LogWarning($"ApplyProfile called with null data for Player {_playerIndex}");
-            return;
-        }
-
-        // Copy values from the profile to the player instance
-        scrollSpeed = data.scrollSpeed;
-        assistTick = data.assistTick;
-        showButtons = data.showButtons;
-
-        // If you need to push these values to other systems, do it here.
-        // Example: update global game manager defaults (if appropriate)
-        var gm = FindFirstObjectByType<_GameManager>();
-        if (gm != null)
-        {
-            // optional: apply defaults to game manager if the profile should change them
-            // gm.scrollSpeed = scrollSpeed;
-            // gm.assistTick = assistTick;
-            // gm.showButtons = showButtons;
-        }
-
-        Debug.Log($"Player {_playerIndex + 1} profile applied: scrollSpeed={scrollSpeed}, assistTick={assistTick}, showButtons={showButtons}");
-    }
 }

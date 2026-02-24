@@ -85,17 +85,6 @@ public class _GameManager : MonoBehaviour
             FindPlayers();
         }
 
-
-        if (p1 != null && p1.button1 == null)
-        {
-            json.LoadPlayerToPlayer("Default", 0);
-        }
-        if (p2 != null && p2.button1 == null)
-        {
-            json.LoadPlayerToPlayer("Strange", 1);
-        }
-
-
         if (state == GameState.Game)
         {
             source.Stop();

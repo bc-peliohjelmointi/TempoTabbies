@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
@@ -33,8 +34,8 @@ public class KayttajaValintaScript : MonoBehaviour
     {
         MikaKontrolleriKuva = gameObject.GetComponent<Image>();
         myDropdown.ClearOptions();//tyhjent‰‰ listan
-
         LoadAllJSONs();
+
 
         // Use _GameManager singleton when available
         gm = _GameManager.instance ?? FindAnyObjectByType<_GameManager>();
@@ -42,6 +43,9 @@ public class KayttajaValintaScript : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(myDropdown.gameObject);
     }
+    
+
+
     void LoadAllJSONs()
     {
         fullPaths.Clear();

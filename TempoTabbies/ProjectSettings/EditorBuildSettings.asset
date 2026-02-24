@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/FinalScenes/GameSingleplayer.unity
     guid: c10b72b651ba7124cad14f3b5a8e6609
   - enabled: 1
+    path: Assets/Scenes/FinalScenes/PlayerSelect.unity
+    guid: e5b6f2524defc6f45ad640757e6bd26e
+  - enabled: 1
     path: Assets/Scenes/FinalScenes/CardSelect.unity
     guid: b7c7c64cc2cfbac42b0e46156dac4779
   - enabled: 1

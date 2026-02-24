@@ -124,7 +124,8 @@ public class PlayerScript : MonoBehaviour
 
                 profilesMenu.submit = submit.ReadValue<float>();
                 break;
-
+            case _GameManager.GameState.PlayerSelect:
+                break;
             case _GameManager.GameState.StageSelect:
                 if (chartManager == null)
                 {

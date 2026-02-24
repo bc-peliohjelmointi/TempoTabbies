@@ -12,7 +12,6 @@ public class KayttajaValintaScript : MonoBehaviour
     public TMP_Dropdown myDropdown; // Make sure to assign this
     public string[] UserFolder; //Pelaajan tekemät JSON-tiedostot tallennetaan tähän kansioon
     private List<string> fullPaths = new List<string>();
-    private List<TextAsset> OURJsonAssets = new List<TextAsset>();
 
     //pelaaja asioita
     public List<PlayerScript> players;
@@ -39,6 +38,7 @@ public class KayttajaValintaScript : MonoBehaviour
 
         // Use _GameManager singleton when available
         gm = _GameManager.instance ?? FindAnyObjectByType<_GameManager>();
+        gm.state = _GameManager.GameState.PlayerSelect;
 
         EventSystem.current.SetSelectedGameObject(myDropdown.gameObject);
     }

@@ -51,6 +51,7 @@ public class _GameManager : MonoBehaviour
         Profiles, // The menu you make personal settings in
         StageSelect, // The song select screen
         Player2Confirmation, // confirms player 2s existence
+        PlayerSelect, // Selects player profiles
         CatSelect, // Selecting a cat
         Practise, // The singleplayer practice mode
         Game, // The songs being played

@@ -12,6 +12,9 @@ public class CardManagerScript : MonoBehaviour
 
     [Header("Player Card Choices")]
     public PlayerScript Score;
+    public PlayerScript P1;
+    public PlayerScript P2;
+    GameManager gm;
 
     [Header("UI asiat")]
     public TextMeshProUGUI ValittuPelaaja;
@@ -21,7 +24,7 @@ public class CardManagerScript : MonoBehaviour
     {
         KorttiLista = new List<CardDataScript.CardData>();
         // button = new Button();
-
+        
         RandomizeCard();
     }
 
@@ -70,6 +73,7 @@ public class CardManagerScript : MonoBehaviour
 
     PlayerScript FindPlayerOther(PlayerScript Chosen)
     {
+
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         if (players.Length == 1)
         {
@@ -117,11 +121,19 @@ public class CardManagerScript : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         if (players.Length == 0)
         {
+            Debug.Log("pelaajia lengt on 0 eli pelaajia ei ole");
             return null;//ei ole pelaajia
         }
         if (players.Length == 1)
         {
+            Debug.Log("pelaaja lenght on " + players.Length);
             return players[0].GetComponent<PlayerScript>();
+
+        }
+        if (players.Length == 2)
+        {
+            Debug.Log("pelaajia lengt on 2");
+            return players[1].GetComponent<PlayerScript>();
         }
         else
         {
@@ -164,6 +176,7 @@ public class CardManagerScript : MonoBehaviour
             if (NoCard != null)
             {
                 NoCard.AllCards.Add(card);
+                Debug.Log("Kortti annettu pelaajalle " + NoCard._playerIndex);
             }
 
         }

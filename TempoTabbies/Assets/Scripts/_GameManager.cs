@@ -36,6 +36,7 @@ public class _GameManager : MonoBehaviour
 
     public int p1Score;
     public int p2Score;
+    public bool whoWon; // true = p1 wins, false = p2 wins 
 
     // Audio
     [Header("Audio file for background music")]

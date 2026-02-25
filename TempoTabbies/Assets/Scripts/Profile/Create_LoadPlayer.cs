@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -152,6 +151,11 @@ public class Create_LoadPlayer : MonoBehaviour
                         {
                             button1 = button;
                             timer = 0;
+                            if (button1.name == "up" || button1.name == "down" || button1.name == "left" || button1.name == "right")
+                            {
+                                button1 = null;
+                                break;
+                            }
                             button1Image.SetActive(false);
                             button2Image.SetActive(true);
                         }
@@ -169,6 +173,11 @@ public class Create_LoadPlayer : MonoBehaviour
                         {
                             button2 = button;
                             timer = 0;
+                            if (button2.name == "up" || button2.name == "down" || button2.name == "left" || button2.name == "right" || button1 == button2)
+                            {
+                                button2 = null;
+                                break;
+                            }
                             button2Image.SetActive(false);
                             button3Image.SetActive(true);
                         }
@@ -186,6 +195,11 @@ public class Create_LoadPlayer : MonoBehaviour
                         {
                             button3 = button;
                             timer = 0;
+                            if (button3.name == "up" || button3.name == "down" || button3.name == "left" || button3.name == "right" || button1 == button3 || button2 == button3)
+                            {
+                                button3 = null;
+                                break;
+                            }
                             button3Image.SetActive(false);
                             button4Image.SetActive(true);
                         }
@@ -203,6 +217,11 @@ public class Create_LoadPlayer : MonoBehaviour
                         {
                             button4 = button;
                             timer = 0;
+                            if (button4.name == "up" || button4.name == "down" || button4.name == "left" || button4.name == "right" || button1 == button4 || button2 == button4 || button3 == button4)
+                            {
+                                button4 = null;
+                                break;
+                            }
                             button4Image.SetActive(false);
                         }
                     }

@@ -109,11 +109,6 @@ public class PlayerScript : MonoBehaviour
                 optionsMenu.moveAmount = navigate.ReadValue<Vector2>();
                 optionsMenu.clickValue = clickButton.ReadValue<float>();
                 optionsMenu.submitValue = submit.ReadValue<float>();
-                float click = clickButton.ReadValue<float>();
-                if (click > 0)
-                {
-                    optionsMenu.currentPlayer = this;
-                }
                 break;
 
             case _GameManager.GameState.Profiles:

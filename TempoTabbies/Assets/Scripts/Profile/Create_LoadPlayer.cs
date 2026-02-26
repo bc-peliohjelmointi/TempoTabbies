@@ -67,6 +67,10 @@ public class Create_LoadPlayer : MonoBehaviour
     public GameObject button3Image;
     public GameObject button4Image;
 
+    EventSystem system;
+    public GameObject lastSelectedGameObject;
+    public GameObject currentSelectedGameObject_Recent;
+
     public enum State
     {
         start,
@@ -80,9 +84,9 @@ public class Create_LoadPlayer : MonoBehaviour
 
     private void Awake()
     {
-        GoToStartButton();
         MakeButtons();
         AssistTick(); AssistTick();
+        system = EventSystem.current;
         if (json == null)
         {
             json = FindFirstObjectByType<JSON_Stuff>();
@@ -94,9 +98,15 @@ public class Create_LoadPlayer : MonoBehaviour
         _gm.state = _GameManager.GameState.Profiles;
     }
 
+    private void Start()
+    {
+        GoToStartButton();
+    }
+
     private void Update()
     {
         scrollValue.text = scrollSlider.value.ToString();
+        GetLastGameObjectSelected();
         switch (state)
         {
             case State.start:
@@ -271,7 +281,6 @@ public class Create_LoadPlayer : MonoBehaviour
                 rt.anchoredPosition = new Vector2(0, placement);
                 placement -= 40; // Changes placement for the next button
                 button.SetActive(true);
-                Debug.Log(placement);
 
                 // Changes the starting buttons navigation to go to the first created button
                 if (playerList.Count == 0)
@@ -303,6 +312,15 @@ public class Create_LoadPlayer : MonoBehaviour
 
                 playerList.Add(button);
             }
+        }
+    }
+
+    private void GetLastGameObjectSelected()
+    {
+        if (system.currentSelectedGameObject != currentSelectedGameObject_Recent)
+        {
+            lastSelectedGameObject = currentSelectedGameObject_Recent;
+            currentSelectedGameObject_Recent = system.currentSelectedGameObject;
         }
     }
 
@@ -339,10 +357,7 @@ public class Create_LoadPlayer : MonoBehaviour
     // Deletes whatever JSON file shares a name with what is in the input field
     public void DeleteName()
     {
-        if (File.Exists(chosenName.text))
-        {
-            File.Delete($"JSON/{chosenName.text}.json");
-        }
+        File.Delete($"JSON/{chosenName.text}.json".Replace("\u200B", ""));
     }
 
     // Makes sure the scroll speed doesn't have 300 decimals
@@ -388,7 +403,10 @@ public class Create_LoadPlayer : MonoBehaviour
     // Makes the selected object the starting button
     public void GoToStartButton()
     {
+        lastSelectedGameObject = null;
         EventSystem.current.SetSelectedGameObject(startButton);
+        startButton.transform.localPosition = new Vector3(startButton.transform.localPosition.x, 0, startButton.transform.localPosition.z);
+        newPlayerBtn.transform.localPosition = new Vector3(newPlayerBtn.transform.localPosition.x, -40, newPlayerBtn.transform.position.z);
         state = State.start;
     }
 

@@ -12,48 +12,52 @@ public class CardManagerScript : MonoBehaviour
 
     [Header("Player Card Choices")]
     public PlayerScript Score;
-    public PlayerScript P1;
-    public PlayerScript P2;
-    GameManager gm;
+    public _GameManager gm;
+    public PlayerScript Player1Cards;
+    public PlayerScript Player2Cards;
 
     [Header("UI asiat")]
-    public TextMeshProUGUI ValittuPelaaja;
+    public TextMeshProUGUI ValittuPelaaja;//UI teksti joka kertoo pelaajan vuoron
 
 
-    void Start()
+  /*  void Start()
     {
         KorttiLista = new List<CardDataScript.CardData>();
-        // button = new Button();
-        
+
+        gm = _GameManager.instance;
         RandomizeCard();
     }
 
     void Update()
     {
-        PlayerScript active = findPlayerActive(); //etsii pelaaja pisteiden perusteella
-        if (active != null)//pisteiden perusteillä löytyi ekaksi menevä
-        {
-            PlayerScript NoCardPlayer = findPlayerNoCard(active);//löytää pelaajan ilman korttia
-            if (NoCardPlayer != null) //jos on pelaaja ilman korttia 
-            {
-                //vaihtaa UI tektin pelaajaan vuoroon
-                ValittuPelaaja.text = NoCardPlayer._playerIndex + 1 + " valitse kortti";
-                //odotta
-
-            }
-            else //voi mennä eteenpäin
-            {
-                // change scene !!!!
-                SceneManager.LoadScene("GameMultiplayer"); // temporary test scene
-            }
-        }
-        else
-        {
-            //ei tule mitään, koska ei ole pelaajia ja tämä menee vain ohi
-        }
-
-        if (AllCards == null || AllCards.Count == 0) return;
     }
+
+    void findPlayerActive()
+    {
+        gm.FindPlayers();
+        Player1Cards = new PlayerScript();
+        Player2Cards = new PlayerScript();
+        //GameObject[] players = gm.players
+        
+    }
+
+    private PlayerScript FindPlayerNoCard()
+    {
+        if (gm.p1.AllCards.Count == 0)
+        {
+            ValittuPelaaja.text = "Player 1";
+            Debug.Log("Pelaaja 1");
+            return gm.p1;
+        }
+        else if (gm.p2.AllCards.Count == 0)
+        {
+            ValittuPelaaja.text = "Player 2";
+            Debug.Log("Pelaaja 2");
+            return gm.p2;
+        }
+        return null;
+    }
+
     public void RandomizeCard()
     {
         for (int i = 0; i < 3; i++) //alkaa 0; niinpitkään kuin on alle 3; lisää aina 1
@@ -69,86 +73,6 @@ public class CardManagerScript : MonoBehaviour
         GameObject.Find("Valinta2").GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = KorttiLista[1].icon;
         GameObject.Find("Valinta3").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[2].CardName;
         GameObject.Find("Valinta3").GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = KorttiLista[2].icon;
-    }
-
-    PlayerScript FindPlayerOther(PlayerScript Chosen)
-    {
-
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length == 1)
-        {
-            return Chosen;
-        }
-        else
-        {
-            PlayerScript script1 = players[0].GetComponent<PlayerScript>();
-            PlayerScript script2 = players[1].GetComponent<PlayerScript>();
-            if (Chosen == script1)
-            {
-                return script2;
-            }
-            else
-            {
-                return script1;
-            }
-        }
-    }
-
-    PlayerScript findPlayerNoCard(PlayerScript Chosen)
-    {
-        if (Chosen.AllCards.Count == 0)
-        {
-            return Chosen;
-        }
-        else
-        {
-            PlayerScript Other = FindPlayerOther(Chosen);
-            if (Other != null)
-            {
-                if (Other.AllCards.Count == 0)
-                {
-                    return Other;
-                }
-            }
-        }
-        return null;
-
-    }
-
-    PlayerScript findPlayerActive()
-    {
-        //jos on toinen pelaaja arvo uudestaan
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length == 0)
-        {
-            Debug.Log("pelaajia lengt on 0 eli pelaajia ei ole");
-            return null;//ei ole pelaajia
-        }
-        if (players.Length == 1)
-        {
-            Debug.Log("pelaaja lenght on " + players.Length);
-            return players[0].GetComponent<PlayerScript>();
-
-        }
-        if (players.Length == 2)
-        {
-            Debug.Log("pelaajia lengt on 2");
-            return players[1].GetComponent<PlayerScript>();
-        }
-        else
-        {
-            PlayerScript script1 = players[0].GetComponent<PlayerScript>();
-            PlayerScript script2 = players[1].GetComponent<PlayerScript>();
-
-            if (script1.Score >= script2.Score)
-            {
-                return script1;
-            }
-            else
-            {
-                return script2;
-            }
-        }
     }
 
     public void Button1Press()
@@ -169,20 +93,21 @@ public class CardManagerScript : MonoBehaviour
 
     public void GiveCardToPlayer(CardData card)
     {
-        PlayerScript script = findPlayerActive();
-        if (script != null)
+        //script = findPlayerActive();
+
+        if (gm != null)
         {
-            PlayerScript NoCard = findPlayerNoCard(script);
+            PlayerScript NoCard = FindPlayerNoCard();
             if (NoCard != null)
             {
                 NoCard.AllCards.Add(card);
                 Debug.Log("Kortti annettu pelaajalle " + NoCard._playerIndex);
             }
-
         }
         else
         {
             Debug.Log("Korttia ei voitu antaa");
+
         }
     }
     public CardData GetEffectDataforCard(EffectType effectType)//hakee effektit
@@ -199,5 +124,5 @@ public class CardManagerScript : MonoBehaviour
 
         Debug.LogError("Efectiä ei löytynyt");
         return null;
-    }
+    }*/
 }

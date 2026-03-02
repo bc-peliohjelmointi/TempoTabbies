@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5499531198585634852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4316689813916512703}
+  - component: {fileID: 762666210930608310}
+  m_Layer: 0
+  m_Name: CardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4316689813916512703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499531198585634852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 410, y: 230.625, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &762666210930608310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5499531198585634852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ff2bc5d0429abd4f83ae4612dae049e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllCards:
+  - {fileID: 11400000, guid: d8119ce22ed87954cbe44f138b0d09b3, type: 2}
+  - {fileID: 11400000, guid: 269359fb917f72c4eaf2e2aeb950ff72, type: 2}
+  - {fileID: 11400000, guid: 1c9b5e965dd884b4790849b170e22934, type: 2}
+  - {fileID: 11400000, guid: 6eca029d930856d4d990d41cd34d6846, type: 2}
+  - {fileID: 11400000, guid: fa6733141b87d1341bff8b400c6387ca, type: 2}
+  - {fileID: 11400000, guid: e0eab6e47ed9ddf468dee475db9af65b, type: 2}
+  - {fileID: 11400000, guid: 84ecf3cca3fd6494f8a30a61c3d2f068, type: 2}
+  - {fileID: 11400000, guid: e0115704f77ee524990d5677624d2282, type: 2}
+  - {fileID: 11400000, guid: 00cea6e96299bcf409f0d46394153a48, type: 2}
+  - {fileID: 11400000, guid: e748d213d27f41e468e721e2502b0aad, type: 2}
+  Score: {fileID: 0}
+  ValittuPelaaja: {fileID: 0}

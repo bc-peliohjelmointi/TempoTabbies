@@ -12,8 +12,8 @@ public class DiscoCatScript : MonoBehaviour
 
     void Start()
     {
-        /* this.CardManager = GameObject.FindFirstObjectByType<CardManagerScript>();
-         this.data = CardManager.GetEffectDataforCard(EffectType.DiscoCat);*/
+        this.CardManager = GameObject.FindFirstObjectByType<CardManagerScript>();
+         this.data = CardManager.GetEffectDataforCard(EffectType.DiscoCat);
         CurrentStatus = EffectStatus.cooldown;
     }
     
@@ -32,27 +32,52 @@ public class DiscoCatScript : MonoBehaviour
         {
             case EffectStatus.waiting:
 
-                DiscoCatPanel.instance.StartTimer();
-                DiscoCatPanel.instance.canvas.gameObject.SetActive(true);
+                // Start UI timer and enable canvas, then enter active state
+                if (DiscoCatPanel.instance != null)
+                {
+                    // Pass duration to the panel if it supports it
+                    DiscoCatPanel.instance.StartTimer(data.duration);
+                    if (DiscoCatPanel.instance.canvas != null)
+                        DiscoCatPanel.instance.canvas.gameObject.SetActive(true);
+                }
+
+                kauttoAika = 0f;
                 CurrentStatus = EffectStatus.active;
-                
                 break;
+
 
             case EffectStatus.active:
 
-                //DiscoCatPanel.instance.panelImage.gameObject.SetActive(true);
-                //DiscoCatPanel.instance.canvas.gameObject.SetActive(true);
+                // Show active visuals and count down the effect duration
+                kauttoAika += Time.deltaTime;
+                if (DiscoCatPanel.instance != null && DiscoCatPanel.instance.panelImage != null)
+                    DiscoCatPanel.instance.panelImage.gameObject.SetActive(true);
+
+                if (kauttoAika >= data.duration)
+                {
+                    // End effect visuals
+                    if (DiscoCatPanel.instance != null)
+                    {
+                        if (DiscoCatPanel.instance.panelImage != null)
+                            DiscoCatPanel.instance.panelImage.gameObject.SetActive(false);
+                        if (DiscoCatPanel.instance.canvas != null)
+                            DiscoCatPanel.instance.canvas.gameObject.SetActive(false);
+                    }
+
+                    // Enter cooldown
+                    CoolDown = 0f;
+                    CurrentStatus = EffectStatus.cooldown;
+                }
                 break;
 
             case EffectStatus.cooldown:
-                    CoolDown += Time.deltaTime;
-                if (CoolDown < data.cooldown)
+                // Accumulate cooldown; when reached, go to waiting (ready to activate)
+                CoolDown += Time.deltaTime;
+                if (CoolDown >= data.cooldown)
                 {
+                    CoolDown = 0f;
                     CurrentStatus = EffectStatus.waiting;
                 }
-                else
-                {}
-                
                 break;
         }
 

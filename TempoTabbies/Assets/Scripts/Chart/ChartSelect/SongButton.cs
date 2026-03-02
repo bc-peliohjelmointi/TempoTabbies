@@ -195,6 +195,7 @@ public class SongButton : MonoBehaviour
         else
         {
             CollapseCharts();
+            _gm.EnableControllers();
             manager.state = ChartSelectManager.State.bigButton;
         }
     }

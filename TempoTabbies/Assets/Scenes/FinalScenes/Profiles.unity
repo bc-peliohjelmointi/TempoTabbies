@@ -1111,6 +1111,8 @@ MonoBehaviour:
   button2Image: {fileID: 450940909}
   button3Image: {fileID: 823420844}
   button4Image: {fileID: 274998257}
+  lastSelectedGameObject: {fileID: 0}
+  currentSelectedGameObject_Recent: {fileID: 0}
   state: 0
   newPlayer: {fileID: 561390516}
 --- !u!4 &227833788

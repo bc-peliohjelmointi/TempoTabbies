@@ -39,9 +39,9 @@ public class DiscoCatPanel : MonoBehaviour
     {
         canvas.gameObject.SetActive(false);
     }
-    public void StartTimer()
+    public void StartTimer(float duration)
     {
-        Väriajastin = 0.5f;
+        Väriajastin = (duration > 0f) ? duration : 0.5f;
         timerRunning = true;
         canvas.gameObject.SetActive(true);
     }
@@ -58,7 +58,7 @@ public class DiscoCatPanel : MonoBehaviour
             //canvas.gameObject.SetActive(false);
             valittuVäri = (valittuVäri + 1) % Väri.Length;
             panelImage.color = Väri[valittuVäri];
-            StartTimer();
+            StartTimer(Väriajastin > 0f ? Väriajastin: 0.5f); 
         }
     }
 }

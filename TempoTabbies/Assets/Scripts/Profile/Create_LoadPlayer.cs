@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -68,6 +67,10 @@ public class Create_LoadPlayer : MonoBehaviour
     public GameObject button3Image;
     public GameObject button4Image;
 
+    EventSystem system;
+    public GameObject lastSelectedGameObject;
+    public GameObject currentSelectedGameObject_Recent;
+
     public enum State
     {
         start,
@@ -81,9 +84,9 @@ public class Create_LoadPlayer : MonoBehaviour
 
     private void Awake()
     {
-        GoToStartButton();
         MakeButtons();
         AssistTick(); AssistTick();
+        system = EventSystem.current;
         if (json == null)
         {
             json = FindFirstObjectByType<JSON_Stuff>();
@@ -95,9 +98,15 @@ public class Create_LoadPlayer : MonoBehaviour
         _gm.state = _GameManager.GameState.Profiles;
     }
 
+    private void Start()
+    {
+        GoToStartButton();
+    }
+
     private void Update()
     {
         scrollValue.text = scrollSlider.value.ToString();
+        GetLastGameObjectSelected();
         switch (state)
         {
             case State.start:
@@ -152,6 +161,11 @@ public class Create_LoadPlayer : MonoBehaviour
                         {
                             button1 = button;
                             timer = 0;
+                            if (button1.name == "up" || button1.name == "down" || button1.name == "left" || button1.name == "right")
+                            {
+                                button1 = null;
+                                break;
+                            }
                             button1Image.SetActive(false);
                             button2Image.SetActive(true);
                         }
@@ -169,6 +183,11 @@ public class Create_LoadPlayer : MonoBehaviour
                         {
                             button2 = button;
                             timer = 0;
+                            if (button2.name == "up" || button2.name == "down" || button2.name == "left" || button2.name == "right" || button1 == button2)
+                            {
+                                button2 = null;
+                                break;
+                            }
                             button2Image.SetActive(false);
                             button3Image.SetActive(true);
                         }
@@ -186,6 +205,11 @@ public class Create_LoadPlayer : MonoBehaviour
                         {
                             button3 = button;
                             timer = 0;
+                            if (button3.name == "up" || button3.name == "down" || button3.name == "left" || button3.name == "right" || button1 == button3 || button2 == button3)
+                            {
+                                button3 = null;
+                                break;
+                            }
                             button3Image.SetActive(false);
                             button4Image.SetActive(true);
                         }
@@ -203,6 +227,11 @@ public class Create_LoadPlayer : MonoBehaviour
                         {
                             button4 = button;
                             timer = 0;
+                            if (button4.name == "up" || button4.name == "down" || button4.name == "left" || button4.name == "right" || button1 == button4 || button2 == button4 || button3 == button4)
+                            {
+                                button4 = null;
+                                break;
+                            }
                             button4Image.SetActive(false);
                         }
                     }
@@ -252,7 +281,6 @@ public class Create_LoadPlayer : MonoBehaviour
                 rt.anchoredPosition = new Vector2(0, placement);
                 placement -= 40; // Changes placement for the next button
                 button.SetActive(true);
-                Debug.Log(placement);
 
                 // Changes the starting buttons navigation to go to the first created button
                 if (playerList.Count == 0)
@@ -284,6 +312,15 @@ public class Create_LoadPlayer : MonoBehaviour
 
                 playerList.Add(button);
             }
+        }
+    }
+
+    private void GetLastGameObjectSelected()
+    {
+        if (system.currentSelectedGameObject != currentSelectedGameObject_Recent)
+        {
+            lastSelectedGameObject = currentSelectedGameObject_Recent;
+            currentSelectedGameObject_Recent = system.currentSelectedGameObject;
         }
     }
 
@@ -320,10 +357,7 @@ public class Create_LoadPlayer : MonoBehaviour
     // Deletes whatever JSON file shares a name with what is in the input field
     public void DeleteName()
     {
-        if (File.Exists(chosenName.text))
-        {
-            File.Delete($"JSON/{chosenName.text}.json");
-        }
+        File.Delete($"JSON/{chosenName.text}.json".Replace("\u200B", ""));
     }
 
     // Makes sure the scroll speed doesn't have 300 decimals
@@ -369,7 +403,10 @@ public class Create_LoadPlayer : MonoBehaviour
     // Makes the selected object the starting button
     public void GoToStartButton()
     {
+        lastSelectedGameObject = null;
         EventSystem.current.SetSelectedGameObject(startButton);
+        startButton.transform.localPosition = new Vector3(startButton.transform.localPosition.x, 0, startButton.transform.localPosition.z);
+        newPlayerBtn.transform.localPosition = new Vector3(newPlayerBtn.transform.localPosition.x, -40, newPlayerBtn.transform.position.z);
         state = State.start;
     }
 

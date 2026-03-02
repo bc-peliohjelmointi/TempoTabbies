@@ -50,11 +50,38 @@ public class GameEndManager : MonoBehaviour
     {
         if (gameEnding || gameEnded) return;
 
-        // Check if all notes have been spawned
-        if (noteSpawner != null && !allNotesSpawned && noteSpawner.IsChartComplete())
+        // Prefer to wait until all judgments have been processed (all notes hit or missed).
+        // This ensures long-note releases (which score on release) are counted before ending.
+        // If any ScoreManager instances exist in scene (multiplayer), wait until all have processed their judgments
+        var allSMS = FindObjectsOfType<ScoreManager>();
+        if (allSMS != null && allSMS.Length > 0)
         {
+            int totalNotesSum = 0;
+            int notesHitSum = 0;
+            foreach (var s in allSMS)
+            {
+                if (s == null) continue;
+                if (s.totalNotes > 0)
+                {
+                    totalNotesSum += s.totalNotes;
+                    notesHitSum += s.notesHit;
+                }
+            }
+
+            if (!allNotesSpawned && totalNotesSum > 0 && notesHitSum >= totalNotesSum)
+            {
+                allNotesSpawned = true;
+                Debug.Log($"[GameEndManager] All judgments processed ({notesHitSum}/{totalNotesSum}), ending game in {endDelayAfterLastNote} seconds");
+
+                // Start the end sequence after delay
+                Invoke(nameof(StartEndSequence), endDelayAfterLastNote);
+            }
+        }
+        else if (noteSpawner != null && !allNotesSpawned && noteSpawner.IsChartComplete())
+        {
+            // Fallback to spawn-complete behavior if no ScoreManager is available
             allNotesSpawned = true;
-            Debug.Log($"[GameEndManager] All notes spawned, ending game in {endDelayAfterLastNote} seconds");
+            Debug.Log($"[GameEndManager] All notes spawned (fallback), ending game in {endDelayAfterLastNote} seconds");
 
             // Start the end sequence after delay
             Invoke(nameof(StartEndSequence), endDelayAfterLastNote);
@@ -74,16 +101,21 @@ public class GameEndManager : MonoBehaviour
         gameEnding = true;
         Debug.Log("[GameEndManager] Starting game end sequence with fade");
 
-        // Finalize the score using the ScoreManager attached to the noteSpawner's HitManager (if present)
-        if (noteSpawner != null && noteSpawner.hitManager != null && noteSpawner.hitManager.scoreManager != null)
+        // Finalize all ScoreManagers in the scene. Multiplayer may have multiple ScoreManager instances
+        // (one per player). ScoreManager.FinalizeScore already guards against double-saving.
+        var allScoreManagers = FindObjectsOfType<ScoreManager>();
+        if (allScoreManagers != null && allScoreManagers.Length > 0)
         {
-            var sm = noteSpawner.hitManager.scoreManager;
-            sm.FinalizeScore();
-            Debug.Log($"[GameEndManager] Finalized score. Max Combo: {sm.maxCombo}");
+            foreach (var sm in allScoreManagers)
+            {
+                if (sm == null) continue;
+                sm.FinalizeScore();
+                Debug.Log($"[GameEndManager] Finalized score. Max Combo: {sm.maxCombo} (Player #{sm.playerToUse})");
+            }
         }
         else
         {
-            Debug.LogWarning("[GameEndManager] No ScoreManager found on the noteSpawner's HitManager to finalize.");
+            Debug.LogWarning("[GameEndManager] No ScoreManager instances found in scene to finalize.");
         }
 
         // Start fade effects

@@ -129,6 +129,15 @@ public class ScoreManager : MonoBehaviour
         if (hasSavedScore)
             return;
 
+        // Don't finalize/save the score until all notes have been judged (hit or missed).
+        // Some other systems may call FinalizeScore when all notes are spawned —
+        // ensure we only save once we've processed judgments for every note.
+        if (totalNotes > 0 && notesHit < totalNotes)
+        {
+            Debug.Log($"[ScoreManager] FinalizeScore called early: notesHit {notesHit}/{totalNotes}. Skipping save.");
+            return;
+        }
+
         hasSavedScore = true;
 
         if (currentCombo > maxCombo)
@@ -167,7 +176,7 @@ public class ScoreManager : MonoBehaviour
         Debug.Log(
             $"[FINALIZE SAVE] {profileName} | {mapName} | {difficulty} | {currentScore} | {clearType}"
         );
-
+        Debug.Log($"saved score at {currentScore}");
         ScoreDatabase.SaveScore(
             profileName,
             mapName,

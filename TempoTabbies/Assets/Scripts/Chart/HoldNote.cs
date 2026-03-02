@@ -216,6 +216,20 @@ public class HoldNote : MonoBehaviour
 
             UpdateBodyWorld(startY, endY);
 
+            // If initial press was missed, keep the hold note in scene but allow release judgment
+            // so the player can still attempt the release timing window.
+            if (initialPressMissed && !releaseJudgmentGiven && songTime >= EndTime)
+            {
+                bool stillHoldingForRelease = IsPressedForLane(Lane);
+                float releaseTime = stillHoldingForRelease ? EndTime : songTime;
+                RegisterReleaseJudgment(releaseTime);
+                releaseJudgmentGiven = true;
+                hasEnded = true;
+                // update prev states and exit (RegisterReleaseJudgment will destroy after a short delay)
+                UpdatePrevHeldStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
+                return;
+            }
+
             // update prev states for edge detection next frame
             UpdatePrevHeldStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftShoulderHeld, curRightShoulderHeld, curStickLeftHeld, curStickRightHeld);
             return;
@@ -267,8 +281,39 @@ public class HoldNote : MonoBehaviour
             scoreManager.AddJudgment("MISS");
         }
 
-        // Destroy the hold note since initial press was missed
-        DestroyHold();
+        // Do not destroy the hold note on initial miss — dim it so the player
+        // can still attempt to hit the release timing window.
+        DimNoteVisuals(0.6f);
+    }
+
+    // Dim the visual components of this hold note (head/body/end) by a factor.
+    private void DimNoteVisuals(float factor)
+    {
+        if (Head != null)
+        {
+            var sr = Head.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                var c = sr.color;
+                sr.color = new Color(c.r * factor, c.g * factor, c.b * factor, c.a);
+            }
+        }
+
+        if (Body != null && bodyRenderer != null)
+        {
+            var c = bodyRenderer.color;
+            bodyRenderer.color = new Color(c.r * factor, c.g * factor, c.b * factor, c.a);
+        }
+
+        if (End != null)
+        {
+            var sr = End.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                var c = sr.color;
+                sr.color = new Color(c.r * factor, c.g * factor, c.b * factor, c.a);
+            }
+        }
     }
 
     private void EarlyReleaseMiss()
@@ -378,14 +423,27 @@ public class HoldNote : MonoBehaviour
         if (releaseChecked) return;
         releaseChecked = true;
 
-        // Only score release if initial press was successful
-        if (!initialPressScored || initialPressMissed)
+        // If we never had an initial state (neither scored nor explicitly missed),
+        // don't process release — just destroy the hold.
+        if (!initialPressScored && !initialPressMissed)
         {
             DestroyHold();
             return;
         }
 
-        // Measure the *offset* from the correct release time.
+        // If the initial press was missed and the player never started the hold
+        // later (never actually held the note), the release must be a MISS.
+        if (initialPressMissed && !hasStartedHold)
+        {
+            ShowJudgment("MISS", false, false);
+            if (scoreManager != null)
+                scoreManager.AddJudgment("MISS");
+            Debug.Log("[HoldNote] Release Judgment: MISS (never held)");
+            Invoke(nameof(DestroyHold), 0.05f);
+            return;
+        }
+
+        // Otherwise measure the *offset* from the correct release time.
         float diff = currentTime - EndTime; // Positive if late, negative if early
         float absDiff = Mathf.Abs(diff);
 

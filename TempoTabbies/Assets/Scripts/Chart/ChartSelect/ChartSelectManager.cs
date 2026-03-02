@@ -25,6 +25,7 @@ public class ChartSelectManager : MonoBehaviour
     private GameObject lastSelectedObject;
 
     private _GameManager _gm;
+    public GameObject scoreImages;
 
    // [field: HideInInspector]
     public float submitValue;
@@ -58,6 +59,14 @@ public class ChartSelectManager : MonoBehaviour
         {
             p1ScoreText.gameObject.SetActive(false);
             p2ScoreText.gameObject.SetActive(false);
+        }
+        if (!_gm.multiplayer)
+        {
+            scoreImages.SetActive(false);
+        }
+        else
+        {
+            scoreImages.SetActive(true);
         }
     }
 

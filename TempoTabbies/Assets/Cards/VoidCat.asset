@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: VoidCat
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
-  CardName: voidCAt
+  CardName: voidCAT
   description: 
   effectType: 0
   icon: {fileID: 8293487871886533600, guid: e9a3ade714f783246aeab9c3c2463432, type: 3}

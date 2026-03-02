@@ -1014,6 +1014,7 @@ MonoBehaviour:
   p2: {fileID: 1605448388}
   json: {fileID: 0}
   anims: {fileID: 731770847}
+  gm: {fileID: 0}
 --- !u!114 &539807447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,6 +1480,8 @@ MonoBehaviour:
   xbox: {fileID: 2094651068}
   playstation: {fileID: 802004305}
   Keyboard: {fileID: 303449881}
+  playerBG: {fileID: 149848389}
+  playerText: {fileID: 976876991}
 --- !u!114 &685764327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4468,6 +4471,8 @@ MonoBehaviour:
   xbox: {fileID: 655504637}
   playstation: {fileID: 1685519073}
   Keyboard: {fileID: 1148724154}
+  playerBG: {fileID: 365714087}
+  playerText: {fileID: 326364089}
 --- !u!114 &1664857757
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Combo_Leech
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
-  CardName: 
+  CardName: ComboLeech
   description: 
-  effectType: 1
+  effectType: 0
   icon: {fileID: 8540264543176896934, guid: bd0c7ad6f3f7fca429e794b2e1719ad9, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
-  value: 15
-  triggerThreshold: 40
+  value: 0
+  triggerThreshold: 0
   effectPrefab: {fileID: 0}

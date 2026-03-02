@@ -20,7 +20,7 @@ public class CardManagerScript : MonoBehaviour
     public TextMeshProUGUI ValittuPelaaja;//UI teksti joka kertoo pelaajan vuoron
 
 
-  /*  void Start()
+    void Start()
     {
         KorttiLista = new List<CardDataScript.CardData>();
 
@@ -64,7 +64,7 @@ public class CardManagerScript : MonoBehaviour
         {
             int cardNumber = Random.Range(0, AllCards.Count); //riippuu korttien vaihtoehto määrästä
 
-            CardDataScript.CardData Arvottu = AllCards[cardNumber]; //luo aina uuden CardDatan
+            CardData Arvottu = AllCards[cardNumber]; //luo aina uuden CardDatan
             KorttiLista.Add(Arvottu);
         }
         GameObject.Find("Valinta1").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[0].CardName;
@@ -102,6 +102,10 @@ public class CardManagerScript : MonoBehaviour
             {
                 NoCard.AllCards.Add(card);
                 Debug.Log("Kortti annettu pelaajalle " + NoCard._playerIndex);
+                if (NoCard.name == gm.p2.name)
+                {
+                    SceneManager.LoadScene("StageSelect");
+                }
             }
         }
         else
@@ -124,5 +128,5 @@ public class CardManagerScript : MonoBehaviour
 
         Debug.LogError("Efectiä ei löytynyt");
         return null;
-    }*/
+    }
 }

@@ -53,7 +53,7 @@ public class MultiplayerSpawnerController : MonoBehaviour
         SecondarySpawner.Music = PrimarySpawner.Music;
 
         // Apply optional overrides for secondary spawner
-        if (SecondaryScrollSpeed > 0f)
+        if (SecondaryScrollSpeed > 0f && (SecondarySpawner == null || SecondarySpawner.ScrollSpeed <= 0f))
             SecondarySpawner.ScrollSpeed = SecondaryScrollSpeed;
 
         if (SecondaryLanes != null && SecondaryLanes.Length > 0)

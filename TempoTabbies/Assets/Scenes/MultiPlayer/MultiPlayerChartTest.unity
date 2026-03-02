@@ -1273,7 +1273,7 @@ MonoBehaviour:
   Music: {fileID: 387631743}
   gm: {fileID: 0}
   hpManager: {fileID: 272282994}
-  ScrollSpeed: 2
+  ScrollSpeed: 0
   SpawnLeadTime: 5
   Lanes:
   - {fileID: 648933666}
@@ -4241,6 +4241,107 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692292637}
   m_CullTransparentMesh: 1
+--- !u!1001 &696349375
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3471679596207319488, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_Name
+      value: SpawnerController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 114.02505
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 746.493
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859767929572162962, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: PrimarySpawner
+      value: 
+      objectReference: {fileID: 1519786609}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: SecondaryHitLine
+      value: 
+      objectReference: {fileID: 407459620}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: SecondarySpawner
+      value: 
+      objectReference: {fileID: 260532501}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: SecondaryHitManager
+      value: 
+      objectReference: {fileID: 925474174}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: SecondaryScrollSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: 'SecondaryLanes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 648933666}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: 'SecondaryLanes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 180245486}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: 'SecondaryLanes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 314333287}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: 'SecondaryLanes.Array.data[3]'
+      value: 
+      objectReference: {fileID: 696655365}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: 'SecondaryLanes.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2121731977}
+    - target: {fileID: 5987731750100051783, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
+      propertyPath: 'SecondaryLanes.Array.data[5]'
+      value: 
+      objectReference: {fileID: 1857189645}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 33985cc0a205f374fa2588e3e7168df8, type: 3}
 --- !u!1 &696655364
 GameObject:
   m_ObjectHideFlags: 0
@@ -4941,6 +5042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bdccbd40139fc4f966d79403680af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerToUse: 2
   maxScore: 1010000
   perfectScore: 1000000
   currentScore: 0
@@ -5376,62 +5478,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &972610407
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 972610409}
-  - component: {fileID: 972610408}
-  m_Layer: 0
-  m_Name: SpawnerController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &972610408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972610407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45da205749c79864283a3089ecf6b4ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PrimarySpawner: {fileID: 1519786609}
-  SecondarySpawner: {fileID: 260532501}
-  SecondaryScrollSpeed: 8
-  SecondaryLanes:
-  - {fileID: 648933666}
-  - {fileID: 180245486}
-  - {fileID: 314333287}
-  - {fileID: 696655365}
-  - {fileID: 2121731977}
-  - {fileID: 1857189645}
-  SecondaryHitLine: {fileID: 407459620}
-  SecondaryHitManager: {fileID: 925474174}
---- !u!4 &972610409
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 972610407}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.42341, y: 2.03487, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1015224327
 GameObject:
   m_ObjectHideFlags: 0
@@ -7333,6 +7379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bdccbd40139fc4f966d79403680af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerToUse: 1
   maxScore: 1010000
   perfectScore: 1000000
   currentScore: 0
@@ -10741,7 +10788,7 @@ SceneRoots:
   - {fileID: 925474175}
   - {fileID: 967665397}
   - {fileID: 275084307}
-  - {fileID: 972610409}
   - {fileID: 142122366}
   - {fileID: 1311958990}
   - {fileID: 272282993}
+  - {fileID: 696349375}

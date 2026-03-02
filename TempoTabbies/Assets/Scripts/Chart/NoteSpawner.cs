@@ -8,7 +8,7 @@ public class NoteSpawner : MonoBehaviour
     public AudioSource Music;
     public _GameManager gm;
     public HitPointManager hpManager;
-    public float ScrollSpeed = 8f;
+    public float ScrollSpeed;
     public float SpawnLeadTime = 2f;
 
     [Header("Lane Setup")]
@@ -46,34 +46,64 @@ public class NoteSpawner : MonoBehaviour
 
     // Optional runtime debug
     private int lastFrameSpawnedCount = 0;
+    private bool _loggedSpawnSpeedAtSpawn = false;
 
     private void Awake()
     {
-
         // Get reference to GameManager
         gm = _GameManager.instance;
 
-        // Initialize ScrollSpeed with value from GameManager
+        // Default fallback values for diagnostics
+        float gmScroll = -999f;
+        float p1Scroll = -999f;
+        float p2Scroll = -999f;
+        string chosenSource = "none";
+
         if (gm != null)
         {
-            ScrollSpeed = gm.scrollSpeed;
+            gmScroll = gm.scrollSpeed;
+
+            if (playerID == 1)
+            {
+                if (gm.p1 != null)
+                {
+                    p1Scroll = gm.p1.scrollSpeed;
+                    ScrollSpeed = p1Scroll;
+                    chosenSource = "p1.scrollSpeed";
+                }
+                else
+                {
+                    ScrollSpeed = gmScroll;
+                    chosenSource = "_GameManager.scrollSpeed (fallback, p1 null)";
+                }
+            }
+            else if (playerID == 2)
+            {
+                if (gm.p2 != null)
+                {
+                    p2Scroll = gm.p2.scrollSpeed;
+                    ScrollSpeed = p2Scroll;
+                    chosenSource = "p2.scrollSpeed";
+                }
+                else
+                {
+                    ScrollSpeed = gmScroll;
+                    chosenSource = "_GameManager.scrollSpeed (fallback, p2 null)";
+                }
+            }
+            else
+            {
+                // any other playerID uses global scrollSpeed
+                ScrollSpeed = gmScroll;
+                chosenSource = "_GameManager.scrollSpeed (playerID out of expected range)";
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[NoteSpawner.Awake] _GameManager.instance is null - using ScrollSpeed as-is (inspector/default).");
         }
 
-        if (playerID == 1)
-        {
-            ScrollSpeed = gm.p1.scrollSpeed;
-
-        }
-        if (playerID == 2)
-        {
-            ScrollSpeed = gm.p2.scrollSpeed;
-        }
-
-        // band-aid fix
-        if (ScrollSpeed < 1)
-        {
-            ScrollSpeed = 9;
-        }
+        Debug.Log($"[NoteSpawner.Awake] gameObject='{gameObject.name}' id={gameObject.GetInstanceID()} playerID={playerID} => ScrollSpeed={ScrollSpeed} (source={chosenSource}) | gm.scrollSpeed={gmScroll} p1.scroll={p1Scroll} p2.scroll={p2Scroll}");
     }
     public void LoadChart(SMFile sm, SMChart chart)
     {
@@ -190,6 +220,12 @@ public class NoteSpawner : MonoBehaviour
 
                 Transform lane = Lanes[noteData.lane];
                 float timeUntilHit = noteData.time - songTime;
+                // Log the ScrollSpeed actually used for spawn (only once to avoid spam)
+                if (!_loggedSpawnSpeedAtSpawn)
+                {
+                    Debug.Log($"[NoteSpawner] SPAWN time - gameObject='{gameObject.name}' id={gameObject.GetInstanceID()} playerID={playerID} - timeUntilHit={timeUntilHit:F3} ScrollSpeed={ScrollSpeed}");
+                    _loggedSpawnSpeedAtSpawn = true;
+                }
                 float spawnY = HitLine.position.y + timeUntilHit * ScrollSpeed;
                 Vector3 spawnPos = new Vector3(lane.position.x, spawnY, lane.position.z);
 

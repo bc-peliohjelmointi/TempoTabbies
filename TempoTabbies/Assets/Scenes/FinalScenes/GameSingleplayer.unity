@@ -3601,6 +3601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53bdccbd40139fc4f966d79403680af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerToUse: 1
   maxScore: 1010000
   perfectScore: 1000000
   currentScore: 0

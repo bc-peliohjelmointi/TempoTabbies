@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour
 {
+
+    public int playerToUse;
     [Header("Scoring Settings")]
     public int maxScore = 1010000;    // All Marvelous
     public int perfectScore = 1000000; // All Perfect
@@ -138,7 +140,22 @@ public class ScoreManager : MonoBehaviour
             return;
         }
 
-        string profileName = this.name;
+        string profileName = "Unknown";
+        var gm = _GameManager.instance ?? FindFirstObjectByType<_GameManager>();
+        if (gm != null)
+        {
+            PlayerScript chosen = null;
+            if (playerToUse == 1 && gm.p1 != null) chosen = gm.p1;
+            else if (playerToUse == 2 && gm.p2 != null) chosen = gm.p2;
+
+            // fallback to any available player
+            chosen ??= gm.p1 ?? gm.p2;
+
+            if (chosen != null)
+            {
+                profileName = chosen.name;
+            }
+        }
         string mapName = GameSession.SelectedSong.Title;
         string difficulty = GameSession.SelectedChart.Difficulty;
 

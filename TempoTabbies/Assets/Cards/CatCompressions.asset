@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: CatCompressions
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
-  CardName: Cat compressions
+  CardName: CatCompressions
   description: 
   effectType: 0
   icon: {fileID: -8004799667895317265, guid: 83929c74e5582a4458600c542407ce74, type: 3}

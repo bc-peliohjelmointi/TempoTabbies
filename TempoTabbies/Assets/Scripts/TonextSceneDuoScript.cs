@@ -11,20 +11,25 @@ public class TonextSceneDuoScript : MonoBehaviour
 
     public JSON_Stuff json;
     public MenuAnimations anims;
+    public _GameManager gm;
 
     private void Start()
     {
         json = FindFirstObjectByType<JSON_Stuff>();
+        gm = FindFirstObjectByType<_GameManager>();
     }
 
     public void onClickEnter()
     {
-        json.LoadPlayerToPlayer(p1.text, 0);
-        json.LoadPlayerToPlayer(p2.text, 1);
-        anims.scene = "CatSelect";
-        if (anims.animator.GetCurrentAnimatorStateInfo(0).length < anims.animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
+        if (gm.p2 != null)
         {
-            anims.PawStB();
+            json.LoadPlayerToPlayer(p1.text, 0);
+            json.LoadPlayerToPlayer(p2.text, 1);
+            anims.scene = "CatSelect";
+            if (anims.animator.GetCurrentAnimatorStateInfo(0).length < anims.animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
+            {
+                anims.PawStB();
+            }
         }
     }
 }

@@ -31,6 +31,8 @@ public class KayttajaValintaScript : MonoBehaviour
     public Image xbox;
     public Image playstation;
     public Image Keyboard;
+    public Image playerBG;
+    public TextMeshProUGUI playerText;
 
     _GameManager gm;
     void Start()
@@ -94,8 +96,8 @@ public class KayttajaValintaScript : MonoBehaviour
 
     public void PelaajanKontrolleri()
     {
-        Debug.Log(gm.p1.inputDevice.displayName);
-        Debug.Log(gm.p2.inputDevice.displayName);
+        playerBG.color = new Color(1, 1, 1, 1);
+        playerText.color = new Color(1, 1, 1, 1);
         if (_playerIndex == 0)
         {
             if (gm.p1.inputDevice is Gamepad)
@@ -118,7 +120,7 @@ public class KayttajaValintaScript : MonoBehaviour
                 kontrolleri = MikaKontrolleri.Keyboard;
             }
         }
-        else if (_playerIndex == 1)
+        else if (_playerIndex == 1 && gm.p2 != null)
         {
             if (gm.p2.inputDevice is Gamepad)
             {
@@ -139,6 +141,12 @@ public class KayttajaValintaScript : MonoBehaviour
             {
                 kontrolleri = MikaKontrolleri.Keyboard;
             }
+        }
+        else
+        {
+            playerBG.color = new Color(1, 1, 1, 0.2f);
+            playerText.color = new Color(1, 1, 1, 0.2f);
+            kontrolleri = MikaKontrolleri.Nothing;
         }
     }
 }

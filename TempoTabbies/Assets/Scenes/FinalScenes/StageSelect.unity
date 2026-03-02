@@ -337,6 +337,7 @@ MonoBehaviour:
   p2ScoreText: {fileID: 1833210137}
   anims: {fileID: 1158054921}
   SongsFolder: Songs
+  scoreImages: {fileID: 1583709521}
   submitValue: 0
   timer: 0
   state: 0

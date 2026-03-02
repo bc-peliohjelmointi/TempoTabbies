@@ -2610,7 +2610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1983148387
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2917,14 +2917,6 @@ PrefabInstance:
       propertyPath: ValittuPelaaja
       value: 
       objectReference: {fileID: 1723655872}
-    - target: {fileID: 762666210930608310, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
-      propertyPath: 'AllCards.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1c9b5e965dd884b4790849b170e22934, type: 2}
-    - target: {fileID: 762666210930608310, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
-      propertyPath: 'AllCards.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 269359fb917f72c4eaf2e2aeb950ff72, type: 2}
     - target: {fileID: 4316689813916512703, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
       propertyPath: m_LocalPosition.x
       value: 410

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -148,14 +147,7 @@ public class MainMenuManager : MonoBehaviour
     public void OnCatSelectClick()
     {
         gameManager.multiplayer = true;
-        if (gameManager.p2 == null)
-        {
-            paw.scene = "Player2Confirmation";
-        }
-        else
-        {
-            paw.scene = "PlayerSelect";
-        }
+        paw.scene = "PlayerSelect";
     }
 
     public void OnPractiseClick()

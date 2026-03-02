@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: CatReaper
   description: 
   effectType: 0
-  icon: {fileID: 8293487871886533600, guid: e9a3ade714f783246aeab9c3c2463432, type: 3}
+  icon: {fileID: 6503466328739821764, guid: 26af91fb05324a542b2f192601c9ee60, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1

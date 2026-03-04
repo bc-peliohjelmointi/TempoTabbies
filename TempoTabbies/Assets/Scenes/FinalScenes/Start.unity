@@ -968,6 +968,7 @@ GameObject:
   - component: {fileID: 1310866153}
   - component: {fileID: 1310866155}
   - component: {fileID: 1310866156}
+  - component: {fileID: 1310866157}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1003,6 +1004,7 @@ MonoBehaviour:
   p2: {fileID: 0}
   p1Score: 0
   p2Score: 0
+  whoWon: 0
   source: {fileID: 0}
   state: 0
 --- !u!4 &1310866154
@@ -1129,6 +1131,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122bd67f37a480340bb1466b3501e3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreDatabaseViewer
+--- !u!114 &1310866157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310866152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ffd3c6d1d43b8b4b8c68bfd39a58feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardEffectGiver
+  AllCards:
+  - {fileID: 11400000, guid: e0eab6e47ed9ddf468dee475db9af65b, type: 2}
+  - {fileID: 11400000, guid: 84ecf3cca3fd6494f8a30a61c3d2f068, type: 2}
+  - {fileID: 11400000, guid: 6eca029d930856d4d990d41cd34d6846, type: 2}
+  - {fileID: 11400000, guid: 269359fb917f72c4eaf2e2aeb950ff72, type: 2}
+  - {fileID: 11400000, guid: e0115704f77ee524990d5677624d2282, type: 2}
+  - {fileID: 11400000, guid: 00cea6e96299bcf409f0d46394153a48, type: 2}
+  - {fileID: 11400000, guid: fa6733141b87d1341bff8b400c6387ca, type: 2}
+  - {fileID: 11400000, guid: d8119ce22ed87954cbe44f138b0d09b3, type: 2}
+  - {fileID: 11400000, guid: e748d213d27f41e468e721e2502b0aad, type: 2}
+  - {fileID: 11400000, guid: 1c9b5e965dd884b4790849b170e22934, type: 2}
 --- !u!1 &1383034868
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,8 +7,8 @@ using static CardDataScript;
 public class CardManagerScript : MonoBehaviour
 {
     [Header("Card Database")]
-    public List<CardDataScript.CardData> AllCards; // Kaikki olemassa olvat kortit
-    List<CardDataScript.CardData> KorttiLista; //Lista arvotuista korteista
+    public CardEffectGiver giver;
+    List<CardData> KorttiLista; //Lista arvotuista korteista
 
     [Header("Player Card Choices")]
     public PlayerScript Score;
@@ -22,23 +22,19 @@ public class CardManagerScript : MonoBehaviour
 
     void Start()
     {
-        KorttiLista = new List<CardDataScript.CardData>();
+        KorttiLista = new List<CardData>();
 
         gm = _GameManager.instance;
+        if (gm.p1.AllCards.Count > 0)
+        {
+            gm.p1.AllCards.Clear();
+        }
+        if (gm.p2.AllCards.Count > 0)
+        {
+            gm.p2.AllCards.Clear();
+        }
+        giver = FindFirstObjectByType<CardEffectGiver>();
         RandomizeCard();
-    }
-
-    void Update()
-    {
-    }
-
-    void findPlayerActive()
-    {
-        gm.FindPlayers();
-        Player1Cards = new PlayerScript();
-        Player2Cards = new PlayerScript();
-        //GameObject[] players = gm.players
-        
     }
 
     private PlayerScript FindPlayerNoCard()
@@ -62,9 +58,9 @@ public class CardManagerScript : MonoBehaviour
     {
         for (int i = 0; i < 3; i++) //alkaa 0; niinpitkään kuin on alle 3; lisää aina 1
         {
-            int cardNumber = Random.Range(0, AllCards.Count); //riippuu korttien vaihtoehto määrästä
+            int cardNumber = Random.Range(0, giver.AllCards.Count); //riippuu korttien vaihtoehto määrästä
 
-            CardData Arvottu = AllCards[cardNumber]; //luo aina uuden CardDatan
+            CardData Arvottu = giver.AllCards[cardNumber]; //luo aina uuden CardDatan
             KorttiLista.Add(Arvottu);
         }
         GameObject.Find("Valinta1").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[0].CardName;
@@ -102,7 +98,7 @@ public class CardManagerScript : MonoBehaviour
             {
                 NoCard.AllCards.Add(card);
                 Debug.Log("Kortti annettu pelaajalle " + NoCard._playerIndex);
-                if (NoCard.name == gm.p2.name)
+                if (NoCard == gm.p2)
                 {
                     SceneManager.LoadScene("StageSelect");
                 }
@@ -113,20 +109,5 @@ public class CardManagerScript : MonoBehaviour
             Debug.Log("Korttia ei voitu antaa");
 
         }
-    }
-    public CardData GetEffectDataforCard(EffectType effectType)//hakee effektit
-    {
-
-        for (int i = 0; i < AllCards.Count; i++)//luuppaa
-        {
-            bool CorrectEffect = AllCards[i].effectType == effectType;//kysyy onko effecti oikein
-            if (CorrectEffect)//jos on palauttaa effectin listasta
-            {
-                return AllCards[i];
-            }
-        }
-
-        Debug.LogError("Efectiä ei löytynyt");
-        return null;
     }
 }

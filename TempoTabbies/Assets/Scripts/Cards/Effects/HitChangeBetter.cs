@@ -8,16 +8,16 @@ public class HitChangeBetter : MonoBehaviour
     float KorttiAjastus;
     EffectStatus CurrentStatus;
     CardData data;
-    public CardManagerScript CardManager;
+    public CardEffectGiver giver;
     public PlayerScript Combo;
 
 
     public void Activate(PlayerScript holder)
     {
         this.holder = holder;
-        this.CardManager = GameObject.FindFirstObjectByType<CardManagerScript>();
-        this.data = CardManager.GetEffectDataforCard(EffectType.HitChange);
-        this.CurrentStatus = EffectStatus.waiting;
+        giver = FindFirstObjectByType<CardEffectGiver>();
+        data = giver.GetEffectDataforCard(EffectType.HitChange);
+        CurrentStatus = EffectStatus.waiting;
     }
 
     // Update is called once per frame

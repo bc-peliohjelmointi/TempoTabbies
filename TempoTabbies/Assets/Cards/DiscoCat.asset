@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: DiscoCat
   description: 
-  effectType: 0
+  effectType: 3
   icon: {fileID: -2804479406886969814, guid: cce032592e1dc2241b27adb405662eff, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  holder: {fileID: 0}
+  target: {fileID: 0}
   value: 0
   triggerThreshold: 0
   effectPrefab: {fileID: 0}

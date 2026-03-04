@@ -25,9 +25,9 @@ public class ScoreDatabaseViewer : MonoBehaviour
                 $"Acc: {s.accuracy:F2}% | " +
                 $"Grade: {s.grade} | " +
                 $"Combo: {s.maxCombo} | " +
-                $"Clear: {s.clearType}"
+                $"Clear: {s.clearType} | " +
+                $"Plays: {s.playCount}"
             );
-
         }
     }
 }

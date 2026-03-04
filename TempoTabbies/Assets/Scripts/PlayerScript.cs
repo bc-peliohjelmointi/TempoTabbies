@@ -149,16 +149,13 @@ public class PlayerScript : MonoBehaviour
                 }
                 foreach (CardDataScript.CardData card in AllCards)
                 {
-                    if (card.playerIndex == _playerIndex)
+                    if (_playerIndex == 0)
                     {
-                        if (_playerIndex == 0)
-                        {
-                            card.activeP1 = true;
-                        }
-                        else if (_playerIndex == 1)
-                        {
-                            card.activeP2 = true;
-                        }
+                        card.activeP1 = true;
+                    }
+                    else if (_playerIndex == 1)
+                    {
+                        card.activeP2 = true;
                     }
                 }
                 break;
@@ -167,6 +164,11 @@ public class PlayerScript : MonoBehaviour
                 if (catMenu == null)
                 {
                     catMenu = FindFirstObjectByType<CatSelectionManager>();
+                }
+                if (name == "Player(Clone)")
+                {
+                    json = FindFirstObjectByType<JSON_Stuff>();
+                    json.LoadPlayerToPlayer("Default", _playerIndex);
                 }
                 if (_playerIndex == gameManager.whoGetsToPlay)
                 {

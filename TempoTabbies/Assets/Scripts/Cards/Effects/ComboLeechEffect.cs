@@ -14,6 +14,14 @@ public class ComboLeechEffect : MonoBehaviour
     public PlayerScript holder;
     public PlayerScript target;
     public int playerIndex;
+    private void Start()
+    {
+        giver = FindFirstObjectByType<CardEffectGiver>();
+        data = giver.GetEffectDataforCard(EffectType.DiscoCat);
+        data.activeP1 = false;
+        data.activeP2 = false;
+    }
+
     private void Update()
     {
         if (gm == null)
@@ -37,7 +45,6 @@ public class ComboLeechEffect : MonoBehaviour
         if (data == null)
         {
             data = giver.GetEffectDataforCard(EffectType.ComboLeech);
-            data.playerIndex = playerIndex;
         }
         if ((playerIndex == 0 && data.activeP1) || (playerIndex == 1 && data.activeP2))
         {

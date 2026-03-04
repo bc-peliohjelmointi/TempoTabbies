@@ -16,6 +16,7 @@ public class CardDataScript
         ComboLeech,
         HitChange,
         DiscoCat,
+        VoidCat
     }
 
     public enum EffectStatus
@@ -41,11 +42,9 @@ public class CardDataScript
         public bool activatesAutomatically = true; // Aktivoituuko automaattisesti 
 
         [field: HideInInspector]
-        public bool activeP1;                 // Is the card active or not (turn this on when in a game, and off when you leave the game)
+        public bool activeP1 = false;                 // Is the card active or not (turn this on when in a game, and off when you leave the game)
         [field: HideInInspector]
-        public bool activeP2;
-        [HideInInspector]
-        public int playerIndex;             // which player owns the card
+        public bool activeP2 = false;
 
         [Header("Tehoarvot")]
         public float value;                 // esim. varastettava prosentti

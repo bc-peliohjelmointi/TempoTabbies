@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: BetterHitChance
   description: 
-  effectType: 0
+  effectType: 2
   icon: {fileID: 6013755630577941517, guid: bd39199a00b3aa049a456e3457226861, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  holder: {fileID: 0}
+  target: {fileID: 0}
   value: 0
   triggerThreshold: 0
   effectPrefab: {fileID: 0}

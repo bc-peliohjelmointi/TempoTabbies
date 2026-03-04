@@ -321,7 +321,7 @@ public class EvalScreenManager : MonoBehaviour
         }///////////////////////////////////////////
 
         // Load stage select scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("StageSelect");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("CardSelect");
     }
 
     // Update display in case scores change (though they shouldn't after game ends)

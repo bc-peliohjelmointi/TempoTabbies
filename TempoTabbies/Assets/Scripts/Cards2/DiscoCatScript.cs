@@ -1,85 +1,49 @@
 using UnityEngine;
+using UnityEngine.UI;
 using static CardDataScript;
 
 public class DiscoCatScript : MonoBehaviour
 {
+    _GameManager gm;
     PlayerScript holder;
+    public int playerIndex;
     CardData data;
-    float kauttoAika;
-    float CoolDown;
-    EffectStatus CurrentStatus;
-    CardManagerScript CardManager;
-
-    void Start()
-    {
-        this.CardManager = GameObject.FindFirstObjectByType<CardManagerScript>();
-         this.data = CardManager.GetEffectDataforCard(EffectType.DiscoCat);
-        CurrentStatus = EffectStatus.cooldown;
-    }
-    
-    public void Activate(PlayerScript holder)
-    {
-        this.holder = holder;
-        this.CardManager = GameObject.FindFirstObjectByType<CardManagerScript>();
-        this.data = CardManager.GetEffectDataforCard(EffectType.DiscoCat);
-        CurrentStatus = EffectStatus.waiting; 
-    }
+    CardEffectGiver giver;
+    public Image image;
 
     // Update is called once per frame
     void Update()
     {
-        switch (CurrentStatus)
+        if (giver == null)
         {
-            case EffectStatus.waiting:
-
-                // Start UI timer and enable canvas, then enter active state
-                if (DiscoCatPanel.instance != null)
-                {
-                    // Pass duration to the panel if it supports it
-                    DiscoCatPanel.instance.StartTimer(data.duration);
-                    if (DiscoCatPanel.instance.canvas != null)
-                        DiscoCatPanel.instance.canvas.gameObject.SetActive(true);
-                }
-
-                kauttoAika = 0f;
-                CurrentStatus = EffectStatus.active;
-                break;
-
-
-            case EffectStatus.active:
-
-                // Show active visuals and count down the effect duration
-                kauttoAika += Time.deltaTime;
-                if (DiscoCatPanel.instance != null && DiscoCatPanel.instance.panelImage != null)
-                    DiscoCatPanel.instance.panelImage.gameObject.SetActive(true);
-
-                if (kauttoAika >= data.duration)
-                {
-                    // End effect visuals
-                    if (DiscoCatPanel.instance != null)
-                    {
-                        if (DiscoCatPanel.instance.panelImage != null)
-                            DiscoCatPanel.instance.panelImage.gameObject.SetActive(false);
-                        if (DiscoCatPanel.instance.canvas != null)
-                            DiscoCatPanel.instance.canvas.gameObject.SetActive(false);
-                    }
-
-                    // Enter cooldown
-                    CoolDown = 0f;
-                    CurrentStatus = EffectStatus.cooldown;
-                }
-                break;
-
-            case EffectStatus.cooldown:
-                // Accumulate cooldown; when reached, go to waiting (ready to activate)
-                CoolDown += Time.deltaTime;
-                if (CoolDown >= data.cooldown)
-                {
-                    CoolDown = 0f;
-                    CurrentStatus = EffectStatus.waiting;
-                }
-                break;
+            giver = FindFirstObjectByType<CardEffectGiver>();
+            data = giver.GetEffectDataforCard(EffectType.DiscoCat);
         }
-
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+            if (playerIndex == 0)
+            {
+                holder = gm.p1;
+            }
+            else
+            {
+                holder = gm.p2;
+            }
+        }
+        if ((playerIndex == 0 && data.activeP1) || (playerIndex == 1 && data.activeP2))
+        {
+            if (image.gameObject.activeSelf == false)
+            {
+                image.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            if (image.gameObject.activeSelf == true)
+            {
+                image.gameObject.SetActive(false);
+            }
+        }
     }
 }

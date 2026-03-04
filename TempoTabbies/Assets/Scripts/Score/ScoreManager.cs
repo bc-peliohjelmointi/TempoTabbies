@@ -1,9 +1,8 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class ScoreManager : MonoBehaviour
 {
-
+    public PlayerScript player;
     public int playerToUse;
     [Header("Scoring Settings")]
     public int maxScore = 1010000;    // All Marvelous
@@ -13,8 +12,6 @@ public class ScoreManager : MonoBehaviour
     public int currentScore = 0;
     public int totalNotes = 0;
     public int notesHit = 0;
-    public int currentCombo = 0;
-
 
     // Judgment counters
     public int marvelousCount = 0;
@@ -30,6 +27,7 @@ public class ScoreManager : MonoBehaviour
     private bool hasSavedScore = false;
 
     public HitPointManager hpManager;
+    public _GameManager gm;
 
     // Events for real-time updates
     public System.Action<int> OnScoreChanged;
@@ -94,7 +92,7 @@ public class ScoreManager : MonoBehaviour
         int pointsEarned = CalculatePoints(judgment);
         currentScore = pointsEarned; // Just set to calculated total
 
-        Debug.Log($"{judgment}: Score: {currentScore}, Combo: {currentCombo}");
+        Debug.Log($"{judgment}: Score: {currentScore}, Combo: {player.Combo}");
 
         // Trigger updates
         OnScoreChanged?.Invoke(currentScore);
@@ -107,20 +105,20 @@ public class ScoreManager : MonoBehaviour
         // Reset combo on miss or bad
         if (judgment == "MISS" || judgment == "BAD")
         {
-            if (currentCombo > maxCombo)
+            if (player.Combo > maxCombo)
             {
-                maxCombo = currentCombo;
+                maxCombo = player.Combo;
             }
-            currentCombo = 0;
+            player.Combo = 0;
         }
         else
         {
             // Increment combo for other judgments
-            currentCombo++;
+            player.Combo++;
         }
 
         // Update combo UI/display
-        OnComboChanged?.Invoke(currentCombo);
+        OnComboChanged?.Invoke(player.Combo);
     }
 
     // Call this when the chart/song is complete
@@ -131,8 +129,8 @@ public class ScoreManager : MonoBehaviour
 
         hasSavedScore = true;
 
-        if (currentCombo > maxCombo)
-            maxCombo = currentCombo;
+        if (player.Combo > maxCombo)
+            maxCombo = player.Combo;
 
         if (GameSession.SelectedSong == null || GameSession.SelectedChart == null)
         {
@@ -239,7 +237,7 @@ public class ScoreManager : MonoBehaviour
         currentScore = 0;
         totalNotes = 0;
         notesHit = 0;
-        currentCombo = 0;
+        player.Combo = 0;
         ResetJudgmentCounters();
 
         OnScoreChanged?.Invoke(currentScore);
@@ -259,9 +257,9 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetCombo()
     {
-        currentCombo = 0;
+        player.Combo = 0;
         maxCombo = 0;
-        OnComboChanged?.Invoke(currentCombo);
+        OnComboChanged?.Invoke(player.Combo);
     }
 
     public string GetScoreBreakdown()
@@ -271,8 +269,19 @@ public class ScoreManager : MonoBehaviour
 
     public string GetComboInfo()
     {
-        return $"{currentCombo}x";
+        return $"{player.Combo}x";
     }
 
-
+    private void Awake()
+    {
+        gm = FindFirstObjectByType<_GameManager>();
+        if (playerToUse == 1)
+        {
+            player = gm.p1;
+        }
+        else
+        {
+            player = gm.p2;
+        }
+    }
 }

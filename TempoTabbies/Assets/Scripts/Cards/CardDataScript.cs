@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CardDataScript : MonoBehaviour
+public class CardDataScript
 {
 
    /* public enum CardType
@@ -39,6 +39,13 @@ public class CardDataScript : MonoBehaviour
         public float duration = 10f;        // Kuinka kauan efekti kest‰‰
         public float cooldown = 30f;        // Kuinka usein voi k‰ytt‰‰
         public bool activatesAutomatically = true; // Aktivoituuko automaattisesti 
+
+        [field: HideInInspector]
+        public bool activeP1;                 // Is the card active or not (turn this on when in a game, and off when you leave the game)
+        [field: HideInInspector]
+        public bool activeP2;
+        [HideInInspector]
+        public int playerIndex;             // which player owns the card
 
         [Header("Tehoarvot")]
         public float value;                 // esim. varastettava prosentti

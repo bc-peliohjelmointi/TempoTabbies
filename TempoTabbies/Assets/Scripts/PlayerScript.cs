@@ -70,6 +70,15 @@ public class PlayerScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (AllCards.Count > 0 && gameManager.state != _GameManager.GameState.Game)
+        {
+            foreach (CardDataScript.CardData card in AllCards)
+            {
+                card.activeP1 = false;
+                card.activeP2 = false;
+            }
+        }
+
         // Checks what state the game is currently in
         switch (gameManager.state)
         {
@@ -137,6 +146,20 @@ public class PlayerScript : MonoBehaviour
                 else
                 {
                     gm.submit = submit.ReadValue<float>();
+                }
+                foreach (CardDataScript.CardData card in AllCards)
+                {
+                    if (card.playerIndex == _playerIndex)
+                    {
+                        if (_playerIndex == 0)
+                        {
+                            card.activeP1 = true;
+                        }
+                        else if (_playerIndex == 1)
+                        {
+                            card.activeP2 = true;
+                        }
+                    }
                 }
                 break;
 
@@ -215,10 +238,4 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
-
-    public void findGamepad()
-    {
-
-    }
-
 }

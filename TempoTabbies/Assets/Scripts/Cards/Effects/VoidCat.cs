@@ -11,7 +11,7 @@ public class VoidCat : MonoBehaviour
     private void Start()
     {
         giver = FindFirstObjectByType<CardEffectGiver>();
-        data = giver.GetEffectDataforCard(EffectType.DiscoCat);
+        data = giver.GetEffectDataforCard(EffectType.VoidCat);
         data.activeP1 = false;
         data.activeP2 = false;
     }

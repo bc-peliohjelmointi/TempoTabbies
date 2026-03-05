@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: "T\xE4pT\xE4p"
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
-  CardName: "T\xE4pT\xE4p"
+  CardName: TapTap
   description: 
-  effectType: 0
+  effectType: 7
   icon: {fileID: 6503466328739821764, guid: 26af91fb05324a542b2f192601c9ee60, type: 3}
-  duration: 10
-  cooldown: 30
-  activatesAutomatically: 1
+  duration: 0
+  cooldown: 8
+  activatesAutomatically: 0
+  activeP1: 0
+  activeP2: 0
   value: 0
-  triggerThreshold: 0
+  triggerThreshold: 20
   effectPrefab: {fileID: 0}

@@ -14,8 +14,12 @@ public class CardDataScript
     {
         Empty,
         ComboLeech,
-        HitChange,
+        CatReaper,
         DiscoCat,
+        Diva,
+        HitChangeBetter,
+        HitChangeWorse,
+        TapTap,
         VoidCat
     }
 

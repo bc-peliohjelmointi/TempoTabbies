@@ -23,6 +23,9 @@ public class ScoreManager : MonoBehaviour
 
     public int maxCombo = 0;
 
+    public bool diva;
+    public bool reaper;
+
     private int pointsPerNote;
     private bool hasSavedScore = false;
 
@@ -89,7 +92,7 @@ public class ScoreManager : MonoBehaviour
         }
 
         // Calculate points based on judgment
-        int pointsEarned = CalculatePoints(judgment);
+        int pointsEarned = CalculatePoints(judgment, diva);
         currentScore = pointsEarned; // Just set to calculated total
 
         Debug.Log($"{judgment}: Score: {currentScore}, Combo: {player.Combo}");
@@ -189,17 +192,33 @@ public class ScoreManager : MonoBehaviour
 
 
 
-    private int CalculatePoints(string judgment)
+    private int CalculatePoints(string judgment, bool diva)
     {
         // Calculate total points from all judgments so far
         int totalPoints = 0;
-
-        totalPoints += marvelousCount * Mathf.RoundToInt(pointsPerNote * 1.01f);
+        if (!diva)
+        {
+            totalPoints += marvelousCount * Mathf.RoundToInt(pointsPerNote * 1.01f);
+        }
+        else
+        {
+            totalPoints += marvelousCount * Mathf.RoundToInt(pointsPerNote * 1.05f);
+        }
+        if (reaper)
+        {
+            Debug.LogError("Reaper active");
+            totalPoints += greatCount * Mathf.RoundToInt(pointsPerNote * 0.70f);
+            totalPoints += goodCount * Mathf.RoundToInt(pointsPerNote * 0.25f);
+            totalPoints += badCount * Mathf.RoundToInt(pointsPerNote * 0.10f);
+            totalPoints -= missCount * Mathf.RoundToInt(pointsPerNote * 0.15f);
+        }
+        else
+        {
+            totalPoints += greatCount * Mathf.RoundToInt(pointsPerNote * 0.75f);
+            totalPoints += goodCount * Mathf.RoundToInt(pointsPerNote * 0.30f);
+            totalPoints += badCount * Mathf.RoundToInt(pointsPerNote * 0.15f);
+        }
         totalPoints += perfectCount * Mathf.RoundToInt(pointsPerNote * 1.00f);
-        totalPoints += greatCount * Mathf.RoundToInt(pointsPerNote * 0.75f);
-        totalPoints += goodCount * Mathf.RoundToInt(pointsPerNote * 0.30f);
-        totalPoints += badCount * Mathf.RoundToInt(pointsPerNote * 0.15f);
-        // Misses add 0 points
 
         return totalPoints;
     }

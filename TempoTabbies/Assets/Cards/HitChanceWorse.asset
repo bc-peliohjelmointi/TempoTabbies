@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Diva
+  m_Name: HitChanceWorse
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
-  CardName: Diva
+  CardName: HitChanceWorse
   description: 
-  effectType: 4
-  icon: {fileID: -8004799667895317265, guid: 83929c74e5582a4458600c542407ce74, type: 3}
+  effectType: 6
+  icon: {fileID: 8293487871886533600, guid: e9a3ade714f783246aeab9c3c2463432, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1

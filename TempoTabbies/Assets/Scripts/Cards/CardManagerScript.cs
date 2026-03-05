@@ -19,6 +19,11 @@ public class CardManagerScript : MonoBehaviour
     [Header("UI asiat")]
     public TextMeshProUGUI ValittuPelaaja;//UI teksti joka kertoo pelaajan vuoron
 
+    [Header("Cards")]
+    public CardAnimations card1;
+    public CardAnimations card2;
+    public CardAnimations card3;
+
 
     void Start()
     {
@@ -56,11 +61,23 @@ public class CardManagerScript : MonoBehaviour
 
     public void RandomizeCard()
     {
+        KorttiLista.Clear();
+        card1.ResetCard();
+        card2.ResetCard();
+        card3.ResetCard();
         for (int i = 0; i < 3; i++) //alkaa 0; niinpitkään kuin on alle 3; lisää aina 1
         {
             int cardNumber = Random.Range(0, giver.AllCards.Count); //riippuu korttien vaihtoehto määrästä
 
             CardData Arvottu = giver.AllCards[cardNumber]; //luo aina uuden CardDatan
+            foreach (CardData card in KorttiLista) //käy läpi kaikki kortit jotka on jo arvottu
+            {
+                if (card == Arvottu) //jos sama kortti on jo arvottu, arvo uudestaan
+                {
+                    cardNumber = Random.Range(0, giver.AllCards.Count);
+                    Arvottu = giver.AllCards[cardNumber];
+                }
+            }
             KorttiLista.Add(Arvottu);
         }
         GameObject.Find("Valinta1").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[0].CardName;
@@ -69,6 +86,7 @@ public class CardManagerScript : MonoBehaviour
         GameObject.Find("Valinta2").GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = KorttiLista[1].icon;
         GameObject.Find("Valinta3").GetComponentInChildren<TextMeshProUGUI>().text = KorttiLista[2].CardName;
         GameObject.Find("Valinta3").GetComponentInChildren<UnityEngine.UI.Image>().overrideSprite = KorttiLista[2].icon;
+        card1.DrawThis();
     }
 
     public void Button1Press()
@@ -89,8 +107,6 @@ public class CardManagerScript : MonoBehaviour
 
     public void GiveCardToPlayer(CardData card)
     {
-        //script = findPlayerActive();
-
         if (gm != null)
         {
             PlayerScript NoCard = FindPlayerNoCard();
@@ -102,12 +118,15 @@ public class CardManagerScript : MonoBehaviour
                 {
                     SceneManager.LoadScene("StageSelect");
                 }
+                else
+                {
+                    RandomizeCard();
+                }
             }
         }
         else
         {
             Debug.Log("Korttia ei voitu antaa");
-
         }
     }
 }

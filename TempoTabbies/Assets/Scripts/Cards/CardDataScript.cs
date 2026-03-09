@@ -20,7 +20,10 @@ public class CardDataScript
         HitChangeBetter,
         HitChangeWorse,
         TapTap,
-        VoidCat
+        VoidCat,
+        EightLives,
+        Zoomies,
+        Loafing
     }
 
     public enum EffectStatus

@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
 
     public bool diva;
     public bool reaper;
+    public bool eightLives;
 
     private int pointsPerNote;
     private bool hasSavedScore = false;
@@ -69,6 +70,11 @@ public class ScoreManager : MonoBehaviour
 
     public void AddJudgment(string judgment)
     {
+        if (judgment == "MISS" && eightLives)
+        {
+            eightLives = false;
+            judgment = "MARVELOUS";
+        }
         // Increment counters
         switch (judgment)
         {
@@ -206,7 +212,6 @@ public class ScoreManager : MonoBehaviour
         }
         if (reaper)
         {
-            Debug.LogError("Reaper active");
             totalPoints += greatCount * Mathf.RoundToInt(pointsPerNote * 0.70f);
             totalPoints += goodCount * Mathf.RoundToInt(pointsPerNote * 0.25f);
             totalPoints += badCount * Mathf.RoundToInt(pointsPerNote * 0.10f);

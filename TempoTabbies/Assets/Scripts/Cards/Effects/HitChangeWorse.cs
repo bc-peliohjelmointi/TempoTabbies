@@ -15,7 +15,11 @@ public class HitChangeWorse : MonoBehaviour
         data = giver.GetEffectDataforCard(EffectType.HitChangeWorse);
         if (data.activeP1 || data.activeP2)
         {
-            setMultiplier(0.75f);
+            setMultiplier(0.5f);
+        }
+        else
+        {
+            setMultiplier(1f);
         }
     }
 }

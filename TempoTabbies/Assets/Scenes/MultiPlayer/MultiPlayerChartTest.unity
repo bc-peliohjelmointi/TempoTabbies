@@ -5170,6 +5170,7 @@ MonoBehaviour:
   maxCombo: 0
   diva: 0
   reaper: 0
+  eightLives: 0
   hpManager: {fileID: 272282994}
   gm: {fileID: 0}
 --- !u!1 &944188353
@@ -7150,6 +7151,9 @@ GameObject:
   - component: {fileID: 1375058244}
   - component: {fileID: 1375058246}
   - component: {fileID: 1375058247}
+  - component: {fileID: 1375058248}
+  - component: {fileID: 1375058250}
+  - component: {fileID: 1375058249}
   m_Layer: 0
   m_Name: EveryEffectp2
   m_TagString: Untagged
@@ -7292,6 +7296,51 @@ MonoBehaviour:
   playerIndex: 1
   scoreManager1: {fileID: 1489999072}
   scoreManager2: {fileID: 925474176}
+--- !u!114 &1375058248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375058238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cc0342c351a634e8181e78b0923445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EightLives
+  playerIndex: 1
+  scoreManager1: {fileID: 1489999072}
+  scoreManager2: {fileID: 925474176}
+--- !u!114 &1375058249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375058238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcaae91592707646861f902284dbce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Zoomies
+  playerIndex: 1
+  spawner1: {fileID: 1519786609}
+  spawner2: {fileID: 260532501}
+--- !u!114 &1375058250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375058238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4646ec6d10550044883563aa2047a47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Loafing
+  playerIndex: 1
+  spawner1: {fileID: 1519786609}
+  spawner2: {fileID: 260532501}
 --- !u!1 &1375990338
 GameObject:
   m_ObjectHideFlags: 0
@@ -7820,6 +7869,7 @@ MonoBehaviour:
   maxCombo: 0
   diva: 0
   reaper: 0
+  eightLives: 0
   hpManager: {fileID: 1311958991}
   gm: {fileID: 0}
 --- !u!114 &1489999073
@@ -9453,6 +9503,9 @@ GameObject:
   - component: {fileID: 1789998510}
   - component: {fileID: 1789998512}
   - component: {fileID: 1789998513}
+  - component: {fileID: 1789998514}
+  - component: {fileID: 1789998516}
+  - component: {fileID: 1789998515}
   m_Layer: 0
   m_Name: EveryEffectp1
   m_TagString: Untagged
@@ -9595,6 +9648,51 @@ MonoBehaviour:
   playerIndex: 0
   scoreManager1: {fileID: 1489999072}
   scoreManager2: {fileID: 925474176}
+--- !u!114 &1789998514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789998504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62cc0342c351a634e8181e78b0923445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EightLives
+  playerIndex: 0
+  scoreManager1: {fileID: 1489999072}
+  scoreManager2: {fileID: 925474176}
+--- !u!114 &1789998515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789998504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bcaae91592707646861f902284dbce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Zoomies
+  playerIndex: 0
+  spawner1: {fileID: 1519786609}
+  spawner2: {fileID: 260532501}
+--- !u!114 &1789998516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789998504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4646ec6d10550044883563aa2047a47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Loafing
+  playerIndex: 0
+  spawner1: {fileID: 1519786609}
+  spawner2: {fileID: 260532501}
 --- !u!1 &1821638090
 GameObject:
   m_ObjectHideFlags: 0

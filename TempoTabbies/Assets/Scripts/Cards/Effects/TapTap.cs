@@ -101,10 +101,4 @@ public class TapTap : MonoBehaviour
     {
         animator.ResetTrigger("Active");
     }
-
-    bool AnimatorIsPlaying()
-    {
-        return animator.GetCurrentAnimatorStateInfo(0).length >
-               animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-    }
 }

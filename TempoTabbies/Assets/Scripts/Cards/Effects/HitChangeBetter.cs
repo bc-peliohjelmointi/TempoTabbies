@@ -16,5 +16,9 @@ public class HitChangeBetter : MonoBehaviour
         {
             setMultiplier(1.25f);
         }
+        else
+        {
+            setMultiplier(1f);
+        }
     }
 }

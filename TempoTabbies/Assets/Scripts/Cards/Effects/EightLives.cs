@@ -1,7 +1,7 @@
 using UnityEngine;
 using static CardDataScript;
 
-public class CatReaper : MonoBehaviour
+public class EightLives : MonoBehaviour
 {
     CardData data;
     CardEffectGiver giver;
@@ -9,7 +9,6 @@ public class CatReaper : MonoBehaviour
     public int playerIndex;
     public ScoreManager scoreManager1;
     public ScoreManager scoreManager2;
-
     private void Start()
     {
         if (giver == null)
@@ -20,20 +19,21 @@ public class CatReaper : MonoBehaviour
         {
             data = giver.GetEffectDataforCard(EffectType.CatReaper);
         }
+        
         data.activeP1 = false;
         data.activeP2 = false;
     }
     private void Update()
     {
-        if (data.activeP1 || data.activeP2)
+        if (data.activeP1 && playerIndex == 0)
         {
-            scoreManager1.reaper = true;
-            scoreManager2.reaper = true;
+            scoreManager1.eightLives = true;
+            playerIndex = 999;
         }
-        else
+        if (data.activeP2 && playerIndex == 1)
         {
-            scoreManager1.reaper = false;
-            scoreManager2.reaper = false;
+            scoreManager2.eightLives = true;
+            playerIndex = 999;
         }
     }
 }

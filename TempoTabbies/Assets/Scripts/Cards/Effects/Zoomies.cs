@@ -29,19 +29,25 @@ public class Zoomies : MonoBehaviour
     {
         if (data.activeP1 && playerIndex == 0)
         {
-            spawner2.ScrollSpeed -= 1.5f;
-            if (spawner2.ScrollSpeed <= 0)
+            if (spawner2.ScrollSpeed < 8)
             {
-                spawner2.ScrollSpeed = 1;
+                spawner2.ScrollSpeed += 1;
+            }
+            else
+            {
+                spawner2.ScrollSpeed += 0.5f;
             }
             playerIndex = 999;
         }
         else if (data.activeP2 && playerIndex == 1)
         {
-            spawner1.ScrollSpeed -= 1.5f;
-            if (spawner1.ScrollSpeed <= 0)
+            if (spawner1.ScrollSpeed < 8)
             {
-                spawner1.ScrollSpeed = 1;
+                spawner1.ScrollSpeed += 1;
+            }
+            else
+            {
+                spawner1.ScrollSpeed += 0.5f;
             }
             playerIndex = 999;
         }

@@ -29,25 +29,19 @@ public class Loafing : MonoBehaviour
     {
         if (data.activeP1 && playerIndex == 0)
         {
-            if (spawner2.ScrollSpeed < 8)
+            spawner2.ScrollSpeed -= 1.5f;
+            if (spawner2.ScrollSpeed <= 0)
             {
-                spawner2.ScrollSpeed += 1;
+                spawner2.ScrollSpeed = 1;
             }
-            else
-            {
-                spawner2.ScrollSpeed += 0.5f;
-            }
-                playerIndex = 999;
+            playerIndex = 999;
         }
         else if (data.activeP2 && playerIndex == 1)
         {
-            if (spawner1.ScrollSpeed < 8)
+            spawner1.ScrollSpeed -= 1.5f;
+            if (spawner1.ScrollSpeed <= 0)
             {
-                spawner1.ScrollSpeed += 1;
-            }
-            else
-            {
-                spawner1.ScrollSpeed += 0.5f;
+                spawner1.ScrollSpeed = 1;
             }
             playerIndex = 999;
         }

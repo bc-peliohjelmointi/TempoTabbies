@@ -17,7 +17,7 @@ public class Zoomies : MonoBehaviour
         }
         if (data == null)
         {
-            data = giver.GetEffectDataforCard(EffectType.CatReaper);
+            data = giver.GetEffectDataforCard(EffectType.Zoomies);
         }
 
         data.activeP1 = false;

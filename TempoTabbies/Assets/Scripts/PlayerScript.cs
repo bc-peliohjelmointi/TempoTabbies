@@ -149,11 +149,11 @@ public class PlayerScript : MonoBehaviour
                 }
                 foreach (CardDataScript.CardData card in AllCards)
                 {
-                    if (_playerIndex == 0)
+                    if (_playerIndex == 0 && gameManager.multiplayer)
                     {
                         card.activeP1 = true;
                     }
-                    else if (_playerIndex == 1)
+                    else if (_playerIndex == 1 || !gameManager.multiplayer)
                     {
                         card.activeP2 = true;
                     }

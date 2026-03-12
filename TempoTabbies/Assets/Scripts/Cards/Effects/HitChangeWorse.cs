@@ -19,7 +19,15 @@ public class HitChangeWorse : MonoBehaviour
         }
         else
         {
-            setMultiplier(1f);
+            data = giver.GetEffectDataforCard(EffectType.HitChangeBetter);
+            if (data.activeP1 || data.activeP2)
+            {
+                setMultiplier(0.75f);
+            }
+            else
+            {
+                setMultiplier(1f);
+            }
         }
     }
 }

@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -80,8 +78,18 @@ public class KayttajaValintaScript : MonoBehaviour
     {
         fullPaths.Clear();
 
-        string[] files = Directory.GetFiles("JSON");
         List<string> options = new List<string>();
+
+        string[] files = Directory.GetFiles("JSON/DefaultProfiles");
+
+        foreach (string file in files)
+        {
+            options.Add(Path.GetFileNameWithoutExtension(file));
+            fullPaths.Add(file); // talletetaan koko polku
+            Debug.Log("Meidnän tekemä JSON " + file);
+        }
+
+        files = Directory.GetFiles("JSON");
 
         foreach (string file in files)
         {

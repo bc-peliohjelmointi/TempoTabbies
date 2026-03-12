@@ -17,7 +17,7 @@ public class Loafing : MonoBehaviour
         }
         if (data == null)
         {
-            data = giver.GetEffectDataforCard(EffectType.CatReaper);
+            data = giver.GetEffectDataforCard(EffectType.Loafing);
         }
 
         data.activeP1 = false;

@@ -17,7 +17,7 @@ public class EightLives : MonoBehaviour
         }
         if (data == null)
         {
-            data = giver.GetEffectDataforCard(EffectType.CatReaper);
+            data = giver.GetEffectDataforCard(EffectType.EightLives);
         }
         
         data.activeP1 = false;

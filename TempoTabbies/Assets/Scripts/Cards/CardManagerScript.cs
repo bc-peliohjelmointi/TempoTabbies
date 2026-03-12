@@ -16,6 +16,8 @@ public class CardManagerScript : MonoBehaviour
     public PlayerScript Player1Cards;
     public PlayerScript Player2Cards;
 
+    private int player;
+
     [Header("UI asiat")]
     public TextMeshProUGUI ValittuPelaaja;//UI teksti joka kertoo pelaajan vuoron
 
@@ -29,12 +31,14 @@ public class CardManagerScript : MonoBehaviour
     {
         KorttiLista = new List<CardData>();
 
+        ValittuPelaaja.text = "Player 1";
+
         gm = _GameManager.instance;
-        if (gm.p1.AllCards.Count > 0)
+        if (gm.p1.AllCards.Count > 0 && !gm.crazy)
         {
             gm.p1.AllCards.Clear();
         }
-        if (gm.p2.AllCards.Count > 0)
+        if (gm.p2.AllCards.Count > 0 && !gm.crazy)
         {
             gm.p2.AllCards.Clear();
         }
@@ -44,13 +48,14 @@ public class CardManagerScript : MonoBehaviour
 
     private PlayerScript FindPlayerNoCard()
     {
-        if (gm.p1.AllCards.Count == 0)
+        if (player == 0)
         {
             ValittuPelaaja.text = "Player 1";
             Debug.Log("Pelaaja 1");
+            player++;
             return gm.p1;
         }
-        else if (gm.p2.AllCards.Count == 0)
+        else if (player == 1)
         {
             ValittuPelaaja.text = "Player 2";
             Debug.Log("Pelaaja 2");

@@ -23,7 +23,8 @@ public class CardDataScript
         VoidCat,
         EightLives,
         Zoomies,
-        Loafing
+        Loafing,
+        CatCompressions
     }
 
     public enum EffectStatus

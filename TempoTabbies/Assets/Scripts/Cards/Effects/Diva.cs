@@ -25,7 +25,7 @@ public class Diva : MonoBehaviour
     }
     private void Update()
     {
-        if (data.activeP1 || data.activeP2)
+        if ((data.activeP1 || data.activeP2) && (!scoreManager1.diva || !scoreManager2.diva))
         {
             scoreManager1.diva = true;
             scoreManager2.diva = true;

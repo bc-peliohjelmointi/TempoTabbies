@@ -5171,6 +5171,7 @@ MonoBehaviour:
   diva: 0
   reaper: 0
   eightLives: 0
+  catCompressions: 0
   hpManager: {fileID: 272282994}
   gm: {fileID: 0}
 --- !u!1 &944188353
@@ -7154,6 +7155,7 @@ GameObject:
   - component: {fileID: 1375058248}
   - component: {fileID: 1375058250}
   - component: {fileID: 1375058249}
+  - component: {fileID: 1375058251}
   m_Layer: 0
   m_Name: EveryEffectp2
   m_TagString: Untagged
@@ -7341,6 +7343,21 @@ MonoBehaviour:
   playerIndex: 1
   spawner1: {fileID: 1519786609}
   spawner2: {fileID: 260532501}
+--- !u!114 &1375058251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375058238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c48e2d0af2e54541ae8f68b0ebd1ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatCompression
+  playerIndex: 1
+  scoreManager1: {fileID: 1489999072}
+  scoreManager2: {fileID: 925474176}
 --- !u!1 &1375990338
 GameObject:
   m_ObjectHideFlags: 0
@@ -7870,6 +7887,7 @@ MonoBehaviour:
   diva: 0
   reaper: 0
   eightLives: 0
+  catCompressions: 0
   hpManager: {fileID: 1311958991}
   gm: {fileID: 0}
 --- !u!114 &1489999073
@@ -9506,6 +9524,7 @@ GameObject:
   - component: {fileID: 1789998514}
   - component: {fileID: 1789998516}
   - component: {fileID: 1789998515}
+  - component: {fileID: 1789998517}
   m_Layer: 0
   m_Name: EveryEffectp1
   m_TagString: Untagged
@@ -9693,6 +9712,21 @@ MonoBehaviour:
   playerIndex: 0
   spawner1: {fileID: 1519786609}
   spawner2: {fileID: 260532501}
+--- !u!114 &1789998517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789998504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c48e2d0af2e54541ae8f68b0ebd1ec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatCompression
+  playerIndex: 0
+  scoreManager1: {fileID: 1489999072}
+  scoreManager2: {fileID: 925474176}
 --- !u!1 &1821638090
 GameObject:
   m_ObjectHideFlags: 0

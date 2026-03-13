@@ -46,7 +46,8 @@ public class TonextSceneDuoScript : MonoBehaviour
             gm.crazy = true;
         }
 
-        if (!File.Exists(p1.text))
+        Debug.Log(p1.text);
+        if (!File.Exists($"JSON/{p1.text}.json"))
         {
             json.LoadPlayerToPlayer($"DefaultProfiles/{p1.text}", 0);
         }
@@ -57,7 +58,7 @@ public class TonextSceneDuoScript : MonoBehaviour
 
         if (gm.p2 != null && gm.multiplayer)
         {
-            if (!File.Exists(p2.text))
+            if (!File.Exists($"JSON/{p2.text}.json"))
             {
                 json.LoadPlayerToPlayer($"DefaultProfiles/{p2.text}", 1);
             }
@@ -93,7 +94,7 @@ public class TonextSceneDuoScript : MonoBehaviour
         {
             gameMode.text = "In party mode, players choose cards after a song to impair the other player or help themselves";
         }
-        else if (mode.text == "Crazy mode")
+        else if (mode.text == "Crazy Mode")
         {
             gameMode.text = "In crazy mode, players can have multiple effects active at once";
         }

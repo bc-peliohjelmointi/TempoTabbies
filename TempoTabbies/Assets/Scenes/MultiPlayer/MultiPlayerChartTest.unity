@@ -1265,12 +1265,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b03ecd530c289c449992ccd681d6faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarvelousSprite: {fileID: 21300000, guid: 23f7e618d74a6b1499baa4566464139f, type: 3}
-  PerfectSprite: {fileID: 21300000, guid: b2529cb53d4c85d45911e0dc37e1b220, type: 3}
-  GreatSprite: {fileID: 21300000, guid: 7273109f2ccd65049b008d5e31a66f6b, type: 3}
-  GoodSprite: {fileID: 21300000, guid: 2a3310918746398459943494d9f4e007, type: 3}
-  BadSprite: {fileID: 21300000, guid: 0f3c06a7efb0e764e8fd1d8ee3144c82, type: 3}
-  MissSprite: {fileID: 21300000, guid: c2bba56189afeca4386017dbc63382e9, type: 3}
+  MarvelousSprite: {fileID: 21300000, guid: 77eead26fe329b0499dceef3dd9a00c8, type: 3}
+  PerfectSprite: {fileID: 21300000, guid: 0a3f64d898e299941b3117e52ec09864, type: 3}
+  GreatSprite: {fileID: 21300000, guid: d33792bd8d1314d4f96ecb0783be00e6, type: 3}
+  GoodSprite: {fileID: 21300000, guid: b176d0ce9af183149bc06b257f3750f7, type: 3}
+  BadSprite: {fileID: 21300000, guid: 5996da99576646b4bb70b6c85971f9fa, type: 3}
+  MissSprite: {fileID: 21300000, guid: 88981b61fae9b9248bdb584bc23cce89, type: 3}
   DirectionIndicator: {fileID: 1292688297}
   EarlySprite: {fileID: -3769502231703376978, guid: 567a3d3b2e92a004fb9fe7ecb7e71366, type: 3}
   LateSprite: {fileID: 193574378, guid: 567a3d3b2e92a004fb9fe7ecb7e71366, type: 3}
@@ -7048,12 +7048,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b03ecd530c289c449992ccd681d6faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MarvelousSprite: {fileID: 21300000, guid: 23f7e618d74a6b1499baa4566464139f, type: 3}
-  PerfectSprite: {fileID: 21300000, guid: b2529cb53d4c85d45911e0dc37e1b220, type: 3}
-  GreatSprite: {fileID: 21300000, guid: 7273109f2ccd65049b008d5e31a66f6b, type: 3}
-  GoodSprite: {fileID: 21300000, guid: 2a3310918746398459943494d9f4e007, type: 3}
-  BadSprite: {fileID: 21300000, guid: 0f3c06a7efb0e764e8fd1d8ee3144c82, type: 3}
-  MissSprite: {fileID: 21300000, guid: c2bba56189afeca4386017dbc63382e9, type: 3}
+  MarvelousSprite: {fileID: 21300000, guid: 77eead26fe329b0499dceef3dd9a00c8, type: 3}
+  PerfectSprite: {fileID: 21300000, guid: 0a3f64d898e299941b3117e52ec09864, type: 3}
+  GreatSprite: {fileID: 21300000, guid: d33792bd8d1314d4f96ecb0783be00e6, type: 3}
+  GoodSprite: {fileID: 21300000, guid: b176d0ce9af183149bc06b257f3750f7, type: 3}
+  BadSprite: {fileID: 21300000, guid: 5996da99576646b4bb70b6c85971f9fa, type: 3}
+  MissSprite: {fileID: 21300000, guid: 88981b61fae9b9248bdb584bc23cce89, type: 3}
   DirectionIndicator: {fileID: 1921413613}
   EarlySprite: {fileID: -3769502231703376978, guid: 567a3d3b2e92a004fb9fe7ecb7e71366, type: 3}
   LateSprite: {fileID: 193574378, guid: 567a3d3b2e92a004fb9fe7ecb7e71366, type: 3}

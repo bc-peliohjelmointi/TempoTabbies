@@ -29,6 +29,7 @@ public class CardManagerScript : MonoBehaviour
 
     void Start()
     {
+        player = 0;
         KorttiLista = new List<CardData>();
 
         ValittuPelaaja.text = "Player 1";
@@ -43,6 +44,7 @@ public class CardManagerScript : MonoBehaviour
             gm.p2.AllCards.Clear();
         }
         giver = FindFirstObjectByType<CardEffectGiver>();
+        FindPlayerNoCard();
         RandomizeCard();
     }
 

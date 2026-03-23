@@ -17,6 +17,8 @@ public class TonextSceneDuoScript : MonoBehaviour
     public MenuAnimations anims;
     public _GameManager gm;
 
+    public int submit;
+
     private void Start()
     {
         json = FindFirstObjectByType<JSON_Stuff>();
@@ -25,6 +27,15 @@ public class TonextSceneDuoScript : MonoBehaviour
         if (!gm.multiplayer)
         {
             p2Object.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        if (submit >= 0.1f)
+        {
+            anims.scene = "MainMenu";
+            anims.PawStB();
         }
     }
 

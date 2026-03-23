@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour
     private Create_LoadPlayer profilesMenu;
     private CatSelectionManager catMenu;
     private Player2Confirmation p2Confirm;
+    private TonextSceneDuoScript playerSelect;
 
     // The needed inputs
     [Header("The inputs we're using")]
@@ -129,6 +130,8 @@ public class PlayerScript : MonoBehaviour
                 profilesMenu.submit = submit.ReadValue<float>();
                 break;
             case _GameManager.GameState.PlayerSelect:
+                playerSelect = FindFirstObjectByType<TonextSceneDuoScript>();
+                playerSelect.submit = submit.ReadValue<int>();
                 break;
             case _GameManager.GameState.StageSelect:
                 if (chartManager == null)

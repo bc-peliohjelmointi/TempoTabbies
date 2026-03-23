@@ -26,9 +26,5 @@ public class DiscoCatScript : MonoBehaviour
                 image.gameObject.SetActive(true);
             }
         }
-        else
-        {
-            image.gameObject.SetActive(false);
-        }
     }
 }

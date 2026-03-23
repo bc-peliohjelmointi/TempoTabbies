@@ -23,6 +23,7 @@ public class ChartSelectManager : MonoBehaviour
     private SongButton currentlyExpandedSong = null;
     private List<Selectable> allSelectables = new();
     private GameObject lastSelectedObject;
+    private GameObject lastHoveredSelectable;
 
     private _GameManager _gm;
     public GameObject scoreImages;
@@ -198,6 +199,34 @@ public class ChartSelectManager : MonoBehaviour
 
     void Update()
     {
+        // Handle controller/keyboard selection hover: show score popup when a chart button is selected
+        if (EventSystem.current != null)
+        {
+            GameObject currentSelected = EventSystem.current.currentSelectedGameObject;
+            if (currentSelected != lastHoveredSelectable)
+            {
+                // Hide previous hover
+                if (lastHoveredSelectable != null)
+                {
+                    var prevHover = lastHoveredSelectable.GetComponentInParent<ChartButtonHover>();
+                    if (prevHover != null) prevHover.HoverExit();
+                    else
+                    {
+                        var mgr = ScorePopupManager.Instance ?? FindObjectOfType<ScorePopupManager>();
+                        if (mgr != null) mgr.Hide();
+                    }
+                }
+
+                // Show new hover
+                if (currentSelected != null)
+                {
+                    var newHover = currentSelected.GetComponentInParent<ChartButtonHover>();
+                    if (newHover != null) newHover.HoverEnter();
+                }
+
+                lastHoveredSelectable = currentSelected;
+            }
+        }
         if (currentlyExpandedSong != null && EventSystem.current != null)
         {
             GameObject currentSelected = EventSystem.current.currentSelectedGameObject;

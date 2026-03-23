@@ -151,9 +151,28 @@ public class ScoreManager : MonoBehaviour
         if (player.Combo > maxCombo)
             maxCombo = player.Combo;
 
-        if (GameSession.SelectedSong == null || GameSession.SelectedChart == null)
+        // Choose song/chart based on which player this ScoreManager belongs to (multiplayer support)
+        SMFile selectedSong = null;
+        SMChart selectedChart = null;
+
+        if (playerToUse == 2)
         {
-            Debug.LogWarning("[ScoreManager] No song/chart info. Skipping DB save.");
+            selectedSong = GameSession.SelectedSongP2;
+            selectedChart = GameSession.SelectedChartP2;
+        }
+        else
+        {
+            selectedSong = GameSession.SelectedSongP1;
+            selectedChart = GameSession.SelectedChartP1;
+        }
+
+        // Fallback to legacy singleplayer accessors if necessary
+        selectedSong ??= GameSession.SelectedSong;
+        selectedChart ??= GameSession.SelectedChart;
+
+        if (selectedSong == null || selectedChart == null)
+        {
+            Debug.LogWarning("[ScoreManager] No song/chart info for this player. Skipping DB save.");
             return;
         }
 
@@ -173,8 +192,8 @@ public class ScoreManager : MonoBehaviour
                 profileName = chosen.name;
             }
         }
-        string mapName = GameSession.SelectedSong.Title;
-        string difficulty = GameSession.SelectedChart.Difficulty;
+        string mapName = selectedSong.Title;
+        string difficulty = selectedChart.Difficulty;
 
         string clearType = "Failed";
 

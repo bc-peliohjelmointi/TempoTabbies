@@ -75,6 +75,11 @@ public class CardManagerScript : MonoBehaviour
             int cardNumber = Random.Range(0, giver.AllCards.Count); //riippuu korttien vaihtoehto m‰‰r‰st‰
 
             CardData Arvottu = giver.AllCards[cardNumber]; //luo aina uuden CardDatan
+            if (gm.epilepsy && Arvottu.epilepsy)
+            {
+                cardNumber = Random.Range(0, giver.AllCards.Count);
+                Arvottu = giver.AllCards[cardNumber];
+            }
             foreach (CardData card in KorttiLista) //k‰y l‰pi kaikki kortit jotka on jo arvottu
             {
                 if (card == Arvottu) //jos sama kortti on jo arvottu, arvo uudestaan

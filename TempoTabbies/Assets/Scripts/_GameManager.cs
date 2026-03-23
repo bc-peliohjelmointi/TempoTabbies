@@ -27,6 +27,10 @@ public class _GameManager : MonoBehaviour
     public float assistTickVolume;
     public bool hitSound;
     public float hitSoundVolume;
+    public bool epilepsy;
+    public bool movingBG;
+    public string noteOne;
+    public string noteTwo;
 
     // The players, first a list  to find them all, then the 2 players individually
     [Header("The players")]

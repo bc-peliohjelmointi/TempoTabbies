@@ -18,7 +18,7 @@ public class VoidCat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((playerIndex == 0 && data.activeP1) || (playerIndex == 1 && data.activeP2))
+        if ((playerIndex == 0 && data.activeP1) || (playerIndex == 1 && data.activeP2) && !image.gameObject.activeSelf)
         {
             if (image.gameObject.activeSelf == false)
             {

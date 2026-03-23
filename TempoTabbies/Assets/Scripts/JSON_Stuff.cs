@@ -28,6 +28,8 @@ public class GM
     public bool hitSound;
     public float hitSoundVolume;
     public bool showButtons;
+    public bool epilepsy;
+    public bool movingBG;
 }
 
 public class JSON_Stuff : MonoBehaviour
@@ -70,6 +72,8 @@ public class JSON_Stuff : MonoBehaviour
         gm.hitSound = gameManager.hitSound;
         gm.hitSoundVolume = gameManager.hitSoundVolume;
         gm.showButtons = gameManager.showButtons;
+        gm.epilepsy = gameManager.epilepsy;
+        gm.movingBG = gameManager.movingBG;
         // Turns the placeholder class into a JSON string
         json = JsonUtility.ToJson(gm);
         // Turns the newly made JSON string into a JSON file
@@ -94,6 +98,8 @@ public class JSON_Stuff : MonoBehaviour
         gameManager.hitSound = gm.hitSound;
         gameManager.hitSoundVolume = gm.hitSoundVolume;
         gameManager.showButtons = gm.showButtons;
+        gameManager.epilepsy = gm.epilepsy;
+        gameManager.movingBG = gm.movingBG;
     }
 
     public void SavePlayer(string name, float scrollSpeed, bool assistTick, bool showButtons, string button1, string button2, string button3, string button4)

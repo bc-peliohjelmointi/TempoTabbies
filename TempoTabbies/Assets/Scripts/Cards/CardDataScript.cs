@@ -60,5 +60,6 @@ public class CardDataScript
 
         [Header("Efektit ja ‰‰ni")]
         public ParticleSystem effectPrefab; // Visuaalinen efekt
+        public bool epilepsy;               // Make true if the cards should be turned off in epilepsy mode
     }
 }

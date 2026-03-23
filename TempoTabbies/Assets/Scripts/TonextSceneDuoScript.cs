@@ -96,7 +96,7 @@ public class TonextSceneDuoScript : MonoBehaviour
         }
         else if (mode.text == "Crazy Mode")
         {
-            gameMode.text = "In crazy mode, players can have multiple effects active at once";
+            gameMode.text = "In crazy mode, players can have multiple effects active at once \n Warning: This can result in very crazy games";
         }
     }
 }

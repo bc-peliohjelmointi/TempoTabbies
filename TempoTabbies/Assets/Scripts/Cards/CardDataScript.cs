@@ -14,9 +14,17 @@ public class CardDataScript
     {
         Empty,
         ComboLeech,
-        HitChange,
+        CatReaper,
         DiscoCat,
-        VoidCat
+        Diva,
+        HitChangeBetter,
+        HitChangeWorse,
+        TapTap,
+        VoidCat,
+        EightLives,
+        Zoomies,
+        Loafing,
+        CatCompressions
     }
 
     public enum EffectStatus
@@ -52,5 +60,6 @@ public class CardDataScript
 
         [Header("Efektit ja ‰‰ni")]
         public ParticleSystem effectPrefab; // Visuaalinen efekt
+        public bool epilepsy;               // Make true if the cards should be turned off in epilepsy mode
     }
 }

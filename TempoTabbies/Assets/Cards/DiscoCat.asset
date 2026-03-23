@@ -19,8 +19,8 @@ MonoBehaviour:
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
-  holder: {fileID: 0}
-  target: {fileID: 0}
+  activeP1: 0
+  activeP2: 0
   value: 0
   triggerThreshold: 0
   effectPrefab: {fileID: 0}

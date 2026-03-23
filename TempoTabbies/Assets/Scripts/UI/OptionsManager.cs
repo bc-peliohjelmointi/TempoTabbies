@@ -41,12 +41,15 @@ public class OptionsManager : MonoBehaviour
     public GameObject audioMenu;
     public GameObject gameplayMenu;
     public GameObject profileMenu;
+    public GameObject accessability;
 
     // gameObjects to show button are on or off
     [Header("The images for buttons, to see if they are false or true")]
     public Image assistTickConfirmation;
     public Image hitSoundConfirmation;
     public Image showButtonConfirmation;
+    public Image epilepsyConfirmation;
+    public Image movingBGImage;
 
     // Slider value text
     [Header("Number text in the settings")]
@@ -79,9 +82,8 @@ public class OptionsManager : MonoBehaviour
         audioOffsetFloat = gameManager.audioOffset;
         assistTickVolume.value = gameManager.assistTickVolume;
         hitSoundVolume.value = gameManager.hitSoundVolume;
-        AssistTick(); AssistTick(); // just clicks them twice, so if true in gameManager, it goes false then back to true ->
-        HitSound(); HitSound();     // we do this so it can check what the button bools are in the gameManager
-        ShowButtons(); ShowButtons();
+        // just clicks buttons twice, so if true in gameManager, it goes false then back to true we do this so it can check what the button bools are in the gameManager
+        AssistTick(); AssistTick(); HitSound(); HitSound(); ShowButtons(); ShowButtons(); OnEpilepsyClick(); OnEpilepsyClick(); OnMovingBGClick(); OnMovingBGClick();
     }
 
 
@@ -133,6 +135,80 @@ public class OptionsManager : MonoBehaviour
         anims.scene = "Profiles";
     }
 
+    public void OnEpilepsyClick()
+    {
+        gameManager.epilepsy = !gameManager.epilepsy;
+        if (gameManager.epilepsy)
+        {
+            epilepsyConfirmation.color = Color.limeGreen;
+        }
+        else
+        {
+            epilepsyConfirmation.color = Color.softRed;
+        }
+    }
+
+    public void OnMovingBGClick()
+    {
+        gameManager.movingBG = !gameManager.movingBG;
+        if (gameManager.movingBG)
+        {
+            movingBGImage.color = Color.limeGreen;
+        }
+        else
+        {
+            movingBGImage.color = Color.softRed;
+        }
+    }
+
+    public void NoteOne(TextMeshProUGUI text)
+    {
+        if (text.text == "blue")
+        {
+            gameManager.noteOne = "blue";
+        }
+        else if (text.text == "red")
+        {
+            gameManager.noteOne = "red";
+        }
+        else if (text.text == "yellow")
+        {
+            gameManager.noteOne = "yellow";
+        }
+        else if (text.text == "green")
+        {
+            gameManager.noteOne = "green";
+        }
+        else if (text.text == "purple")
+        {
+            gameManager.noteOne = "purple";
+        }
+    }
+
+    public void NoteTwo(TextMeshProUGUI text)
+    {
+        if (text.text == "blue")
+        {
+            gameManager.noteTwo = "blue";
+        }
+        else if (text.text == "red")
+        {
+            gameManager.noteTwo = "red";
+        }
+        else if (text.text == "yellow")
+        {
+            gameManager.noteTwo = "yellow";
+        }
+        else if (text.text == "green")
+        {
+            gameManager.noteTwo = "green";
+        }
+        else if (text.text == "purple")
+        {
+            gameManager.noteTwo = "purple";
+        }
+    }
+
     public void AssistTick()
     {
         if (gameManager.assistTick == true)
@@ -170,6 +246,7 @@ public class OptionsManager : MonoBehaviour
         audioMenu.SetActive(true);
         gameplayMenu.SetActive(false);
         profileMenu.SetActive(false);
+        accessability.SetActive(false);
     }
     public void OnGameplayMenuClick(bool reselect)
     {
@@ -180,6 +257,7 @@ public class OptionsManager : MonoBehaviour
         audioMenu.SetActive(false);
         gameplayMenu.SetActive(true);
         profileMenu.SetActive(false);
+        accessability.SetActive(false);
     }
     public void OnProfileMenuClick(bool reselect)
     {
@@ -190,6 +268,19 @@ public class OptionsManager : MonoBehaviour
         audioMenu.SetActive(false);
         gameplayMenu.SetActive(false);
         profileMenu.SetActive(true);
+        accessability.SetActive(true);
+    }
+
+    public void OnAccessabilityClick(bool reselect)
+    {
+        if (reselect)
+        {
+            EventSystem.current.SetSelectedGameObject(profiles.gameObject);
+        }
+        audioMenu.SetActive(false);
+        gameplayMenu.SetActive(false);
+        profileMenu.SetActive(false);
+        accessability.SetActive(true);
     }
 
     public void ShowButtons()

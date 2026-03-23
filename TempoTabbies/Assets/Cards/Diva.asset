@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: Diva
   description: 
-  effectType: 0
+  effectType: 4
   icon: {fileID: -8004799667895317265, guid: 83929c74e5582a4458600c542407ce74, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  activeP1: 0
+  activeP2: 0
   value: 0
   triggerThreshold: 0
   effectPrefab: {fileID: 0}

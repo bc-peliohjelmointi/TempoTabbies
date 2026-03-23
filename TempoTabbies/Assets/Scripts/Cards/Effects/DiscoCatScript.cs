@@ -19,9 +19,8 @@ public class DiscoCatScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((playerIndex == 0 && data.activeP1) || (playerIndex == 1 && data.activeP2))
+        if ((playerIndex == 0 && data.activeP1) || (playerIndex == 1 && data.activeP2) && !image.gameObject.activeSelf)
         {
-            Debug.LogError(data.activeP1);
             if (image.gameObject.activeSelf == false)
             {
                 image.gameObject.SetActive(true);
@@ -29,7 +28,6 @@ public class DiscoCatScript : MonoBehaviour
         }
         else
         {
-            Debug.LogError("DiscoCat not active for player " + playerIndex + name);
             image.gameObject.SetActive(false);
         }
     }

@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: CatReaper
   description: 
-  effectType: 0
+  effectType: 2
   icon: {fileID: 0}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
-  holder: {fileID: 0}
-  target: {fileID: 0}
-  active: 0
+  activeP1: 1
+  activeP2: 0
   value: 0
   triggerThreshold: 0
   effectPrefab: {fileID: 0}

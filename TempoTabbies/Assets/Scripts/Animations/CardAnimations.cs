@@ -11,6 +11,12 @@ public class CardAnimations : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    public void DrawThis()
+    {
+        Animator animator = gameObject.GetComponent<Animator>();
+        animator.SetTrigger("Active");
+    }
+
     public void Draw()
     {
         Animator animator = cardToDraw.GetComponent<Animator>();
@@ -20,5 +26,12 @@ public class CardAnimations : MonoBehaviour
     public void CardNoise()
     {
         audioSource.PlayOneShot(audioSource.clip);
+    }
+
+    public void ResetCard()
+    {
+        Animator animator = gameObject.GetComponent<Animator>();
+        animator.ResetTrigger("Active");
+        animator.Play("IdleCard");
     }
 }

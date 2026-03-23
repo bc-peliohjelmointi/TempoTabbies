@@ -1005,6 +1005,7 @@ MonoBehaviour:
   p1Score: 0
   p2Score: 0
   whoWon: 0
+  party: 0
   source: {fileID: 0}
   state: 0
 --- !u!4 &1310866154
@@ -1151,9 +1152,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e0115704f77ee524990d5677624d2282, type: 2}
   - {fileID: 11400000, guid: 00cea6e96299bcf409f0d46394153a48, type: 2}
   - {fileID: 11400000, guid: fa6733141b87d1341bff8b400c6387ca, type: 2}
+  - {fileID: 11400000, guid: 73dbaaa50a49f4f4faf1c109e1fa839b, type: 2}
   - {fileID: 11400000, guid: d8119ce22ed87954cbe44f138b0d09b3, type: 2}
   - {fileID: 11400000, guid: e748d213d27f41e468e721e2502b0aad, type: 2}
   - {fileID: 11400000, guid: 1c9b5e965dd884b4790849b170e22934, type: 2}
+  - {fileID: 11400000, guid: f8ed530d86f951a4ca6e85f14dcf14fe, type: 2}
+  - {fileID: 11400000, guid: 27240b26aa1837e49847f5756af1e175, type: 2}
 --- !u!1 &1383034868
 GameObject:
   m_ObjectHideFlags: 0

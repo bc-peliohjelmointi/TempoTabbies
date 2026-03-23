@@ -27,6 +27,10 @@ public class _GameManager : MonoBehaviour
     public float assistTickVolume;
     public bool hitSound;
     public float hitSoundVolume;
+    public bool epilepsy;
+    public bool movingBG;
+    public string noteOne;
+    public string noteTwo;
 
     // The players, first a list  to find them all, then the 2 players individually
     [Header("The players")]
@@ -37,6 +41,9 @@ public class _GameManager : MonoBehaviour
     public int p1Score;
     public int p2Score;
     public bool whoWon; // true = p1 wins, false = p2 wins 
+
+    public bool party;
+    public bool crazy;
 
     // Audio
     [Header("Audio file for background music")]

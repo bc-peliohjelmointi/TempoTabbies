@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript/CardData
   CardName: 8LivesLeft
   description: 
-  effectType: 0
+  effectType: 9
   icon: {fileID: 8293487871886533600, guid: e9a3ade714f783246aeab9c3c2463432, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  activeP1: 0
+  activeP2: 0
   value: 0
   triggerThreshold: 0
   effectPrefab: {fileID: 0}

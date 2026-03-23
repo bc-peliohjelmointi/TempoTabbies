@@ -19,5 +19,9 @@ public class OptionsButtons : MonoBehaviour, ISelectHandler
         {
             manager.OnProfileMenuClick(false);
         }
+        else if(menuNumber == 3)
+        {
+            manager.OnAccessabilityClick(false);
+        }
     }
 }

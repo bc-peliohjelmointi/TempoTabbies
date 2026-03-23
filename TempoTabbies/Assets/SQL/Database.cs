@@ -156,4 +156,48 @@ public static class ScoreDatabase
 
         return results;
     }
+
+    // Get scores for a specific map and difficulty
+    public static List<ScoreEntry> GetScores(string mapName, string difficulty)
+    {
+        List<ScoreEntry> results = new();
+
+        using (IDbConnection connection = new SqliteConnection(dbPath))
+        {
+            connection.Open();
+
+            IDbCommand command = connection.CreateCommand();
+            command.CommandText = @"
+            SELECT profileName, mapName, difficulty, score, accuracy, grade, maxCombo, clearType, playcount
+            FROM scores
+            WHERE mapName = @map AND difficulty = @difficulty
+            ORDER BY score DESC
+            ";
+
+            command.Parameters.Add(new SqliteParameter("@map", mapName));
+            command.Parameters.Add(new SqliteParameter("@difficulty", difficulty));
+
+            using (IDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    ScoreEntry entry = new ScoreEntry
+                    {
+                        profileName = reader.IsDBNull(0) ? "Unknown" : reader.GetString(0),
+                        mapName = reader.IsDBNull(1) ? "Unknown" : reader.GetString(1),
+                        difficulty = reader.IsDBNull(2) ? "Unknown" : reader.GetString(2),
+                        score = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                        accuracy = reader.IsDBNull(4) ? 0f : reader.GetFloat(4),
+                        grade = reader.IsDBNull(5) ? "Unknown" : reader.GetString(5),
+                        maxCombo = reader.IsDBNull(6) ? 0 : reader.GetInt32(6),
+                        clearType = reader.IsDBNull(7) ? "Unknown" : reader.GetString(7),
+                        playCount = reader.IsDBNull(8) ? 0 : reader.GetInt32(8)
+                    };
+                    results.Add(entry);
+                }
+            }
+        }
+
+        return results;
+    }
 }

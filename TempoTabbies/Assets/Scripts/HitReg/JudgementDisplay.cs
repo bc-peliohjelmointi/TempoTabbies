@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JudgmentDisplay : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class JudgmentDisplay : MonoBehaviour
     public float bounceDuration = 0.15f;
     public float bounceScale = 1.3f;
 
-    private SpriteRenderer judgmentSpriteRenderer;
+    public Image judgmentSpriteRenderer;
     private SpriteRenderer directionSpriteRenderer;
     private Vector3 judgmentOriginalScale;
     private Vector3 directionOriginalScale;
@@ -31,7 +32,6 @@ public class JudgmentDisplay : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        judgmentSpriteRenderer = GetComponent<SpriteRenderer>();
         if (DirectionIndicator != null)
         {
             directionSpriteRenderer = DirectionIndicator.GetComponent<SpriteRenderer>();

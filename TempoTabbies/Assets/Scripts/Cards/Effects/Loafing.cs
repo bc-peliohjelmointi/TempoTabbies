@@ -29,7 +29,7 @@ public class Loafing : MonoBehaviour
     {
         if (data.activeP1 && playerIndex == 0)
         {
-            spawner2.ScrollSpeed -= 1.5f;
+            spawner2.ScrollSpeed -= 1;
             if (spawner2.ScrollSpeed <= 0)
             {
                 spawner2.ScrollSpeed = 1;
@@ -38,7 +38,7 @@ public class Loafing : MonoBehaviour
         }
         else if (data.activeP2 && playerIndex == 1)
         {
-            spawner1.ScrollSpeed -= 1.5f;
+            spawner1.ScrollSpeed -= 1;
             if (spawner1.ScrollSpeed <= 0)
             {
                 spawner1.ScrollSpeed = 1;

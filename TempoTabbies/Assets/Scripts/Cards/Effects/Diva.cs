@@ -9,6 +9,7 @@ public class Diva : MonoBehaviour
     public int playerIndex;
     public ScoreManager scoreManager1;
     public ScoreManager scoreManager2;
+    public _GameManager gm;
 
     private void Start()
     {
@@ -20,20 +21,38 @@ public class Diva : MonoBehaviour
         {
             data = giver.GetEffectDataforCard(EffectType.Diva);
         }
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+        }
         data.activeP1 = false;
         data.activeP2 = false;
     }
     private void Update()
     {
-        if ((data.activeP1 || data.activeP2) && (!scoreManager1.diva || !scoreManager2.diva))
+        if (!gm.multiplayer)
         {
-            scoreManager1.diva = true;
-            scoreManager2.diva = true;
+            if (data.activeP1 || data.activeP2)
+            {
+                scoreManager1.diva = true;
+            }
+            else
+            {
+                scoreManager1.diva = false;
+            }
         }
         else
         {
-            scoreManager1.diva = false;
-            scoreManager2.diva = false;
+            if ((data.activeP1 || data.activeP2) && (!scoreManager1.diva || !scoreManager2.diva))
+            {
+                scoreManager1.diva = true;
+                scoreManager2.diva = true;
+            }
+            else
+            {
+                scoreManager1.diva = false;
+                scoreManager2.diva = false;
+            }
         }
     }
 }

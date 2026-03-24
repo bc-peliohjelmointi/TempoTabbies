@@ -1,3 +1,4 @@
+using TMPro.EditorUtilities;
 using UnityEngine;
 using static CardDataScript;
 
@@ -9,6 +10,7 @@ public class CatReaper : MonoBehaviour
     public int playerIndex;
     public ScoreManager scoreManager1;
     public ScoreManager scoreManager2;
+    public _GameManager gm;
 
     private void Start()
     {
@@ -20,20 +22,38 @@ public class CatReaper : MonoBehaviour
         {
             data = giver.GetEffectDataforCard(EffectType.CatReaper);
         }
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+        }
         data.activeP1 = false;
         data.activeP2 = false;
     }
     private void Update()
     {
-        if ((data.activeP1 || data.activeP2) && (!scoreManager1.reaper || !scoreManager2.reaper))
+        if (!gm.multiplayer)
         {
-            scoreManager1.reaper = true;
-            scoreManager2.reaper = true;
+            if (data.activeP1 || data.activeP2)
+            {
+                scoreManager1.reaper = true;
+            }
+            else
+            {
+                scoreManager1.reaper = false;
+            }
         }
         else
         {
-            scoreManager1.reaper = false;
-            scoreManager2.reaper = false;
+            if ((data.activeP1 || data.activeP2) && (!scoreManager1.reaper || !scoreManager2.reaper))
+            {
+                scoreManager1.reaper = true;
+                scoreManager2.reaper = true;
+            }
+            else
+            {
+                scoreManager1.reaper = false;
+                scoreManager2.reaper = false;
+            }
         }
     }
 }

@@ -73,6 +73,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (AllCards.Count > 0 && gameManager.state != _GameManager.GameState.Game)
         {
+            Debug.Log(gameManager.state);
             foreach (CardDataScript.CardData card in AllCards)
             {
                 card.activeP1 = false;
@@ -156,9 +157,13 @@ public class PlayerScript : MonoBehaviour
                     {
                         card.activeP1 = true;
                     }
-                    else if (_playerIndex == 1 || !gameManager.multiplayer)
+                    else if (_playerIndex == 1)
                     {
                         card.activeP2 = true;
+                    }
+                    else if (!gameManager.multiplayer)
+                    {
+                        card.activeP1 = true;
                     }
                 }
                 break;

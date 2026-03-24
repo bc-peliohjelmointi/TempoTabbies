@@ -10,6 +10,8 @@ public class CatCompression : MonoBehaviour
     public ScoreManager scoreManager1;
     public ScoreManager scoreManager2;
 
+    _GameManager gm;
+
     private void Start()
     {
         if (giver == null)
@@ -20,6 +22,10 @@ public class CatCompression : MonoBehaviour
         {
             data = giver.GetEffectDataforCard(EffectType.CatCompressions);
         }
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+        }
         data.activeP1 = false;
         data.activeP2 = false;
     }
@@ -27,15 +33,29 @@ public class CatCompression : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((data.activeP1 || data.activeP2) && (!scoreManager1.catCompressions || !scoreManager2.catCompressions))
+        if (!gm.multiplayer)
         {
-            scoreManager1.catCompressions = true;
-            scoreManager2.catCompressions = true;
+            if (data.activeP1 || data.activeP2)
+            {
+                scoreManager1.catCompressions = true;
+            }
+            else
+            {
+                scoreManager1.catCompressions = false;
+            }
         }
         else
         {
-            scoreManager1.catCompressions = false;
-            scoreManager2.catCompressions = false;
+            if ((data.activeP1 || data.activeP2) && (!scoreManager1.catCompressions || !scoreManager2.catCompressions))
+            {
+                scoreManager1.catCompressions = true;
+                scoreManager2.catCompressions = true;
+            }
+            else
+            {
+                scoreManager1.catCompressions = false;
+                scoreManager2.catCompressions = false;
+            }
         }
     }
 }

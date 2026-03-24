@@ -37,11 +37,11 @@ public class TapTap : MonoBehaviour
         }
         if (gm != null)
         {
-            if (playerIndex == 0)
+            if (playerIndex == 0 && gm.multiplayer)
             {
                 target = gm.p2;
             }
-            else if (playerIndex == 1)
+            else if (playerIndex == 1 || !gm.multiplayer)
             {
                 target = gm.p1;
             }

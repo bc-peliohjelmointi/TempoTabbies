@@ -9,6 +9,7 @@ public class Loafing : MonoBehaviour
     public int playerIndex;
     public NoteSpawner spawner1;
     public NoteSpawner spawner2;
+    public _GameManager gm;
     private void Start()
     {
         if (giver == null)
@@ -19,6 +20,10 @@ public class Loafing : MonoBehaviour
         {
             data = giver.GetEffectDataforCard(EffectType.Loafing);
         }
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+        }
 
         data.activeP1 = false;
         data.activeP2 = false;
@@ -27,23 +32,37 @@ public class Loafing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (data.activeP1 && playerIndex == 0)
+        if (!gm.multiplayer)
         {
-            spawner2.ScrollSpeed -= 1;
-            if (spawner2.ScrollSpeed <= 0)
+            if (data.activeP1 || data.activeP2)
             {
-                spawner2.ScrollSpeed = 1;
+                spawner1.ScrollSpeed -= 1;
+                if (spawner1.ScrollSpeed <= 0)
+                {
+                    spawner1.ScrollSpeed = 1;
+                }
             }
-            playerIndex = 999;
         }
-        else if (data.activeP2 && playerIndex == 1)
+        else
         {
-            spawner1.ScrollSpeed -= 1;
-            if (spawner1.ScrollSpeed <= 0)
+            if (data.activeP1 && playerIndex == 0)
             {
-                spawner1.ScrollSpeed = 1;
+                spawner2.ScrollSpeed -= 1;
+                if (spawner2.ScrollSpeed <= 0)
+                {
+                    spawner2.ScrollSpeed = 1;
+                }
+                playerIndex = 999;
             }
-            playerIndex = 999;
+            else if (data.activeP2 && playerIndex == 1)
+            {
+                spawner1.ScrollSpeed -= 1;
+                if (spawner1.ScrollSpeed <= 0)
+                {
+                    spawner1.ScrollSpeed = 1;
+                }
+                playerIndex = 999;
+            }
         }
     }
 }

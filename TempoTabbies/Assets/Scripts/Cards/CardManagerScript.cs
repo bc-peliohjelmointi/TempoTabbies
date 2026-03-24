@@ -39,12 +39,14 @@ public class CardManagerScript : MonoBehaviour
         {
             gm.p1.AllCards.Clear();
         }
-        if (gm.p2.AllCards.Count > 0 && !gm.crazy)
+        if (gm.multiplayer)
         {
-            gm.p2.AllCards.Clear();
+            if (gm.p2.AllCards.Count > 0 && !gm.crazy)
+            {
+                gm.p2.AllCards.Clear();
+            }
         }
         giver = FindFirstObjectByType<CardEffectGiver>();
-        FindPlayerNoCard();
         RandomizeCard();
     }
 
@@ -57,7 +59,7 @@ public class CardManagerScript : MonoBehaviour
             player++;
             return gm.p1;
         }
-        else if (player == 1)
+        else if (player == 1 && gm.multiplayer)
         {
             ValittuPelaaja.text = "Player 2";
             Debug.Log("Pelaaja 2");
@@ -126,7 +128,7 @@ public class CardManagerScript : MonoBehaviour
             {
                 NoCard.AllCards.Add(card);
                 Debug.Log("Kortti annettu pelaajalle " + NoCard._playerIndex);
-                if (NoCard == gm.p2)
+                if (NoCard == gm.p2 || !gm.multiplayer)
                 {
                     SceneManager.LoadScene("StageSelect");
                 }

@@ -25,12 +25,5 @@ public class VoidCat : MonoBehaviour
                 image.gameObject.SetActive(true);
             }
         }
-        else
-        {
-            if (image.gameObject.activeSelf == true)
-            {
-                image.gameObject.SetActive(false);
-            }
-        }
     }
 }

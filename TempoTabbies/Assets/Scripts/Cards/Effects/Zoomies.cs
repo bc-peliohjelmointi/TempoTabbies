@@ -3,7 +3,7 @@ using static CardDataScript;
 
 public class Zoomies : MonoBehaviour
 {
-    CardData data;
+    CardDataScript data;
     CardEffectGiver giver;
 
     public int playerIndex;

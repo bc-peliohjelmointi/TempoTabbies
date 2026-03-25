@@ -5,7 +5,7 @@ using static CardDataScript;
 public class VoidCat : MonoBehaviour
 {
     public int playerIndex;
-    CardData data;
+    CardDataScript data;
     CardEffectGiver giver;
     public Image image;
     private void Start()

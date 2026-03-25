@@ -33,7 +33,8 @@ public class PlayerScript : MonoBehaviour
 
     // Cards and Score
     [Header("In game info")]
-    public List<CardDataScript.CardData> AllCards;
+    public List<CardDataScript> AllCards = new List<CardDataScript>();
+
     public int Score;
     public int Combo;
     public int cat; // use this to say which cat has been chosen for the player, currently 1 = tabby, 2 = orange, 3 = nothing
@@ -74,7 +75,7 @@ public class PlayerScript : MonoBehaviour
         if (AllCards.Count > 0 && gameManager.state != _GameManager.GameState.Game)
         {
             Debug.Log(gameManager.state);
-            foreach (CardDataScript.CardData card in AllCards)
+            foreach (CardDataScript card in AllCards)
             {
                 card.activeP1 = false;
                 card.activeP2 = false;
@@ -151,7 +152,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     gm.submit = submit.ReadValue<float>();
                 }
-                foreach (CardDataScript.CardData card in AllCards)
+                foreach (CardDataScript card in AllCards)
                 {
                     if (_playerIndex == 0 && gameManager.multiplayer)
                     {

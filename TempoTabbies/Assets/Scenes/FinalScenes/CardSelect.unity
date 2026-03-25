@@ -1376,6 +1376,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 762666210930608310, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 762666210930608310, guid: 5165de47028f07a4aabe0ff980f3f280, type: 3}
       propertyPath: card1
       value: 
       objectReference: {fileID: 2110811805}

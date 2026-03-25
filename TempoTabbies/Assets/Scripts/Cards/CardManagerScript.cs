@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static CardDataScript;
 
 public class CardManagerScript : MonoBehaviour
 {
     [Header("Card Database")]
     public CardEffectGiver giver;
-    List<CardData> KorttiLista; //Lista arvotuista korteista
+    List<CardDataScript> KorttiLista; //Lista arvotuista korteista
 
     [Header("Player Card Choices")]
     public PlayerScript Score;
@@ -26,11 +27,10 @@ public class CardManagerScript : MonoBehaviour
     public CardAnimations card2;
     public CardAnimations card3;
 
-
     void Start()
     {
         player = 0;
-        KorttiLista = new List<CardData>();
+        KorttiLista = new List<CardDataScript>();
 
         ValittuPelaaja.text = "Player 1";
 
@@ -78,13 +78,13 @@ public class CardManagerScript : MonoBehaviour
         {
             int cardNumber = Random.Range(0, giver.AllCards.Length); //riippuu korttien vaihtoehto m‰‰r‰st‰
 
-            CardData Arvottu = giver.AllCards[cardNumber]; //luo aina uuden CardDatan
+            CardDataScript Arvottu = giver.AllCards[cardNumber]; //luo aina uuden CardDatan
             if (gm.epilepsy && Arvottu.epilepsy)
             {
                 cardNumber = Random.Range(0, giver.AllCards.Length);
                 Arvottu = giver.AllCards[cardNumber];
             }
-            foreach (CardData card in KorttiLista) //k‰y l‰pi kaikki kortit jotka on jo arvottu
+            foreach (CardDataScript card in KorttiLista) //k‰y l‰pi kaikki kortit jotka on jo arvottu
             {
                 if (card == Arvottu) //jos sama kortti on jo arvottu, arvo uudestaan
                 {
@@ -119,7 +119,7 @@ public class CardManagerScript : MonoBehaviour
         GiveCardToPlayer(KorttiLista[2]);
     }
 
-    public void GiveCardToPlayer(CardData card)
+    public void GiveCardToPlayer(CardDataScript card)
     {
         if (gm != null)
         {

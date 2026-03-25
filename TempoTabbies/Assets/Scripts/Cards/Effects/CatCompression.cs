@@ -3,7 +3,7 @@ using static CardDataScript;
 
 public class CatCompression : MonoBehaviour
 {
-    CardData data;
+    CardDataScript data;
     CardEffectGiver giver;
 
     public int playerIndex;

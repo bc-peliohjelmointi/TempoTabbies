@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc04af20f6c355948b9795467c45a85c, type: 3}
+  m_Name: Kissa
+  m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
+  CardName: 
+  description: 
+  effectType: 0
+  icon: {fileID: 6619592253398973274, guid: e21b5c33f3b381743a363c896b810320, type: 3}
+  duration: 10
+  cooldown: 30
+  activatesAutomatically: 1
+  activeP1: 0
+  activeP2: 0
+  value: 0
+  triggerThreshold: 0
+  effectPrefab: {fileID: 0}
+  epilepsy: 0

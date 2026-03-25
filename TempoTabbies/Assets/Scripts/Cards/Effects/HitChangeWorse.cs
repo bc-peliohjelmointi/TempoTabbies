@@ -4,7 +4,7 @@ using static TimingWindows;
 
 public class HitChangeWorse : MonoBehaviour
 {
-    CardData data;
+    CardDataScript data;
     public CardEffectGiver giver;
     public int playerIndex;
 

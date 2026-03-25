@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CardDataScript
+/*public class CardDataScript
 {
 
    /* public enum CardType
@@ -9,7 +9,7 @@ public class CardDataScript
         Debuff,     // heikentää omaa pelaajaa
         Attack,     // hyökkää vastustajaan
         Defense,    // suojaa itseä
-    }*/
+    }
     public enum EffectType
     {
         Empty,
@@ -62,4 +62,4 @@ public class CardDataScript
         public ParticleSystem effectPrefab; // Visuaalinen efekt
         public bool epilepsy;               // Make true if the cards should be turned off in epilepsy mode
     }
-}
+}*/

@@ -4,7 +4,7 @@ using static CardDataScript;
 
 public class TapTap : MonoBehaviour
 {
-    CardData data;
+    CardDataScript data;
     float CoolDown;
     EffectStatus CurrentStatus;
     CardEffectGiver giver;

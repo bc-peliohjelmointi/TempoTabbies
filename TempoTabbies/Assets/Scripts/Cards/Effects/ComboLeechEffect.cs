@@ -4,7 +4,7 @@ using static CardDataScript;
 
 public class ComboLeechEffect : MonoBehaviour
 {
-    CardData data;
+    CardDataScript data;
     float HyokkausAika;
     float CoolDown;
     EffectStatus CurrentStatus;

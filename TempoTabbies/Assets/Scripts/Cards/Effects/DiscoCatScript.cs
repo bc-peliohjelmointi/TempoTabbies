@@ -5,7 +5,7 @@ using static CardDataScript;
 public class DiscoCatScript : MonoBehaviour
 {
     public int playerIndex;
-    CardData data;
+    CardDataScript data;
     CardEffectGiver giver;
     public Image image;
 

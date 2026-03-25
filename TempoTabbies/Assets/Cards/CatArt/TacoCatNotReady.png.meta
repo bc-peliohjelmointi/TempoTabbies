@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bd39199a00b3aa049a456e3457226861
+guid: bbfc40b9356a9fe40951d691a3995be9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6013755630577941517
-    second: BetterHitChange_0
+      213: 1774191064188915315
+    second: TacoCatNotReady_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BetterHitChange_0
+      name: TacoCatNotReady_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d0c7a9e32e6257350800000000000000
-      internalID: 6013755630577941517
+      spriteID: 37e07a07f513f9810800000000000000
+      internalID: 1774191064188915315
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BetterHitChange_0: 6013755630577941517
+      TacoCatNotReady_0: 1774191064188915315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

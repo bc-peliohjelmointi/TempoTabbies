@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a0f8ca29a55ad9849b191c8d36c61622
+guid: 39a9959480f0b3e498ba5543ffbbd06c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5877953129647886523
-    second: DiskoCat2try_0
+      213: -3092948580559891575
+    second: ComboLeechENG_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DiskoCat2try_0
+      name: ComboLeechENG_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb0de0b8a3fa29150800000000000000
-      internalID: 5877953129647886523
+      spriteID: 983dd2337a3a315d0800000000000000
+      internalID: -3092948580559891575
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DiskoCat2try_0: 5877953129647886523
+      ComboLeechENG_0: -3092948580559891575
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

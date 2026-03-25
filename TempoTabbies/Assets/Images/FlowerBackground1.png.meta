@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bd0c7ad6f3f7fca429e794b2e1719ad9
+guid: a9dc342517c52cb47b9199914502848b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8540264543176896934
-    second: ComboLeechDone_0
+      213: 7840299667355134970
+    second: FlowerBackground1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ComboLeechDone_0
+      name: FlowerBackground1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1390
-        height: 2035
+        width: 9340
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a13cef8a5d158670800000000000000
-      internalID: 8540264543176896934
+      spriteID: afbe05df1075ecc60800000000000000
+      internalID: 7840299667355134970
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ComboLeechDone_0: 8540264543176896934
+      FlowerBackground1_0: 7840299667355134970
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

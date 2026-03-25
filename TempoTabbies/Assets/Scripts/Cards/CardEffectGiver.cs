@@ -4,7 +4,7 @@ using static CardDataScript;
 
 public class CardEffectGiver : MonoBehaviour
 {
-    public List<CardData> AllCards; // Kaikki olemassa olvat kortit
+    public CardData[] AllCards; // Kaikki olemassa olvat kortit
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -12,7 +12,7 @@ public class CardEffectGiver : MonoBehaviour
     public CardData GetEffectDataforCard(EffectType effectType)//hakee effektit
     {
 
-        for (int i = 0; i < AllCards.Count; i++)//luuppaa
+        for (int i = 0; i < AllCards.Length; i++)//luuppaa
         {
             bool CorrectEffect = AllCards[i].effectType == effectType;//kysyy onko effecti oikein
             if (CorrectEffect)//jos on palauttaa effectin listasta

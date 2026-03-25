@@ -76,19 +76,19 @@ public class CardManagerScript : MonoBehaviour
         card3.ResetCard();
         for (int i = 0; i < 3; i++) //alkaa 0; niinpitkään kuin on alle 3; lisää aina 1
         {
-            int cardNumber = Random.Range(0, giver.AllCards.Count); //riippuu korttien vaihtoehto määrästä
+            int cardNumber = Random.Range(0, giver.AllCards.Length); //riippuu korttien vaihtoehto määrästä
 
             CardData Arvottu = giver.AllCards[cardNumber]; //luo aina uuden CardDatan
             if (gm.epilepsy && Arvottu.epilepsy)
             {
-                cardNumber = Random.Range(0, giver.AllCards.Count);
+                cardNumber = Random.Range(0, giver.AllCards.Length);
                 Arvottu = giver.AllCards[cardNumber];
             }
             foreach (CardData card in KorttiLista) //käy läpi kaikki kortit jotka on jo arvottu
             {
                 if (card == Arvottu) //jos sama kortti on jo arvottu, arvo uudestaan
                 {
-                    cardNumber = Random.Range(0, giver.AllCards.Count);
+                    cardNumber = Random.Range(0, giver.AllCards.Length);
                     Arvottu = giver.AllCards[cardNumber];
                 }
             }

@@ -38,8 +38,6 @@ public class CatSelectionManager : MonoBehaviour
 
         gameManager = FindFirstObjectByType<_GameManager>();
         gameManager.state = _GameManager.GameState.CatSelect;
-
-        gameManager.p1.DisableOthers();
     }
 
     IEnumerator WaitAFrame()
@@ -66,7 +64,6 @@ public class CatSelectionManager : MonoBehaviour
                 {
                     gameManager.EnableControllers();
                     gameManager.whoGetsToPlay = 0;
-                    gameManager.p1.DisableOthers();
                 }
             }
         }
@@ -140,7 +137,6 @@ public class CatSelectionManager : MonoBehaviour
             {
                 gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
-                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)
@@ -167,7 +163,6 @@ public class CatSelectionManager : MonoBehaviour
             {
                 gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
-                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)
@@ -193,7 +188,6 @@ public class CatSelectionManager : MonoBehaviour
             {
                 gameManager.EnableControllers();
                 gameManager.whoGetsToPlay = 1;
-                gameManager.p2.DisableOthers();
             }
         }
         else if (gameManager.whoGetsToPlay == 1)

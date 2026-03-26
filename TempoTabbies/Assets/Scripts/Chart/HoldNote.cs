@@ -86,7 +86,7 @@ public class HoldNote : MonoBehaviour
             else
             {
                 // Last resort: pick any HitManager in the scene (singleplayer fallback)
-                OwnerHitManager = FindObjectOfType<HitManager>();
+                OwnerHitManager = FindFirstObjectByType<HitManager>();
             }
 
             if (OwnerHitManager != null)
@@ -193,7 +193,7 @@ public class HoldNote : MonoBehaviour
                     if (parentSpawner != null && parentSpawner.hitManager != null)
                         OwnerHitManager = parentSpawner.hitManager;
                     else if (OwnerHitManager == null)
-                        OwnerHitManager = FindObjectOfType<HitManager>();
+                        OwnerHitManager = FindFirstObjectByType<HitManager>();
 
                     if (OwnerHitManager != null)
                     {
@@ -545,7 +545,7 @@ public class HoldNote : MonoBehaviour
         if (OwnerHitManager != null)
             jd = OwnerHitManager.JudgmentDisplay;
         if (jd == null)
-            jd = FindObjectOfType<JudgmentDisplay>(); // fallback
+            jd = FindFirstObjectByType<JudgmentDisplay>(); // fallback
 
         if (jd != null)
             jd.Show(label, isEarly, isLate);

@@ -82,7 +82,14 @@ public class TonextSceneDuoScript : MonoBehaviour
                 json.LoadPlayerToPlayer(p2.text, 1);
             }
 
-            anims.scene = "CatSelect";
+            if (!gm.party)
+            {
+                anims.scene = "StageSelect";
+            }
+            else
+            {
+                anims.scene = "CardSelect";
+            }
             if (anims.animator.GetCurrentAnimatorStateInfo(0).length < anims.animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
             {
                 anims.PawStB();
@@ -90,7 +97,14 @@ public class TonextSceneDuoScript : MonoBehaviour
         }
         else if (!gm.multiplayer)
         {
-            anims.scene = "CatSelect";
+            if (!gm.party)
+            {
+                anims.scene = "StageSelect";
+            }
+            else
+            {
+                anims.scene = "CardSelect";
+            }
             if (anims.animator.GetCurrentAnimatorStateInfo(0).length < anims.animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
             {
                 anims.PawStB();

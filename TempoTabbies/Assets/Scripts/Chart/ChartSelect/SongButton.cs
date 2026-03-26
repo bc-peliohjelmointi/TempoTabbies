@@ -193,7 +193,6 @@ public class SongButton : MonoBehaviour
         if (!chartsVisible)
         {
             _gm.EnableControllers();
-            _gm.p1.DisableOthers();
             ExpandCharts();
             manager.state = ChartSelectManager.State.smallButton;
         }

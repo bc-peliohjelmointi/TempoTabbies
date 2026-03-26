@@ -136,7 +136,7 @@ public class NoteSpawner : MonoBehaviour
             // Ensure HitManager has a ScoreManager assigned (fallback to any in-scene ScoreManager)
             if (hitManager != null && hitManager.scoreManager == null)
             {
-                var found = FindObjectOfType<ScoreManager>();
+                var found = FindFirstObjectByType<ScoreManager>();
                 if (found != null)
                 {
                     hitManager.scoreManager = found;

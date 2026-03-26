@@ -37,6 +37,9 @@ public class EvalScreenManager : MonoBehaviour
     private SMFile currentSong;
     private SMChart currentChart;
 
+    public GameObject winnerScreen;
+    public TextMeshProUGUI winnerText;
+
     [Header("Difficulty Colors")]
     public Color beginnerColor = new Color(0.2f, 0.8f, 0.2f);        // Green
     public Color easyColor = new Color(0.2f, 0.6f, 1f);             // Blue
@@ -303,23 +306,25 @@ public class EvalScreenManager : MonoBehaviour
         }
         if (gm.multiplayer)
         {
+            winnerScreen.SetActive(true);
             if (scoreManager.currentScore > scoreManager2.currentScore)
             {
+                winnerText.text = "Player 1 Wins!";
                 gm.p1Score += 1;
-                gm.p1.DisableOthers();
             }
             else if (scoreManager.currentScore < scoreManager2.currentScore)
             {
+                winnerText.text = "Player 2 Wins!";
                 gm.p2Score += 1;
-                gm.p2.DisableOthers();
             }
             else if (scoreManager.currentScore == scoreManager2.currentScore)
             {
+                winnerText.text = "It's a Tie!";
                 gm.p1Score += 1;
                 gm.p2Score += 1;
             }
-        }///////////////////////////////////////////
-
+        }
+        StartCoroutine(Wait(2));
         // Load stage select scene
         if (gm.party)
         {
@@ -329,6 +334,11 @@ public class EvalScreenManager : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("StageSelect");
         }
+    }
+
+    public IEnumerator Wait(int time)
+    {
+        yield return new WaitForSeconds(time);
     }
 
     // Update display in case scores change (though they shouldn't after game ends)

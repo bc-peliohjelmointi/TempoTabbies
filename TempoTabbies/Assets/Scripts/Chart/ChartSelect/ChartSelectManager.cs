@@ -212,7 +212,7 @@ public class ChartSelectManager : MonoBehaviour
                     if (prevHover != null) prevHover.HoverExit();
                     else
                     {
-                        var mgr = ScorePopupManager.Instance ?? FindObjectOfType<ScorePopupManager>();
+                        var mgr = ScorePopupManager.Instance ?? FindFirstObjectByType<ScorePopupManager>();
                         if (mgr != null) mgr.Hide();
                     }
                 }
@@ -376,7 +376,6 @@ public class ChartSelectManager : MonoBehaviour
             waitingForSecondPlayer = true;
 
             Debug.Log($"Player 1 selected: {song.Title} / {chart.Description}. Waiting for Player 2 to choose.");
-            _gm.p2.DisableOthers();
             // tee tahan jotain mika indikoi etta pelaaja 2 vuoro
             return;
         }

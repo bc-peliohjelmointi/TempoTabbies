@@ -38,7 +38,7 @@ public class ChartButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
         var mgr = ScorePopupManager.Instance;
         if (mgr == null)
         {
-            mgr = FindObjectOfType<ScorePopupManager>();
+            mgr = FindFirstObjectByType<ScorePopupManager>();
             if (mgr == null)
             {
                 Debug.LogWarning("[ChartButtonHover] No ScorePopupManager found in scene.");
@@ -51,7 +51,7 @@ public class ChartButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        var mgr = ScorePopupManager.Instance ?? FindObjectOfType<ScorePopupManager>();
+        var mgr = ScorePopupManager.Instance ?? FindFirstObjectByType<ScorePopupManager>();
         if (mgr != null)
         {
             mgr.Hide();
@@ -77,7 +77,7 @@ public class ChartButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
         if (string.IsNullOrEmpty(m) || string.IsNullOrEmpty(d)) return;
 
-        var mgr = ScorePopupManager.Instance ?? FindObjectOfType<ScorePopupManager>();
+        var mgr = ScorePopupManager.Instance ?? FindFirstObjectByType<ScorePopupManager>();
         if (mgr == null)
         {
             Debug.LogWarning("[ChartButtonHover] No ScorePopupManager found in scene.");
@@ -89,7 +89,7 @@ public class ChartButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void HoverExit()
     {
-        var mgr = ScorePopupManager.Instance ?? FindObjectOfType<ScorePopupManager>();
+        var mgr = ScorePopupManager.Instance ?? FindFirstObjectByType<ScorePopupManager>();
         if (mgr != null)
         {
             mgr.Hide();

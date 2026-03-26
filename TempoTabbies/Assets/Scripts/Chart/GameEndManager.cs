@@ -53,7 +53,7 @@ public class GameEndManager : MonoBehaviour
         // Prefer to wait until all judgments have been processed (all notes hit or missed).
         // This ensures long-note releases (which score on release) are counted before ending.
         // If any ScoreManager instances exist in scene (multiplayer), wait until all have processed their judgments
-        var allSMS = FindObjectsOfType<ScoreManager>();
+        var allSMS = FindObjectsByType<ScoreManager>(FindObjectsSortMode.None);
         if (allSMS != null && allSMS.Length > 0)
         {
             int totalNotesSum = 0;
@@ -103,7 +103,7 @@ public class GameEndManager : MonoBehaviour
 
         // Finalize all ScoreManagers in the scene. Multiplayer may have multiple ScoreManager instances
         // (one per player). ScoreManager.FinalizeScore already guards against double-saving.
-        var allScoreManagers = FindObjectsOfType<ScoreManager>();
+        var allScoreManagers = FindObjectsByType<ScoreManager>(FindObjectsSortMode.None);
         if (allScoreManagers != null && allScoreManagers.Length > 0)
         {
             foreach (var sm in allScoreManagers)

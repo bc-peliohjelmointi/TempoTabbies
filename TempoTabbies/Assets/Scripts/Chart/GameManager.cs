@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public Transform LaneParent;
     public Transform HitLine;
 
-    private float audioOffset = 0f;
+    //private float audioOffset = 0f;
     public static float GlobalMusicStartTime; // when audio actually starts
     public static float ChartStartTime;       // when chart started (notes spawn relative to this)
                                               // ADD THIS - Make GameManager a singleton for easy access

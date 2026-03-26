@@ -2,14 +2,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using static CardDataScript;
 
 public class CardManagerScript : MonoBehaviour
 {
     [Header("Card Database")]
     public CardEffectGiver giver;
     List<CardDataScript> KorttiLista; //Lista arvotuista korteista
+    List<CardDataScript> epilepsyList;
+    List<CardDataScript> ownedListp1;
+    List<CardDataScript> ownedListp2;
 
     [Header("Player Card Choices")]
     public PlayerScript Score;
@@ -32,6 +33,22 @@ public class CardManagerScript : MonoBehaviour
     {
         player = 0;
         KorttiLista = new List<CardDataScript>();
+        epilepsyList = new List<CardDataScript>();
+        foreach (CardDataScript card in giver.AllCards)
+        {
+            if (card.epilepsy)
+            {
+                epilepsyList.Add(card);
+            }
+            /*if (!Player1Cards.AllCards.Contains(card))
+            {
+                ownedListp1.Add(card);
+            }
+            if (!Player2Cards.AllCards.Contains(card))
+            {
+                ownedListp2.Add(card);
+            }*/
+        }
 
         ValittuPelaaja.text = "Player 1";
 
@@ -77,14 +94,16 @@ public class CardManagerScript : MonoBehaviour
         card3.ResetCard();
         for (int i = 0; i < 3; i++) //alkaa 0; niinpitkään kuin on alle 3; lisää aina 1
         {
-            int cardNumber = Random.Range(0, giver.AllCards.Length); //riippuu korttien vaihtoehto määrästä
-
-            CardDataScript Arvottu = giver.AllCards[cardNumber]; //luo aina uuden CardDatan
-            if (gm.epilepsy && Arvottu.epilepsy)
+            int cardNumber = 0;
+            if (!gm.epilepsy)
             {
-                cardNumber = Random.Range(0, giver.AllCards.Length);
-                Arvottu = giver.AllCards[cardNumber];
+                cardNumber = Random.Range(0, giver.AllCards.Length); //riippuu korttien vaihtoehto määrästä
             }
+            else
+            {
+                cardNumber = Random.Range(0, epilepsyList.Count); //riippuu korttien vaihtoehto määrästä
+            }
+            CardDataScript Arvottu = giver.AllCards[cardNumber]; //luo aina uuden CardDatan
             foreach (CardDataScript card in KorttiLista) //käy läpi kaikki kortit jotka on jo arvottu
             {
                 if (card == Arvottu) //jos sama kortti on jo arvottu, arvo uudestaan

@@ -37,7 +37,7 @@ public class JudgmentDisplay : MonoBehaviour
             directionSpriteRenderer = DirectionIndicator.GetComponent<SpriteRenderer>();
         }
 
-        judgmentOriginalScale = transform.localScale;
+        judgmentOriginalScale = judgmentSpriteRenderer.transform.localScale;
         if (DirectionIndicator != null)
         {
             directionOriginalScale = DirectionIndicator.transform.localScale;
@@ -59,7 +59,7 @@ public class JudgmentDisplay : MonoBehaviour
 
             // Smooth scaling curve (ease out)
             float scale = Mathf.Lerp(bounceScale, 1f, Mathf.SmoothStep(0, 1, t));
-            transform.localScale = judgmentOriginalScale * scale;
+            judgmentSpriteRenderer.transform.localScale = judgmentOriginalScale * scale;
 
             // Scale direction indicator along with judgment
             if (DirectionIndicator != null)
@@ -69,7 +69,7 @@ public class JudgmentDisplay : MonoBehaviour
 
             if (t >= 1f)
             {
-                transform.localScale = judgmentOriginalScale;
+                judgmentSpriteRenderer.transform.localScale = judgmentOriginalScale;
                 if (DirectionIndicator != null)
                 {
                     DirectionIndicator.transform.localScale = directionOriginalScale;
@@ -130,7 +130,7 @@ public class JudgmentDisplay : MonoBehaviour
         }
 
         // Restart bounce animation
-        transform.localScale = judgmentOriginalScale * bounceScale;
+        judgmentSpriteRenderer.transform.localScale = judgmentOriginalScale * bounceScale;
         if (DirectionIndicator != null)
         {
             DirectionIndicator.transform.localScale = directionOriginalScale * bounceScale;

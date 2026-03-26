@@ -18,6 +18,7 @@ public class CardManagerScript : MonoBehaviour
     public PlayerScript Player2Cards;
 
     private int player;
+    private float submit;
 
     [Header("UI asiat")]
     public TextMeshProUGUI ValittuPelaaja;//UI teksti joka kertoo pelaajan vuoron

@@ -110,44 +110,56 @@ public class Create_LoadPlayer : MonoBehaviour
         switch (state)
         {
             case State.start:
-                if (submit > 0 && timerMax <= timer)
+                foreach (PlayerScript player in _gm.players)
                 {
-                    BackToOptions();
-                    timer = 0;
-                }
-                else if (timerMax > timer)
-                {
-                    timer += Time.deltaTime;
+                    submit = player.Submit();
+                    if (submit > 0 && timerMax <= timer)
+                    {
+                        BackToOptions();
+                        timer = 0;
+                    }
+                    else if (timerMax > timer)
+                    {
+                        timer += Time.deltaTime;
+                    }
                 }
                 break;
 
             case State.edit:
-                if (submit > 0 && timerMax <= timer)
+                foreach (PlayerScript player in _gm.players)
                 {
-                    SaveName();
-                    GoToStartButton();
-                    timer = 0;
-                }
-                else if (timerMax > timer)
-                {
-                    timer += Time.deltaTime;
+                    submit = player.Submit();
+                    if (submit > 0 && timerMax <= timer)
+                    {
+                        SaveName();
+                        GoToStartButton();
+                        timer = 0;
+                    }
+                    else if (timerMax > timer)
+                    {
+                        timer += Time.deltaTime;
+                    }
                 }
                 break;
 
             case State.buttons:
-                if (submit > 0 && timerMax <= timer)
+                foreach (PlayerScript player in _gm.players)
                 {
-                    BackToEditing();
-                    GoToStartOfEdit();
-                    timer = 0;
-                    button1Image.SetActive(false);
-                    button2Image.SetActive(false);
-                    button3Image.SetActive(false);
-                    button4Image.SetActive(false);
-                }
-                else if (timerMax > timer)
-                {
-                    timer += Time.deltaTime;
+                    submit = player.Submit();
+                    if (submit > 0 && timerMax <= timer)
+                    {
+                        BackToEditing();
+                        GoToStartOfEdit();
+                        timer = 0;
+                        button1Image.SetActive(false);
+                        button2Image.SetActive(false);
+                        button3Image.SetActive(false);
+                        button4Image.SetActive(false);
+                    }
+                    else if (timerMax > timer)
+                    {
+                        timer += Time.deltaTime;
+                    }
                 }
                 if (button1 == null && timerMax <= timer)
                 {

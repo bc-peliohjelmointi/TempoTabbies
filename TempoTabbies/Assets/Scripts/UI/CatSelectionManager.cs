@@ -52,18 +52,22 @@ public class CatSelectionManager : MonoBehaviour
     private void Update()
     {
         Debug.Log(moveAmount);
-        if (canMove && submitValue >= 0.1f)
+        foreach (PlayerScript player in gameManager.players) 
         {
-            if (gameManager.whoGetsToPlay == 0)
+            submitValue = player.Submit();
+            if (canMove && submitValue >= 0.1f)
             {
-                anims.scene = "MainMenu";
-                anims.PawStB();
-            }
-            else
-            {
-                gameManager.EnableControllers();
-                gameManager.whoGetsToPlay = 0;
-                gameManager.p1.DisableOthers();
+                if (gameManager.whoGetsToPlay == 0)
+                {
+                    anims.scene = "MainMenu";
+                    anims.PawStB();
+                }
+                else
+                {
+                    gameManager.EnableControllers();
+                    gameManager.whoGetsToPlay = 0;
+                    gameManager.p1.DisableOthers();
+                }
             }
         }
         switch (selected)

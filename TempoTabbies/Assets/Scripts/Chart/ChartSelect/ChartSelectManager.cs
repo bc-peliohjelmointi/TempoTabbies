@@ -266,16 +266,20 @@ public class ChartSelectManager : MonoBehaviour
         }
         else if (state == State.smallButton)
         {
-            if (submitValue > 0 && timerMax <= timer)
+            foreach (PlayerScript player in _gm.players)
             {
-                _gm.EnableControllers();
-                state = State.bigButton;
-                EventSystem.current.SetSelectedGameObject(songButtons[0].transform.GetChild(0).gameObject);
-                timer = 0;
-            }
-            else if (timerMax > timer)
-            {
-                timer += Time.deltaTime;
+                submitValue = player.Submit();
+                if (submitValue > 0 && timerMax <= timer)
+                {
+                    _gm.EnableControllers();
+                    state = State.bigButton;
+                    EventSystem.current.SetSelectedGameObject(songButtons[0].transform.GetChild(0).gameObject);
+                    timer = 0;
+                }
+                else if (timerMax > timer)
+                {
+                    timer += Time.deltaTime;
+                }
             }
         }
     }

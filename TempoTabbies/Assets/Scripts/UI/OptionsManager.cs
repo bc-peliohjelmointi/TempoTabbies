@@ -89,11 +89,15 @@ public class OptionsManager : MonoBehaviour
 
     private void Update()
     {
-        if (submitValue > 0.1f)
+        foreach (PlayerScript player in gameManager.players)
         {
-            json.SaveGameManager();
+            submitValue = player.Submit();
+            if (submitValue > 0.1f)
+            {
+                json.SaveGameManager();
 
-            backButton.onClick.Invoke();
+                backButton.onClick.Invoke();
+            }
         }
         if ((int)volumeSlider.value != volumeSlider.value) { volumeSlider.value = (int)volumeSlider.value; }
         if ((int)scrollSpeed.value != scrollSpeed.value) { scrollSpeed.value = (int)scrollSpeed.value; }

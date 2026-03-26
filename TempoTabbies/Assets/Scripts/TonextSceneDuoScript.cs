@@ -17,7 +17,7 @@ public class TonextSceneDuoScript : MonoBehaviour
     public MenuAnimations anims;
     public _GameManager gm;
 
-    public int submit;
+    public float submit;
 
     private void Start()
     {
@@ -32,10 +32,14 @@ public class TonextSceneDuoScript : MonoBehaviour
 
     private void Update()
     {
-        if (submit >= 0.1f)
+        foreach (PlayerScript player in gm.players)
         {
-            anims.scene = "MainMenu";
-            anims.PawStB();
+            submit = player.Submit();
+            if (submit >= 0.1f)
+            {
+                anims.scene = "MainMenu";
+                anims.PawStB();
+            }
         }
     }
 

@@ -16,14 +16,9 @@ public class PlayerScript : MonoBehaviour
     // Other scripts
     private _GameManager gameManager;
     public JSON_Stuff json;
-    private GameManager gm;
-    private ChartSelectManager chartManager;
     private MainMenuManager mainMenu;
     private OptionsManager optionsMenu;
-    private Create_LoadPlayer profilesMenu;
     private CatSelectionManager catMenu;
-    private Player2Confirmation p2Confirm;
-    private TonextSceneDuoScript playerSelect;
 
     // The needed inputs
     [Header("The inputs we're using")]
@@ -53,6 +48,11 @@ public class PlayerScript : MonoBehaviour
     {
         // Makes players stay alive between scenes
         DontDestroyOnLoad(gameObject);
+    }
+
+    public float Submit()
+    {
+        return submit.ReadValue<float>();
     }
 
     private void OnEnable()
@@ -87,13 +87,6 @@ public class PlayerScript : MonoBehaviour
         {
             case _GameManager.GameState.Start:
                 break;
-            case _GameManager.GameState.Player2Confirmation:
-                if (p2Confirm == null)
-                {
-                    p2Confirm = FindFirstObjectByType<Player2Confirmation>();
-                }
-                p2Confirm.submit = submit.ReadValue<float>();
-                break;
 
             case _GameManager.GameState.MainMenu:
                 if (gameManager.state == _GameManager.GameState.MainMenu)
@@ -124,34 +117,15 @@ public class PlayerScript : MonoBehaviour
                 break;
 
             case _GameManager.GameState.Profiles:
-                if (profilesMenu == null)
-                {
-                    profilesMenu = FindFirstObjectByType<Create_LoadPlayer>();
-                }
+                break;
 
-                profilesMenu.submit = submit.ReadValue<float>();
-                break;
             case _GameManager.GameState.PlayerSelect:
-                playerSelect = FindFirstObjectByType<TonextSceneDuoScript>();
-                playerSelect.submit = submit.ReadValue<int>();
                 break;
+
             case _GameManager.GameState.StageSelect:
-                if (chartManager == null)
-                {
-                    chartManager = FindFirstObjectByType<ChartSelectManager>();
-                }
-                chartManager.submitValue = submit.ReadValue<float>();
                 break;
 
             case _GameManager.GameState.Game:
-                if (gm == null)
-                {
-                    gm = FindFirstObjectByType<GameManager>();
-                }
-                else
-                {
-                    gm.submit = submit.ReadValue<float>();
-                }
                 foreach (CardDataScript card in AllCards)
                 {
                     if (_playerIndex == 0 && gameManager.multiplayer)
@@ -184,12 +158,9 @@ public class PlayerScript : MonoBehaviour
                     catMenu.moveAmount = navigate.ReadValue<Vector2>();
                     catMenu.clickValue = clickButton.ReadValue<float>();
                 }
-                catMenu.submitValue = submit.ReadValue<float>();
                 break;
 
             case _GameManager.GameState.CardSelection:
-                // liikkuminenen            navigate.ReadValue<Vector2>();
-                // napin A painaminen       clickButton.ReadValue<float>();
                 break;
         }
         if (button1 != null)

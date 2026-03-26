@@ -7225,6 +7225,7 @@ MonoBehaviour:
   playerIndex: 1
   scoreManager1: {fileID: 1489999072}
   scoreManager2: {fileID: 925474176}
+  gm: {fileID: 0}
 --- !u!114 &1375058244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7286,6 +7287,7 @@ MonoBehaviour:
   playerIndex: 1
   scoreManager1: {fileID: 1489999072}
   scoreManager2: {fileID: 925474176}
+  gm: {fileID: 0}
 --- !u!114 &1375058248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7316,6 +7318,7 @@ MonoBehaviour:
   playerIndex: 1
   spawner1: {fileID: 1519786609}
   spawner2: {fileID: 260532501}
+  gm: {fileID: 0}
 --- !u!114 &1375058250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7331,6 +7334,7 @@ MonoBehaviour:
   playerIndex: 1
   spawner1: {fileID: 1519786609}
   spawner2: {fileID: 260532501}
+  gm: {fileID: 0}
 --- !u!114 &1375058251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9595,6 +9599,7 @@ MonoBehaviour:
   playerIndex: 0
   scoreManager1: {fileID: 1489999072}
   scoreManager2: {fileID: 925474176}
+  gm: {fileID: 0}
 --- !u!114 &1789998510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9656,6 +9661,7 @@ MonoBehaviour:
   playerIndex: 0
   scoreManager1: {fileID: 1489999072}
   scoreManager2: {fileID: 925474176}
+  gm: {fileID: 0}
 --- !u!114 &1789998514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9686,6 +9692,7 @@ MonoBehaviour:
   playerIndex: 0
   spawner1: {fileID: 1519786609}
   spawner2: {fileID: 260532501}
+  gm: {fileID: 0}
 --- !u!114 &1789998516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9701,6 +9708,7 @@ MonoBehaviour:
   playerIndex: 0
   spawner1: {fileID: 1519786609}
   spawner2: {fileID: 260532501}
+  gm: {fileID: 0}
 --- !u!114 &1789998517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11151,6 +11159,10 @@ PrefabInstance:
     - target: {fileID: 3600452706693629184, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -212.9512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3868975656223447570, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 32767
       objectReference: {fileID: 0}
     - target: {fileID: 6417720536121199590, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
       propertyPath: m_Navigation.m_Mode

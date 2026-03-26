@@ -49,9 +49,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (submit >0)
+        foreach (PlayerScript player in gm.players)
         {
-            SceneManager.LoadScene("StageSelect");
+            submit = player.Submit();
+            if (submit > 0)
+            {
+                SceneManager.LoadScene("StageSelect");
+            }
         }
     }
 

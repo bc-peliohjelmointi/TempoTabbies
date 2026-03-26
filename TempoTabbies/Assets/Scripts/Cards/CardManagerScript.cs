@@ -42,10 +42,6 @@ public class CardManagerScript : MonoBehaviour
 
         foreach (CardDataScript card in giver.AllCards)
         {
-            if (card.multiplayer && !gm.multiplayer)
-            {
-                return;
-            }
             if (card.epilepsy)
             {
                 epilepsyList.Add(card);

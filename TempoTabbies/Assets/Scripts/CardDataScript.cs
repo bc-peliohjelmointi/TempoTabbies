@@ -43,6 +43,7 @@ public class CardDataScript : ScriptableObject
     public float duration = 10f;        // Kuinka kauan efekti kest‰‰
     public float cooldown = 30f;        // Kuinka usein voi k‰ytt‰‰
     public bool activatesAutomatically = true; // Aktivoituuko automaattisesti 
+    public bool multiplayer;                 // Onok kortti vain multiplayeriss‰
 
     [field: HideInInspector]
     public bool activeP1 = false;                 // Is the card active or not (turn this on when in a game, and off when you leave the game)

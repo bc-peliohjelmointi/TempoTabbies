@@ -38,6 +38,10 @@ public class CardManagerScript : MonoBehaviour
 
         foreach (CardDataScript card in giver.AllCards)
         {
+            if (card.multiplayer && !gm.multiplayer)
+            {
+                return;
+            }
             if (card.epilepsy)
             {
                 epilepsyList.Add(card);
@@ -95,7 +99,7 @@ public class CardManagerScript : MonoBehaviour
         card3.ResetCard();
         for (int i = 0; i < 3; i++) //alkaa 0; niinpitkään kuin on alle 3; lisää aina 1
         {
-            int cardNumber = 0;
+            int cardNumber;
             if (!gm.epilepsy)
             {
                 cardNumber = Random.Range(0, giver.AllCards.Length); //riippuu korttien vaihtoehto määrästä

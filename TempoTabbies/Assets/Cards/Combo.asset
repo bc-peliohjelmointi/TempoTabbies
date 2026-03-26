@@ -19,6 +19,7 @@ MonoBehaviour:
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  multiplayer: 1
   activeP1: 0
   activeP2: 0
   value: 0

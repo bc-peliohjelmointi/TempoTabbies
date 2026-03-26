@@ -35,6 +35,10 @@ public class CardManagerScript : MonoBehaviour
         KorttiLista = new List<CardDataScript>();
         epilepsyList = new List<CardDataScript>();
         giver = FindFirstObjectByType<CardEffectGiver>();
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+        }
 
         foreach (CardDataScript card in giver.AllCards)
         {

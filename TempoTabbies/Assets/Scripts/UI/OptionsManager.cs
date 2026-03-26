@@ -272,7 +272,7 @@ public class OptionsManager : MonoBehaviour
         audioMenu.SetActive(false);
         gameplayMenu.SetActive(false);
         profileMenu.SetActive(true);
-        accessability.SetActive(true);
+        accessability.SetActive(false);
     }
 
     public void OnAccessabilityClick(bool reselect)

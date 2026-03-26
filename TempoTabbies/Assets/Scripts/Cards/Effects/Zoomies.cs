@@ -32,9 +32,9 @@ public class Zoomies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gm.multiplayer)
+        if (!gm.multiplayer )
         {
-            if (data.activeP1 || data.activeP2)
+            if ((data.activeP1 || data.activeP2) && playerIndex == 0)
             {
                 if (spawner1.ScrollSpeed < 8)
                 {
@@ -44,6 +44,7 @@ public class Zoomies : MonoBehaviour
                 {
                     spawner1.ScrollSpeed += 0.5f;
                 }
+                playerIndex = 999;
             }
         }
         else

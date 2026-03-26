@@ -34,13 +34,14 @@ public class Loafing : MonoBehaviour
     {
         if (!gm.multiplayer)
         {
-            if (data.activeP1 || data.activeP2)
+            if ((data.activeP1 || data.activeP2) && playerIndex == 0)
             {
                 spawner1.ScrollSpeed -= 1;
                 if (spawner1.ScrollSpeed <= 0)
                 {
                     spawner1.ScrollSpeed = 1;
                 }
+                playerIndex = 999;
             }
         }
         else

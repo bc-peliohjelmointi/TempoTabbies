@@ -44,6 +44,7 @@ public class _GameManager : MonoBehaviour
 
     public bool party;
     public bool crazy;
+    public bool taco;
 
     // Audio
     [Header("Audio file for background music")]

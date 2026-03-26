@@ -18,7 +18,8 @@ public class CardDataScript : ScriptableObject
         EightLives,
         Zoomies,
         Loafing,
-        CatCompressions
+        CatCompressions,
+        TacoCat
     }
 
     public enum EffectStatus

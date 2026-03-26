@@ -827,7 +827,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686139803}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3818, y: 1.3818, z: 1.3818}
   m_ConstrainProportionsScale: 0
@@ -1011,6 +1011,7 @@ MonoBehaviour:
   whoWon: 0
   party: 0
   crazy: 0
+  taco: 0
   source: {fileID: 0}
   state: 0
 --- !u!4 &1310866154
@@ -1163,6 +1164,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd1ceb582a40ad5458a0ffb3f7f5e8f6, type: 2}
   - {fileID: 11400000, guid: 1c9b5e965dd884b4790849b170e22934, type: 2}
   - {fileID: 11400000, guid: f3167bef0b106e54f955414a144f3c78, type: 2}
+  - {fileID: 11400000, guid: d75bc89c8b92f6e48bdd7370f3f80ad9, type: 2}
 --- !u!1 &1383034868
 GameObject:
   m_ObjectHideFlags: 0

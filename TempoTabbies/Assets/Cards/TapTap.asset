@@ -17,7 +17,7 @@ MonoBehaviour:
   effectType: 7
   icon: {fileID: 0}
   duration: 10
-  cooldown: 30
+  cooldown: 10
   activatesAutomatically: 1
   activeP1: 0
   activeP2: 0

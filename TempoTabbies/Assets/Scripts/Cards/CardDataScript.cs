@@ -35,7 +35,7 @@ using UnityEngine;
     }
 
     [CreateAssetMenu(fileName = "NewCard", menuName = "RhythmGame/Card", order = 0)]
-    public class CardData : ScriptableObject
+    public class CardDataScript : ScriptableObject
     {
         [Header("Perustiedot")]
         public string CardName = "New Card";   // Kortin nimi

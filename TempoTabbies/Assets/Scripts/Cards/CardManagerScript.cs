@@ -34,6 +34,8 @@ public class CardManagerScript : MonoBehaviour
         player = 0;
         KorttiLista = new List<CardDataScript>();
         epilepsyList = new List<CardDataScript>();
+        giver = FindFirstObjectByType<CardEffectGiver>();
+
         foreach (CardDataScript card in giver.AllCards)
         {
             if (card.epilepsy)
@@ -64,7 +66,6 @@ public class CardManagerScript : MonoBehaviour
                 gm.p2.AllCards.Clear();
             }
         }
-        giver = FindFirstObjectByType<CardEffectGiver>();
         RandomizeCard();
     }
 

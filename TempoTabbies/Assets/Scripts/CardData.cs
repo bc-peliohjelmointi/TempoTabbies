@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /*[CreateAssetMenu(fileName = "NewCard", menuName = "RhythmGame/Card")]
-public class CardData : ScriptableObject
+public class CardDataScript : ScriptableObject
 {
     public enum EffectType
     {

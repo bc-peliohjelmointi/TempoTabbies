@@ -42,6 +42,10 @@ public class Note : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (gm == null)
+        {
+            gm = FindFirstObjectByType<_GameManager>();
+        }
         if (gm.taco)
         {
             thisSr = tacoSr;

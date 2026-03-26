@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
-  m_Name: eightLives
+  m_Name: Combo
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: 8 lives
+  CardName: 
   description: 
-  effectType: 9
-  icon: {fileID: 0}
+  effectType: 1
+  icon: {fileID: -3092948580559891575, guid: 39a9959480f0b3e498ba5543ffbbd06c, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1

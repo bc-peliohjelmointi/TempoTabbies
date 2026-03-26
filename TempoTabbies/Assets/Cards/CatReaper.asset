@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
-  m_Name: eightLives
+  m_Name: CatReaper
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: 8 lives
+  CardName: catReaper
   description: 
-  effectType: 9
+  effectType: 2
   icon: {fileID: 0}
   duration: 10
   cooldown: 30

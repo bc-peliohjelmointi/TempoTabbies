@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc04af20f6c355948b9795467c45a85c, type: 3}
+  m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: TapTap
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: "t\xE4p t\xE4p"
+  CardName: Taptap
   description: 
   effectType: 7
   icon: {fileID: 0}
   duration: 10
-  cooldown: 10
+  cooldown: 30
   activatesAutomatically: 1
   activeP1: 0
   activeP2: 0

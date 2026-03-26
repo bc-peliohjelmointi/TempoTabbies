@@ -1151,20 +1151,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardEffectGiver
   AllCards:
-  - {fileID: 11400000, guid: 9ba56df5364e96e4dbf7b504caa69758, type: 2}
-  - {fileID: 11400000, guid: 37644105992d1cc42a58ef80fdf9c87e, type: 2}
-  - {fileID: 11400000, guid: 8d03551202ac8284b9e07215d869bf56, type: 2}
-  - {fileID: 11400000, guid: e0115704f77ee524990d5677624d2282, type: 2}
+  - {fileID: 11400000, guid: 3fa5f10f811d9bf4b911980f197649f4, type: 2}
+  - {fileID: 11400000, guid: 51957995e6f59904f97d86a38061b2f3, type: 2}
+  - {fileID: 11400000, guid: f9b3873a4a181c6498313772e18f9e08, type: 2}
+  - {fileID: 11400000, guid: 49614f82d5d95c642a0f8bbd3c1695ba, type: 2}
   - {fileID: 11400000, guid: 00cea6e96299bcf409f0d46394153a48, type: 2}
-  - {fileID: 11400000, guid: f6e900a07fab9534fb40278dd6b03172, type: 2}
   - {fileID: 11400000, guid: b8732206b59635842bb2f443151de416, type: 2}
-  - {fileID: 11400000, guid: 789cbc9071e892a49983a07ed79fb474, type: 2}
-  - {fileID: 11400000, guid: d8119ce22ed87954cbe44f138b0d09b3, type: 2}
+  - {fileID: 11400000, guid: be428a571dd971d4289fd01a73c57add, type: 2}
   - {fileID: 11400000, guid: 27240b26aa1837e49847f5756af1e175, type: 2}
+  - {fileID: 11400000, guid: e30bd5197f712a04494f5288ff875b98, type: 2}
   - {fileID: 11400000, guid: dd1ceb582a40ad5458a0ffb3f7f5e8f6, type: 2}
-  - {fileID: 11400000, guid: 1c9b5e965dd884b4790849b170e22934, type: 2}
-  - {fileID: 11400000, guid: f3167bef0b106e54f955414a144f3c78, type: 2}
-  - {fileID: 11400000, guid: d75bc89c8b92f6e48bdd7370f3f80ad9, type: 2}
+  - {fileID: 11400000, guid: f6e900a07fab9534fb40278dd6b03172, type: 2}
+  - {fileID: 11400000, guid: a2af85da9713c6143ad1568a229c0ed1, type: 2}
+  - {fileID: 11400000, guid: c04736578456d7a43947cc514cb2550b, type: 2}
+  - {fileID: 11400000, guid: d8119ce22ed87954cbe44f138b0d09b3, type: 2}
 --- !u!1 &1383034868
 GameObject:
   m_ObjectHideFlags: 0

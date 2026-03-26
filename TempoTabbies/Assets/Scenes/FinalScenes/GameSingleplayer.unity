@@ -372,6 +372,8 @@ MonoBehaviour:
   scoreManager: {fileID: 1489999072}
   scoreManager2: {fileID: 0}
   gm: {fileID: 0}
+  winnerScreen: {fileID: 0}
+  winnerText: {fileID: 0}
   beginnerColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
   easyColor: {r: 0.2, g: 0.6, b: 1, a: 1}
   mediumColor: {r: 1, g: 0.8, b: 0.2, a: 1}
@@ -494,6 +496,7 @@ GameObject:
   - component: {fileID: 207778036}
   - component: {fileID: 207778035}
   - component: {fileID: 207778034}
+  - component: {fileID: 207778046}
   m_Layer: 5
   m_Name: CardEffects
   m_TagString: Untagged
@@ -707,6 +710,18 @@ MonoBehaviour:
   playerIndex: 0
   scoreManager1: {fileID: 1489999072}
   scoreManager2: {fileID: 0}
+--- !u!114 &207778046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207778032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3b1fbc7c4f79e42bdedb499cd57a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TacoCat
 --- !u!1 &224404439
 GameObject:
   m_ObjectHideFlags: 0

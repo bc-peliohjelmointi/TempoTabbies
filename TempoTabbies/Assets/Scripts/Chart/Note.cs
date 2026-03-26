@@ -11,6 +11,7 @@ public class Note : MonoBehaviour
     _GameManager gm;
     SpriteRenderer thisSr;
     public SpriteRenderer tacoSr;
+    public bool taco;
 
     private float initialX;
     private float initialZ;
@@ -46,10 +47,10 @@ public class Note : MonoBehaviour
         {
             gm = FindFirstObjectByType<_GameManager>();
         }
-        if (gm.taco)
+        if (gm.taco && taco)
         {
-            thisSr = tacoSr;
-            gameObject.transform.localEulerAngles = new Vector3(0, 0, 5);
+            thisSr.sprite = tacoSr.sprite;
+            gameObject.transform.localEulerAngles += new Vector3(0, 0, 5);
         }
 
     }

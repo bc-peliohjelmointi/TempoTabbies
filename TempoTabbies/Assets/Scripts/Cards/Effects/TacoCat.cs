@@ -33,5 +33,9 @@ public class TacoCat : MonoBehaviour
         {
             gm.taco = true;
         }
+        else
+        {
+            gm.taco = false;
+        }
     }
 }

@@ -97,6 +97,14 @@ public class TonextSceneDuoScript : MonoBehaviour
         }
         else if (!gm.multiplayer)
         {
+            if (!File.Exists($"JSON/{p1.text}.json"))
+            {
+                json.LoadPlayerToPlayer($"DefaultProfiles/{p1.text}", 0);
+            }
+            else
+            {
+                json.LoadPlayerToPlayer(p1.text, 0);
+            }
             if (!gm.party)
             {
                 anims.scene = "StageSelect";

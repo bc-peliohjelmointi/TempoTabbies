@@ -61,8 +61,6 @@ public class NoteSpawner : MonoBehaviour
 
         if (gm != null)
         {
-            gmScroll = gm.scrollSpeed;
-
             if (playerID == 1)
             {
                 if (gm.p1 != null)
@@ -73,7 +71,7 @@ public class NoteSpawner : MonoBehaviour
                 }
                 else
                 {
-                    ScrollSpeed = gmScroll;
+                    ScrollSpeed = 8;
                     chosenSource = "_GameManager.scrollSpeed (fallback, p1 null)";
                 }
             }
@@ -87,14 +85,14 @@ public class NoteSpawner : MonoBehaviour
                 }
                 else
                 {
-                    ScrollSpeed = gmScroll;
+                    ScrollSpeed = 8;
                     chosenSource = "_GameManager.scrollSpeed (fallback, p2 null)";
                 }
             }
             else
             {
                 // any other playerID uses global scrollSpeed
-                ScrollSpeed = gmScroll;
+                ScrollSpeed = 8;
                 chosenSource = "_GameManager.scrollSpeed (playerID out of expected range)";
             }
         }

@@ -4101,7 +4101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4acd5d593023e849a6a6d9f35c1f7b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
+  playerID: 1
   Music: {fileID: 387631743}
   gm: {fileID: 0}
   hpManager: {fileID: 1903816223}

@@ -253,15 +253,19 @@ public class ChartSelectManager : MonoBehaviour
 
         if (state == State.bigButton)
         {
-            if (submitValue > 0 && timerMax <= timer)
+            foreach (PlayerScript player in _gm.players)
             {
-                anims.scene = "MainMenu";
-                anims.PawStB();
-                timer = 0;
-            }
-            else if (timerMax > timer)
-            {
-                timer += Time.deltaTime;
+                submitValue = player.Submit();
+                if (submitValue > 0 && timerMax <= timer)
+                {
+                    anims.scene = "MainMenu";
+                    anims.PawStB();
+                    timer = 0;
+                }
+                else if (timerMax > timer)
+                {
+                    timer += Time.deltaTime;
+                }
             }
         }
         else if (state == State.smallButton)

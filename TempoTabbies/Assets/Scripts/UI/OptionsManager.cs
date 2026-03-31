@@ -28,7 +28,6 @@ public class OptionsManager : MonoBehaviour
     public Button profiles;
     public Slider volumeSlider;
     public Button showButton;
-    public Slider scrollSpeed;
     public Button audioOffset1;
     public Button audioOffset2;
     public Button assistTick;
@@ -54,7 +53,6 @@ public class OptionsManager : MonoBehaviour
     // Slider value text
     [Header("Number text in the settings")]
     public TextMeshProUGUI volumeValue;
-    public TextMeshProUGUI scrollSpeedValue;
     public TextMeshProUGUI audioOffsetValue;
     public TextMeshProUGUI assistTickVolumeValue;
     public TextMeshProUGUI hitSoundVolumeValue;
@@ -78,7 +76,6 @@ public class OptionsManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(backButton.gameObject);
         // sets the sliders and buttons to the current values
         volumeSlider.value = gameManager.volume;
-        scrollSpeed.value = gameManager.scrollSpeed;
         audioOffsetFloat = gameManager.audioOffset;
         assistTickVolume.value = gameManager.assistTickVolume;
         hitSoundVolume.value = gameManager.hitSoundVolume;
@@ -100,17 +97,14 @@ public class OptionsManager : MonoBehaviour
             }
         }
         if ((int)volumeSlider.value != volumeSlider.value) { volumeSlider.value = (int)volumeSlider.value; }
-        if ((int)scrollSpeed.value != scrollSpeed.value) { scrollSpeed.value = (int)scrollSpeed.value; }
 
         volumeValue.text = (volumeSlider.value).ToString();
-        scrollSpeedValue.text = scrollSpeed.value.ToString();
         audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
         assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
         hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
 
         AudioListener.volume = volumeSlider.value / 10;
         gameManager.volume = volumeSlider.value;
-        gameManager.scrollSpeed = scrollSpeed.value;
         gameManager.assistTickVolume = assistTickVolume.value;
         gameManager.hitSoundVolume = hitSoundVolume.value;
     }

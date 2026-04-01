@@ -135,14 +135,15 @@ public class OptionsManager : MonoBehaviour
 
     public void OnEpilepsyClick()
     {
-        gameManager.epilepsy = !gameManager.epilepsy;
-        if (gameManager.epilepsy)
+        if (gameManager.epilepsy == true)
         {
-            epilepsyConfirmation.color = Color.limeGreen;
+            gameManager.epilepsy = false;
+            epilepsyConfirmation.color = Color.softRed;
         }
         else
         {
-            epilepsyConfirmation.color = Color.softRed;
+            gameManager.epilepsy = true;
+            epilepsyConfirmation.color = Color.limeGreen;
         }
     }
 

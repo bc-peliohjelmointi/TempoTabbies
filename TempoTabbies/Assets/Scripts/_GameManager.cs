@@ -95,7 +95,7 @@ public class _GameManager : MonoBehaviour
             FindPlayers();
         }
 
-        if (state == GameState.Game)
+        if (state == GameState.Game || state == GameState.StageSelect)
         {
             source.Stop();
         }

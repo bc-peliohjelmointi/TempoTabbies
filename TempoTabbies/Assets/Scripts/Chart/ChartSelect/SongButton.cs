@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class SongButton : MonoBehaviour
@@ -15,7 +16,7 @@ public class SongButton : MonoBehaviour
     public Image bannerImage; // Add this reference
     public Sprite defaultBannerSprite; // Set this in inspector
 
-    private SMFile currentSong;
+    public SMFile currentSong;
     private ChartSelectManager manager;
     private bool chartsVisible = false;
     private GameObject previouslySelectedObject;
@@ -260,6 +261,7 @@ public class SongButton : MonoBehaviour
     {
         manager.OnChartSelected(currentSong, chart);
     }
+
 
     public Transform ChartListParentAccessor => ChartListParent;
     public bool ChartsVisible => chartsVisible;

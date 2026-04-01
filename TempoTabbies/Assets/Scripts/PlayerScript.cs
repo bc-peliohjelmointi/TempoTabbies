@@ -123,6 +123,10 @@ public class PlayerScript : MonoBehaviour
                 break;
 
             case _GameManager.GameState.StageSelect:
+                if (!gameManager.party)
+                {
+                    AllCards.Clear();
+                }
                 break;
 
             case _GameManager.GameState.Game:

@@ -131,6 +131,11 @@ public class SongButton : MonoBehaviour
             colors.highlightedColor = new Color(0.7f, 0.3f, 0.9f);
             colors.pressedColor = new Color(0.5f, 0.1f, 0.7f);
                 break;
+            case "Hell":
+                colors.normalColor = new Color(0.3f, 0.1f, 0.1f); // Dark Red
+                colors.highlightedColor = new Color(0.4f, 0.2f, 0.2f);
+                colors.pressedColor = new Color(0.2f, 0.0f, 0.0f);
+                break;
             default:
                 colors.normalColor = new Color(0.6f, 0.6f, 0.6f); // Gray for unknown
                 colors.highlightedColor = new Color(0.7f, 0.7f, 0.7f);

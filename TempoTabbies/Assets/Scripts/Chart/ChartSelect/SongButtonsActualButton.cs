@@ -1,23 +1,35 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 
-public class SongButtonsActualButton : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
 {
     public SongButton songButton;
     public AudioSource Music;
-    public void OnDeselect(BaseEventData eventData)
-    {
-        Music.Stop();
-    }
+    public AudioMixer mixer;
+    private _GameManager _gm;
+
     public void OnSelect(BaseEventData eventData)
     {
-        StartCoroutine(LoadAndStartMusic(songButton.currentSong));
+        if (!Music.isPlaying)
+        {
+            if (_gm == null) _gm = FindFirstObjectByType<_GameManager>();
+            if (_gm.allAudioSources.Count < 4)
+            {
+                foreach (AudioSource source in FindObjectsByType<AudioSource>(FindObjectsSortMode.None))
+                {
+                    _gm.allAudioSources.Add(source);
+                }
+            }
+            StartCoroutine(LoadAndStartMusic(songButton.currentSong));
+        }
     }
     private IEnumerator LoadAndStartMusic(SMFile sm)
     {
+        if (Music.clip == null) { 
         string songDir = Path.GetDirectoryName(sm.FilePath);
         string songsRoot = Path.Combine(Application.dataPath, "Songs");
 
@@ -55,17 +67,28 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler, IDeselectH
         if (ext == ".ogg") audioType = AudioType.OGGVORBIS;
         else if (ext == ".wav") audioType = AudioType.WAV;
 
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(uri, audioType))
-        {
-            yield return www.SendWebRequest();
-
-            if (www.result != UnityWebRequest.Result.Success)
+            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(uri, audioType))
             {
-                Debug.LogError($"Failed to load audio: {www.error}");
-                yield break;
-            }
+                DownloadHandlerAudioClip dlHandler = (DownloadHandlerAudioClip)www.downloadHandler;
+                dlHandler.streamAudio = true;
 
-            Music.clip = DownloadHandlerAudioClip.GetContent(www);
+                yield return www.SendWebRequest();
+
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError($"Failed to load audio: {www.error}");
+                    yield break;
+                }
+
+                Music.clip = dlHandler.audioClip;
+            }
+        }
+        foreach (AudioSource source in _gm.allAudioSources)
+        {
+            if (source != Music)
+            {
+                source.Stop();
+            }
         }
 
         Music.Play();

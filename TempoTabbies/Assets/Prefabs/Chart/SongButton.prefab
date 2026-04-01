@@ -338,6 +338,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+      - m_Target: {fileID: 3630174083518961789}
+        m_TargetAssemblyTypeName: SongButton, Assembly-CSharp
+        m_MethodName: SaveThisButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3390988438132665428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SongButtonsActualButton
   songButton: {fileID: 3630174083518961789}
   Music: {fileID: 7240236397961597843}
+  mixer: {fileID: 0}
 --- !u!1 &7811081455126019457
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,7 +518,7 @@ AudioSource:
   m_GameObject: {fileID: 7811081455126019457}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -398658042099413803, guid: d1d08a033419ccd4283b65776eaee1bb, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

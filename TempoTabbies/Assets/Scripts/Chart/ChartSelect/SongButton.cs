@@ -31,7 +31,13 @@ public class SongButton : MonoBehaviour
         {
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(ToggleCharts);
+            button.onClick.AddListener(SaveThisButton);
         }
+    }
+
+    public void SaveThisButton()
+    {
+        _gm.savedButtonName = gameObject.name;
     }
 
     void Update()

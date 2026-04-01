@@ -52,6 +52,11 @@ public class _GameManager : MonoBehaviour
 
     private JSON_Stuff json;
 
+    [HideInInspector]
+    public string savedButtonName;
+    [HideInInspector]
+    public List<AudioSource> allAudioSources;
+
     public enum GameState
     {
         Start, // Starting section where p1 is created
@@ -104,6 +109,13 @@ public class _GameManager : MonoBehaviour
             if (!source.isPlaying)
             {
                 source.Play();
+            }
+        }
+        if (state == GameState.Game || state == GameState.MainMenu)
+        {
+            if (allAudioSources.Count > 0)
+            {
+                allAudioSources.Clear();
             }
         }
         if (multiplayer)

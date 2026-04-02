@@ -14,6 +14,7 @@ public class ChartSelectManager : MonoBehaviour
     public TextMeshProUGUI p1ScoreText;
     public TextMeshProUGUI p2ScoreText;
     public MenuAnimations anims;
+    public RectTransform rectTransform;
 
     [Header("Song Folder")]
     public string SongsFolder = "Songs";
@@ -281,6 +282,7 @@ public class ChartSelectManager : MonoBehaviour
                 if (submitValue > 0 && timerMax <= timer)
                 {
                     _gm.EnableControllers();
+                    ContinueMovement();
                     state = State.bigButton;
                     EventSystem.current.SetSelectedGameObject(GameObject.Find(_gm.savedButtonName).transform.GetChild(0).gameObject);
                     timer = 0;
@@ -396,5 +398,15 @@ public class ChartSelectManager : MonoBehaviour
         _gm.EnableControllers();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MultiPlayerChartTest");
         _gm.source.volume = 0;
+    }
+
+    public void StopMovement()
+    {
+        songsScrollRect.content = null;
+    }
+
+    public void ContinueMovement()
+    {
+        songsScrollRect.content = (RectTransform)SongListParent;
     }
 }

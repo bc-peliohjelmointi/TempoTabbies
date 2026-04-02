@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class SongButton : MonoBehaviour
@@ -26,18 +25,25 @@ public class SongButton : MonoBehaviour
     void Awake()
     {
         _gm = FindFirstObjectByType<_GameManager>();
+        manager = FindFirstObjectByType<ChartSelectManager>();
         Button button = GetComponent<Button>();
         if (button != null)
         {
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(ToggleCharts);
             button.onClick.AddListener(SaveThisButton);
+            button.onClick.AddListener(StopMovement);
         }
     }
 
     public void SaveThisButton()
     {
         _gm.savedButtonName = gameObject.name;
+    }
+
+    public void StopMovement()
+    {
+        manager.StopMovement();
     }
 
     void Update()
@@ -127,9 +133,9 @@ public class SongButton : MonoBehaviour
                 colors.pressedColor = new Color(0.7f, 0.1f, 0.1f);
                 break;
             case "Challenge":
-            colors.normalColor = new Color(0.6f, 0.2f, 0.8f); // Purple
-            colors.highlightedColor = new Color(0.7f, 0.3f, 0.9f);
-            colors.pressedColor = new Color(0.5f, 0.1f, 0.7f);
+                colors.normalColor = new Color(0.6f, 0.2f, 0.8f); // Purple
+                colors.highlightedColor = new Color(0.7f, 0.3f, 0.9f);
+                colors.pressedColor = new Color(0.5f, 0.1f, 0.7f);
                 break;
             case "Hell":
                 colors.normalColor = new Color(0.3f, 0.1f, 0.1f); // Dark Red

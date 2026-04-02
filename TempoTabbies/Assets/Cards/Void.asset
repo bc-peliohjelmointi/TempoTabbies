@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: Void
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: void
+  CardName: 
   description: 
   effectType: 8
-  icon: {fileID: 0}
+  icon: {fileID: -2159299697083492555, guid: 26b43a94d620ebc459a2db9322ef4f14, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
-  activeP1: 1
+  multiplayer: 0
+  activeP1: 0
   activeP2: 0
   value: 0
   triggerThreshold: 0

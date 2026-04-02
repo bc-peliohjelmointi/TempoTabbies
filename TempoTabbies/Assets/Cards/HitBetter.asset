@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: HitBetter
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: hitBetter
+  CardName: 
   description: 
   effectType: 5
-  icon: {fileID: 0}
+  icon: {fileID: 5097197816180322628, guid: d8027524c92188e488a625c233b75b10, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  multiplayer: 0
   activeP1: 0
   activeP2: 0
   value: 0

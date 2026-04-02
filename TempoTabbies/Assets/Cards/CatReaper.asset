@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: CatReaper
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: catReaper
+  CardName: 
   description: 
   effectType: 2
-  icon: {fileID: 0}
+  icon: {fileID: -3506820138590885596, guid: a94ef7ed4a218fc468a44d7e13a4b185, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  multiplayer: 0
   activeP1: 0
   activeP2: 0
   value: 0

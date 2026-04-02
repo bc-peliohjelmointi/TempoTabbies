@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e9a3ade714f783246aeab9c3c2463432
+guid: a94ef7ed4a218fc468a44d7e13a4b185
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8293487871886533600
-    second: keltainen_0
+      213: -3506820138590885596
+    second: "KESKENCatReaper \u2013 kopio_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: keltainen_0
+      name: "KESKENCatReaper \u2013 kopio_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 465
-        height: 422
+        width: 1390
+        height: 2035
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e3aec85743681370800000000000000
-      internalID: 8293487871886533600
+      spriteID: 429aa14f9a5455fc0800000000000000
+      internalID: -3506820138590885596
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      keltainen_0: 8293487871886533600
+      "KESKENCatReaper \u2013 kopio_0": -3506820138590885596
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

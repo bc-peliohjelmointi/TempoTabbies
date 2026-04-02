@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: Zoomies
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: New Card
+  CardName: 
   description: 
   effectType: 10
-  icon: {fileID: 0}
+  icon: {fileID: -210772293048993853, guid: 493de2b479947504eb430385d5d3cb1b, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  multiplayer: 0
   activeP1: 0
   activeP2: 0
   value: 0

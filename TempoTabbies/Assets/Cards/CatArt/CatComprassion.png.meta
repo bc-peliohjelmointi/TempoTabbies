@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 26af91fb05324a542b2f192601c9ee60
+guid: 144794e60bb1e6b42942f29b2e6dd416
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6503466328739821764
-    second: sininen_0
+      213: -1718770663135217199
+    second: CatComprassion_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sininen_0
+      name: CatComprassion_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 465
-        height: 422
+        width: 1390
+        height: 2035
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c8304d4b24f04a50800000000000000
-      internalID: 6503466328739821764
+      spriteID: 1d976753033b528e0800000000000000
+      internalID: -1718770663135217199
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      sininen_0: 6503466328739821764
+      CatComprassion_0: -1718770663135217199
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

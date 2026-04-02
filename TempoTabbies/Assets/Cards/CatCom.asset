@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: CatCom
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: catCom
-  description: 
+  CardName: 
+  description: MISS and BAD now give slightly more points
   effectType: 12
-  icon: {fileID: 0}
+  icon: {fileID: -1718770663135217199, guid: 144794e60bb1e6b42942f29b2e6dd416, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  multiplayer: 0
   activeP1: 0
   activeP2: 0
   value: 0

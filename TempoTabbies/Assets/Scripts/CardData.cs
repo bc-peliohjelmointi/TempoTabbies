@@ -6,7 +6,7 @@ public class CardDataScript : ScriptableObject
     public enum EffectType
     {
         Empty,
-        ComboLeech,
+        betterHit,
         CatReaper,
         DiscoCat,
         Diva,
@@ -30,7 +30,7 @@ public class CardDataScript : ScriptableObject
     [Header("Perustiedot")]
     public string CardName = "New Card";   // Kortin nimi
     [TextArea] public string description; // Kortin kuvaus
-    public EffectType effectType;           // esim. "ComboLeech"
+    public EffectType effectType;           // esim. "betterHit"
     public Sprite icon;                 // Kuvake
                                         // public CardType type;               // Minkä tyyppinen kortti on
 

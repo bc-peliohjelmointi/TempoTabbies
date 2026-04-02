@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: HitWorse
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: HitWorse
-  description: 
+  CardName: 
+  description: "Both players notes become harder to hit\u200B"
   effectType: 6
-  icon: {fileID: 0}
+  icon: {fileID: -2956686467031510096, guid: 2dfb6ceb50b8e854781c7ade71cf65e7, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  multiplayer: 0
   activeP1: 0
   activeP2: 0
   value: 0

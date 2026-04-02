@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 83929c74e5582a4458600c542407ce74
+guid: 3fa81f3dc7d981541acda33fe473309e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8004799667895317265
-    second: oranssi_0
+      213: 5062262819564668447
+    second: pawParticle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oranssi_0
+      name: pawParticle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 465
-        height: 422
+        x: 556
+        y: 568
+        width: 388
+        height: 361
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fec4fe00d1d39e090800000000000000
-      internalID: -8004799667895317265
+      spriteID: f16c1df9635c04640800000000000000
+      internalID: 5062262819564668447
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      oranssi_0: -8004799667895317265
+      pawParticle_0: 5062262819564668447
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

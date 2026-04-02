@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: Taco
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: tako
+  CardName: 
   description: 
   effectType: 13
-  icon: {fileID: 0}
+  icon: {fileID: 1774191064188915315, guid: bbfc40b9356a9fe40951d691a3995be9, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
+  multiplayer: 0
   activeP1: 0
   activeP2: 0
   value: 0

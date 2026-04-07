@@ -27,7 +27,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
             StartCoroutine(LoadAndStartMusic(songButton.currentSong));
         }
     }
-    private IEnumerator LoadAndStartMusic(SMFile sm)
+    private IEnumerator LoadAndStartMusic(SMFile sm) 
     {
         if (Music.clip == null) { 
         string songDir = Path.GetDirectoryName(sm.FilePath);
@@ -90,7 +90,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                 source.Stop();
             }
         }
-
+      Music.time = sm.chartStartOffset;
         Music.Play();
 
         Debug.Log($"[GameManager] Music started at time 0, notes have offset applied");

@@ -46,6 +46,7 @@ public class Create_LoadPlayer : MonoBehaviour
     [Header("Where buttons go when changing sides")]
     public GameObject startButton; // the button that we start on
     public GameObject startOfEdit; // the button the editing starts on
+    public Button saveButton;
 
     [Header("Sections of buttons")]
     public GameObject startingSection;
@@ -131,8 +132,7 @@ public class Create_LoadPlayer : MonoBehaviour
                     submit = player.Submit();
                     if (submit > 0 && timerMax <= timer)
                     {
-                        SaveName();
-                        GoToStartButton();
+                        saveButton.onClick.Invoke();
                         timer = 0;
                     }
                     else if (timerMax > timer)

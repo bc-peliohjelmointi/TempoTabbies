@@ -15,7 +15,7 @@ public class SongButton : MonoBehaviour
     public Image bannerImage; // Add this reference
     public Sprite defaultBannerSprite; // Set this in inspector
 
-    private SMFile currentSong;
+    public SMFile currentSong;
     private ChartSelectManager manager;
     private bool chartsVisible = false;
     private GameObject previouslySelectedObject;
@@ -25,12 +25,25 @@ public class SongButton : MonoBehaviour
     void Awake()
     {
         _gm = FindFirstObjectByType<_GameManager>();
+        manager = FindFirstObjectByType<ChartSelectManager>();
         Button button = GetComponent<Button>();
         if (button != null)
         {
             button.onClick.RemoveAllListeners();
             button.onClick.AddListener(ToggleCharts);
+            button.onClick.AddListener(SaveThisButton);
+            button.onClick.AddListener(StopMovement);
         }
+    }
+
+    public void SaveThisButton()
+    {
+        _gm.savedButtonName = gameObject.name;
+    }
+
+    public void StopMovement()
+    {
+        manager.StopMovement();
     }
 
     void Update()
@@ -120,9 +133,14 @@ public class SongButton : MonoBehaviour
                 colors.pressedColor = new Color(0.7f, 0.1f, 0.1f);
                 break;
             case "Challenge":
-            colors.normalColor = new Color(0.6f, 0.2f, 0.8f); // Purple
-            colors.highlightedColor = new Color(0.7f, 0.3f, 0.9f);
-            colors.pressedColor = new Color(0.5f, 0.1f, 0.7f);
+                colors.normalColor = new Color(0.6f, 0.2f, 0.8f); // Purple
+                colors.highlightedColor = new Color(0.7f, 0.3f, 0.9f);
+                colors.pressedColor = new Color(0.5f, 0.1f, 0.7f);
+                break;
+            case "Hell":
+                colors.normalColor = new Color(0.3f, 0.1f, 0.1f); // Dark Red
+                colors.highlightedColor = new Color(0.4f, 0.2f, 0.2f);
+                colors.pressedColor = new Color(0.2f, 0.0f, 0.0f);
                 break;
             default:
                 colors.normalColor = new Color(0.6f, 0.6f, 0.6f); // Gray for unknown
@@ -260,6 +278,7 @@ public class SongButton : MonoBehaviour
     {
         manager.OnChartSelected(currentSong, chart);
     }
+
 
     public Transform ChartListParentAccessor => ChartListParent;
     public bool ChartsVisible => chartsVisible;

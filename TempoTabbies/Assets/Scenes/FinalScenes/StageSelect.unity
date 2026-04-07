@@ -1041,7 +1041,9 @@ MonoBehaviour:
   p1ScoreText: {fileID: 788178965}
   p2ScoreText: {fileID: 1833210137}
   anims: {fileID: 1158054921}
+  rectTransform: {fileID: 0}
   SongsFolder: Songs
+  _gm: {fileID: 0}
   scoreImages: {fileID: 1583709521}
   submitValue: 0
   timer: 0
@@ -5357,7 +5359,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 20
+  m_ScrollSensitivity: 200
   m_Viewport: {fileID: 1177915026}
   m_HorizontalScrollbar: {fileID: 875258880}
   m_VerticalScrollbar: {fileID: 703474900}

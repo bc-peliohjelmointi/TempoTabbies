@@ -14,6 +14,7 @@ public class ChartSelectManager : MonoBehaviour
     public TextMeshProUGUI p1ScoreText;
     public TextMeshProUGUI p2ScoreText;
     public MenuAnimations anims;
+    public RectTransform rectTransform;
 
     [Header("Song Folder")]
     public string SongsFolder = "Songs";
@@ -25,10 +26,10 @@ public class ChartSelectManager : MonoBehaviour
     private GameObject lastSelectedObject;
     private GameObject lastHoveredSelectable;
 
-    private _GameManager _gm;
+    public _GameManager _gm;
     public GameObject scoreImages;
 
-   // [field: HideInInspector]
+    // [field: HideInInspector]
     public float submitValue;
     public float timer;
     private float timerMax = 0.5f;
@@ -45,9 +46,9 @@ public class ChartSelectManager : MonoBehaviour
 
     void Start()
     {
+        _gm = FindFirstObjectByType<_GameManager>();
         LoadAllSongs();
         PopulateSongList();
-        _gm = FindFirstObjectByType<_GameManager>();
         _gm.EnableControllers();
         _gm.state = _GameManager.GameState.StageSelect;
         _gm.source.volume = 100;
@@ -107,6 +108,7 @@ public class ChartSelectManager : MonoBehaviour
             SongButton btn = buttonObj.GetComponent<SongButton>();
             if (btn != null)
             {
+                btn.name = $"SongButton_{sm.Title}";
                 btn.Setup(sm, this);
                 songButtons.Add(btn);
 
@@ -118,10 +120,14 @@ public class ChartSelectManager : MonoBehaviour
             }
         }
 
-        if (songButtons.Count > 0)
+        lastSelectedObject = songButtons[0].transform.GetChild(0).gameObject;
+        if (_gm.savedButtonName == "")
         {
-            lastSelectedObject = songButtons[0].transform.GetChild(0).gameObject;
             EventSystem.current.SetSelectedGameObject(songButtons[0].transform.GetChild(0).gameObject);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(GameObject.Find(_gm.savedButtonName).transform.GetChild(0).gameObject);
         }
     }
 
@@ -276,8 +282,9 @@ public class ChartSelectManager : MonoBehaviour
                 if (submitValue > 0 && timerMax <= timer)
                 {
                     _gm.EnableControllers();
+                    ContinueMovement();
                     state = State.bigButton;
-                    EventSystem.current.SetSelectedGameObject(songButtons[0].transform.GetChild(0).gameObject);
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find(_gm.savedButtonName).transform.GetChild(0).gameObject);
                     timer = 0;
                 }
                 else if (timerMax > timer)
@@ -391,5 +398,15 @@ public class ChartSelectManager : MonoBehaviour
         _gm.EnableControllers();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MultiPlayerChartTest");
         _gm.source.volume = 0;
+    }
+
+    public void StopMovement()
+    {
+        songsScrollRect.content = null;
+    }
+
+    public void ContinueMovement()
+    {
+        songsScrollRect.content = (RectTransform)SongListParent;
     }
 }

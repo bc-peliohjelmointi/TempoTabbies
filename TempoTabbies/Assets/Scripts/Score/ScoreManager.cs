@@ -204,6 +204,28 @@ public class ScoreManager : MonoBehaviour
             $"[FINALIZE SAVE] {profileName} | {mapName} | {difficulty} | {currentScore} | {clearType}"
         );
         Debug.Log($"saved score at {currentScore}");
+        // Check existing best for this profile on this map/difficulty and avoid saving
+        // if the new score is lower than the profile's current best.
+        var existingEntries = ScoreDatabase.GetScores(mapName, difficulty);
+        int existingProfileBest = -1;
+        if (existingEntries != null)
+        {
+            foreach (var e in existingEntries)
+            {
+                if (e.profileName == profileName)
+                {
+                    existingProfileBest = e.score;
+                    break;
+                }
+            }
+        }
+
+        if (existingProfileBest >= 0 && currentScore < existingProfileBest)
+        {
+            Debug.Log($"[FINALIZE SAVE] Skipping save because current score {currentScore} is lower than existing best {existingProfileBest} for profile {profileName}.");
+            return;
+        }
+
         ScoreDatabase.SaveScore(
             profileName,
             mapName,

@@ -1,6 +1,9 @@
 using System.IO;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TonextSceneDuoScript : MonoBehaviour
@@ -10,6 +13,7 @@ public class TonextSceneDuoScript : MonoBehaviour
     public TextMeshProUGUI p2;
     public TextMeshProUGUI gameModeName;
     public TextMeshProUGUI gameMode;
+    public GameObject gameModeObject;
 
     public GameObject p2Object;
 
@@ -18,6 +22,8 @@ public class TonextSceneDuoScript : MonoBehaviour
     public _GameManager gm;
 
     public float submit;
+
+    private GameObject lastSelected;
 
     private void Start()
     {
@@ -32,6 +38,8 @@ public class TonextSceneDuoScript : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(EventSystem.current.currentSelectedGameObject);
+        Debug.Log("last" + lastSelected);
         foreach (PlayerScript player in gm.players)
         {
             submit = player.Submit();
@@ -40,6 +48,21 @@ public class TonextSceneDuoScript : MonoBehaviour
                 anims.scene = "MainMenu";
                 anims.PawStB();
             }
+        }
+        if (Mouse.current.leftButton.wasPressedThisFrame )
+        {
+            if (lastSelected != EventSystem.current.currentSelectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(lastSelected);
+            }
+        }
+        if (EventSystem.current.currentSelectedGameObject == null)
+        {
+            EventSystem.current.SetSelectedGameObject(gameModeObject.gameObject);
+        }
+        if (lastSelected != EventSystem.current.currentSelectedGameObject)
+        {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
         }
     }
 
@@ -113,10 +136,7 @@ public class TonextSceneDuoScript : MonoBehaviour
             {
                 anims.scene = "CardSelect";
             }
-            if (anims.animator.GetCurrentAnimatorStateInfo(0).length < anims.animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
-            {
-                anims.PawStB();
-            }
+            anims.PawStB();
         }
 
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class OptionsManager : MonoBehaviour
@@ -37,6 +38,7 @@ public class OptionsManager : MonoBehaviour
     public Button audioTop;
     public Button gameplay;
     public Button profilesOption;
+    public Button epilepsy;
     public GameObject audioMenu;
     public GameObject gameplayMenu;
     public GameObject profileMenu;
@@ -56,6 +58,8 @@ public class OptionsManager : MonoBehaviour
     public TextMeshProUGUI audioOffsetValue;
     public TextMeshProUGUI assistTickVolumeValue;
     public TextMeshProUGUI hitSoundVolumeValue;
+
+    private GameObject lastSelected;
 
     public enum SelectedMenu
     {
@@ -86,6 +90,18 @@ public class OptionsManager : MonoBehaviour
 
     private void Update()
     {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (lastSelected != EventSystem.current.currentSelectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(lastSelected);
+            }
+        }
+        if (lastSelected != EventSystem.current.currentSelectedGameObject)
+        {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
+        }
+
         foreach (PlayerScript player in gameManager.players)
         {
             submitValue = player.Submit();
@@ -246,6 +262,7 @@ public class OptionsManager : MonoBehaviour
         gameplayMenu.SetActive(false);
         profileMenu.SetActive(false);
         accessability.SetActive(false);
+        lastSelected = audioMenu;
     }
     public void OnGameplayMenuClick(bool reselect)
     {
@@ -257,6 +274,7 @@ public class OptionsManager : MonoBehaviour
         gameplayMenu.SetActive(true);
         profileMenu.SetActive(false);
         accessability.SetActive(false);
+        lastSelected = gameplayMenu;
     }
     public void OnProfileMenuClick(bool reselect)
     {
@@ -268,18 +286,20 @@ public class OptionsManager : MonoBehaviour
         gameplayMenu.SetActive(false);
         profileMenu.SetActive(true);
         accessability.SetActive(false);
+        lastSelected = profileMenu;
     }
 
     public void OnAccessabilityClick(bool reselect)
     {
         if (reselect)
         {
-            EventSystem.current.SetSelectedGameObject(profiles.gameObject);
+            EventSystem.current.SetSelectedGameObject(epilepsy.gameObject);
         }
         audioMenu.SetActive(false);
         gameplayMenu.SetActive(false);
         profileMenu.SetActive(false);
         accessability.SetActive(true);
+        lastSelected = accessability;
     }
 
     public void ShowButtons()

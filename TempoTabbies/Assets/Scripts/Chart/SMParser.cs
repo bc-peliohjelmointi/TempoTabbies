@@ -20,6 +20,7 @@ public class SMFile
     public string MusicFile;    
     public float Offset;
     public string Banner;
+    public float chartStartOffset;
     public Dictionary<float, float> Bpms = new();
     public List<int> SubtitleValues = new();
     public List<SMChart> Charts = new();
@@ -49,6 +50,7 @@ public static class SMParser
         sm.Offset = float.Parse(GetTag(data, "OFFSET", "0"), System.Globalization.CultureInfo.InvariantCulture);
         sm.Bpms = ParseBpms(GetTag(data, "BPMS"));
         sm.Banner = GetTag(data, "BANNER");
+        sm.chartStartOffset = float.Parse(GetTag(data, "SAMPLESTART", "0"), System.Globalization.CultureInfo.InvariantCulture);
         string subtitle = GetTag(data, "SUBTITLE");
         if (!string.IsNullOrEmpty(subtitle))
         {

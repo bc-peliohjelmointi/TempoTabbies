@@ -71,6 +71,7 @@ public class Create_LoadPlayer : MonoBehaviour
     EventSystem system;
     public GameObject lastSelectedGameObject;
     public GameObject currentSelectedGameObject_Recent;
+    private GameObject lastSelected;
 
     public enum State
     {
@@ -106,6 +107,17 @@ public class Create_LoadPlayer : MonoBehaviour
 
     private void Update()
     {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (lastSelected != EventSystem.current.currentSelectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(lastSelected);
+            }
+        }
+        if (lastSelected != EventSystem.current.currentSelectedGameObject)
+        {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
+        }
         scrollValue.text = scrollSlider.value.ToString();
         GetLastGameObjectSelected();
         switch (state)

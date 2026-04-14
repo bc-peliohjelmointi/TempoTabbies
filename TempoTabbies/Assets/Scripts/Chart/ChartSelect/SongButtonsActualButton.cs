@@ -17,6 +17,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
         if (!Music.isPlaying)
         {
             if (_gm == null) _gm = FindFirstObjectByType<_GameManager>();
+            songButton.SaveThisButton();
             if (_gm.allAudioSources.Count < 4)
             {
                 foreach (AudioSource source in FindObjectsByType<AudioSource>(FindObjectsSortMode.None))
@@ -27,7 +28,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
             StartCoroutine(LoadAndStartMusic(songButton.currentSong));
         }
     }
-    private IEnumerator LoadAndStartMusic(SMFile sm)
+    private IEnumerator LoadAndStartMusic(SMFile sm) 
     {
         if (Music.clip == null) { 
         string songDir = Path.GetDirectoryName(sm.FilePath);
@@ -79,7 +80,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                     Debug.LogError($"Failed to load audio: {www.error}");
                     yield break;
                 }
-
+                
                 Music.clip = dlHandler.audioClip;
             }
         }
@@ -90,7 +91,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                 source.Stop();
             }
         }
-
+      Music.time = sm.chartStartOffset;
         Music.Play();
 
         Debug.Log($"[GameManager] Music started at time 0, notes have offset applied");

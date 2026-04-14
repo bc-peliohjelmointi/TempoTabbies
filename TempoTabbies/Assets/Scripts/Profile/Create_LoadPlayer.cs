@@ -472,6 +472,16 @@ public class Create_LoadPlayer : MonoBehaviour
         buttonEditSection.SetActive(false);
     }
 
+    public void NewProfileButton()
+    {
+        scrollSlider.value = 5;
+        ScrollSpeed();
+        assistTick = false;
+        AssistTick();
+        showButtons = false;
+        ShowButtons();
+    }
+
     public void LoadPlayerToPlayer(int number)
     {
         json.LoadPlayerToPlayer(player, number);

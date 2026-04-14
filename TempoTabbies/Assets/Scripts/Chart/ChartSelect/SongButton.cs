@@ -49,9 +49,12 @@ public class SongButton : MonoBehaviour
     void Update()
     {
         // Handle B button press to collapse when charts are expanded
-        if (chartsVisible && Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame)
+        foreach (PlayerScript player in _gm.players)
         {
-            CollapseCharts();
+            if (chartsVisible && player.Submit() > 0.1f)
+            {
+                CollapseCharts();
+            }
         }
     }
 

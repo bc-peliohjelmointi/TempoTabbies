@@ -156,4 +156,43 @@ public class TonextSceneDuoScript : MonoBehaviour
             gameMode.text = "In crazy mode, players can have multiple effects active at once \n Warning: This can result in very crazy games";
         }
     }
+
+    public void P1Rumble()
+    {
+        if (gm.p1 != null)
+        {
+            ConvertToGamepad(gm.p1.inputDevice).SetMotorSpeeds(0.2f, 0.2f);
+            Invoke("StopP1Rumble", 0.3f);
+        }
+    }
+    public void StopP1Rumble() 
+    {
+        ConvertToGamepad(gm.p1.inputDevice).SetMotorSpeeds(0f, 0f);
+    }
+    public void P2Rumble()
+    {
+        if (gm.p2 != null)
+        {
+            ConvertToGamepad(gm.p2.inputDevice).SetMotorSpeeds(0.2f, 0.2f);
+            Invoke("StopP2Rumble", 0.3f);
+        }
+    }
+    public void StopP2Rumble()
+    {
+        ConvertToGamepad(gm.p2.inputDevice).SetMotorSpeeds(0f, 0f);
+    }
+    private Gamepad ConvertToGamepad(InputDevice device)
+    {
+        if (device == null) return null;
+
+        if (device is Gamepad gp) return gp;
+
+        foreach (var g in Gamepad.all)
+        {
+            if (g.deviceId == device.deviceId)
+                return g;
+        }
+
+        return null;
+    }
 }

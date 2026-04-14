@@ -16,6 +16,15 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
     {
         if (!Music.isPlaying)
         {
+            StartCoroutine(ChangeSongs());
+        }
+    }
+    private IEnumerator ChangeSongs()
+    {
+        yield return new WaitForSeconds(0.001f);
+        if (EventSystem.current.currentSelectedGameObject == gameObject)
+        {
+            yield return new WaitForSeconds(0.5f);
             if (_gm == null) _gm = FindFirstObjectByType<_GameManager>();
             songButton.SaveThisButton();
             if (_gm.allAudioSources.Count < 4)
@@ -28,45 +37,46 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
             StartCoroutine(LoadAndStartMusic(songButton.currentSong));
         }
     }
-    private IEnumerator LoadAndStartMusic(SMFile sm) 
+    private IEnumerator LoadAndStartMusic(SMFile sm)
     {
-        if (Music.clip == null) { 
-        string songDir = Path.GetDirectoryName(sm.FilePath);
-        string songsRoot = Path.Combine(Application.dataPath, "Songs");
-
-        string musicFile = sm.MusicFile;
-        if (string.IsNullOrEmpty(musicFile))
+        if (Music.clip == null)
         {
-            Debug.LogError($"No MUSIC tag found in SM file for {sm.Title}");
-            yield break;
-        }
+            string songDir = Path.GetDirectoryName(sm.FilePath);
+            string songsRoot = Path.Combine(Application.dataPath, "Songs");
 
-        string fullPath = Path.Combine(songDir, musicFile);
-
-        if (!File.Exists(fullPath))
-        {
-            string[] found = Directory.GetFiles(songsRoot, Path.GetFileName(musicFile), SearchOption.AllDirectories);
-            if (found.Length > 0)
+            string musicFile = sm.MusicFile;
+            if (string.IsNullOrEmpty(musicFile))
             {
-                fullPath = found[0];
-                Debug.Log($"[SM Loader] Found audio by search: {fullPath}");
-            }
-            else
-            {
-                Debug.LogError($"Audio file not found anywhere: {musicFile}");
+                Debug.LogError($"No MUSIC tag found in SM file for {sm.Title}");
                 yield break;
             }
-        }
 
-        fullPath = Path.GetFullPath(fullPath);
-        string uri = "file:///" + UnityWebRequest.EscapeURL(fullPath.Replace("\\", "/"));
+            string fullPath = Path.Combine(songDir, musicFile);
 
-        Debug.Log($"[SM Loader] Loading audio from: {uri}");
+            if (!File.Exists(fullPath))
+            {
+                string[] found = Directory.GetFiles(songsRoot, Path.GetFileName(musicFile), SearchOption.AllDirectories);
+                if (found.Length > 0)
+                {
+                    fullPath = found[0];
+                    Debug.Log($"[SM Loader] Found audio by search: {fullPath}");
+                }
+                else
+                {
+                    Debug.LogError($"Audio file not found anywhere: {musicFile}");
+                    yield break;
+                }
+            }
 
-        AudioType audioType = AudioType.MPEG;
-        string ext = Path.GetExtension(fullPath).ToLower();
-        if (ext == ".ogg") audioType = AudioType.OGGVORBIS;
-        else if (ext == ".wav") audioType = AudioType.WAV;
+            fullPath = Path.GetFullPath(fullPath);
+            string uri = "file:///" + UnityWebRequest.EscapeURL(fullPath.Replace("\\", "/"));
+
+            Debug.Log($"[SM Loader] Loading audio from: {uri}");
+
+            AudioType audioType = AudioType.MPEG;
+            string ext = Path.GetExtension(fullPath).ToLower();
+            if (ext == ".ogg") audioType = AudioType.OGGVORBIS;
+            else if (ext == ".wav") audioType = AudioType.WAV;
 
             using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(uri, audioType))
             {
@@ -80,7 +90,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                     Debug.LogError($"Failed to load audio: {www.error}");
                     yield break;
                 }
-                
+
                 Music.clip = dlHandler.audioClip;
             }
         }
@@ -91,7 +101,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                 source.Stop();
             }
         }
-      Music.time = sm.chartStartOffset;
+        Music.time = sm.chartStartOffset;
         Music.Play();
 
         Debug.Log($"[GameManager] Music started at time 0, notes have offset applied");

@@ -1552,6 +1552,7 @@ MonoBehaviour:
   p2: {fileID: 1605448388}
   gameModeName: {fileID: 1114947014}
   gameMode: {fileID: 2045211608}
+  gameModeObject: {fileID: 385257030}
   p2Object: {fileID: 1438232503}
   json: {fileID: 0}
   anims: {fileID: 731770847}

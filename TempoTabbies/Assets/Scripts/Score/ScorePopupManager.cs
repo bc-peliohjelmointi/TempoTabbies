@@ -19,6 +19,8 @@ public class ScorePopupManager : MonoBehaviour
     public LeaderboardRow[] leaderboardRows;
     public LeaderboardRow currentProfileRow;
 
+    private ChartSelectManager chartManager;
+
     [System.Serializable]
     public struct LeaderboardRow
     {
@@ -36,6 +38,8 @@ public class ScorePopupManager : MonoBehaviour
 
         if (panelRoot != null) panelRoot.SetActive(false);
         Debug.Log("[ScorePopupManager] Awake - instance set");
+
+        if (chartManager == null) chartManager = FindFirstObjectByType<ChartSelectManager>();
     }
 
     public void ShowScores(string mapName, string difficulty)
@@ -180,9 +184,21 @@ public class ScorePopupManager : MonoBehaviour
         Debug.Log($"[ScorePopupManager] Displaying {entries.Count} score(s)");
     }
 
+    private void Update()
+    {
+        if (chartManager.state == ChartSelectManager.State.bigButton)
+        {
+            Debug.Log("[ScorePopupManager] Hide called");
+            if (panelRoot != null) panelRoot.SetActive(false);
+        }
+    }
+
     public void Hide()
     {
-        Debug.Log("[ScorePopupManager] Hide called");
-        if (panelRoot != null) panelRoot.SetActive(false);
+        if (chartManager.state == ChartSelectManager.State.bigButton)
+        {
+            Debug.Log("[ScorePopupManager] Hide called");
+            if (panelRoot != null) panelRoot.SetActive(false);
+        }
     }
 }

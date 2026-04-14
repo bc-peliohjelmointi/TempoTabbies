@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class CardManagerScript : MonoBehaviour
@@ -28,6 +30,8 @@ public class CardManagerScript : MonoBehaviour
     public CardAnimations card1;
     public CardAnimations card2;
     public CardAnimations card3;
+
+    private GameObject lastSelected;
 
     void Start()
     {
@@ -166,6 +170,20 @@ public class CardManagerScript : MonoBehaviour
         else
         {
             Debug.Log("Korttia ei voitu antaa");
+        }
+    }
+    private void Update()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (lastSelected != EventSystem.current.currentSelectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(lastSelected);
+            }
+        }
+        if (lastSelected != EventSystem.current.currentSelectedGameObject)
+        {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
         }
     }
 }

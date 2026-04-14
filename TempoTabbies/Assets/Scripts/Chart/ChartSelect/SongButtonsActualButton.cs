@@ -17,6 +17,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
         if (!Music.isPlaying)
         {
             if (_gm == null) _gm = FindFirstObjectByType<_GameManager>();
+            songButton.SaveThisButton();
             if (_gm.allAudioSources.Count < 4)
             {
                 foreach (AudioSource source in FindObjectsByType<AudioSource>(FindObjectsSortMode.None))
@@ -79,7 +80,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                     Debug.LogError($"Failed to load audio: {www.error}");
                     yield break;
                 }
-
+                
                 Music.clip = dlHandler.audioClip;
             }
         }

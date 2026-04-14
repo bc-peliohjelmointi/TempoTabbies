@@ -150,23 +150,15 @@ public class HitManager : MonoBehaviour
 
         // Current held states (check player-specific ButtonControl, assigned/current gamepad, then any gamepad in singleplayer)
         bool curLeftTriggerHeld = (button1 != null && button1.isPressed)
-                                  || (gamepad != null && gamepad.leftTrigger != null && gamepad.leftTrigger.ReadValue() > 0.5f)
-                                  || AnyGamepadHas(gp => gp.leftTrigger != null && gp.leftTrigger.ReadValue() > 0.5f)
                                   || (keyboard != null && keyboard.sKey.isPressed);
 
         bool curLeftBumperHeld = (button2 != null && button2.isPressed)
-                                 || (gamepad != null && gamepad.leftShoulder != null && gamepad.leftShoulder.isPressed)
-                                 || AnyGamepadHas(gp => gp.leftShoulder != null && gp.leftShoulder.isPressed)
                                  || (keyboard != null && keyboard.dKey.isPressed);
 
         bool curRightBumperHeld = (button3 != null && button3.isPressed)
-                                  || (gamepad != null && gamepad.rightShoulder != null && gamepad.rightShoulder.isPressed)
-                                  || AnyGamepadHas(gp => gp.rightShoulder != null && gp.rightShoulder.isPressed)
                                   || (keyboard != null && keyboard.commaKey.isPressed);
 
         bool curRightTriggerHeld = (button4 != null && button4.isPressed)
-                                   || (gamepad != null && gamepad.rightTrigger != null && gamepad.rightTrigger.ReadValue() > 0.5f)
-                                   || AnyGamepadHas(gp => gp.rightTrigger != null && gp.rightTrigger.ReadValue() > 0.5f)
                                    || (keyboard != null && keyboard.periodKey.isPressed);
 
         bool curStickLeftHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f))

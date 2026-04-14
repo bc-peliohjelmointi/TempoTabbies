@@ -3,6 +3,7 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class ChartSelectManager : MonoBehaviour
@@ -259,6 +260,11 @@ public class ChartSelectManager : MonoBehaviour
 
         if (state == State.bigButton)
         {
+            Mouse mouse = Mouse.current;
+            if (mouse.leftButton.isPressed && state == State.bigButton)
+            {
+                    EventSystem.current.SetSelectedGameObject(GameObject.Find(_gm.savedButtonName).transform.GetChild(0).gameObject);
+            }
             foreach (PlayerScript player in _gm.players)
             {
                 submitValue = player.Submit();

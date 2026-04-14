@@ -68,10 +68,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        if (playerInput.currentControlScheme == "Keyboard&Mouse")
+       /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
         {
             Destroy(gameObject);
-        }
+        }*/
         if (AllCards.Count > 0 && gameManager.state != _GameManager.GameState.Game)
         {
             Debug.Log(gameManager.state);

@@ -107,6 +107,31 @@ public class ScorePopupManager : MonoBehaviour
         // If leaderboard rows are set, populate them; otherwise fallback to contentText list
         if (rowCount > 0)
         {
+            // fetch the full set of scores for this map/difficulty 
+            List<ScoreEntry> allEntries = ScoreDatabase.GetScores(mapName, difficulty) ?? new List<ScoreEntry>();
+
+            int profileIndexInAll = -1;
+            ScoreEntry profileEntry = default;
+            string currentProfileName = null;
+            if (_GameManager.instance != null && _GameManager.instance.p1 != null)
+                currentProfileName = _GameManager.instance.p1.name;
+            // check p2 if p1 empty
+            if (string.IsNullOrEmpty(currentProfileName) && _GameManager.instance != null && _GameManager.instance.p2 != null)
+                currentProfileName = _GameManager.instance.p2.name;
+
+            if (!string.IsNullOrEmpty(currentProfileName))
+            {
+                for (int i = 0; i < allEntries.Count; i++)
+                {
+                    if (allEntries[i].profileName == currentProfileName)
+                    {
+                        profileIndexInAll = i;
+                        profileEntry = allEntries[i];
+                        break;
+                    }
+                }
+            }
+
             for (int i = 0; i < rowCount; i++)
             {
                 var row = leaderboardRows[i];
@@ -129,38 +154,35 @@ public class ScorePopupManager : MonoBehaviour
                 }
             }
 
-            // Fill current profile row: find matching entry by profile name
-            string currentProfileName = null;
-            if (_GameManager.instance != null && _GameManager.instance.p1 != null)
-                currentProfileName = _GameManager.instance.p1.name;
-
-            bool found = false;
-            for (int i = 0; i < entries.Count; i++)
+            if (profileIndexInAll >= 0)
             {
-                if (!string.IsNullOrEmpty(currentProfileName) && entries[i].profileName == currentProfileName)
-                {
-                    if (currentProfileRow.rowRoot != null) currentProfileRow.rowRoot.SetActive(true);
-                    if (currentProfileRow.indexText != null) currentProfileRow.indexText.text = (i + 1).ToString();
-                    if (currentProfileRow.playerText != null) currentProfileRow.playerText.text = entries[i].profileName;
-                    if (currentProfileRow.gradeText != null) currentProfileRow.gradeText.text = entries[i].grade;
-                    if (currentProfileRow.scoreText != null) currentProfileRow.scoreText.text = entries[i].score.ToString("N0");
-                    found = true;
-                    break;
-                }
+                if (currentProfileRow.rowRoot != null) currentProfileRow.rowRoot.SetActive(true);
+                if (currentProfileRow.indexText != null) currentProfileRow.indexText.text = (profileIndexInAll + 1).ToString();
+                if (currentProfileRow.playerText != null) currentProfileRow.playerText.text = profileEntry.profileName;
+                if (currentProfileRow.gradeText != null) currentProfileRow.gradeText.text = profileEntry.grade;
+                if (currentProfileRow.scoreText != null) currentProfileRow.scoreText.text = profileEntry.score.ToString("N0");
+            }
+            else
+            {
+                if (currentProfileRow.rowRoot != null) currentProfileRow.rowRoot.SetActive(false);
             }
 
-            if (!found && currentProfileRow.rowRoot != null)
-            {
-                currentProfileRow.rowRoot.SetActive(false);
-            }
-
-            // populate top-entry summary fields from first entry
+            // populate top-entry summary fields. Prefer current profile's best entry if present,
             if (entries.Count > 0)
             {
-                if (gradetext != null) gradetext.text = entries[0].grade;
-                if (cleartypetext != null) cleartypetext.text = $"Clear: {entries[0].clearType}";
-                if (playcounttext != null) playcounttext.text = $"Play count: {entries[0].playCount}";
-                if (scoretext != null) scoretext.text = $"Score: {entries[0].score:N0}";
+                // default to top overall
+                var summaryEntry = entries[0];
+
+                // Prefer the profileEntry from the full DB if found; otherwise use top overall
+                if (profileIndexInAll >= 0)
+                {
+                    summaryEntry = profileEntry;
+                }
+
+                if (gradetext != null) gradetext.text = summaryEntry.grade;
+                if (cleartypetext != null) cleartypetext.text = $"Clear: {summaryEntry.clearType}";
+                if (playcounttext != null) playcounttext.text = $"Play count: {summaryEntry.playCount}";
+                if (scoretext != null) scoretext.text = $"Score: {summaryEntry.score:N0}";
             }
         }
         else
@@ -174,10 +196,33 @@ public class ScorePopupManager : MonoBehaviour
             if (contentText != null) contentText.text = sb.ToString();
             if (entries.Count > 0)
             {
-                if (gradetext != null) gradetext.text = entries[0].grade;
-                if (cleartypetext != null) cleartypetext.text = $"Clear: {entries[0].clearType}";
-                if (playcounttext != null) playcounttext.text = $"Play count: {entries[0].playCount}";
-                if (scoretext != null) scoretext.text = $"Score: {entries[0].score:N0}";
+                // default to top overall
+                var summaryEntry = entries[0];
+
+                // Try to prefer current profile's best entry
+                string currentProfileName = null;
+                if (_GameManager.instance != null)
+                {
+                    if (_GameManager.instance.p1 != null) currentProfileName = _GameManager.instance.p1.name;
+                    if (string.IsNullOrEmpty(currentProfileName) && _GameManager.instance.p2 != null) currentProfileName = _GameManager.instance.p2.name;
+                }
+
+                if (!string.IsNullOrEmpty(currentProfileName))
+                {
+                    foreach (var e in entries)
+                    {
+                        if (e.profileName == currentProfileName)
+                        {
+                            summaryEntry = e;
+                            break;
+                        }
+                    }
+                }
+
+                if (gradetext != null) gradetext.text = summaryEntry.grade;
+                if (cleartypetext != null) cleartypetext.text = $"Clear: {summaryEntry.clearType}";
+                if (playcounttext != null) playcounttext.text = $"Play count: {summaryEntry.playCount}";
+                if (scoretext != null) scoretext.text = $"Score: {summaryEntry.score:N0}";
             }
         }
         panelRoot.SetActive(true);

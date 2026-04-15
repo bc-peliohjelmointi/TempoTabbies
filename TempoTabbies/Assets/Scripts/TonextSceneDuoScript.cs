@@ -34,6 +34,10 @@ public class TonextSceneDuoScript : MonoBehaviour
         {
             p2Object.SetActive(false);
         }
+        foreach (PlayerScript player in gm.players)
+        {
+            Destroy(player.gameObject);
+        }
     }
 
     private void Update()

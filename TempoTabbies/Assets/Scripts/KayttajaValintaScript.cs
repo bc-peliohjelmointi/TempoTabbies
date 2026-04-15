@@ -30,6 +30,7 @@ public class KayttajaValintaScript : MonoBehaviour
     public Image playstation;
     public Image Keyboard;
     public Image playerBG;
+    public TextMeshProUGUI noControllerText;
     public TextMeshProUGUI playerText;
 
     _GameManager gm;
@@ -55,21 +56,25 @@ public class KayttajaValintaScript : MonoBehaviour
                 xbox.gameObject.SetActive(false);
                 playstation.gameObject.SetActive(false);
                 Keyboard.gameObject.SetActive(true);
+                noControllerText.gameObject.SetActive(false);
                 break;
             case MikaKontrolleri.Xbox:
                 xbox.gameObject.SetActive(true);
                 playstation.gameObject.SetActive(false);
                 Keyboard.gameObject.SetActive(false);
+                noControllerText.gameObject.SetActive(false);
                 break;
             case MikaKontrolleri.PlayStation:
                 xbox.gameObject.SetActive(false);
                 playstation.gameObject.SetActive(true);
                 Keyboard.gameObject.SetActive(false);
+                noControllerText.gameObject.SetActive(false);
                 break;
             case MikaKontrolleri.Nothing:
                 xbox.gameObject.SetActive(false);
                 playstation.gameObject.SetActive(false);
                 Keyboard.gameObject.SetActive(false);
+                noControllerText.gameObject.SetActive(true);
                 break;
         }
     }
@@ -108,24 +113,37 @@ public class KayttajaValintaScript : MonoBehaviour
         playerText.color = new Color(1, 1, 1, 1);
         if (_playerIndex == 0)
         {
-            if (gm.p1.inputDevice is Gamepad)
+            if (gm.players.Count > 0 && gm.p1 != null)
             {
-                if (gm.p1.inputDevice.displayName.Contains("Xbox"))
+                if (gm.p1.inputDevice is Gamepad)
                 {
-                    kontrolleri = MikaKontrolleri.Xbox;
+                    if (gm.p1.inputDevice.displayName.Contains("Xbox"))
+                    {
+                        kontrolleri = MikaKontrolleri.Xbox;
+                    }
+                    else if (gm.p1.inputDevice.displayName.Contains("Dualsense"))
+                    {
+                        kontrolleri = MikaKontrolleri.PlayStation;
+                    }
+                    else
+                    {
+                        kontrolleri = MikaKontrolleri.Nothing;
+                    }
                 }
-                else if (gm.p1.inputDevice.displayName.Contains("Dualsense"))
+                else if (gm.p1.inputDevice == null || gm.p1.inputDevice == null)
                 {
-                    kontrolleri = MikaKontrolleri.PlayStation;
+                    kontrolleri = MikaKontrolleri.Nothing;
                 }
                 else
                 {
-                    kontrolleri = MikaKontrolleri.Nothing;
+                    kontrolleri = MikaKontrolleri.Keyboard;
                 }
             }
             else
             {
-                kontrolleri = MikaKontrolleri.Keyboard;
+                playerBG.color = new Color(1, 1, 1, 0.2f);
+                playerText.color = new Color(1, 1, 1, 0.2f);
+                kontrolleri = MikaKontrolleri.Nothing;
             }
         }
         else if (_playerIndex == 1 && gm.p2 != null)

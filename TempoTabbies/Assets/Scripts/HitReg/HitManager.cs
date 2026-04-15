@@ -383,7 +383,14 @@ public class HitManager : MonoBehaviour
             if (currentTime > note.TargetTime + TimingWindows.Bad)
             {
                 note.Hit = true;
-                ShowJudgment("MISS", false, false); // No direction for misses
+                if (scoreManager.eightLives)
+                {
+                    ShowJudgment("MARVELOUS", false, false); // Show BAD instead of MISS when 8 Lives is active
+                }
+                else
+                {
+                    ShowJudgment("MISS", false, false); // No direction for misses
+                }
 
                 // ADD MISS TO SCORE
                 if (scoreManager != null)

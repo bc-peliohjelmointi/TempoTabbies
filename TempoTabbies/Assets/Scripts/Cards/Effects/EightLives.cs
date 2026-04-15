@@ -39,14 +39,6 @@ public class EightLives : MonoBehaviour
                     scoreManager1.eightLives = true;
                     playerIndex = 999;
                 }
-                else
-                {
-                    scoreManager1.eightLives = false;
-                }
-            }
-            else
-            {
-                scoreManager1.eightLives = false;
             }
         }
         else

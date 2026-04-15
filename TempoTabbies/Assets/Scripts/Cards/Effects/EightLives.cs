@@ -34,7 +34,15 @@ public class EightLives : MonoBehaviour
         {
             if (data.activeP1 || data.activeP2)
             {
-                scoreManager1.eightLives = true;
+                if (playerIndex == 0 || playerIndex == 1)
+                {
+                    scoreManager1.eightLives = true;
+                    playerIndex = 999;
+                }
+                else
+                {
+                    scoreManager1.eightLives = false;
+                }
             }
             else
             {

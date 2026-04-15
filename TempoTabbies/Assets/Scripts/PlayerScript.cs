@@ -205,23 +205,4 @@ public class PlayerScript : MonoBehaviour
         button4 = inputDevice.TryGetChildControl<ButtonControl>(newButton4);
         Debug.Log($"Player {_playerIndex + 1} buttons updated: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");
     }
-
-    // Turns off other players controls
-    public void DisableOthers()
-    {
-        gameManager.whoGetsToPlay = _playerIndex;
-        // All the controllers (keyboards, gamepads etc.)
-        var allControllers = InputSystem.devices;
-        // THIS controller
-        var myDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
-
-        // Checks each controller to turn them all off
-        for (int i = 0; i < allControllers.Count; i++)
-        {
-            if (allControllers[i] != myDevice)
-            {
-                InputSystem.DisableDevice(allControllers[i]);
-            }
-        }
-    }
 }

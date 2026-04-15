@@ -1,6 +1,5 @@
 using System.IO;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -53,7 +52,7 @@ public class TonextSceneDuoScript : MonoBehaviour
                 anims.PawStB();
             }
         }
-        if (Mouse.current.leftButton.wasPressedThisFrame )
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (lastSelected != EventSystem.current.currentSelectedGameObject)
             {
@@ -165,17 +164,22 @@ public class TonextSceneDuoScript : MonoBehaviour
     {
         if (gm.p1 != null)
         {
-            ConvertToGamepad(gm.p1.inputDevice).SetMotorSpeeds(0.2f, 0.2f);
-            Invoke("StopP1Rumble", 0.3f);
+            Gamepad gp = ConvertToGamepad(gm.p1.inputDevice);
+            if (gp != null)
+            {
+                ConvertToGamepad(gm.p1.inputDevice).SetMotorSpeeds(0.2f, 0.2f);
+                Invoke("StopP1Rumble", 0.3f);
+            }
         }
     }
-    public void StopP1Rumble() 
+    public void StopP1Rumble()
     {
         ConvertToGamepad(gm.p1.inputDevice).SetMotorSpeeds(0f, 0f);
     }
     public void P2Rumble()
     {
-        if (gm.p2 != null)
+        Gamepad gp = ConvertToGamepad(gm.p2.inputDevice);
+        if (gp != null && gm.p2 != null)
         {
             ConvertToGamepad(gm.p2.inputDevice).SetMotorSpeeds(0.2f, 0.2f);
             Invoke("StopP2Rumble", 0.3f);

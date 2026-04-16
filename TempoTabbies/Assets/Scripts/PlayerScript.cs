@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -30,6 +33,9 @@ public class PlayerScript : MonoBehaviour
     [Header("In game info")]
     public List<CardDataScript> AllCards = new List<CardDataScript>();
 
+    public GameObject disconnected;
+    public TextMeshProUGUI disconnectedText;
+
     public int Score;
     public int Combo;
     public int cat; // use this to say which cat has been chosen for the player, currently 1 = tabby, 2 = orange, 3 = nothing
@@ -43,6 +49,11 @@ public class PlayerScript : MonoBehaviour
     public ButtonControl button2;
     public ButtonControl button3;
     public ButtonControl button4;
+
+
+
+
+    private bool damnit;
 
     private void Awake()
     {
@@ -68,6 +79,10 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        if (inputDevice == null)
+        {
+            StartCoroutine(Disconnected());
+        }
        /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
         {
             Destroy(gameObject);
@@ -175,6 +190,29 @@ public class PlayerScript : MonoBehaviour
         var allControllers = InputSystem.devices;
         // THIS controller
         inputDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
+    }
+
+    public IEnumerator Disconnected()
+    {
+        yield return new WaitForSeconds(0.05f);
+        if (inputDevice == null && !damnit)
+        {
+            damnit = true;
+            if (_playerIndex == 0)
+            {
+                gameManager.disconnectedText.text = "Player 1 disconnected";
+            }
+            else if (_playerIndex == 1)
+            {
+                gameManager.disconnectedText.text = "Player 2 disconnected";
+            }
+            StartCoroutine(HandleDisconnect());
+        }
+    }
+    public IEnumerator HandleDisconnect()
+    {
+        yield return StartCoroutine(gameManager.Disconnected());
+        Destroy(gameObject);
     }
 
     public void SetDefaultButtons()

@@ -24,9 +24,9 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
         yield return new WaitForSeconds(0.001f);
         if (EventSystem.current.currentSelectedGameObject == gameObject)
         {
+            songButton.SaveThisButton();
             yield return new WaitForSeconds(0.5f);
             if (_gm == null) _gm = FindFirstObjectByType<_GameManager>();
-            songButton.SaveThisButton();
             if (_gm.allAudioSources.Count < 4)
             {
                 foreach (AudioSource source in FindObjectsByType<AudioSource>(FindObjectsSortMode.None))

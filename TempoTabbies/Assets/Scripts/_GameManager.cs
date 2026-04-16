@@ -1,7 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// General game manager
@@ -51,6 +54,9 @@ public class _GameManager : MonoBehaviour
     public AudioSource source;
 
     private JSON_Stuff json;
+
+    public GameObject disconnected;
+    public TextMeshProUGUI disconnectedText;
 
     [HideInInspector]
     public string savedButtonName;
@@ -163,4 +169,13 @@ public class _GameManager : MonoBehaviour
             }
         }
     }
+
+    public IEnumerator Disconnected()
+    {
+        disconnected.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("MainMenu");
+        disconnected.SetActive(false);
+    }
+
 }

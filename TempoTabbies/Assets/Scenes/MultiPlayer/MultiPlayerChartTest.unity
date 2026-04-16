@@ -2923,7 +2923,7 @@ GameObject:
   - component: {fileID: 513570065}
   - component: {fileID: 513570064}
   m_Layer: 5
-  m_Name: Buttons
+  m_Name: Buttons p1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2979,7 +2979,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1646307846}
   - {fileID: 905673861}
   - {fileID: 1755353029}
   - {fileID: 1563874076}
@@ -8255,6 +8254,7 @@ RectTransform:
   - {fileID: 418186208}
   - {fileID: 1998132015}
   - {fileID: 513570066}
+  - {fileID: 1646307846}
   - {fileID: 47611665}
   - {fileID: 1726962194}
   - {fileID: 514202707}
@@ -8445,7 +8445,8 @@ MonoBehaviour:
   NotePrefab_TypeD: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
   LaneParent: {fileID: 24678508}
   HitLine: {fileID: 1554121468}
-  buttons: {fileID: 513570063}
+  buttonsp1: {fileID: 513570063}
+  buttonsp2: {fileID: 1646307845}
   submit: 0
 --- !u!1 &1509357024
 GameObject:
@@ -9298,12 +9299,12 @@ GameObject:
   - component: {fileID: 1646307848}
   - component: {fileID: 1646307847}
   m_Layer: 5
-  m_Name: Buttons (1)
+  m_Name: Buttons p2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1646307846
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9322,11 +9323,11 @@ RectTransform:
   - {fileID: 440892211}
   - {fileID: 527278333}
   - {fileID: 630712912}
-  m_Father: {fileID: 513570066}
+  m_Father: {fileID: 1431055408}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 406.99997, y: 0}
+  m_AnchoredPosition: {x: 226.99994, y: -169}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646307847

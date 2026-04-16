@@ -20,7 +20,7 @@ public class CardManagerScript : MonoBehaviour
     public PlayerScript Player1Cards;
     public PlayerScript Player2Cards;
 
-    private int player;
+    private int player = 0;
     private float submit;
 
     [Header("UI asiat")]
@@ -81,15 +81,13 @@ public class CardManagerScript : MonoBehaviour
     {
         if (player == 0)
         {
-            ValittuPelaaja.text = "Player 1";
-            Debug.Log("Pelaaja 1");
-            player++;
+            ValittuPelaaja.text = "Player 2";
+            Debug.Log("Pelaaja 2 vuoro");
+            player = 1;
             return gm.p1;
         }
         else if (player == 1 && gm.multiplayer)
         {
-            ValittuPelaaja.text = "Player 2";
-            Debug.Log("Pelaaja 2");
             return gm.p2;
         }
         return null;

@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
     public static float ChartStartTime;       // when chart started (notes spawn relative to this)
                                               // ADD THIS - Make GameManager a singleton for easy access
 
-    public GameObject buttons;
+    public GameObject buttonsp1;
+    public GameObject buttonsp2;
     public static GameManager Instance { get; private set; }
 
     public float submit;
@@ -112,13 +113,21 @@ public class GameManager : MonoBehaviour
         {
             gm = FindFirstObjectByType<_GameManager>();
         }
-        if (gm.showButtons)
+        if (gm.p1.showButtons)
         {
-            buttons.SetActive(true);
+            buttonsp1.SetActive(true);
         }
         else
         {
-            buttons.SetActive(false);
+            buttonsp1.SetActive(false);
+        }
+        if (gm.p2.showButtons)
+        {
+            buttonsp2.SetActive(true);
+        }
+        else
+        {
+            buttonsp2.SetActive(false);
         }
     }
 

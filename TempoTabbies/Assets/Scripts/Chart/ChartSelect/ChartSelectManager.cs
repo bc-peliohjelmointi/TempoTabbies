@@ -300,7 +300,11 @@ public class ChartSelectManager : MonoBehaviour
                 submitValue = player.Submit();
                 if (submitValue > 0 && timerMax <= timer)
                 {
-                    _gm.EnableControllers();
+                    GameSession.SelectedChartP1 = null;
+                    GameSession.SelectedSongP1 = null;
+                    GameSession.SelectedChartP2 = null;
+                    GameSession.SelectedSongP2 = null;
+                    waitingForSecondPlayer = false;
                     ContinueMovement();
                     state = State.bigButton;
                     EventSystem.current.SetSelectedGameObject(GameObject.Find(_gm.savedButtonName).transform.GetChild(0).gameObject);
@@ -418,10 +422,16 @@ public class ChartSelectManager : MonoBehaviour
             // tee tahan jotain mika indikoi etta pelaaja 2 vuoro
             return;
         }
-
+        
         GameSession.SelectedSongP2 = song;
         GameSession.SelectedChartP2 = chart;
         waitingForSecondPlayer = false;
+
+        if (GameSession.SelectedSongP1 == null || GameSession.SelectedChartP1 == null ||
+    GameSession.SelectedSongP2 == null || GameSession.SelectedChartP2 == null)
+        {
+            return;
+        }
 
         _gm.EnableControllers();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MultiPlayerChartTest");

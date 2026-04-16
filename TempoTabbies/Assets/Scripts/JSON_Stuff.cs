@@ -127,12 +127,16 @@ public class JSON_Stuff : MonoBehaviour
             gameManager.p1.scrollSpeed = player.scrollSpeed;
             gameManager.p1.name = name;
             gameManager.p1.SetNewButtons(player.button1, player.button2, player.button3, player.button4);
+            gameManager.p1.showButtons = player.showButtons;
+            gameManager.p1.assistTick = player.assistTick;
         }
         else if (playerIndex == 1)
         {
             gameManager.p2.scrollSpeed = player.scrollSpeed;
             gameManager.p2.name = name;
             gameManager.p2.SetNewButtons(player.button1, player.button2, player.button3, player.button4);
+            gameManager.p2.showButtons = player.showButtons;
+            gameManager.p2.assistTick = player.assistTick;
         }
     }
 

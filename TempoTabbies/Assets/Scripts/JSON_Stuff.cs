@@ -14,6 +14,12 @@ public class Player
     public string button2;
     public string button3;
     public string button4;
+    public string key1;
+    public string key2;
+    public string key3;
+    public string key4;
+    public string swipeLeft;
+    public string swipeRight;
 }
 
 // Placeholder for the _GameManager things
@@ -102,7 +108,7 @@ public class JSON_Stuff : MonoBehaviour
         gameManager.movingBG = gm.movingBG;
     }
 
-    public void SavePlayer(string name, float scrollSpeed, bool assistTick, bool showButtons, string button1, string button2, string button3, string button4)
+    public void SavePlayer(string name, float scrollSpeed, bool assistTick, bool showButtons, string button1, string button2, string button3, string button4, string key1, string key2, string key3, string key4, string swipeLeft, string swipeRight)
     {
         Player player = new();
         player.scrollSpeed = scrollSpeed;
@@ -112,6 +118,12 @@ public class JSON_Stuff : MonoBehaviour
         player.button2 = button2;
         player.button3 = button3;
         player.button4 = button4;
+        player.key1 = key1;
+        player.key2 = key2;
+        player.key3 = key3;
+        player.key4 = key4;
+        player.swipeLeft = swipeLeft;
+        player.swipeRight = swipeRight;
         json = JsonUtility.ToJson(player);
         File.WriteAllText($"JSON/{name}.json".Replace("\u200B", ""), json);
     }
@@ -127,6 +139,7 @@ public class JSON_Stuff : MonoBehaviour
             gameManager.p1.scrollSpeed = player.scrollSpeed;
             gameManager.p1.name = name;
             gameManager.p1.SetNewButtons(player.button1, player.button2, player.button3, player.button4);
+            gameManager.p1.SetNewKeys(player.key1, player.key2, player.key3, player.key4, player.swipeLeft, player.swipeRight);
             gameManager.p1.showButtons = player.showButtons;
             gameManager.p1.assistTick = player.assistTick;
         }
@@ -135,6 +148,7 @@ public class JSON_Stuff : MonoBehaviour
             gameManager.p2.scrollSpeed = player.scrollSpeed;
             gameManager.p2.name = name;
             gameManager.p2.SetNewButtons(player.button1, player.button2, player.button3, player.button4);
+            gameManager.p2.SetNewKeys(player.key1, player.key2, player.key3, player.key4, player.swipeLeft, player.swipeRight);
             gameManager.p2.showButtons = player.showButtons;
             gameManager.p2.assistTick = player.assistTick;
         }

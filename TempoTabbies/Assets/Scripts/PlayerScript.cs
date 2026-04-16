@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
-using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -49,7 +48,12 @@ public class PlayerScript : MonoBehaviour
     public ButtonControl button2;
     public ButtonControl button3;
     public ButtonControl button4;
-
+    public KeyControl key1;
+    public KeyControl key2;
+    public KeyControl key3;
+    public KeyControl key4;
+    public KeyControl swipeLeft;
+    public KeyControl swipeRight;
 
 
 
@@ -83,10 +87,10 @@ public class PlayerScript : MonoBehaviour
         {
             StartCoroutine(Disconnected());
         }
-       /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
-        {
-            Destroy(gameObject);
-        }*/
+        /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
+         {
+             Destroy(gameObject);
+         }*/
         if (AllCards.Count > 0 && gameManager.state != _GameManager.GameState.Game)
         {
             Debug.Log(gameManager.state);
@@ -242,5 +246,20 @@ public class PlayerScript : MonoBehaviour
         button3 = inputDevice.TryGetChildControl<ButtonControl>(newButton3);
         button4 = inputDevice.TryGetChildControl<ButtonControl>(newButton4);
         Debug.Log($"Player {_playerIndex + 1} buttons updated: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");
+    }
+
+    public void SetNewKeys(string key1, string key2, string key3, string key4, string swipeLeft, string swipeRight)
+    {
+        if (inputDevice == null)
+        {
+            Debug.LogWarning($"Player {_playerIndex + 1} has no input device assigned.");
+            return;
+        }
+        this.key1 = inputDevice.TryGetChildControl<KeyControl>(key1);
+        this.key2 = inputDevice.TryGetChildControl<KeyControl>(key2);
+        this.key3 = inputDevice.TryGetChildControl<KeyControl>(key3);
+        this.key4 = inputDevice.TryGetChildControl<KeyControl>(key4);
+        this.swipeLeft = inputDevice.TryGetChildControl<KeyControl>(swipeLeft);
+        this.swipeRight = inputDevice.TryGetChildControl<KeyControl>(swipeRight);
     }
 }

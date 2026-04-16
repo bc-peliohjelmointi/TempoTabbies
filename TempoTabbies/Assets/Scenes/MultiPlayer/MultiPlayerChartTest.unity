@@ -924,6 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7035591418e8f10439c62afba52ee924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KeyboardOwner: 0
   hitManager_P1: {fileID: 1509357025}
   hitManager_P2: {fileID: 925474174}
 --- !u!4 &142122366

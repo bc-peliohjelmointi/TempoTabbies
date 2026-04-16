@@ -111,30 +111,14 @@ public class HoldNote : MonoBehaviour
         if (!Music || !HitLine || hasEnded) return;
 
         // Use owner hit manager's assigned pad when available.
-        // FIX: fall back to Gamepad.current when AssignedGamepad is null (singleplayer)
-        gamepad = OwnerHitManager?.AssignedGamepad ?? Gamepad.current;
+        // Only fall back to Gamepad.current in singleplayer to avoid one physical
+        // controller driving both players in multiplayer.
+        var assigned = OwnerHitManager?.AssignedGamepad;
+        bool singleplayerAllowAnyGamepad = _GameManager.instance == null || !_GameManager.instance.multiplayer;
+        gamepad = assigned ?? (singleplayerAllowAnyGamepad ? Gamepad.current : null);
 
-        // Decide keyboard usage:
-        // - if no OwnerHitManager -> allow keyboard
-        // - if OwnerHitManager.AcceptKeyboard -> allow keyboard
-        // - otherwise, if there is no gamepad present/assigned -> allow keyboard as fallback
-        bool allowKeyboard;
-        if (OwnerHitManager == null)
-        {
-            allowKeyboard = true;
-        }
-        else
-        {
-            allowKeyboard = OwnerHitManager.AcceptKeyboard;
-            if (!allowKeyboard)
-            {
-                // If owner disallows keyboard but there is no gamepad available, enable keyboard fallback
-                bool hasAssignedPad = (OwnerHitManager.AssignedGamepad != null) || (Gamepad.current != null);
-                if (!hasAssignedPad)
-                    allowKeyboard = true;
-            }
-        }
-
+        // Decide keyboard usage: rely on OwnerHitManager.AcceptKeyboard (or allow if no owner).
+        bool allowKeyboard = OwnerHitManager == null ? true : OwnerHitManager.AcceptKeyboard;
         var keyboard = allowKeyboard ? Keyboard.current : null;
 
         // Current song time
@@ -147,10 +131,10 @@ public class HoldNote : MonoBehaviour
         float endY = HitLine.position.y + timeUntilEnd * ScrollSpeed;
 
         // Compute current held states (gamepad OR keyboard)
-        bool curLeftTriggerHeld = (gamepad != null && OwnerHitManager.button1.IsPressed()) || (keyboard != null && keyboard.sKey.isPressed);
-        bool curLeftShoulderHeld = (gamepad != null && OwnerHitManager.button2.IsPressed()) || (keyboard != null && keyboard.dKey.isPressed);
-        bool curRightShoulderHeld = (gamepad != null && OwnerHitManager.button3.IsPressed()) || (keyboard != null && keyboard.commaKey.isPressed);
-        bool curRightTriggerHeld = (gamepad != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && keyboard.periodKey.isPressed);
+        bool curLeftTriggerHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button1 != null && OwnerHitManager.button1.IsPressed()) || (keyboard != null && keyboard.sKey.isPressed);
+        bool curLeftShoulderHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button2 != null && OwnerHitManager.button2.IsPressed()) || (keyboard != null && keyboard.dKey.isPressed);
+        bool curRightShoulderHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button3 != null && OwnerHitManager.button3.IsPressed()) || (keyboard != null && keyboard.kKey.isPressed);
+        bool curRightTriggerHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button4 != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && keyboard.lKey.isPressed);
 
         bool curStickLeftHeld = false;
         bool curStickRightHeld = false;
@@ -158,6 +142,12 @@ public class HoldNote : MonoBehaviour
         {
             curStickLeftHeld = gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f;
             curStickRightHeld = gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f;
+        }
+        // Keyboard swipe fallbacks
+        if (keyboard != null)
+        {
+            curStickLeftHeld = curStickLeftHeld || keyboard.spaceKey.isPressed;
+            curStickRightHeld = curStickRightHeld || keyboard.rightAltKey.isPressed;
         }
 
         // --- BEFORE HOLD START ---
@@ -439,7 +429,8 @@ public class HoldNote : MonoBehaviour
             if (scoreManager != null)
                 scoreManager.AddJudgment("MISS");
             Debug.Log("[HoldNote] Release Judgment: MISS (never held)");
-            Invoke(nameof(DestroyHold), 0.05f);
+            // Schedule root GameObject destruction safely (does not require this MonoBehaviour)
+            Destroy(gameObject, 0.05f);
             return;
         }
 
@@ -474,7 +465,8 @@ public class HoldNote : MonoBehaviour
 
         Debug.Log($"[HoldNote] Release Judgment: {result} (?={diff * 1000f:F1} ms)");
 
-        Invoke(nameof(DestroyHold), 0.05f);
+        // Schedule destruction of the root GameObject; this avoids invoking on a destroyed MonoBehaviour
+        Destroy(gameObject, 0.05f);
     }
     private void DestroyHold()
     {
@@ -484,19 +476,29 @@ public class HoldNote : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // Called by HitManager when it wants the hold to process a release (e.g., player let go or hold ended).
+    public void EndHoldFromHitManager(float songTime)
+    {
+        // Only process if we haven't already given a release judgment
+        if (releaseChecked) return;
+
+        // Use the same logic as the internal release handling
+        RegisterReleaseJudgment(songTime);
+    }
+
     private bool IsPressedForLane(int lane)
     {
         // Allow keyboard fallback for singleplayer or when OwnerHitManager permits it
         var keyboard = (OwnerHitManager != null ? OwnerHitManager.AcceptKeyboard : true) ? Keyboard.current : null;
 
         if (lane == 0)
-            return (gamepad != null && OwnerHitManager.button1.IsPressed()) || (keyboard != null && keyboard.sKey.isPressed);
+            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button1 != null && OwnerHitManager.button1.IsPressed()) || (keyboard != null && keyboard.sKey.isPressed);
         if (lane == 1)
-            return (gamepad != null && OwnerHitManager.button2.IsPressed()) || (keyboard != null && keyboard.dKey.isPressed);
+            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button2 != null && OwnerHitManager.button2.IsPressed()) || (keyboard != null && keyboard.dKey.isPressed);
         if (lane == 2)
-            return (gamepad != null && OwnerHitManager.button3.IsPressed()) || (keyboard != null && keyboard.commaKey.isPressed);
+            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button3 != null && OwnerHitManager.button3.IsPressed()) || (keyboard != null && keyboard.kKey.isPressed);
         if (lane == 3)
-            return (gamepad != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && keyboard.periodKey.isPressed);
+            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button4 != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && keyboard.lKey.isPressed);
         if (lane == 4)
             return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f));
         if (lane == 5)
@@ -510,11 +512,14 @@ public class HoldNote : MonoBehaviour
         bool curLeftTriggerHeld, bool curRightTriggerHeld, bool curLeftShoulderHeld, bool curRightShoulderHeld,
         bool curStickLeftHeld, bool curStickRightHeld)
     {
-        // Keyboard mapping: S -> left trigger (lane 0), D -> left bumper (lane 1), , -> right bumper (lane 2), . -> right trigger (lane 3)
+        // Keyboard mapping: S -> left trigger (lane 0), D -> left bumper (lane 1), K -> right bumper (lane 2), L -> right trigger (lane 3)
+        // Space -> left stick (lane 4), RightAlt -> right stick (lane 5)
         bool kbLeftTriggerPressed = keyboard != null && keyboard.sKey.wasPressedThisFrame;
         bool kbLeftBumperPressed = keyboard != null && keyboard.dKey.wasPressedThisFrame;
-        bool kbRightBumperPressed = keyboard != null && keyboard.commaKey.wasPressedThisFrame;
-        bool kbRightTriggerPressed = keyboard != null && keyboard.periodKey.wasPressedThisFrame;
+        bool kbRightBumperPressed = keyboard != null && keyboard.kKey.wasPressedThisFrame;
+        bool kbRightTriggerPressed = keyboard != null && keyboard.lKey.wasPressedThisFrame;
+        bool kbStickLeftPressed = keyboard != null && keyboard.spaceKey.wasPressedThisFrame;
+        bool kbStickRightPressed = keyboard != null && keyboard.rightAltKey.wasPressedThisFrame;
 
         return lane switch
         {
@@ -522,20 +527,22 @@ public class HoldNote : MonoBehaviour
             1 => (gamepad != null && curLeftShoulderHeld && !prevLeftShoulderHeld) || kbLeftBumperPressed,
             2 => (gamepad != null && curRightShoulderHeld && !prevRightShoulderHeld) || kbRightBumperPressed,
             3 => (gamepad != null && curRightTriggerHeld && !prevRightTriggerHeld) || kbRightTriggerPressed,
-            4 => (gamepad != null && curStickLeftHeld && !prevStickLeftHeld), // stick presses only from gamepad
-            5 => (gamepad != null && curStickRightHeld && !prevStickRightHeld), // stick presses only from gamepad
+            4 => (gamepad != null && curStickLeftHeld && !prevStickLeftHeld) || kbStickLeftPressed,
+            5 => (gamepad != null && curStickRightHeld && !prevStickRightHeld) || kbStickRightPressed,
             _ => false,
         };
     }
 
     private void UpdatePrevHeldStates(bool curLeftTriggerHeld, bool curRightTriggerHeld, bool curLeftShoulderHeld, bool curRightShoulderHeld, bool curStickLeftHeld, bool curStickRightHeld)
     {
-        prevLeftTriggerHeld = (gamepad != null) && curLeftTriggerHeld;
-        prevRightTriggerHeld = (gamepad != null) && curRightTriggerHeld;
-        prevLeftShoulderHeld = (gamepad != null) && curLeftShoulderHeld;
-        prevRightShoulderHeld = (gamepad != null) && curRightShoulderHeld;
-        prevStickLeftHeld = (gamepad != null) && curStickLeftHeld;
-        prevStickRightHeld = (gamepad != null) && curStickRightHeld;
+        // Track previous held states unconditionally so keyboard edges are detected
+        // correctly even when no gamepad is present.
+        prevLeftTriggerHeld = curLeftTriggerHeld;
+        prevRightTriggerHeld = curRightTriggerHeld;
+        prevLeftShoulderHeld = curLeftShoulderHeld;
+        prevRightShoulderHeld = curRightShoulderHeld;
+        prevStickLeftHeld = curStickLeftHeld;
+        prevStickRightHeld = curStickRightHeld;
     }
 
     // Show judgment on the correct player's display (owner HitManager), fallback to scene instance

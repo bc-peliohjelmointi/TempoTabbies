@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -31,6 +33,9 @@ public class PlayerScript : MonoBehaviour
     [Header("In game info")]
     public List<CardDataScript> AllCards = new List<CardDataScript>();
 
+    public GameObject disconnected;
+    public TextMeshProUGUI disconnectedText;
+
     public int Score;
     public int Combo;
     public int cat; // use this to say which cat has been chosen for the player, currently 1 = tabby, 2 = orange, 3 = nothing
@@ -44,6 +49,16 @@ public class PlayerScript : MonoBehaviour
     public ButtonControl button2;
     public ButtonControl button3;
     public ButtonControl button4;
+    public KeyControl key1;
+    public KeyControl key2;
+    public KeyControl key3;
+    public KeyControl key4;
+    public KeyControl swipeLeft;
+    public KeyControl swipeRight;
+
+
+
+    private bool damnit;
 
     private void Awake()
     {
@@ -69,10 +84,14 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-       /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
+        if (inputDevice == null)
         {
-            Destroy(gameObject);
-        }*/
+            StartCoroutine(Disconnected());
+        }
+        /*if (playerInput.currentControlScheme == "Keyboard&Mouse")
+         {
+             Destroy(gameObject);
+         }*/
         if (AllCards.Count > 0 && gameManager.state != _GameManager.GameState.Game)
         {
             Debug.Log(gameManager.state);
@@ -183,6 +202,29 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    public IEnumerator Disconnected()
+    {
+        yield return new WaitForSeconds(0.05f);
+        if (inputDevice == null && !damnit)
+        {
+            damnit = true;
+            if (_playerIndex == 0)
+            {
+                gameManager.disconnectedText.text = "Player 1 disconnected";
+            }
+            else if (_playerIndex == 1)
+            {
+                gameManager.disconnectedText.text = "Player 2 disconnected";
+            }
+            StartCoroutine(HandleDisconnect());
+        }
+    }
+    public IEnumerator HandleDisconnect()
+    {
+        yield return StartCoroutine(gameManager.Disconnected());
+        Destroy(gameObject);
+    }
+
     public void SetDefaultButtons()
     {
         if (inputDevice == null)
@@ -210,5 +252,20 @@ public class PlayerScript : MonoBehaviour
         button3 = inputDevice.TryGetChildControl<ButtonControl>(newButton3);
         button4 = inputDevice.TryGetChildControl<ButtonControl>(newButton4);
         Debug.Log($"Player {_playerIndex + 1} buttons updated: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");
+    }
+
+    public void SetNewKeys(string key1, string key2, string key3, string key4, string swipeLeft, string swipeRight)
+    {
+        if (inputDevice == null)
+        {
+            Debug.LogWarning($"Player {_playerIndex + 1} has no input device assigned.");
+            return;
+        }
+        this.key1 = inputDevice.TryGetChildControl<KeyControl>(key1);
+        this.key2 = inputDevice.TryGetChildControl<KeyControl>(key2);
+        this.key3 = inputDevice.TryGetChildControl<KeyControl>(key3);
+        this.key4 = inputDevice.TryGetChildControl<KeyControl>(key4);
+        this.swipeLeft = inputDevice.TryGetChildControl<KeyControl>(swipeLeft);
+        this.swipeRight = inputDevice.TryGetChildControl<KeyControl>(swipeRight);
     }
 }

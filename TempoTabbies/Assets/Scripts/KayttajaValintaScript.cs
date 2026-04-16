@@ -22,7 +22,8 @@ public class KayttajaValintaScript : MonoBehaviour
         Keyboard,
         Xbox,
         PlayStation,
-        Nothing
+        Nothing,
+        none
     }
     MikaKontrolleri kontrolleri;
 
@@ -74,6 +75,12 @@ public class KayttajaValintaScript : MonoBehaviour
                 xbox.gameObject.SetActive(false);
                 playstation.gameObject.SetActive(false);
                 Keyboard.gameObject.SetActive(false);
+                noControllerText.gameObject.SetActive(false);
+                break;
+            case MikaKontrolleri.none:
+                xbox.gameObject.SetActive(false);
+                playstation.gameObject.SetActive(false);
+                Keyboard.gameObject.SetActive(false);
                 noControllerText.gameObject.SetActive(true);
                 break;
         }
@@ -115,13 +122,14 @@ public class KayttajaValintaScript : MonoBehaviour
         {
             if (gm.players.Count > 0 && gm.p1 != null)
             {
+                Debug.Log("player 1 input laite " + gm.p1.inputDevice.name);
                 if (gm.p1.inputDevice is Gamepad)
                 {
                     if (gm.p1.inputDevice.displayName.Contains("Xbox"))
                     {
                         kontrolleri = MikaKontrolleri.Xbox;
                     }
-                    else if (gm.p1.inputDevice.displayName.Contains("Dualsense"))
+                    else if (gm.p1.inputDevice.displayName.Contains("DualSense"))
                     {
                         kontrolleri = MikaKontrolleri.PlayStation;
                     }
@@ -143,7 +151,7 @@ public class KayttajaValintaScript : MonoBehaviour
             {
                 playerBG.color = new Color(1, 1, 1, 0.2f);
                 playerText.color = new Color(1, 1, 1, 0.2f);
-                kontrolleri = MikaKontrolleri.Nothing;
+                kontrolleri = MikaKontrolleri.none;
             }
         }
         else if (_playerIndex == 1 && gm.p2 != null)
@@ -172,7 +180,7 @@ public class KayttajaValintaScript : MonoBehaviour
         {
             playerBG.color = new Color(1, 1, 1, 0.2f);
             playerText.color = new Color(1, 1, 1, 0.2f);
-            kontrolleri = MikaKontrolleri.Nothing;
+            kontrolleri = MikaKontrolleri.none;
         }
     }
 }

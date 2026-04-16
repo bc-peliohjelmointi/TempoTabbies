@@ -62,11 +62,27 @@ public class Create_LoadPlayer : MonoBehaviour
     private string button3name;
     private string button4name;
 
+    [Header("Keys")]
+    public KeyControl key1;
+    public KeyControl key2;
+    public KeyControl key3;
+    public KeyControl key4;
+    public KeyControl swipeLeft;
+    public KeyControl swipeRight;
+    private string key1name;
+    private string key2name;
+    private string key3name;
+    private string key4name;
+    private string swipeLeftname;
+    private string swipeRightname;
+
     [Header("Images")]
     public GameObject button1Image;
     public GameObject button2Image;
     public GameObject button3Image;
     public GameObject button4Image;
+    public GameObject swipeLeftImage;
+    public GameObject swipeRightImage;
 
     EventSystem system;
     public GameObject lastSelectedGameObject;
@@ -77,7 +93,8 @@ public class Create_LoadPlayer : MonoBehaviour
     {
         start,
         edit,
-        buttons
+        buttons,
+        keys
     }
     public State state;
 
@@ -267,6 +284,149 @@ public class Create_LoadPlayer : MonoBehaviour
                     timer = 0;
                 }
                 break;
+            case State.keys:
+                foreach (PlayerScript player in _gm.players)
+                {
+                    submit = player.Submit();
+                    if (submit > 0 && timerMax <= timer)
+                    {
+                        BackToEditing();
+                        GoToStartOfEdit();
+                        timer = 0;
+                        button1Image.SetActive(false);
+                        button2Image.SetActive(false);
+                        button3Image.SetActive(false);
+                        button4Image.SetActive(false);
+                        swipeLeftImage.SetActive(false);
+                        swipeRightImage.SetActive(false);
+                    }
+                    else if (timerMax > timer)
+                    {
+                        timer += Time.deltaTime;
+                    }
+                }
+                if (key1 == null && timerMax <= timer)
+                {
+                    button1Image.SetActive(true);
+
+                    foreach (KeyControl key in Keyboard.current.allKeys)
+                    {
+                        if (key.wasPressedThisFrame)
+                        {
+                            key1 = key;
+                            timer = 0;
+                            if (key.keyCode == Key.Escape || key.keyCode == Key.Enter)
+                            {
+                                key1 = null;
+                                break;
+                            }
+                            button1Image.SetActive(false);
+                            button2Image.SetActive(true);
+                        }
+                    }
+
+                }
+                else if (key2 == null && timerMax <= timer)
+                {
+                    button2Image.SetActive(true);
+                    foreach (KeyControl key in Keyboard.current.allKeys)
+                    {
+                        if (key.wasPressedThisFrame)
+                        {
+                            key2 = key;
+                            timer = 0;
+                            if (key.keyCode == Key.Escape || key.keyCode == Key.Enter || key.keyCode == key1.keyCode)
+                            {
+                                key2 = null;
+                                break;
+                            }
+                            button2Image.SetActive(false);
+                            button3Image.SetActive(true);
+                        }
+                    }
+                }
+                else if (key3 == null && timerMax <= timer)
+                {
+                    button3Image.SetActive(true);
+                    foreach (KeyControl key in Keyboard.current.allKeys)
+                    {
+                        if (key.wasPressedThisFrame)
+                        {
+                            key3 = key;
+                            timer = 0;
+                            if (key.keyCode == Key.Escape || key.keyCode == Key.Enter || key.keyCode == key1.keyCode || key.keyCode == key2.keyCode)
+                            {
+                                key3 = null;
+                                break;
+                            }
+                            button3Image.SetActive(false);
+                            button4Image.SetActive(true);
+                        }
+                    }
+                }
+                else if (key4 == null && timerMax <= timer)
+                {
+                    button4Image.SetActive(true);
+                    foreach (KeyControl key in Keyboard.current.allKeys)
+                    {
+                        if (key.wasPressedThisFrame)
+                        {
+                            key4 = key;
+                            timer = 0;
+                            if (key.keyCode == Key.Escape || key.keyCode == Key.Enter || key.keyCode == key1.keyCode || key.keyCode == key2.keyCode || key.keyCode == key3.keyCode)
+                            {
+                                key4 = null;
+                                break;
+                            }
+                            button4Image.SetActive(false);
+                            swipeLeftImage.SetActive(true);
+                        }
+                    }
+                }
+                else if (swipeLeft == null && timerMax <= timer)
+                {
+                    swipeLeftImage.SetActive(true);
+                    foreach (KeyControl key in Keyboard.current.allKeys)
+                    {
+                        if (key.wasPressedThisFrame)
+                        {
+                            swipeLeft = key;
+                            timer = 0;
+                            if (key.keyCode == Key.Escape || key.keyCode == Key.Enter || key.keyCode == key1.keyCode || key.keyCode == key2.keyCode || key.keyCode == key3.keyCode || key.keyCode == key4.keyCode)
+                            {
+                                swipeLeft = null;
+                                break;
+                            }
+                            swipeLeftImage.SetActive(false);
+                            swipeRightImage.SetActive(true);
+                        }
+                    }
+                }
+                else if (swipeRight == null && timerMax <= timer)
+                {
+                    swipeRightImage.SetActive(true);
+                    foreach (KeyControl key in Keyboard.current.allKeys)
+                    {
+                        if (key.wasPressedThisFrame)
+                        {
+                            swipeRight = key;
+                            timer = 0;
+                            if (key.keyCode == Key.Escape || key.keyCode == Key.Enter || key.keyCode == key1.keyCode || key.keyCode == key2.keyCode || key.keyCode == key3.keyCode || key.keyCode == key4.keyCode || key.keyCode == swipeLeft.keyCode)
+                            {
+                                swipeRight = null;
+                                break;
+                            }
+                            swipeRightImage.SetActive(false);
+                        }
+                    }
+                }
+                else if (timerMax <= timer)
+                {
+                    BackToEditing();
+                    GoToStartOfEdit();
+                    timer = 0;
+                }
+                break;
         }
     }
 
@@ -372,9 +532,26 @@ public class Create_LoadPlayer : MonoBehaviour
             button3name = button3.name;
             button4name = button4.name;
         }
+        if (key4 == null)
+        {
+            key1name = "S";
+            key2name = "D";
+            key3name = "K";
+            key4name = "L";
+            swipeLeftname = "Space";
+            swipeRightname = "RightAlt";
+        }
+        else
+        {
+            key1name = key1.keyCode.ToString();
+            key2name = key2.keyCode.ToString();
+            key3name = key3.keyCode.ToString();
+            key4name = key4.keyCode.ToString();
+        }
+
         if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert")
         {
-            json.SavePlayer(player, scrollSpeed, assistTick, showButtons, button1name, button2name, button3name, button4name);
+            json.SavePlayer(player, scrollSpeed, assistTick, showButtons, button1name, button2name, button3name, button4name, key1name, key2name, key3name, key4name, swipeLeftname, swipeRightname);
         }
     }
 
@@ -461,6 +638,15 @@ public class Create_LoadPlayer : MonoBehaviour
         timer = 0;
         button1Image.SetActive(true);
         state = State.buttons;
+        startingSection.SetActive(false);
+        buttonEditSection.SetActive(true);
+    }
+
+    public void StartKeyChange()
+    {
+        timer = 0;
+        button1Image.SetActive(true);
+        state = State.keys;
         startingSection.SetActive(false);
         buttonEditSection.SetActive(true);
     }

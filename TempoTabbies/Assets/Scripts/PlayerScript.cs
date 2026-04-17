@@ -261,6 +261,10 @@ public class PlayerScript : MonoBehaviour
             Debug.LogWarning($"Player {_playerIndex + 1} has no input device assigned.");
             return;
         }
+        if (inputDevice is Gamepad)
+        {
+            return;
+        }
         this.key1 = inputDevice.TryGetChildControl<KeyControl>(key1);
         this.key2 = inputDevice.TryGetChildControl<KeyControl>(key2);
         this.key3 = inputDevice.TryGetChildControl<KeyControl>(key3);

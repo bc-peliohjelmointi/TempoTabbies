@@ -22,6 +22,7 @@ public class KayttajaValintaScript : MonoBehaviour
         Keyboard,
         Xbox,
         PlayStation,
+        Bootleg,
         Nothing,
         none
     }
@@ -31,6 +32,7 @@ public class KayttajaValintaScript : MonoBehaviour
     public Image playstation;
     public Image Keyboard;
     public Image playerBG;
+    public Image bootleg;
     public TextMeshProUGUI noControllerText;
     public TextMeshProUGUI playerText;
 
@@ -40,10 +42,16 @@ public class KayttajaValintaScript : MonoBehaviour
         myDropdown.ClearOptions();//tyhjent‰‰ listan
         LoadAllJSONs();
 
-
         // Use _GameManager singleton when available
         gm = _GameManager.instance ?? FindAnyObjectByType<_GameManager>();
         gm.state = _GameManager.GameState.PlayerSelect;
+        if (_playerIndex == 1)
+        {
+            foreach (PlayerScript player in gm.players)
+            {
+                Destroy(player.gameObject);
+            }
+        }
 
         EventSystem.current.SetSelectedGameObject(myDropdown.gameObject);
     }
@@ -57,30 +65,42 @@ public class KayttajaValintaScript : MonoBehaviour
                 xbox.gameObject.SetActive(false);
                 playstation.gameObject.SetActive(false);
                 Keyboard.gameObject.SetActive(true);
+                bootleg.gameObject.SetActive(false);
                 noControllerText.gameObject.SetActive(false);
                 break;
             case MikaKontrolleri.Xbox:
                 xbox.gameObject.SetActive(true);
                 playstation.gameObject.SetActive(false);
                 Keyboard.gameObject.SetActive(false);
+                bootleg.gameObject.SetActive(false);
                 noControllerText.gameObject.SetActive(false);
                 break;
             case MikaKontrolleri.PlayStation:
                 xbox.gameObject.SetActive(false);
                 playstation.gameObject.SetActive(true);
                 Keyboard.gameObject.SetActive(false);
+                bootleg.gameObject.SetActive(false);
+                noControllerText.gameObject.SetActive(false);
+                break;
+            case MikaKontrolleri.Bootleg:
+                xbox.gameObject.SetActive(false);
+                playstation.gameObject.SetActive(false);
+                Keyboard.gameObject.SetActive(false);
+                bootleg.gameObject.SetActive(true);
                 noControllerText.gameObject.SetActive(false);
                 break;
             case MikaKontrolleri.Nothing:
                 xbox.gameObject.SetActive(false);
                 playstation.gameObject.SetActive(false);
                 Keyboard.gameObject.SetActive(false);
+                bootleg.gameObject.SetActive(false);
                 noControllerText.gameObject.SetActive(false);
                 break;
             case MikaKontrolleri.none:
                 xbox.gameObject.SetActive(false);
                 playstation.gameObject.SetActive(false);
                 Keyboard.gameObject.SetActive(false);
+                bootleg.gameObject.SetActive(false);
                 noControllerText.gameObject.SetActive(true);
                 break;
         }
@@ -125,17 +145,17 @@ public class KayttajaValintaScript : MonoBehaviour
                 Debug.Log("player 1 input laite " + gm.p1.inputDevice.name);
                 if (gm.p1.inputDevice is Gamepad)
                 {
-                    if (gm.p1.inputDevice.displayName.Contains("Xbox"))
+                    if (gm.p1.inputDevice.name.Contains("Xbox"))
                     {
                         kontrolleri = MikaKontrolleri.Xbox;
                     }
-                    else if (gm.p1.inputDevice.displayName.Contains("DualSense"))
+                    else if (gm.p1.inputDevice.name.Contains("Dual"))
                     {
                         kontrolleri = MikaKontrolleri.PlayStation;
                     }
                     else
                     {
-                        kontrolleri = MikaKontrolleri.Nothing;
+                        kontrolleri = MikaKontrolleri.Bootleg;
                     }
                 }
                 else if (gm.p1.inputDevice == null || gm.p1.inputDevice == null)

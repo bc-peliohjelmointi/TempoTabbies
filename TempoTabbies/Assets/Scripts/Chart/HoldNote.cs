@@ -514,12 +514,12 @@ public class HoldNote : MonoBehaviour
     {
         // Keyboard mapping: S -> left trigger (lane 0), D -> left bumper (lane 1), K -> right bumper (lane 2), L -> right trigger (lane 3)
         // Space -> left stick (lane 4), RightAlt -> right stick (lane 5)
-        bool kbLeftTriggerPressed = keyboard != null && keyboard.sKey.wasPressedThisFrame;
-        bool kbLeftBumperPressed = keyboard != null && keyboard.dKey.wasPressedThisFrame;
-        bool kbRightBumperPressed = keyboard != null && keyboard.kKey.wasPressedThisFrame;
-        bool kbRightTriggerPressed = keyboard != null && keyboard.lKey.wasPressedThisFrame;
-        bool kbStickLeftPressed = keyboard != null && keyboard.spaceKey.wasPressedThisFrame;
-        bool kbStickRightPressed = keyboard != null && keyboard.rightAltKey.wasPressedThisFrame;
+        bool kbLeftTriggerPressed = keyboard != null && OwnerHitManager.key1.wasPressedThisFrame;
+        bool kbLeftBumperPressed = keyboard != null && OwnerHitManager.key2.wasPressedThisFrame;
+        bool kbRightBumperPressed = keyboard != null && OwnerHitManager.key3.wasPressedThisFrame;
+        bool kbRightTriggerPressed = keyboard != null && OwnerHitManager.key4.wasPressedThisFrame;
+        bool kbStickLeftPressed = keyboard != null && OwnerHitManager.swipeLeft.wasPressedThisFrame;
+        bool kbStickRightPressed = keyboard != null && OwnerHitManager.swipeRight.wasPressedThisFrame;
 
         return lane switch
         {

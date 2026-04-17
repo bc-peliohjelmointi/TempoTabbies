@@ -324,10 +324,10 @@ public class HitManager : MonoBehaviour
                                  || (keyboard != null && swipeRight.isPressed);
 
         // Press-this-frame detection
-        bool leftTriggerPressedThisFrame = (curLeftTriggerHeld && !prevGamepadLeftTriggerHeld) || (keyboard != null && keyboard.sKey.wasPressedThisFrame);
-        bool leftBumperPressedThisFrame = (curLeftBumperHeld && !prevGamepadLeftShoulderHeld) || (keyboard != null && keyboard.dKey.wasPressedThisFrame);
-        bool rightBumperPressedThisFrame = (curRightBumperHeld && !prevGamepadRightShoulderHeld) || (keyboard != null && keyboard.kKey.wasPressedThisFrame);
-        bool rightTriggerPressedThisFrame = (curRightTriggerHeld && !prevGamepadRightTriggerHeld) || (keyboard != null && keyboard.lKey.wasPressedThisFrame);
+        bool leftTriggerPressedThisFrame = (curLeftTriggerHeld && !prevGamepadLeftTriggerHeld) || (keyboard != null && key1.wasPressedThisFrame);
+        bool leftBumperPressedThisFrame = (curLeftBumperHeld && !prevGamepadLeftShoulderHeld) || (keyboard != null && key2.wasPressedThisFrame);
+        bool rightBumperPressedThisFrame = (curRightBumperHeld && !prevGamepadRightShoulderHeld) || (keyboard != null && key3.wasPressedThisFrame);
+        bool rightTriggerPressedThisFrame = (curRightTriggerHeld && !prevGamepadRightTriggerHeld) || (keyboard != null && key4.wasPressedThisFrame);
         bool stickLeftPressed = (curStickLeftHeld && !prevGamepadStickLeftHeld);
         bool stickRightPressed = (curStickRightHeld && !prevGamepadStickRightHeld);
 

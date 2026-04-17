@@ -121,13 +121,16 @@ public class GameManager : MonoBehaviour
         {
             buttonsp1.SetActive(false);
         }
-        if (gm.p2.showButtons)
+        if (gm.multiplayer && gm.p2.showButtons)
         {
             buttonsp2.SetActive(true);
         }
         else
         {
-            buttonsp2.SetActive(false);
+            if (buttonsp2 != null)
+            {
+                buttonsp2.SetActive(false);
+            }
         }
     }
 

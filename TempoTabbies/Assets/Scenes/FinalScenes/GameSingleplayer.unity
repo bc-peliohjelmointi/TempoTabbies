@@ -2621,6 +2621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1295d8ba3eff2cd4abd399425aa748f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 0
   lanePositions:
   - {fileID: 616277453}
   - {fileID: 1226751784}
@@ -4006,7 +4007,8 @@ MonoBehaviour:
   NotePrefab_TypeD: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
   LaneParent: {fileID: 24678508}
   HitLine: {fileID: 1554121468}
-  buttons: {fileID: 513570063}
+  buttonsp1: {fileID: 513570063}
+  buttonsp2: {fileID: 0}
   submit: 0
 --- !u!1 &1509357024
 GameObject:

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -194,6 +195,11 @@ public class PlayerScript : MonoBehaviour
         var allControllers = InputSystem.devices;
         // THIS controller
         inputDevice = playerInput.devices.Count > 0 ? playerInput.devices[0] : null;
+        if (playerInput != null)
+        {
+            var deviceNames = playerInput.devices.Select(d => d.displayName).ToArray();
+            Debug.Log($"Player {_playerIndex} controlScheme='{playerInput.currentControlScheme}' devices={string.Join(',', deviceNames)} assignedDevice={(inputDevice != null ? inputDevice.displayName : "null")}");
+        }
     }
 
     public IEnumerator Disconnected()
@@ -228,7 +234,7 @@ public class PlayerScript : MonoBehaviour
         }
         // Assuming a standard gamepad layout, you can map buttons like this:
         button1 = inputDevice.TryGetChildControl<ButtonControl>("leftTrigger");
-        button2 = inputDevice.TryGetChildControl<ButtonControl>("leftShouler");
+        button2 = inputDevice.TryGetChildControl<ButtonControl>("leftShoulder");
         button3 = inputDevice.TryGetChildControl<ButtonControl>("rightShoulder");
         button4 = inputDevice.TryGetChildControl<ButtonControl>("rightTrigger");
         Debug.Log($"Player {_playerIndex + 1} buttons set: Button1={button1?.name}, Button2={button2?.name}, Button3={button3?.name}, Button4={button4?.name}");

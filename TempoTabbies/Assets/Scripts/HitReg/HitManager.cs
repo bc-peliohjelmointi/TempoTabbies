@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using UnityEngine.InputSystem.Controls;
@@ -57,6 +58,27 @@ public class HitManager : MonoBehaviour
     private bool prevGamepadStickLeftHeld = false;
     private bool prevGamepadStickRightHeld = false;
 
+    // Helper keyboard checks to accept multiple common keys as fallbacks
+    private static bool AnyKeyPressed(Keyboard kb, params KeyControl[] keys)
+    {
+        if (kb == null) return false;
+        foreach (var k in keys)
+        {
+            if (k != null && k.isPressed) return true;
+        }
+        return false;
+    }
+
+    private static bool AnyKeyPressedThisFrame(Keyboard kb, params KeyControl[] keys)
+    {
+        if (kb == null) return false;
+        foreach (var k in keys)
+        {
+            if (k != null && k.wasPressedThisFrame) return true;
+        }
+        return false;
+    }
+
     [Header("player button changes")]
     public int playerNumber;
     public ButtonControl button1;
@@ -109,6 +131,9 @@ public class HitManager : MonoBehaviour
 
         // Diagnostic: log assigned spawner and hitEffect manager for debug tracing
         Debug.Log($"HitManager.Awake: '{name}' player={playerNumber} Spawner={(Spawner!=null?Spawner.name:"null")} SpawnerID={(Spawner!=null?Spawner.GetInstanceID():0)} HitEffectManager={(hitEffectManager!=null?hitEffectManager.name:"null")}");
+        // If the project isn't using MultiHitManager, ensure only one HitManager
+        // accepts keyboard in multiplayer.
+        EnsureKeyboardOwnership(_gm);
     }
     private Gamepad ConvertToGamepad(InputDevice device)
     {
@@ -125,18 +150,127 @@ public class HitManager : MonoBehaviour
         return null;
     }
 
+
+    private static void EnsureKeyboardOwnership(_GameManager gm)
+    {
+        if (gm == null) return;
+        if (!gm.multiplayer) return;
+       
+
+        var all = FindObjectsOfType<HitManager>();
+        if (all == null || all.Length == 0) return;
+
+        // Find hitmanagers for player 1 and 2 (if present)
+        var hm1 = all.FirstOrDefault(h => h.playerNumber == 1);
+        var hm2 = all.FirstOrDefault(h => h.playerNumber == 2);
+
+        // Helper to detect whether a player (via GameManager) has a gamepad device
+        bool PlayerHasPad(int playerNum)
+        {
+            var p = playerNum == 1 ? gm.p1 : gm.p2;
+            if (p == null) return false;
+            if (p.inputDevice is Gamepad) return true;
+            // try matching by device id
+            if (p.inputDevice != null)
+            {
+                foreach (var g in Gamepad.all)
+                {
+                    if (g.deviceId == p.inputDevice.deviceId) return true;
+                }
+            }
+            return false;
+        }
+
+        bool p1HasPad = PlayerHasPad(1);
+        bool p2HasPad = PlayerHasPad(2);
+
+        // Default: disable keyboard on all HitManagers
+        foreach (var h in all) h.AcceptKeyboard = false;
+
+        if (hm1 != null && hm2 != null)
+        {
+            if (!p1HasPad && p2HasPad)
+            {
+                hm1.AcceptKeyboard = true;
+            }
+            else if (p1HasPad && !p2HasPad)
+            {
+                hm2.AcceptKeyboard = true;
+            }
+            else if (!p1HasPad && !p2HasPad)
+            {
+                // both lack gamepads -> prefer player 1
+                hm1.AcceptKeyboard = true;
+            }
+            else
+            {
+                // both have pads -> nobody uses keyboard
+            }
+        }
+        else if (hm1 != null)
+        {
+            if (!p1HasPad) hm1.AcceptKeyboard = true;
+        }
+        else if (hm2 != null)
+        {
+            if (!p2HasPad) hm2.AcceptKeyboard = true;
+        }
+    }
+
     void Update()
     {
-        Debug.Log($"HitManager buttons {button1?.name} {button2?.name} {button3?.name} {button4?.name}");
+        Debug.Log($"HitManager(player {playerNumber}) buttons {button1?.name} {button2?.name} {button3?.name} {button4?.name} assignedGamepad={(assignedGamepad!=null?assignedGamepad.displayName:"null")} Gamepad.current={(Gamepad.current!=null?Gamepad.current.displayName:"null")} Gamepad.count={Gamepad.all.Count} AcceptKeyboard={AcceptKeyboard}");
 
-        // Prefer an explicitly assigned gamepad (from MultiHitManager). If none assigned, fall back to Gamepad.current.
-        gamepad = assignedGamepad ?? Gamepad.current;
+        // Try to (re)bind assigned gamepad / per-player button controls at runtime.
+        
+        if (_gm != null)
+        {
+            var ps = playerNumber == 1 ? _gm.p1 : _gm.p2;
+            if (ps != null)
+            {
+                Debug.Log($"HitManager(player {playerNumber}) PlayerScript present: playerName={ps.name} inputDevice={(ps.inputDevice!=null?ps.inputDevice.displayName:"null")}");
+                // Attempt to bind assignedGamepad from the PlayerScript device
+                if (assignedGamepad == null && ps.inputDevice != null)
+                {
+                    var tryPad = ConvertToGamepad(ps.inputDevice);
+                    if (tryPad != null)
+                    {
+                        assignedGamepad = tryPad;
+                        Debug.Log($"HitManager(player {playerNumber}): bound assignedGamepad to {assignedGamepad.displayName}");
+                    }
+                }
+                    // If still no assignedGamepad, try per-player index from Gamepad.all
+                    if (assignedGamepad == null && Gamepad.all.Count >= playerNumber && playerNumber > 0)
+                    {
+                        assignedGamepad = Gamepad.all[playerNumber - 1];
+                        Debug.Log($"HitManager(player {playerNumber}): fallback bound assignedGamepad to {assignedGamepad.displayName} by index");
+                    }
 
-        // Read keyboard only if configured to accept it. This prevents keyboard from controlling both players.
-        var keyboard = AcceptKeyboard ? Keyboard.current : null;
+                // Ensure per-player ButtonControl bindings exist; SetDefaultButtons is safe to call repeatedly.
+                if (ps.button1 == null || ps.button2 == null || ps.button3 == null || ps.button4 == null)
+                {
+                    ps.SetDefaultButtons();
+                    Debug.Log($"HitManager(player {playerNumber}): SetDefaultButtons called, buttons: {ps.button1?.name} {ps.button2?.name} {ps.button3?.name} {ps.button4?.name}");
+                }
 
-        // When in singleplayer, allow any connected gamepad to act as input fallback.
+                // Update our cached ButtonControls from the player script
+                button1 ??= ps.button1;
+                button2 ??= ps.button2;
+                button3 ??= ps.button3;
+                button4 ??= ps.button4;
+                Debug.Log($"HitManager(player {playerNumber}) cached buttons: {button1?.name} {button2?.name} {button3?.name} {button4?.name}");
+            }
+        }
+
+        // Decide whether we allow falling back to any connected gamepad (singleplayer only)
         bool singleplayerAllowAnyGamepad = _gm == null || !_gm.multiplayer;
+
+        
+        gamepad = assignedGamepad ?? (singleplayerAllowAnyGamepad ? Gamepad.current : null);
+
+        
+        // already coordinates ownership in multiplayer, so a simple flag check is sufficient.
+        var keyboard = AcceptKeyboard ? Keyboard.current : null;
 
         bool AnyGamepadHas(System.Func<Gamepad, bool> pred)
         {
@@ -148,7 +282,9 @@ public class HitManager : MonoBehaviour
             return false;
         }
 
-        // Current held states (check player-specific ButtonControl, assigned/current gamepad, then any gamepad in singleplayer)
+        
+        // s -> lane 0, d -> lane 1, k -> lane 2, l -> lane 3
+        // space -> left swipe (lane 4), rightAlt -> right swipe (lane 5)
         bool curLeftTriggerHeld = (button1 != null && button1.isPressed)
                                   || (keyboard != null && keyboard.sKey.isPressed);
 
@@ -156,22 +292,24 @@ public class HitManager : MonoBehaviour
                                  || (keyboard != null && keyboard.dKey.isPressed);
 
         bool curRightBumperHeld = (button3 != null && button3.isPressed)
-                                  || (keyboard != null && keyboard.commaKey.isPressed);
+                                  || (keyboard != null && keyboard.kKey.isPressed);
 
         bool curRightTriggerHeld = (button4 != null && button4.isPressed)
-                                   || (keyboard != null && keyboard.periodKey.isPressed);
+                                   || (keyboard != null && keyboard.lKey.isPressed);
 
         bool curStickLeftHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f))
-                                || AnyGamepadHas(gp => gp.leftStick.ReadValue().x < -0.5f || gp.rightStick.ReadValue().x < -0.5f);
+                                || AnyGamepadHas(gp => gp.leftStick.ReadValue().x < -0.5f || gp.rightStick.ReadValue().x < -0.5f)
+                                || (keyboard != null && keyboard.spaceKey.isPressed);
 
         bool curStickRightHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f))
-                                 || AnyGamepadHas(gp => gp.leftStick.ReadValue().x > 0.5f || gp.rightStick.ReadValue().x > 0.5f);
+                                 || AnyGamepadHas(gp => gp.leftStick.ReadValue().x > 0.5f || gp.rightStick.ReadValue().x > 0.5f)
+                                 || (keyboard != null && keyboard.rightAltKey.isPressed);
 
         // Press-this-frame detection
         bool leftTriggerPressedThisFrame = (curLeftTriggerHeld && !prevGamepadLeftTriggerHeld) || (keyboard != null && keyboard.sKey.wasPressedThisFrame);
         bool leftBumperPressedThisFrame = (curLeftBumperHeld && !prevGamepadLeftShoulderHeld) || (keyboard != null && keyboard.dKey.wasPressedThisFrame);
-        bool rightBumperPressedThisFrame = (curRightBumperHeld && !prevGamepadRightShoulderHeld) || (keyboard != null && keyboard.commaKey.wasPressedThisFrame);
-        bool rightTriggerPressedThisFrame = (curRightTriggerHeld && !prevGamepadRightTriggerHeld) || (keyboard != null && keyboard.periodKey.wasPressedThisFrame);
+        bool rightBumperPressedThisFrame = (curRightBumperHeld && !prevGamepadRightShoulderHeld) || (keyboard != null && keyboard.kKey.wasPressedThisFrame);
+        bool rightTriggerPressedThisFrame = (curRightTriggerHeld && !prevGamepadRightTriggerHeld) || (keyboard != null && keyboard.lKey.wasPressedThisFrame);
         bool stickLeftPressed = (curStickLeftHeld && !prevGamepadStickLeftHeld);
         bool stickRightPressed = (curStickRightHeld && !prevGamepadStickRightHeld);
 
@@ -224,15 +362,13 @@ public class HitManager : MonoBehaviour
 
     private void UpdatePrevGamepadStates(bool leftTriggerHeld, bool rightTriggerHeld, bool leftBumperHeld, bool rightBumperHeld, bool stickLeftHeld, bool stickRightHeld)
     {
-        // Only track previous states for an actual gamepad device (avoid treating keyboard-only as gamepad edge)
-        bool haveGamepad = assignedGamepad != null || Gamepad.current != null || (_gm == null ? Gamepad.all.Count > 0 : (!_gm.multiplayer && Gamepad.all.Count > 0));
-
-        prevGamepadLeftTriggerHeld = haveGamepad && leftTriggerHeld;
-        prevGamepadRightTriggerHeld = haveGamepad && rightTriggerHeld;
-        prevGamepadLeftShoulderHeld = haveGamepad && leftBumperHeld;
-        prevGamepadRightShoulderHeld = haveGamepad && rightBumperHeld;
-        prevGamepadStickLeftHeld = haveGamepad && stickLeftHeld;
-        prevGamepadStickRightHeld = haveGamepad && stickRightHeld;
+        // Track previous held states for edge (press-this-frame) detection.
+        prevGamepadLeftTriggerHeld = leftTriggerHeld;
+        prevGamepadRightTriggerHeld = rightTriggerHeld;
+        prevGamepadLeftShoulderHeld = leftBumperHeld;
+        prevGamepadRightShoulderHeld = rightBumperHeld;
+        prevGamepadStickLeftHeld = stickLeftHeld;
+        prevGamepadStickRightHeld = stickRightHeld;
     }
 
     private void TryHit(int lane, float currentTime)
@@ -348,6 +484,9 @@ public class HitManager : MonoBehaviour
 
         foreach (int lane in toRelease)
         {
+            // Do NOT call into the HoldNote here. HoldNote manages its own release
+            // timing and scoring in its Update. Calling its release method from
+            // HitManager caused double-handling and MissingReferenceExceptions.
             activeHolds.Remove(lane);
             Debug.Log($"[HOLD RELEASE] lane {lane}");
         }
@@ -355,20 +494,21 @@ public class HitManager : MonoBehaviour
 
     private bool IsLanePressed(int lane)
     {
+
         var keyboard = AcceptKeyboard ? Keyboard.current : null;
 
         if (lane == leftTriggerLane)
-            return (gamepad != null && button1.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+            return (gamepad != null && button1 != null && button1.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
         if (lane == rightTriggerLane)
-            return (gamepad != null && button4.isPressed) || (keyboard != null && keyboard.periodKey.isPressed);
+            return (gamepad != null && button4 != null && button4.isPressed) || (keyboard != null && keyboard.lKey.isPressed);
         if (lane == leftBumperLane)
-            return (gamepad != null && button2.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+            return (gamepad != null && button2 != null && button2.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
         if (lane == rightBumperLane)
-            return (gamepad != null && button3.isPressed) || (keyboard != null && keyboard.commaKey.isPressed);
+            return (gamepad != null && button3 != null && button3.isPressed) || (keyboard != null && keyboard.kKey.isPressed);
         if (lane == leftStickLane)
-            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f));
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f)) || (keyboard != null && keyboard.spaceKey.isPressed);
         if (lane == rightStickLane)
-            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f));
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f)) || (keyboard != null && keyboard.rightAltKey.isPressed);
 
         return false;
     }

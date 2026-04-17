@@ -85,6 +85,12 @@ public class HitManager : MonoBehaviour
     public ButtonControl button2;
     public ButtonControl button3;
     public ButtonControl button4;
+    public KeyControl key1;
+    public KeyControl key2;
+    public KeyControl key3;
+    public KeyControl key4;
+    public KeyControl swipeLeft;
+    public KeyControl swipeRight;
 
     private _GameManager _gm;
 
@@ -102,6 +108,12 @@ public class HitManager : MonoBehaviour
             button2 = _gm.p1.button2;
             button3 = _gm.p1.button3;
             button4 = _gm.p1.button4;
+            key1 = _gm.p1.key1;
+            key2 = _gm.p1.key2;
+            key3 = _gm.p1.key3;
+            key4 = _gm.p1.key4;
+            swipeLeft = _gm.p1.swipeLeft;
+            swipeRight = _gm.p1.swipeRight;
         }
         else if (playerNumber == 2)
         {
@@ -114,6 +126,12 @@ public class HitManager : MonoBehaviour
             button2 = _gm.p2.button2;
             button3 = _gm.p2.button3;
             button4 = _gm.p2.button4;
+            key1 = _gm.p2.key1;
+            key2 = _gm.p2.key2;
+            key3 = _gm.p2.key3;
+            key4 = _gm.p2.key4;
+            swipeLeft = _gm.p2.swipeLeft;
+            swipeRight = _gm.p2.swipeRight;
         }
 
         // Auto-assign a per-player SimpleHitSprite if none was set in the inspector.
@@ -286,24 +304,24 @@ public class HitManager : MonoBehaviour
         // s -> lane 0, d -> lane 1, k -> lane 2, l -> lane 3
         // space -> left swipe (lane 4), rightAlt -> right swipe (lane 5)
         bool curLeftTriggerHeld = (button1 != null && button1.isPressed)
-                                  || (keyboard != null && keyboard.sKey.isPressed);
+                                  || (keyboard != null && key1.isPressed);
 
         bool curLeftBumperHeld = (button2 != null && button2.isPressed)
-                                 || (keyboard != null && keyboard.dKey.isPressed);
+                                 || (keyboard != null && key2.isPressed);
 
         bool curRightBumperHeld = (button3 != null && button3.isPressed)
-                                  || (keyboard != null && keyboard.kKey.isPressed);
+                                  || (keyboard != null && key3.isPressed);
 
         bool curRightTriggerHeld = (button4 != null && button4.isPressed)
-                                   || (keyboard != null && keyboard.lKey.isPressed);
+                                   || (keyboard != null && key4.isPressed);
 
         bool curStickLeftHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f))
                                 || AnyGamepadHas(gp => gp.leftStick.ReadValue().x < -0.5f || gp.rightStick.ReadValue().x < -0.5f)
-                                || (keyboard != null && keyboard.spaceKey.isPressed);
+                                || (keyboard != null && swipeLeft.isPressed);
 
         bool curStickRightHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f))
                                  || AnyGamepadHas(gp => gp.leftStick.ReadValue().x > 0.5f || gp.rightStick.ReadValue().x > 0.5f)
-                                 || (keyboard != null && keyboard.rightAltKey.isPressed);
+                                 || (keyboard != null && swipeRight.isPressed);
 
         // Press-this-frame detection
         bool leftTriggerPressedThisFrame = (curLeftTriggerHeld && !prevGamepadLeftTriggerHeld) || (keyboard != null && keyboard.sKey.wasPressedThisFrame);
@@ -498,17 +516,17 @@ public class HitManager : MonoBehaviour
         var keyboard = AcceptKeyboard ? Keyboard.current : null;
 
         if (lane == leftTriggerLane)
-            return (gamepad != null && button1 != null && button1.isPressed) || (keyboard != null && keyboard.sKey.isPressed);
+            return (gamepad != null && button1 != null && button1.isPressed) || (keyboard != null && key1.isPressed);
         if (lane == rightTriggerLane)
-            return (gamepad != null && button4 != null && button4.isPressed) || (keyboard != null && keyboard.lKey.isPressed);
+            return (gamepad != null && button4 != null && button4.isPressed) || (keyboard != null && key2.isPressed);
         if (lane == leftBumperLane)
-            return (gamepad != null && button2 != null && button2.isPressed) || (keyboard != null && keyboard.dKey.isPressed);
+            return (gamepad != null && button2 != null && button2.isPressed) || (keyboard != null && key3.isPressed);
         if (lane == rightBumperLane)
-            return (gamepad != null && button3 != null && button3.isPressed) || (keyboard != null && keyboard.kKey.isPressed);
+            return (gamepad != null && button3 != null && button3.isPressed) || (keyboard != null && key4.isPressed);
         if (lane == leftStickLane)
-            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f)) || (keyboard != null && keyboard.spaceKey.isPressed);
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f)) || (keyboard != null && swipeLeft.isPressed);
         if (lane == rightStickLane)
-            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f)) || (keyboard != null && keyboard.rightAltKey.isPressed);
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f)) || (keyboard != null && swipeRight.isPressed);
 
         return false;
     }

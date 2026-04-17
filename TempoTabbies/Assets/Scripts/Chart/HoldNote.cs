@@ -129,12 +129,11 @@ public class HoldNote : MonoBehaviour
 
         float startY = HitLine.position.y + timeUntilStart * ScrollSpeed;
         float endY = HitLine.position.y + timeUntilEnd * ScrollSpeed;
-
         // Compute current held states (gamepad OR keyboard)
-        bool curLeftTriggerHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button1 != null && OwnerHitManager.button1.IsPressed()) || (keyboard != null && OwnerHitManager.key1.isPressed);
-        bool curLeftShoulderHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button2 != null && OwnerHitManager.button2.IsPressed()) || (keyboard != null && OwnerHitManager.key2.isPressed);
-        bool curRightShoulderHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button3 != null && OwnerHitManager.button3.IsPressed()) || (keyboard != null && OwnerHitManager.key3.isPressed);
-        bool curRightTriggerHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button4 != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && OwnerHitManager.key4.isPressed);
+        bool curLeftTriggerHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button1 != null && OwnerHitManager.button1.IsPressed()) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key1.isPressed);
+        bool curLeftShoulderHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button2 != null && OwnerHitManager.button2.IsPressed()) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key2.isPressed);
+        bool curRightShoulderHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button3 != null && OwnerHitManager.button3.IsPressed()) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key3.isPressed);
+        bool curRightTriggerHeld = (gamepad != null && OwnerHitManager != null && OwnerHitManager.button4 != null && OwnerHitManager.button4.IsPressed()) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key4.isPressed);
 
         bool curStickLeftHeld = false;
         bool curStickRightHeld = false;
@@ -146,8 +145,8 @@ public class HoldNote : MonoBehaviour
         // Keyboard swipe fallbacks
         if (keyboard != null)
         {
-            curStickLeftHeld = curStickLeftHeld || OwnerHitManager.swipeLeft.isPressed;
-            curStickRightHeld = curStickRightHeld || OwnerHitManager.swipeRight.isPressed;
+            curStickLeftHeld = curStickLeftHeld || (!OwnerHitManager.gamepadOn && OwnerHitManager.swipeLeft.isPressed);
+            curStickRightHeld = curStickRightHeld ||(!OwnerHitManager.gamepadOn && OwnerHitManager.swipeRight.isPressed);
         }
 
         // --- BEFORE HOLD START ---
@@ -189,7 +188,7 @@ public class HoldNote : MonoBehaviour
                     {
                         if (scoreManager == null) scoreManager = OwnerHitManager.scoreManager;
                         if (hitEffectManager == null) hitEffectManager = OwnerHitManager.hitEffectManager;
-                      }
+                    }
                 }
 
                 // ADD INITIAL PRESS SCORING
@@ -488,21 +487,21 @@ public class HoldNote : MonoBehaviour
 
     private bool IsPressedForLane(int lane)
     {
-        
+
         var keyboard = (OwnerHitManager != null ? OwnerHitManager.AcceptKeyboard : true) ? Keyboard.current : null;
 
         if (lane == 0)
-            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button1 != null && OwnerHitManager.button1.IsPressed()) || (keyboard != null && OwnerHitManager.key1.isPressed);
+            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button1 != null && OwnerHitManager.button1.IsPressed()) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key1.isPressed);
         if (lane == 1)
-            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button2 != null && OwnerHitManager.button2.IsPressed()) || (keyboard != null && OwnerHitManager.key2.isPressed);
+            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button2 != null && OwnerHitManager.button2.IsPressed()) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key2.isPressed);
         if (lane == 2)
-            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button3 != null && OwnerHitManager.button3.IsPressed()) || (keyboard != null && OwnerHitManager.key3.isPressed);
+            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button3 != null && OwnerHitManager.button3.IsPressed()) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key3.isPressed);
         if (lane == 3)
-            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button4 != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && OwnerHitManager.key4.isPressed);
+            return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button4 != null && OwnerHitManager.button4.IsPressed()) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key4.isPressed);
         if (lane == 4)
-            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f)) || (keyboard != null && OwnerHitManager.swipeLeft.isPressed);
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f)) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.swipeLeft.isPressed);
         if (lane == 5)
-            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f)) || (keyboard != null && OwnerHitManager.swipeRight.isPressed);
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f)) || (!OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.swipeRight.isPressed);
 
         return false;
     }
@@ -514,12 +513,12 @@ public class HoldNote : MonoBehaviour
     {
         // Keyboard mapping: S -> left trigger (lane 0), D -> left bumper (lane 1), K -> right bumper (lane 2), L -> right trigger (lane 3)
         // Space -> left stick (lane 4), RightAlt -> right stick (lane 5)
-        bool kbLeftTriggerPressed = keyboard != null && OwnerHitManager.key1.wasPressedThisFrame;
-        bool kbLeftBumperPressed = keyboard != null && OwnerHitManager.key2.wasPressedThisFrame;
-        bool kbRightBumperPressed = keyboard != null && OwnerHitManager.key3.wasPressedThisFrame;
-        bool kbRightTriggerPressed = keyboard != null && OwnerHitManager.key4.wasPressedThisFrame;
-        bool kbStickLeftPressed = keyboard != null && OwnerHitManager.swipeLeft.wasPressedThisFrame;
-        bool kbStickRightPressed = keyboard != null && OwnerHitManager.swipeRight.wasPressedThisFrame;
+        bool kbLeftTriggerPressed = !OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key1.wasPressedThisFrame;
+        bool kbLeftBumperPressed = !OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key2.wasPressedThisFrame;
+        bool kbRightBumperPressed = !OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key3.wasPressedThisFrame;
+        bool kbRightTriggerPressed = !OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.key4.wasPressedThisFrame;
+        bool kbStickLeftPressed = !OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.swipeLeft.wasPressedThisFrame;
+        bool kbStickRightPressed = !OwnerHitManager.gamepadOn && keyboard != null && OwnerHitManager.swipeRight.wasPressedThisFrame;
 
         return lane switch
         {

@@ -2541,7 +2541,7 @@ MonoBehaviour:
   playstation: {fileID: 802004305}
   Keyboard: {fileID: 303449881}
   playerBG: {fileID: 149848389}
-  bootleg: {fileID: 0}
+  bootleg: {fileID: 1715546193}
   noControllerText: {fileID: 1256053707}
   playerText: {fileID: 976876991}
 --- !u!114 &685764327
@@ -6733,7 +6733,7 @@ MonoBehaviour:
   playstation: {fileID: 1685519073}
   Keyboard: {fileID: 1148724154}
   playerBG: {fileID: 365714087}
-  bootleg: {fileID: 0}
+  bootleg: {fileID: 410371243}
   noControllerText: {fileID: 1487922409}
   playerText: {fileID: 326364089}
 --- !u!1 &1685519071

@@ -488,7 +488,7 @@ public class HoldNote : MonoBehaviour
 
     private bool IsPressedForLane(int lane)
     {
-        // Allow keyboard fallback for singleplayer or when OwnerHitManager permits it
+        
         var keyboard = (OwnerHitManager != null ? OwnerHitManager.AcceptKeyboard : true) ? Keyboard.current : null;
 
         if (lane == 0)
@@ -500,9 +500,9 @@ public class HoldNote : MonoBehaviour
         if (lane == 3)
             return (gamepad != null && OwnerHitManager != null && OwnerHitManager.button4 != null && OwnerHitManager.button4.IsPressed()) || (keyboard != null && keyboard.lKey.isPressed);
         if (lane == 4)
-            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f));
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f)) || (keyboard != null && keyboard.spaceKey.isPressed);
         if (lane == 5)
-            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f));
+            return (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f)) || (keyboard != null && keyboard.rightAltKey.isPressed);
 
         return false;
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -204,38 +205,87 @@ public class ScoreManager : MonoBehaviour
             $"[FINALIZE SAVE] {profileName} | {mapName} | {difficulty} | {currentScore} | {clearType}"
         );
         Debug.Log($"saved score at {currentScore}");
-        // Check existing best for this profile on this map/difficulty and avoid saving
-        // if the new score is lower than the profile's current best.
+
+        // Find existing entry for this profile on this map/difficulty
         var existingEntries = ScoreDatabase.GetScores(mapName, difficulty);
-        int existingProfileBest = -1;
+        bool found = false;
+        ScoreEntry existingEntry = default;
         if (existingEntries != null)
         {
             foreach (var e in existingEntries)
             {
                 if (e.profileName == profileName)
                 {
-                    existingProfileBest = e.score;
+                    found = true;
+                    existingEntry = e;
                     break;
                 }
             }
         }
 
-        if (existingProfileBest >= 0 && currentScore < existingProfileBest)
+        // If no existing entry, save full score (first time for this profile)
+        if (!found)
         {
-            Debug.Log($"[FINALIZE SAVE] Skipping save because current score {currentScore} is lower than existing best {existingProfileBest} for profile {profileName}.");
+            ScoreDatabase.SaveScore(
+                profileName,
+                mapName,
+                difficulty,
+                currentScore,
+                GetAccuracy(),
+                GetGrade(),
+                maxCombo,
+                clearType
+            );
             return;
         }
 
-        ScoreDatabase.SaveScore(
-            profileName,
-            mapName,
-            difficulty,
-            currentScore,
-            GetAccuracy(),
-            GetGrade(),
-            maxCombo,
-            clearType
-        );
+        // If the new score is greater or equal than the existing stored score, save full entry
+        if (currentScore >= existingEntry.score)
+        {
+            // Make sure we don't downgrade the stored clearType when saving a higher score.
+            string clearToSave = clearType;
+            if (Enum.TryParse<HitPointManager.ClearType>(existingEntry.clearType, out var existingClear) &&
+                Enum.TryParse<HitPointManager.ClearType>(clearType, out var newClear))
+            {
+                if (existingClear > newClear)
+                {
+                    // preserve the higher existing clear
+                    clearToSave = existingEntry.clearType;
+                }
+            }
+
+            ScoreDatabase.SaveScore(
+                profileName,
+                mapName,
+                difficulty,
+                currentScore,
+                GetAccuracy(),
+                GetGrade(),
+                maxCombo,
+                clearToSave
+            );
+            Debug.Log($"[FINALIZE SAVE] Saved full score for {profileName} (score {currentScore}).");
+            return;
+        }
+
+        // New score is lower than existing. Only update clearType if new clear is strictly higher than existing clear.
+        if (Enum.TryParse<HitPointManager.ClearType>(clearType, out var newClr) &&
+            Enum.TryParse<HitPointManager.ClearType>(existingEntry.clearType, out var existingClr))
+        {
+            if (newClr > existingClr)
+            {
+                ScoreDatabase.UpdateClearType(profileName, mapName, difficulty, clearType);
+                Debug.Log($"[FINALIZE SAVE] Updated clear type for {profileName} from {existingClr} to {newClr}.");
+            }
+            else
+            {
+                Debug.Log($"[FINALIZE SAVE] Not saving: clear type {newClr} is not higher than existing {existingClr} for profile {profileName}.");
+            }
+        }
+        else
+        {
+            Debug.Log($"[FINALIZE SAVE] Clear type parsing failed; not updating.");
+        }
     }
 
 

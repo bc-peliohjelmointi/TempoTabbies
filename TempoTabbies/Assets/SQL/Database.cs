@@ -168,6 +168,32 @@ public static class ScoreDatabase
         return results;
     }
 
+    // Update only the clearType for an existing score row. This does NOT modify score, accuracy, grade, maxCombo or playcount.
+    public static void UpdateClearType(string profileName, string mapName, string difficulty, string clearType)
+    {
+        using (IDbConnection connection = new SqliteConnection(dbPath))
+        {
+            connection.Open();
+
+            using (IDbCommand command = connection.CreateCommand())
+            {
+                command.CommandText = @"
+                UPDATE scores
+                SET clearType = @clear
+                WHERE profileName = @profile AND mapName = @map AND difficulty = @difficulty
+                ";
+
+                command.Parameters.Add(new SqliteParameter("@clear", clearType ?? "Unknown"));
+                command.Parameters.Add(new SqliteParameter("@profile", profileName));
+                command.Parameters.Add(new SqliteParameter("@map", mapName));
+                command.Parameters.Add(new SqliteParameter("@difficulty", difficulty));
+
+                int rows = command.ExecuteNonQuery();
+                Debug.Log($"[DB UPDATE CLEAR] Updated clearType='{clearType}' for {profileName} | {mapName} | {difficulty} (rows affected={rows})");
+            }
+        }
+    }
+
     // Get top N scores for a specific map and difficulty
     public static List<ScoreEntry> GetTopScores(string mapName, string difficulty, int limit)
     {

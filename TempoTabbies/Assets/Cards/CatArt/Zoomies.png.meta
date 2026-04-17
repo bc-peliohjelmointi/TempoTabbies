@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 493de2b479947504eb430385d5d3cb1b
+guid: 0924ae27e61cf974590b767fca9a31b4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -210772293048993853
-    second: "KESKENZoomies \u2013 kopio_0"
+      213: -7052421935781660520
+    second: Zoomies_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "KESKENZoomies \u2013 kopio_0"
+      name: Zoomies_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c7f15857bf231df0800000000000000
-      internalID: -210772293048993853
+      spriteID: 898bf8f5d93c02e90800000000000000
+      internalID: -7052421935781660520
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "KESKENZoomies \u2013 kopio_0": -210772293048993853
+      Zoomies_0: -7052421935781660520
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

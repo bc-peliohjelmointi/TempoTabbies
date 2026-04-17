@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7709320d5c14c46a1e3d84d71b9c2f, type: 3}
   m_Name: TapTap
   m_EditorClassIdentifier: Assembly-CSharp::CardDataScript
-  CardName: "T\xE4p t\xE4p"
+  CardName: 
   description: 
   effectType: 7
   icon: {fileID: -4631519021496514365, guid: 493b9dd74c9effc43a9c8efbef46df49, type: 3}

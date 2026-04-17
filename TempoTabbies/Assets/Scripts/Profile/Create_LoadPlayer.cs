@@ -547,6 +547,8 @@ public class Create_LoadPlayer : MonoBehaviour
             key2name = key2.keyCode.ToString();
             key3name = key3.keyCode.ToString();
             key4name = key4.keyCode.ToString();
+            swipeLeftname = swipeLeft.keyCode.ToString();
+            swipeRightname = swipeRight.keyCode.ToString();
         }
 
         if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert")

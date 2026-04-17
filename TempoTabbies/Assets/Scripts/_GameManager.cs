@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -57,6 +58,8 @@ public class _GameManager : MonoBehaviour
 
     public GameObject disconnected;
     public TextMeshProUGUI disconnectedText;
+
+    public GameObject _UIHider;
 
     [HideInInspector]
     public string savedButtonName;
@@ -137,7 +140,23 @@ public class _GameManager : MonoBehaviour
                 p1Score = 0;
             }
         }
+        Mouse mouse = Mouse.current;
+        if (mouse.leftButton.wasPressedThisFrame)
+        {
+            if (state == GameState.StageSelect)
+            {
+                StartCoroutine(MouseClicked());
+            }
+        }
     }
+
+    public IEnumerator MouseClicked()
+    {
+        _UIHider.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        _UIHider.SetActive(false);
+    }
+
 
     // When players are loaded in, use this to add them to a list that other scripts can see
     public void FindPlayers()

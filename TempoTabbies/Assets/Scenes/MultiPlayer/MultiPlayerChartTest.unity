@@ -5494,8 +5494,10 @@ MonoBehaviour:
   rightTriggerLane: 3
   leftStickLane: 4
   rightStickLane: 5
+  hitlines: {fileID: 1421990812}
   AcceptKeyboard: 1
   playerNumber: 2
+  gamepadOn: 0
 --- !u!4 &925474175
 Transform:
   m_ObjectHideFlags: 0
@@ -8496,8 +8498,10 @@ MonoBehaviour:
   rightTriggerLane: 3
   leftStickLane: 4
   rightStickLane: 5
+  hitlines: {fileID: 1137812608}
   AcceptKeyboard: 1
   playerNumber: 1
+  gamepadOn: 0
 --- !u!4 &1509357026
 Transform:
   m_ObjectHideFlags: 0

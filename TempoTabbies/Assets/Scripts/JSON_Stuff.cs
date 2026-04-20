@@ -34,6 +34,7 @@ public class GM
     public bool hitSound;
     public float hitSoundVolume;
     public bool showButtons;
+    public int lineOpacity;
     public bool epilepsy;
     public bool movingBG;
 }
@@ -78,6 +79,7 @@ public class JSON_Stuff : MonoBehaviour
         gm.hitSound = gameManager.hitSound;
         gm.hitSoundVolume = gameManager.hitSoundVolume;
         gm.showButtons = gameManager.showButtons;
+        gm.lineOpacity = gameManager.lineOpacity;
         gm.epilepsy = gameManager.epilepsy;
         gm.movingBG = gameManager.movingBG;
         // Turns the placeholder class into a JSON string
@@ -104,6 +106,7 @@ public class JSON_Stuff : MonoBehaviour
         gameManager.hitSound = gm.hitSound;
         gameManager.hitSoundVolume = gm.hitSoundVolume;
         gameManager.showButtons = gm.showButtons;
+        gameManager.lineOpacity = gm.lineOpacity;
         gameManager.epilepsy = gm.epilepsy;
         gameManager.movingBG = gm.movingBG;
     }

@@ -45,7 +45,7 @@ public class KayttajaValintaScript : MonoBehaviour
         // Use _GameManager singleton when available
         gm = _GameManager.instance ?? FindAnyObjectByType<_GameManager>();
         gm.state = _GameManager.GameState.PlayerSelect;
-        if (_playerIndex == 1)
+        if (_playerIndex == 0)
         {
             foreach (PlayerScript player in gm.players)
             {

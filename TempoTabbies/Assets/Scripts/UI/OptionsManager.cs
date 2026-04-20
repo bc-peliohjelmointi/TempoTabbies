@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -33,6 +32,7 @@ public class OptionsManager : MonoBehaviour
     public Button audioOffset2;
     public Button assistTick;
     public Slider assistTickVolume;
+    public Slider lineOpacity;
     public Button hitSound;
     public Slider hitSoundVolume;
     public Button audioTop;
@@ -57,6 +57,7 @@ public class OptionsManager : MonoBehaviour
     public TextMeshProUGUI volumeValue;
     public TextMeshProUGUI audioOffsetValue;
     public TextMeshProUGUI assistTickVolumeValue;
+    public TextMeshProUGUI lineOpacityValue;
     public TextMeshProUGUI hitSoundVolumeValue;
 
     private GameObject lastSelected;
@@ -117,11 +118,13 @@ public class OptionsManager : MonoBehaviour
         volumeValue.text = (volumeSlider.value).ToString();
         audioOffsetValue.text = ((int)audioOffsetFloat).ToString() + "ms";
         assistTickVolumeValue.text = ((int)(assistTickVolume.value * 10)).ToString();
+        lineOpacityValue.text = ((int)(lineOpacity.value * 10)).ToString() + "%";
         hitSoundVolumeValue.text = ((int)(hitSoundVolume.value * 10)).ToString();
 
         AudioListener.volume = volumeSlider.value / 10;
         gameManager.volume = volumeSlider.value;
         gameManager.assistTickVolume = assistTickVolume.value;
+        gameManager.lineOpacity = (int)lineOpacity.value;
         gameManager.hitSoundVolume = hitSoundVolume.value;
     }
 

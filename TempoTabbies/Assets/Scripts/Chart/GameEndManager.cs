@@ -44,6 +44,37 @@ public class GameEndManager : MonoBehaviour
 
         if (evalScreen != null)
             evalScreen.SetActive(false);
+
+        if (evalScreenManager != null && evalScreenManager.backgroundImage2 == null)
+        {
+            var canvas = FindObjectOfType<Canvas>();
+            if (canvas != null)
+            {
+                GameObject go = new GameObject("Background2_Startup", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+                go.transform.SetParent(canvas.transform, false);
+
+                RectTransform rt = go.GetComponent<RectTransform>();
+                rt.anchorMin = Vector2.zero;
+                rt.anchorMax = Vector2.one;
+                rt.anchoredPosition = Vector2.zero;
+                rt.sizeDelta = Vector2.zero;
+
+                Image img = go.GetComponent<Image>();
+                img.raycastTarget = false;
+                img.type = Image.Type.Simple;
+                img.preserveAspect = false;
+                img.color = Color.white;
+
+                // Assign to EvalScreenManager so it will be updated when sprite loads
+                evalScreenManager.backgroundImage2 = img;
+
+                Debug.Log("[GameEndManager] Created Background2_Startup and assigned to EvalScreenManager.backgroundImage2");
+            }
+            else
+            {
+                Debug.LogWarning("[GameEndManager] No Canvas found to parent runtime background image.");
+            }
+        }
     }
 
     void Update()
@@ -197,31 +228,6 @@ public class GameEndManager : MonoBehaviour
         }
     }
 
-    private void ShowEvalScreen()
-    {
-        if (evalScreen != null)
-        {
-            evalScreen.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(returnButton);
-
-            EvalScreenManager evalManager = evalScreen.GetComponent<EvalScreenManager>();
-            if (evalManager != null)
-            {
-                evalManager.RefreshDisplay();
-            }
-            else
-            {
-                Debug.LogWarning("[GameEndManager] EvalScreenManager component not found on eval screen!");
-            }
-
-            Debug.Log("[GameEndManager] Evaluation screen shown and refreshed");
-        }
-        else
-        {
-            Debug.LogWarning("[GameEndManager] No evaluation screen assigned!");
-        }
-    }
-
     // Called from the evaluation screen button
     public void ReturnToStageSelect()
     {
@@ -250,5 +256,60 @@ public class GameEndManager : MonoBehaviour
         {
             StartCoroutine(EndGame());
         }
+    }
+
+    private void ShowEvalScreen()
+    {
+        if (evalScreen != null)
+        {
+            // Use coroutine to activate UI, wait a frame for children to enable, then refresh.
+            StartCoroutine(ShowEvalScreenRoutine());
+        }
+        else
+        {
+            Debug.LogWarning("[GameEndManager] No evaluation screen assigned!");
+        }
+    }
+
+    private IEnumerator ShowEvalScreenRoutine()
+    {
+        // Activate eval screen
+        evalScreen.SetActive(true);
+
+        // Wait one frame so any child GameObjects / Image components become active and OnEnable runs
+        yield return null;
+
+        // Force canvas/layout update to ensure Image components rebuild before assigning sprites
+        Canvas.ForceUpdateCanvases();
+
+        // Set the selected UI element for controller/keyboard navigation
+        if (EventSystem.current != null)
+            EventSystem.current.SetSelectedGameObject(returnButton);
+
+        // Refresh the evaluation manager display (assigns sprites, text, etc.)
+        EvalScreenManager evalManager = evalScreen.GetComponent<EvalScreenManager>();
+        if (evalManager != null)
+        {
+            evalManager.RefreshDisplay();
+
+            // Wait another frame to let any cached assignments take effect (covers cases where backgroundImage2
+            // was inactive and only became active when evalScreen was activated)
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+
+            // Call RefreshDisplay again to be safe (idempotent) so images/layouts are synced
+            evalManager.RefreshDisplay();
+
+
+            // give one more frame for UI to update
+            yield return null;
+            Canvas.ForceUpdateCanvases();
+        }
+        else
+        {
+            Debug.LogWarning("[GameEndManager] EvalScreenManager component not found on eval screen!");
+        }
+
+        Debug.Log("[GameEndManager] Evaluation screen shown and refreshed");
     }
 }

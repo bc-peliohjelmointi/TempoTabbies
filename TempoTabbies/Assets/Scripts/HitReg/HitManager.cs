@@ -35,6 +35,8 @@ public class HitManager : MonoBehaviour
     public int leftStickLane = 4;
     public int rightStickLane = 5;
 
+    public GameObject hitlines;
+
     [Header("Input options")]
     [Tooltip("When true this HitManager will also accept keyboard fallback input (useful for player 1).")]
     public bool AcceptKeyboard = true;
@@ -103,7 +105,7 @@ public class HitManager : MonoBehaviour
             if (_gm.p1.inputDevice is Gamepad)
             {
                 assignedGamepad = ConvertToGamepad(_gm.p1.inputDevice);
-                if (_gm.p1.button1 == null)
+                if (_gm.p1.button4 == null)
                 {
                     _gm.p1.SetDefaultButtons();
                 }
@@ -129,7 +131,7 @@ public class HitManager : MonoBehaviour
             if (_gm.p2.inputDevice is Keyboard)
             {
                 assignedGamepad = ConvertToGamepad(_gm.p2.inputDevice);
-                if (_gm.p2.button1 == null)
+                if (_gm.p2.button4 == null)
                 {
                     _gm.p2.SetDefaultButtons();
                 }
@@ -149,6 +151,11 @@ public class HitManager : MonoBehaviour
                 swipeRight = _gm.p2.swipeRight;
                 gamepadOn = false;
             }
+        }
+
+        foreach (SpriteRenderer sr in hitlines.GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, (float)_gm.lineOpacity/10);
         }
 
         // Auto-assign a per-player SimpleHitSprite if none was set in the inspector.

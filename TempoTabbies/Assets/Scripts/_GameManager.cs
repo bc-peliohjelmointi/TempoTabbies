@@ -31,6 +31,7 @@ public class _GameManager : MonoBehaviour
     public float assistTickVolume;
     public bool hitSound;
     public float hitSoundVolume;
+    public int lineOpacity;
     public bool epilepsy;
     public bool movingBG;
     public string noteOne;

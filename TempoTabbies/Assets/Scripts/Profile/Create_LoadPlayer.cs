@@ -542,12 +542,12 @@ public class Create_LoadPlayer : MonoBehaviour
         }
         else
         {
-            key1name = key1.keyCode.ToString();
-            key2name = key2.keyCode.ToString();
-            key3name = key3.keyCode.ToString();
-            key4name = key4.keyCode.ToString();
-            swipeLeftname = swipeLeft.keyCode.ToString();
-            swipeRightname = swipeRight.keyCode.ToString();
+            key1name = key1.keyCode.ToString().Replace("Digit", "");
+            key2name = key2.keyCode.ToString().Replace("Digit", "");
+            key3name = key3.keyCode.ToString().Replace("Digit", "");
+            key4name = key4.keyCode.ToString().Replace("Digit", "");
+            swipeLeftname = swipeLeft.keyCode.ToString().Replace("Digit", "");
+            swipeRightname = swipeRight.keyCode.ToString().Replace("Digit", "");
         }
 
         if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert")

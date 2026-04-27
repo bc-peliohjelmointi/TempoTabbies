@@ -19,12 +19,12 @@ public class HitPointManager : MonoBehaviour
     public enum ClearType
     {
         Failed,
-        EasyClear,
-        NormalClear,
-        HardClear,
-        DifficultClear,
+        Easy,
+        Normal,
+        Hard,
+        EX,
         FullCombo,
-        PerfectFullCombo
+        Perfect
     }
 
     public enum State
@@ -32,14 +32,14 @@ public class HitPointManager : MonoBehaviour
         easy,
         normal,
         hard,
-        difficult
+        exHard
     }
     public State state;
 
     private void Awake()
     {
         hp = hpMax;
-        state = State.difficult;
+        state = State.exHard;
     }
 
     public void Update()
@@ -92,7 +92,7 @@ public class HitPointManager : MonoBehaviour
 
                 }
                 break;
-            case State.difficult:
+            case State.exHard:
                 multiplier = 5;
                 mask.color = new Color(0.85f, 0.5f, 1);
                 if (hp == 0)
@@ -122,7 +122,7 @@ public class HitPointManager : MonoBehaviour
             scoreManager.goodCount == 0;
 
         if (isPerfectFullCombo)
-            return ClearType.PerfectFullCombo;
+            return ClearType.Perfect;
 
         if (isFullCombo)
             return ClearType.FullCombo;
@@ -131,19 +131,19 @@ public class HitPointManager : MonoBehaviour
         switch (state)
         {
             case State.easy:
-                return ClearType.EasyClear;
+                return ClearType.Easy;
 
             case State.normal:
-                return ClearType.NormalClear;
+                return ClearType.Normal;
 
             case State.hard:
-                return ClearType.HardClear;
+                return ClearType.Hard;
 
-            case State.difficult:
-                return ClearType.DifficultClear;
+            case State.exHard:
+                return ClearType.EX;
         }
 
-        return ClearType.NormalClear;
+        return ClearType.Normal;
     }
 
 

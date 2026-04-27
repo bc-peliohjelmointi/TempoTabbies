@@ -24,6 +24,7 @@ public class GameEndManager : MonoBehaviour
     private bool allNotesSpawned = false;
 
     public static GameEndManager Instance { get; private set; }
+    private _GameManager gm;
 
     void Awake()
     {
@@ -131,6 +132,9 @@ public class GameEndManager : MonoBehaviour
     {
         gameEnding = true;
         Debug.Log("[GameEndManager] Starting game end sequence with fade");
+
+        gm = FindFirstObjectByType<_GameManager>();
+        gm.tutorial = false;
 
         // Finalize all ScoreManagers in the scene. Multiplayer may have multiple ScoreManager instances
         // (one per player). ScoreManager.FinalizeScore already guards against double-saving.

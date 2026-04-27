@@ -176,6 +176,9 @@ public class KayttajaValintaScript : MonoBehaviour
         }
         else if (_playerIndex == 1 && gm.p2 != null)
         {
+            Debug.Log("Player 1" + gm.p1.inputDevice.displayName);
+            Debug.Log("Player 2" + gm.p2.inputDevice.displayName);
+
             if (gm.p2.inputDevice is Gamepad)
             {
                 if (gm.p2.inputDevice.displayName.Contains("Xbox"))

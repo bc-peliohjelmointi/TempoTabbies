@@ -169,5 +169,15 @@ public class JSON_Stuff : MonoBehaviour
         maker.scrollSpeed = player.scrollSpeed;
         maker.assistTick = player.assistTick;
         maker.showButtons = player.showButtons;
+        maker.button1name = player.button1;
+        maker.button2name = player.button2;
+        maker.button3name = player.button3;
+        maker.button4name = player.button4;
+        maker.key1name = player.key1;
+        maker.key2name = player.key2;
+        maker.key3name = player.key3;
+        maker.key4name = player.key4;
+        maker.swipeLeftname = player.swipeLeft;
+        maker.swipeRightname = player.swipeRight;
     }
 }

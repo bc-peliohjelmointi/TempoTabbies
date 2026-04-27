@@ -358,6 +358,9 @@ MonoBehaviour:
   artistText: {fileID: 2029610064}
   difficultyText: {fileID: 2029610063}
   meterText: {fileID: 2029610062}
+  difficultyTextP2: {fileID: 0}
+  meterTextP2: {fileID: 0}
+  difficultyBackgroundP2: {fileID: 0}
   scoreText: {fileID: 2029610061}
   gradeText: {fileID: 2029610060}
   comboText: {fileID: 2029610059}
@@ -368,6 +371,17 @@ MonoBehaviour:
   badText: {fileID: 2029610054}
   missText: {fileID: 2029610051}
   clearTypeText: {fileID: 979872643}
+  scoreTextP2: {fileID: 0}
+  gradeTextP2: {fileID: 0}
+  comboTextP2: {fileID: 0}
+  marvelousTextP2: {fileID: 0}
+  perfectTextP2: {fileID: 0}
+  greatTextP2: {fileID: 0}
+  goodTextP2: {fileID: 0}
+  badTextP2: {fileID: 0}
+  missTextP2: {fileID: 0}
+  clearTypeTextP2: {fileID: 0}
+  multiplayer: 0
   returnButton: {fileID: 2029610050}
   initialSelectedButton: {fileID: 202309492}
   difficultyBackground: {fileID: 1057241059}
@@ -2428,6 +2442,63 @@ RectTransform:
   m_AnchoredPosition: {x: -1.5513, y: 0.7175}
   m_SizeDelta: {x: 9.1087, y: 5.1836}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &804341108
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 238.68623
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 252.28812
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605637294469127282, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194363974656373455, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
+      propertyPath: m_Name
+      value: Tutorial
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
 --- !u!1 &839342626
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,7 +4103,9 @@ MonoBehaviour:
   LaneParent: {fileID: 24678508}
   HitLine: {fileID: 1554121468}
   buttonsp1: {fileID: 513570063}
+  buttonsp1Keyboard: {fileID: 0}
   buttonsp2: {fileID: 0}
+  buttonsp2Keyboard: {fileID: 0}
   submit: 0
 --- !u!1 &1509357024
 GameObject:
@@ -6691,3 +6764,4 @@ SceneRoots:
   - {fileID: 967665397}
   - {fileID: 275084307}
   - {fileID: 6521355102287448771}
+  - {fileID: 804341108}

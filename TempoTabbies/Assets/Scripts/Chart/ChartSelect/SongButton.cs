@@ -279,6 +279,10 @@ public class SongButton : MonoBehaviour
 
     private void OnChartSelected(SMChart chart)
     {
+        if (gameObject.name.ToLower().Contains("tutorial"))
+        {
+            _gm.tutorial = true;
+        }
         manager.OnChartSelected(currentSong, chart);
     }
 

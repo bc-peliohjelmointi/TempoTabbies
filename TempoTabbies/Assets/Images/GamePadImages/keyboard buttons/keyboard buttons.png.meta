@@ -1,0 +1,6149 @@
+fileFormatVersion: 2
+guid: c70da3c4469349749afa31464649cc65
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4019692136688160998
+    second: keyboard buttons_0
+  - first:
+      213: 6013039079964846755
+    second: keyboard buttons_1
+  - first:
+      213: -6123921460382279347
+    second: keyboard buttons_2
+  - first:
+      213: -2493207987833118920
+    second: keyboard buttons_3
+  - first:
+      213: -8205689575932363716
+    second: keyboard buttons_4
+  - first:
+      213: -5915660238328138363
+    second: keyboard buttons_5
+  - first:
+      213: 6296430411685108991
+    second: keyboard buttons_6
+  - first:
+      213: -4875043349190946453
+    second: keyboard buttons_7
+  - first:
+      213: -7328455951613191802
+    second: keyboard buttons_8
+  - first:
+      213: -7178057599229226951
+    second: keyboard buttons_9
+  - first:
+      213: 2303908802062137955
+    second: keyboard buttons_10
+  - first:
+      213: 2975800850548436692
+    second: keyboard buttons_11
+  - first:
+      213: 4407361208481247952
+    second: keyboard buttons_12
+  - first:
+      213: -5144126978504327995
+    second: keyboard buttons_13
+  - first:
+      213: -3271322684529991462
+    second: keyboard buttons_14
+  - first:
+      213: 411745426468152294
+    second: keyboard buttons_15
+  - first:
+      213: -2739696787980177953
+    second: keyboard buttons_16
+  - first:
+      213: -7174430820461615694
+    second: keyboard buttons_17
+  - first:
+      213: 7351670786039417766
+    second: keyboard buttons_18
+  - first:
+      213: 6696380847418727635
+    second: keyboard buttons_19
+  - first:
+      213: 5763299118565706046
+    second: keyboard buttons_20
+  - first:
+      213: -2177801180057159729
+    second: keyboard buttons_21
+  - first:
+      213: -1926844180973930315
+    second: keyboard buttons_22
+  - first:
+      213: -6627158974637830772
+    second: keyboard buttons_23
+  - first:
+      213: 2324002553869730662
+    second: keyboard buttons_24
+  - first:
+      213: -7999410469824119428
+    second: keyboard buttons_25
+  - first:
+      213: 2096643941565219878
+    second: keyboard buttons_26
+  - first:
+      213: -1795808079027303872
+    second: keyboard buttons_27
+  - first:
+      213: -768493135045831628
+    second: keyboard buttons_28
+  - first:
+      213: 5908136775557710623
+    second: keyboard buttons_29
+  - first:
+      213: -3790080551506858751
+    second: keyboard buttons_30
+  - first:
+      213: 2381561946408843497
+    second: keyboard buttons_31
+  - first:
+      213: 9057747819218586649
+    second: keyboard buttons_32
+  - first:
+      213: 138702552032874895
+    second: keyboard buttons_33
+  - first:
+      213: -2753791652217019960
+    second: keyboard buttons_34
+  - first:
+      213: 2229836516529817375
+    second: keyboard buttons_35
+  - first:
+      213: 177468703159946053
+    second: keyboard buttons_36
+  - first:
+      213: 979839074933216103
+    second: keyboard buttons_37
+  - first:
+      213: 8129459944220223317
+    second: keyboard buttons_38
+  - first:
+      213: -419227891319590648
+    second: keyboard buttons_39
+  - first:
+      213: -8882361955593836565
+    second: keyboard buttons_40
+  - first:
+      213: 7125097040383886353
+    second: keyboard buttons_41
+  - first:
+      213: 426656378977127368
+    second: keyboard buttons_42
+  - first:
+      213: -6542242650829698108
+    second: keyboard buttons_43
+  - first:
+      213: -5041392227274887978
+    second: keyboard buttons_44
+  - first:
+      213: 4168303560279738919
+    second: keyboard buttons_45
+  - first:
+      213: -1212704865788111895
+    second: keyboard buttons_46
+  - first:
+      213: -5845842008043823316
+    second: keyboard buttons_47
+  - first:
+      213: 364352929598728689
+    second: keyboard buttons_48
+  - first:
+      213: 1103050960797551387
+    second: keyboard buttons_49
+  - first:
+      213: 6973620527671392272
+    second: keyboard buttons_50
+  - first:
+      213: -8769736540534979098
+    second: keyboard buttons_51
+  - first:
+      213: -93384176757240750
+    second: keyboard buttons_52
+  - first:
+      213: -4092145918734761538
+    second: keyboard buttons_53
+  - first:
+      213: -7486359098859239083
+    second: keyboard buttons_54
+  - first:
+      213: 6839950169954125262
+    second: keyboard buttons_55
+  - first:
+      213: -3990418572686050704
+    second: keyboard buttons_56
+  - first:
+      213: -4538177077778579671
+    second: keyboard buttons_57
+  - first:
+      213: 1115425649723226931
+    second: keyboard buttons_58
+  - first:
+      213: -4612195220768941071
+    second: keyboard buttons_59
+  - first:
+      213: 142915046084534315
+    second: keyboard buttons_60
+  - first:
+      213: 5143701167727775846
+    second: keyboard buttons_61
+  - first:
+      213: 3972351297677359483
+    second: keyboard buttons_62
+  - first:
+      213: 1897637392243372457
+    second: keyboard buttons_63
+  - first:
+      213: 746344724204534759
+    second: keyboard buttons_64
+  - first:
+      213: 2910517165690935070
+    second: keyboard buttons_65
+  - first:
+      213: 3290825802159909382
+    second: keyboard buttons_66
+  - first:
+      213: -8145772903311641053
+    second: keyboard buttons_67
+  - first:
+      213: 2163894073087482902
+    second: keyboard buttons_68
+  - first:
+      213: 4867558761003376614
+    second: keyboard buttons_69
+  - first:
+      213: -5596240375784394067
+    second: keyboard buttons_70
+  - first:
+      213: -2745538346573458213
+    second: keyboard buttons_71
+  - first:
+      213: -5616140946614287253
+    second: keyboard buttons_72
+  - first:
+      213: 1533633155832071109
+    second: keyboard buttons_73
+  - first:
+      213: 2774880242927517230
+    second: keyboard buttons_74
+  - first:
+      213: 8504652916990267172
+    second: keyboard buttons_75
+  - first:
+      213: -6380229360490918364
+    second: keyboard buttons_76
+  - first:
+      213: -3774190085678432007
+    second: keyboard buttons_77
+  - first:
+      213: 6430754441786080052
+    second: keyboard buttons_78
+  - first:
+      213: -5184156490924199207
+    second: keyboard buttons_79
+  - first:
+      213: 7886274593888539527
+    second: keyboard buttons_80
+  - first:
+      213: -6605633810711877758
+    second: keyboard buttons_81
+  - first:
+      213: 606893778412606877
+    second: keyboard buttons_82
+  - first:
+      213: -6469026013977814829
+    second: keyboard buttons_83
+  - first:
+      213: -3460676939095395892
+    second: keyboard buttons_84
+  - first:
+      213: -966710084461677465
+    second: keyboard buttons_85
+  - first:
+      213: 2032347912497558468
+    second: keyboard buttons_86
+  - first:
+      213: 2256367509102778374
+    second: keyboard buttons_87
+  - first:
+      213: 250730692705236722
+    second: keyboard buttons_88
+  - first:
+      213: 3292611390631563796
+    second: keyboard buttons_89
+  - first:
+      213: -3584575955670746750
+    second: keyboard buttons_90
+  - first:
+      213: -5091116500952656415
+    second: keyboard buttons_91
+  - first:
+      213: -2408042720806304972
+    second: keyboard buttons_92
+  - first:
+      213: -26966899877520533
+    second: keyboard buttons_93
+  - first:
+      213: -1251262716080006030
+    second: keyboard buttons_94
+  - first:
+      213: 5994573720017601133
+    second: keyboard buttons_95
+  - first:
+      213: -6182482347679590915
+    second: keyboard buttons_96
+  - first:
+      213: 5775221348772195870
+    second: keyboard buttons_97
+  - first:
+      213: -5983657834122685116
+    second: keyboard buttons_98
+  - first:
+      213: 7783860923026084499
+    second: keyboard buttons_99
+  - first:
+      213: 7913114005618663214
+    second: keyboard buttons_100
+  - first:
+      213: -6018842564703206647
+    second: keyboard buttons_101
+  - first:
+      213: 4823643935557497142
+    second: keyboard buttons_102
+  - first:
+      213: 1312877332130355328
+    second: keyboard buttons_103
+  - first:
+      213: -3529432921658985411
+    second: keyboard buttons_104
+  - first:
+      213: 4020959750085933419
+    second: keyboard buttons_105
+  - first:
+      213: -4961775235422627516
+    second: keyboard buttons_106
+  - first:
+      213: -285559113421358964
+    second: keyboard buttons_107
+  - first:
+      213: -8427600182950025955
+    second: keyboard buttons_108
+  - first:
+      213: -131954341036391323
+    second: keyboard buttons_109
+  - first:
+      213: 5764703701851722601
+    second: keyboard buttons_110
+  - first:
+      213: 915205240123871594
+    second: keyboard buttons_111
+  - first:
+      213: 9166994268940889990
+    second: keyboard buttons_112
+  - first:
+      213: -2326062918128360245
+    second: keyboard buttons_113
+  - first:
+      213: 5659013373399948723
+    second: keyboard buttons_114
+  - first:
+      213: -5662502402547393653
+    second: keyboard buttons_115
+  - first:
+      213: -3322335929862511052
+    second: keyboard buttons_116
+  - first:
+      213: -1397112568427172865
+    second: keyboard buttons_117
+  - first:
+      213: 6932137958595482863
+    second: keyboard buttons_118
+  - first:
+      213: 4724523252922632622
+    second: keyboard buttons_119
+  - first:
+      213: -127737455222106013
+    second: keyboard buttons_120
+  - first:
+      213: -7629974092762127850
+    second: keyboard buttons_121
+  - first:
+      213: -1907153900214288734
+    second: keyboard buttons_122
+  - first:
+      213: 2184351659698261922
+    second: keyboard buttons_123
+  - first:
+      213: 5202200847146851771
+    second: keyboard buttons_124
+  - first:
+      213: 5869597445304219712
+    second: keyboard buttons_125
+  - first:
+      213: 3183189423620202151
+    second: keyboard buttons_126
+  - first:
+      213: -5354315938723269402
+    second: keyboard buttons_127
+  - first:
+      213: -5625652012444712347
+    second: keyboard buttons_128
+  - first:
+      213: 2736817959473821447
+    second: keyboard buttons_129
+  - first:
+      213: 9142628172630977244
+    second: keyboard buttons_130
+  - first:
+      213: -7632683793308135320
+    second: keyboard buttons_131
+  - first:
+      213: 2465661467938920173
+    second: keyboard buttons_132
+  - first:
+      213: -4097700328380763360
+    second: keyboard buttons_133
+  - first:
+      213: -5860597198856345540
+    second: keyboard buttons_134
+  - first:
+      213: 7944087903011217866
+    second: keyboard buttons_135
+  - first:
+      213: 8595599890522770655
+    second: keyboard buttons_136
+  - first:
+      213: 948147601608747511
+    second: keyboard buttons_137
+  - first:
+      213: -1408250054496068076
+    second: keyboard buttons_138
+  - first:
+      213: -5343365762014337787
+    second: keyboard buttons_139
+  - first:
+      213: 984139434831597690
+    second: keyboard buttons_140
+  - first:
+      213: -7229397002949651204
+    second: keyboard buttons_141
+  - first:
+      213: -2257207485960547538
+    second: keyboard buttons_142
+  - first:
+      213: -110531583085176169
+    second: keyboard buttons_143
+  - first:
+      213: 5725861712149835711
+    second: keyboard buttons_144
+  - first:
+      213: -2538833458659236673
+    second: keyboard buttons_145
+  - first:
+      213: 7118663807284077274
+    second: keyboard buttons_146
+  - first:
+      213: -7814009765657877368
+    second: keyboard buttons_147
+  - first:
+      213: 2626308863108852727
+    second: keyboard buttons_148
+  - first:
+      213: -3923646607513058877
+    second: keyboard buttons_149
+  - first:
+      213: -9072585583785801434
+    second: keyboard buttons_150
+  - first:
+      213: -1392899068505949021
+    second: keyboard buttons_151
+  - first:
+      213: 2169664569922902867
+    second: keyboard buttons_152
+  - first:
+      213: -883115831887913050
+    second: keyboard buttons_153
+  - first:
+      213: 2000643588259919397
+    second: keyboard buttons_154
+  - first:
+      213: -6829142821325123676
+    second: keyboard buttons_155
+  - first:
+      213: -3396378093440500486
+    second: keyboard buttons_156
+  - first:
+      213: 7759364111748295706
+    second: keyboard buttons_157
+  - first:
+      213: -137610595942403218
+    second: keyboard buttons_158
+  - first:
+      213: -3546303698904686884
+    second: keyboard buttons_159
+  - first:
+      213: -5804852039471870278
+    second: keyboard buttons_160
+  - first:
+      213: 3734392930824612425
+    second: keyboard buttons_161
+  - first:
+      213: -4958081643277823079
+    second: keyboard buttons_162
+  - first:
+      213: -3045533537595319779
+    second: keyboard buttons_163
+  - first:
+      213: -1480222734513871470
+    second: keyboard buttons_164
+  - first:
+      213: 8147420134779569789
+    second: keyboard buttons_165
+  - first:
+      213: -9156024005743907164
+    second: keyboard buttons_166
+  - first:
+      213: -4044296510864517739
+    second: keyboard buttons_167
+  - first:
+      213: 2619030864288321073
+    second: keyboard buttons_168
+  - first:
+      213: -5979040871602910463
+    second: keyboard buttons_169
+  - first:
+      213: -1767024372504384417
+    second: keyboard buttons_170
+  - first:
+      213: 4946361934047346271
+    second: keyboard buttons_171
+  - first:
+      213: -7617170012842612484
+    second: keyboard buttons_172
+  - first:
+      213: 1957537888241943718
+    second: keyboard buttons_173
+  - first:
+      213: 448176960755351141
+    second: keyboard buttons_174
+  - first:
+      213: -3996419979492586187
+    second: keyboard buttons_175
+  - first:
+      213: 7075099928663509754
+    second: keyboard buttons_176
+  - first:
+      213: 4711580717410623454
+    second: keyboard buttons_177
+  - first:
+      213: -656880480443069031
+    second: keyboard buttons_178
+  - first:
+      213: 3210184230338652095
+    second: keyboard buttons_179
+  - first:
+      213: -8327492537843842698
+    second: keyboard buttons_180
+  - first:
+      213: -1551852552376972719
+    second: keyboard buttons_181
+  - first:
+      213: -6585956402880300434
+    second: keyboard buttons_182
+  - first:
+      213: -4277216615059211287
+    second: keyboard buttons_183
+  - first:
+      213: -3592145325563769694
+    second: keyboard buttons_184
+  - first:
+      213: 7538528473151745108
+    second: keyboard buttons_185
+  - first:
+      213: 4953127385018263803
+    second: keyboard buttons_186
+  - first:
+      213: -8044627079332063662
+    second: keyboard buttons_187
+  - first:
+      213: -7238433569379765095
+    second: keyboard buttons_188
+  - first:
+      213: -8294902899062069418
+    second: keyboard buttons_189
+  - first:
+      213: 3862035975846951691
+    second: keyboard buttons_190
+  - first:
+      213: -4443847132952025587
+    second: keyboard buttons_191
+  - first:
+      213: -3366947529459878729
+    second: keyboard buttons_192
+  - first:
+      213: 2054512787154983817
+    second: keyboard buttons_193
+  - first:
+      213: 5203452501240875149
+    second: keyboard buttons_194
+  - first:
+      213: -4897783630363843298
+    second: keyboard buttons_195
+  - first:
+      213: -366836807013133211
+    second: keyboard buttons_196
+  - first:
+      213: 8538503869881332370
+    second: keyboard buttons_197
+  - first:
+      213: 874481709605172701
+    second: keyboard buttons_198
+  - first:
+      213: 4048484499012402742
+    second: keyboard buttons_199
+  - first:
+      213: -7418114552221204442
+    second: keyboard buttons_200
+  - first:
+      213: 2054557302326206058
+    second: keyboard buttons_201
+  - first:
+      213: 9191588637939896026
+    second: keyboard buttons_202
+  - first:
+      213: -1845321718285110451
+    second: keyboard buttons_203
+  - first:
+      213: 2104067872462243845
+    second: keyboard buttons_204
+  - first:
+      213: 3427857568254899261
+    second: keyboard buttons_205
+  - first:
+      213: 5323968418124575861
+    second: keyboard buttons_206
+  - first:
+      213: -9113616952324523413
+    second: keyboard buttons_207
+  - first:
+      213: 5203683240273667609
+    second: keyboard buttons_208
+  - first:
+      213: -7286235945845049770
+    second: keyboard buttons_209
+  - first:
+      213: 2444015466920102152
+    second: keyboard buttons_210
+  - first:
+      213: 8831067102769760755
+    second: keyboard buttons_211
+  - first:
+      213: -6282762637898621393
+    second: keyboard buttons_212
+  - first:
+      213: -2925731727712709764
+    second: keyboard buttons_213
+  - first:
+      213: -614524789725104544
+    second: keyboard buttons_214
+  - first:
+      213: 4105995083366135298
+    second: keyboard buttons_215
+  - first:
+      213: 8809976067478759931
+    second: keyboard buttons_216
+  - first:
+      213: -4643238107452170084
+    second: keyboard buttons_217
+  - first:
+      213: 4836211963102431885
+    second: keyboard buttons_218
+  - first:
+      213: 2612942447092100618
+    second: keyboard buttons_219
+  - first:
+      213: -1076438115758158689
+    second: keyboard buttons_220
+  - first:
+      213: 325846650636221957
+    second: keyboard buttons_221
+  - first:
+      213: 6003690583304873013
+    second: keyboard buttons_222
+  - first:
+      213: 925856122039135621
+    second: keyboard buttons_223
+  - first:
+      213: -5575654961926908205
+    second: keyboard buttons_224
+  - first:
+      213: 2305496855249650955
+    second: keyboard buttons_225
+  - first:
+      213: 3997242709973726821
+    second: keyboard buttons_226
+  - first:
+      213: 8918328441546430199
+    second: keyboard buttons_227
+  - first:
+      213: -7985418279822876998
+    second: keyboard buttons_228
+  - first:
+      213: 7748860574332288959
+    second: keyboard buttons_229
+  - first:
+      213: -8352728529068432163
+    second: keyboard buttons_230
+  - first:
+      213: -7654590407808615282
+    second: keyboard buttons_231
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: keyboard buttons_0
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 4017
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1f65468c4f2738c0800000000000000
+      internalID: -4019692136688160998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_1
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 4017
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aaa8dd4f2b927350800000000000000
+      internalID: 6013039079964846755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_2
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 4017
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d49d581b0e5730ba0800000000000000
+      internalID: -6123921460382279347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_3
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 4017
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83f5a0e6b88566dd0800000000000000
+      internalID: -2493207987833118920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_4
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 4017
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3cfc696ec88f1e80800000000000000
+      internalID: -8205689575932363716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_5
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 4017
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5857c821b5a57eda0800000000000000
+      internalID: -5915660238328138363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_6
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 4017
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc1579791a616750800000000000000
+      internalID: 6296430411685108991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_7
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 4017
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b61d7da27ed585cb0800000000000000
+      internalID: -4875043349190946453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_8
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 4017
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6899ffbc3281c4a90800000000000000
+      internalID: -7328455951613191802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_9
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 4017
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93016acf4aa626c90800000000000000
+      internalID: -7178057599229226951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_10
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 3793
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36a3fcd49d029ff10800000000000000
+      internalID: 2303908802062137955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_11
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 3793
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4deae3b6b1b2c4920800000000000000
+      internalID: 2975800850548436692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_12
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 3793
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d27c5cfaa71a2d30800000000000000
+      internalID: 4407361208481247952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_13
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 3793
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ccfebe84c36c98b0800000000000000
+      internalID: -5144126978504327995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_14
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 3793
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad0a9e2c95de992d0800000000000000
+      internalID: -3271322684529991462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_15
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 3793
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e3a68aa840d6b500800000000000000
+      internalID: 411745426468152294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_16
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 3793
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdda9207944aaf9d0800000000000000
+      internalID: -2739696787980177953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_17
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 3793
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b565c83e2d4f6c90800000000000000
+      internalID: -7174430820461615694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_18
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 3793
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ab0f7b01a1660660800000000000000
+      internalID: 7351670786039417766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_19
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 3793
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dc5f1bd6e25eec50800000000000000
+      internalID: 6696380847418727635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_20
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 3793
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e394e68530a5bff40800000000000000
+      internalID: 5763299118565706046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_21
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 3793
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc7344f7d55e6c1e0800000000000000
+      internalID: -2177801180057159729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_22
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 3681
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b8358f1d697245e0800000000000000
+      internalID: -1926844180973930315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_23
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 3681
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8d8ba6560a9704a0800000000000000
+      internalID: -6627158974637830772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_24
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 3681
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66381887204804020800000000000000
+      internalID: 2324002553869730662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_25
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 3681
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7db7957f826cf090800000000000000
+      internalID: -7999410469824119428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_26
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 3681
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 624487d6e86c81d10800000000000000
+      internalID: 2096643941565219878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_27
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 3681
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04a0dc411120417e0800000000000000
+      internalID: -1795808079027303872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_28
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 3681
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4345449b093c555f0800000000000000
+      internalID: -768493135045831628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_29
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 3681
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f130a8f381bedf150800000000000000
+      internalID: 5908136775557710623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_30
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 3681
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10d2151b1dde66bc0800000000000000
+      internalID: -3790080551506858751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_31
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 3681
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e87942e8f10d0120800000000000000
+      internalID: 2381561946408843497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_32
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 3681
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91cc79dc6a593bd70800000000000000
+      internalID: 9057747819218586649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_33
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 3681
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f811c577c35cce100800000000000000
+      internalID: 138702552032874895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_34
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c12b20251198c9d0800000000000000
+      internalID: -2753791652217019960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_35
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1744f26f78f1fe10800000000000000
+      internalID: 2229836516529817375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_36
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54b099268de767200800000000000000
+      internalID: 177468703159946053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_37
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 763117e7276199d00800000000000000
+      internalID: 979839074933216103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_38
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 557630f5fb4a1d070800000000000000
+      internalID: 8129459944220223317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_39
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 801b5f9347a9e2af0800000000000000
+      internalID: -419227891319590648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_40
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be7a266bcd28bb480800000000000000
+      internalID: -8882361955593836565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_41
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 114c442020e61e260800000000000000
+      internalID: 7125097040383886353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_42
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cb061657b9cbe500800000000000000
+      internalID: 426656378977127368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_43
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cbc2eaa8f84535a0800000000000000
+      internalID: -6542242650829698108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_44
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dc6ddfca70690ab0800000000000000
+      internalID: -5041392227274887978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_45
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72a4872e00ac8d930800000000000000
+      internalID: 4168303560279738919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_46
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3df49895b9b2fe0800000000000000
+      internalID: -1212704865788111895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_47
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2fdd719aa56fdea0800000000000000
+      internalID: -5845842008043823316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_48
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f9ea9d1f017e0500800000000000000
+      internalID: 364352929598728689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_49
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1bcd7f2103de4f00800000000000000
+      internalID: 1103050960797551387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_50
+      rect:
+        serializedVersion: 2
+        x: 1910
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018b93e0ce647c060800000000000000
+      internalID: 6973620527671392272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_51
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e546a79413ab4680800000000000000
+      internalID: -8769736540534979098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_52
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 3457
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25c0eb4069b34bef0800000000000000
+      internalID: -93384176757240750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_53
+      rect:
+        serializedVersion: 2
+        x: 2246
+        y: 3457
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb100c0d7f6c537c0800000000000000
+      internalID: -4092145918734761538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_54
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5594b73601c1b1890800000000000000
+      internalID: -7486359098859239083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_55
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec50d71a0726cee50800000000000000
+      internalID: 6839950169954125262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_56
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a3de5437f2f98c0800000000000000
+      internalID: -3990418572686050704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_57
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92fff27fdf72501c0800000000000000
+      internalID: -4538177077778579671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_58
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33bbc19f7b9ca7f00800000000000000
+      internalID: 1115425649723226931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_59
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fb105712e03effb0800000000000000
+      internalID: -4612195220768941071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_60
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b206dea2a7cbbf100800000000000000
+      internalID: 142915046084534315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_61
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6601d25a5f8126740800000000000000
+      internalID: 5143701167727775846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_62
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b79fe157570a02730800000000000000
+      internalID: 3972351297677359483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_63
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a13a257723c55a10800000000000000
+      internalID: 1897637392243372457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_64
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ebb236829c8b5a00800000000000000
+      internalID: 746344724204534759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_65
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e175fad01fb346820800000000000000
+      internalID: 2910517165690935070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_66
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60a6e6ba1ac5bad20800000000000000
+      internalID: 3290825802159909382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_67
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3267b1dd3b664fe80800000000000000
+      internalID: -8145772903311641053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_68
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61cd3f5d132b70e10800000000000000
+      internalID: 2163894073087482902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_69
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ef52f857ea0d8340800000000000000
+      internalID: 4867558761003376614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_70
+      rect:
+        serializedVersion: 2
+        x: 1910
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da23ca347092652b0800000000000000
+      internalID: -5596240375784394067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_71
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd496479b63e5e9d0800000000000000
+      internalID: -2745538346573458213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_72
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b64878c80957f02b0800000000000000
+      internalID: -5616140946614287253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_73
+      rect:
+        serializedVersion: 2
+        x: 2246
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c3c12dca3f884510800000000000000
+      internalID: 1533633155832071109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_74
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 3233
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2eb1f501ea528620800000000000000
+      internalID: 2774880242927517230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_75
+      rect:
+        serializedVersion: 2
+        x: 2470
+        y: 3233
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42fc137b4c8960670800000000000000
+      internalID: 8504652916990267172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_76
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42ecb66533fd477a0800000000000000
+      internalID: -6380229360490918364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_77
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f006541d126f9bc0800000000000000
+      internalID: -3774190085678432007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_78
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43bbc6cd711ae3950800000000000000
+      internalID: 6430754441786080052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_79
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d27d6a632d2e08b0800000000000000
+      internalID: -5184156490924199207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_80
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7831ae9b5fca17d60800000000000000
+      internalID: 7886274593888539527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_81
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 287653c1c031454a0800000000000000
+      internalID: -6605633810711877758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_82
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d959dae0dae1c6800800000000000000
+      internalID: 606893778412606877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_83
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d8571a5d176936a0800000000000000
+      internalID: -6469026013977814829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_84
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc135dac8a439ffc0800000000000000
+      internalID: -3460676939095395892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_85
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 764bfdecc4e8592f0800000000000000
+      internalID: -966710084461677465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_86
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c37c6898a9543c10800000000000000
+      internalID: 2032347912497558468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_87
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 608ddc67b4a305f10800000000000000
+      internalID: 2256367509102778374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_88
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f6bbf09c36ca7300800000000000000
+      internalID: 250730692705236722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_89
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 412dff16d94b1bd20800000000000000
+      internalID: 3292611390631563796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_90
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 289b6d30927014ec0800000000000000
+      internalID: -3584575955670746750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_91
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e5569a2488b859b0800000000000000
+      internalID: -5091116500952656415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_92
+      rect:
+        serializedVersion: 2
+        x: 1910
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 433006e57e9e49ed0800000000000000
+      internalID: -2408042720806304972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_93
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b5b185fb130aff0800000000000000
+      internalID: -26966899877520533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_94
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c5c5f603f92aee0800000000000000
+      internalID: -1251262716080006030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_95
+      rect:
+        serializedVersion: 2
+        x: 2246
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d628a89a901013350800000000000000
+      internalID: 5994573720017601133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_96
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 3121
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df55f6c9f09633aa0800000000000000
+      internalID: -6182482347679590915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_97
+      rect:
+        serializedVersion: 2
+        x: 2470
+        y: 3121
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1ea1d0e735b52050800000000000000
+      internalID: 5775221348772195870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_98
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44552a317e6c5fca0800000000000000
+      internalID: -5983657834122685116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_99
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3929302d444d50c60800000000000000
+      internalID: 7783860923026084499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_100
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2f911c334701dd60800000000000000
+      internalID: 7913114005618663214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_101
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9034ddb9396c87ca0800000000000000
+      internalID: -6018842564703206647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_102
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6313fd54a9601f240800000000000000
+      internalID: 4823643935557497142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_103
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 088da474af6483210800000000000000
+      internalID: 1312877332130355328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_104
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3472fd157fe40fc0800000000000000
+      internalID: -3529432921658985411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_105
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b69f308b6915dc730800000000000000
+      internalID: 4020959750085933419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_106
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 449dd4546bb342bb0800000000000000
+      internalID: -4961775235422627516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_107
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c88f422df7d790cf0800000000000000
+      internalID: -285559113421358964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_108
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d152f32f8462b0b80800000000000000
+      internalID: -8427600182950025955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_109
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56484f7d9343b2ef0800000000000000
+      internalID: -131954341036391323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_110
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96350406977500050800000000000000
+      internalID: 5764703701851722601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_111
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61d822215673bc00800000000000000
+      internalID: 915205240123871594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_112
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68f634208b4b73f70800000000000000
+      internalID: 9166994268940889990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_113
+      rect:
+        serializedVersion: 2
+        x: 1798
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc420c7991a28bfd0800000000000000
+      internalID: -2326062918128360245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_114
+      rect:
+        serializedVersion: 2
+        x: 1910
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bd50bc2eaad88e40800000000000000
+      internalID: 5659013373399948723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_115
+      rect:
+        serializedVersion: 2
+        x: 2022
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8bdd5ce010ca61b0800000000000000
+      internalID: -5662502402547393653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_116
+      rect:
+        serializedVersion: 2
+        x: 2134
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43627040311b4e1d0800000000000000
+      internalID: -3322335929862511052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_117
+      rect:
+        serializedVersion: 2
+        x: 2246
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffb2aaf65857c9ce0800000000000000
+      internalID: -1397112568427172865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_118
+      rect:
+        serializedVersion: 2
+        x: 2358
+        y: 3009
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4d51cceb6e33060800000000000000
+      internalID: 6932137958595482863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_119
+      rect:
+        serializedVersion: 2
+        x: 2470
+        y: 3009
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea9c68fedd0e09140800000000000000
+      internalID: 4724523252922632622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_120
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 2897
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36859f4167f2a3ef0800000000000000
+      internalID: -127737455222106013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_121
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 2897
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 612ea7becf2ec1690800000000000000
+      internalID: -7629974092762127850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_122
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 2897
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aef9bdd1ad6885e0800000000000000
+      internalID: -1907153900214288734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_123
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 2897
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2af89d4e240605e10800000000000000
+      internalID: 2184351659698261922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_124
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 2897
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbd9c68ab1ee13840800000000000000
+      internalID: 5202200847146851771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_125
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 2897
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 048f5ed27cff47150800000000000000
+      internalID: 5869597445304219712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_126
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 2897
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ae99af5ae5fc2c20800000000000000
+      internalID: 3183189423620202151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_127
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 2897
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e4ff29a506a1b5b0800000000000000
+      internalID: -5354315938723269402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_128
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 2897
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5628548fc4bade1b0800000000000000
+      internalID: -5625652012444712347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_129
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 2897
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 707b8511f612bf520800000000000000
+      internalID: 2736817959473821447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_130
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 2673
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdae52f12e321ee70800000000000000
+      internalID: 9142628172630977244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_131
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 2673
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860dcf89782431690800000000000000
+      internalID: -7632683793308135320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_132
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 2673
+        width: 184
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de61edc9a0ac73220800000000000000
+      internalID: 2465661467938920173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_133
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 2673
+        width: 184
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 023fcda034b0227c0800000000000000
+      internalID: -4097700328380763360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_134
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 2673
+        width: 128
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c38a48ef5e9faaea0800000000000000
+      internalID: -5860597198856345540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_135
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 2673
+        width: 128
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac12673bbd11f3e60800000000000000
+      internalID: 7944087903011217866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_136
+      rect:
+        serializedVersion: 2
+        x: 1140
+        y: 2666
+        width: 184
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdc0ff91f84b94770800000000000000
+      internalID: 8595599890522770655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_137
+      rect:
+        serializedVersion: 2
+        x: 1364
+        y: 2666
+        width: 184
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f9278c583f782d00800000000000000
+      internalID: 948147601608747511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_138
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 2666
+        width: 170
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41e56d26904e47ce0800000000000000
+      internalID: -1408250054496068076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_139
+      rect:
+        serializedVersion: 2
+        x: 1812
+        y: 2666
+        width: 170
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 505a62a562d88d5b0800000000000000
+      internalID: -5343365762014337787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_140
+      rect:
+        serializedVersion: 2
+        x: 2036
+        y: 2666
+        width: 177
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a70579e0a9d58ad00800000000000000
+      internalID: 984139434831597690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_141
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 2666
+        width: 177
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf499e29ab50cab90800000000000000
+      internalID: -7229397002949651204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_142
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 2554
+        width: 177
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2318fe20c9cca0e0800000000000000
+      internalID: -2257207485960547538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_143
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 2554
+        width: 177
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a1fbd5c10577ef0800000000000000
+      internalID: -110531583085176169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_144
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 2561
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbf63b9e3e8567f40800000000000000
+      internalID: 5725861712149835711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_145
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 2561
+        width: 93
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb46db0bb6044ccd0800000000000000
+      internalID: -2538833458659236673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_146
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 2561
+        width: 128
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2e89434039ac260800000000000000
+      internalID: 7118663807284077274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_147
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 2561
+        width: 128
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 884678eb48f0f8390800000000000000
+      internalID: -7814009765657877368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_148
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 2442
+        width: 359
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb20180ff5827420800000000000000
+      internalID: 2626308863108852727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_149
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 2442
+        width: 359
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c18407e2386c89c0800000000000000
+      internalID: -3923646607513058877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_150
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 2442
+        width: 359
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6290e1cea73b71280800000000000000
+      internalID: -9072585583785801434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_151
+      rect:
+        serializedVersion: 2
+        x: 1427
+        y: 2442
+        width: 359
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3acfab55dad6bace0800000000000000
+      internalID: -1392899068505949021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_152
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 2330
+        width: 562
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35b51045e623c1e10800000000000000
+      internalID: 2169664569922902867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_153
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 2330
+        width: 562
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af1cc074da8eb3f0800000000000000
+      internalID: -883115831887913050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_154
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52635606eb6b3cb10800000000000000
+      internalID: 2000643588259919397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_155
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4afc18e49c20a31a0800000000000000
+      internalID: -6829142821325123676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_156
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afc7f896e14add0d0800000000000000
+      internalID: -3396378093440500486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_157
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1cebab7c8cceab60800000000000000
+      internalID: 7759364111748295706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_158
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e63f58f54eb171ef0800000000000000
+      internalID: -137610595942403218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_159
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cded121339ff8cec0800000000000000
+      internalID: -3546303698904686884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_160
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abec39553d5017fa0800000000000000
+      internalID: -5804852039471870278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_161
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ae78db59a33d330800000000000000
+      internalID: 3734392930824612425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_162
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9935a05b30b513bb0800000000000000
+      internalID: -4958081643277823079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_163
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1a971c22671cb5d0800000000000000
+      internalID: -3045533537595319779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_164
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 295e7d8f341357be0800000000000000
+      internalID: -1480222734513871470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_165
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76c6691273711170800000000000000
+      internalID: 8147420134779569789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_166
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 2001
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae6fae6da44fe080800000000000000
+      internalID: -9156024005743907164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_167
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 595919f30c5cfd7c0800000000000000
+      internalID: -4044296510864517739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_168
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13e80b1e1baa85420800000000000000
+      internalID: 2619030864288321073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_169
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10b019e610e260da0800000000000000
+      internalID: -5979040871602910463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_170
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5c2b6ff1b44a77e0800000000000000
+      internalID: -1767024372504384417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_171
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5ef769d8f105a440800000000000000
+      internalID: 4946361934047346271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_172
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf822c61b306a4690800000000000000
+      internalID: -7617170012842612484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_173
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a4870f76529a2b10800000000000000
+      internalID: 1957537888241943718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_174
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56e365e329e383600800000000000000
+      internalID: 448176960755351141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_175
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53d021dd33dd988c0800000000000000
+      internalID: -3996419979492586187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_176
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa416e46edcf2260800000000000000
+      internalID: 7075099928663509754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_177
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edf17df03b5e26140800000000000000
+      internalID: 4711580717410623454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_178
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d8d4feeaa42e6f0800000000000000
+      internalID: -656880480443069031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_179
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1777
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb765e89c8ddc8c20800000000000000
+      internalID: 3210184230338652095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_180
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 1777
+        width: 184
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6710a1468adce6c80800000000000000
+      internalID: -8327492537843842698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_181
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1665
+        width: 128
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15a89cf5356b67ae0800000000000000
+      internalID: -1551852552376972719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_182
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6a3c14ab8bf994a0800000000000000
+      internalID: -6585956402880300434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_183
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eb3ff7762644a4c0800000000000000
+      internalID: -4277216615059211287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_184
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ac0130cbd2262ec0800000000000000
+      internalID: -3592145325563769694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_185
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45ca06b94bb3e9860800000000000000
+      internalID: 7538528473151745108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_186
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf8e5472d1b0db440800000000000000
+      internalID: 4953127385018263803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_187
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2569ce92b4ebb5090800000000000000
+      internalID: -8044627079332063662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_188
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9943bdef40beb8b90800000000000000
+      internalID: -7238433569379765095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_189
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6572c07f2c592ec80800000000000000
+      internalID: -8294902899062069418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_190
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0bf2221245b89530800000000000000
+      internalID: 3862035975846951691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_191
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d06a14cb3984452c0800000000000000
+      internalID: -4443847132952025587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_192
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b43a219f033641d0800000000000000
+      internalID: -3366947529459878729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_193
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1665
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98bded0ae78138c10800000000000000
+      internalID: 2054512787154983817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_194
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 1658
+        width: 184
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8884161b70663840800000000000000
+      internalID: 5203452501240875149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_195
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1553
+        width: 177
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e15a07ddcb3970cb0800000000000000
+      internalID: -4897783630363843298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_196
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564917b1edbb8eaf0800000000000000
+      internalID: -366836807013133211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_197
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 292339dd70cde7670800000000000000
+      internalID: 8538503869881332370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_198
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd5b79f4b78c22c00800000000000000
+      internalID: 874481709605172701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_199
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e3f4ab33b1f2830800000000000000
+      internalID: 4048484499012402742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_200
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62003bb1e109d0990800000000000000
+      internalID: -7418114552221204442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_201
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6e96df1bf0438c10800000000000000
+      internalID: 2054557302326206058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_202
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ade8ce5ca251f8f70800000000000000
+      internalID: 9191588637939896026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_203
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d437d459ca91466e0800000000000000
+      internalID: -1845321718285110451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_204
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5088c690596233d10800000000000000
+      internalID: 2104067872462243845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_205
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d34b778fb42329f20800000000000000
+      internalID: 3427857568254899261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_206
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 574b6b5911982e940800000000000000
+      internalID: 5323968418124575861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_207
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1553
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6af7b9faade58180800000000000000
+      internalID: -9113616952324523413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_208
+      rect:
+        serializedVersion: 2
+        x: 1588
+        y: 1546
+        width: 170
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9166a243652373840800000000000000
+      internalID: 5203683240273667609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_209
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1434
+        width: 170
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 656393ae20712ea90800000000000000
+      internalID: -7286235945845049770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_210
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80945534e13eae120800000000000000
+      internalID: 2444015466920102152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_211
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f9ca30bdb04e8a70800000000000000
+      internalID: 8831067102769760755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_212
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2ed4f71ba42fc8a0800000000000000
+      internalID: -6282762637898621393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_213
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c73189dae76b567d0800000000000000
+      internalID: -2925731727712709764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_214
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06673caa5f4c877f0800000000000000
+      internalID: -614524789725104544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_215
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 206f98916cc6bf830800000000000000
+      internalID: 4105995083366135298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_216
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf9a3cd5e82534a70800000000000000
+      internalID: 8809976067478759931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_217
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c90a1cdca87ef8fb0800000000000000
+      internalID: -4643238107452170084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_218
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8a0737382dad1340800000000000000
+      internalID: 4836211963102431885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_219
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0ee679cf49034420800000000000000
+      internalID: 2612942447092100618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_220
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9c4b87ac39bf01f0800000000000000
+      internalID: -1076438115758158689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_221
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1441
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50e3c666dc3a58400800000000000000
+      internalID: 325846650636221957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_222
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 1322
+        width: 177
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 534ae3fc6c4615350800000000000000
+      internalID: 6003690583304873013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_223
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 1329
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58d6343dc3d49dc00800000000000000
+      internalID: 925856122039135621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_224
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 1329
+        width: 128
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d6d33c6a5b4f92b0800000000000000
+      internalID: -5575654961926908205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_225
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 1322
+        width: 583
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b058fefbc25ceff10800000000000000
+      internalID: 2305496855249650955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_226
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 1329
+        width: 128
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 566f001011f097730800000000000000
+      internalID: 3997242709973726821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_227
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 1329
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f653ac577444cb70800000000000000
+      internalID: 8918328441546430199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_228
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 1329
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abe1f3012681e2190800000000000000
+      internalID: -7985418279822876998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_229
+      rect:
+        serializedVersion: 2
+        x: 1462
+        y: 1329
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbffa1b13ab798b60800000000000000
+      internalID: 7748860574332288959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_230
+      rect:
+        serializedVersion: 2
+        x: 1574
+        y: 1329
+        width: 93
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd4ea9f48a5251c80800000000000000
+      internalID: -8352728529068432163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_231
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 300
+        width: 1808
+        height: 793
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8c7471749e65c590800000000000000
+      internalID: -7654590407808615282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      keyboard buttons_0: -4019692136688160998
+      keyboard buttons_1: 6013039079964846755
+      keyboard buttons_10: 2303908802062137955
+      keyboard buttons_100: 7913114005618663214
+      keyboard buttons_101: -6018842564703206647
+      keyboard buttons_102: 4823643935557497142
+      keyboard buttons_103: 1312877332130355328
+      keyboard buttons_104: -3529432921658985411
+      keyboard buttons_105: 4020959750085933419
+      keyboard buttons_106: -4961775235422627516
+      keyboard buttons_107: -285559113421358964
+      keyboard buttons_108: -8427600182950025955
+      keyboard buttons_109: -131954341036391323
+      keyboard buttons_11: 2975800850548436692
+      keyboard buttons_110: 5764703701851722601
+      keyboard buttons_111: 915205240123871594
+      keyboard buttons_112: 9166994268940889990
+      keyboard buttons_113: -2326062918128360245
+      keyboard buttons_114: 5659013373399948723
+      keyboard buttons_115: -5662502402547393653
+      keyboard buttons_116: -3322335929862511052
+      keyboard buttons_117: -1397112568427172865
+      keyboard buttons_118: 6932137958595482863
+      keyboard buttons_119: 4724523252922632622
+      keyboard buttons_12: 4407361208481247952
+      keyboard buttons_120: -127737455222106013
+      keyboard buttons_121: -7629974092762127850
+      keyboard buttons_122: -1907153900214288734
+      keyboard buttons_123: 2184351659698261922
+      keyboard buttons_124: 5202200847146851771
+      keyboard buttons_125: 5869597445304219712
+      keyboard buttons_126: 3183189423620202151
+      keyboard buttons_127: -5354315938723269402
+      keyboard buttons_128: -5625652012444712347
+      keyboard buttons_129: 2736817959473821447
+      keyboard buttons_13: -5144126978504327995
+      keyboard buttons_130: 9142628172630977244
+      keyboard buttons_131: -7632683793308135320
+      keyboard buttons_132: 2465661467938920173
+      keyboard buttons_133: -4097700328380763360
+      keyboard buttons_134: -5860597198856345540
+      keyboard buttons_135: 7944087903011217866
+      keyboard buttons_136: 8595599890522770655
+      keyboard buttons_137: 948147601608747511
+      keyboard buttons_138: -1408250054496068076
+      keyboard buttons_139: -5343365762014337787
+      keyboard buttons_14: -3271322684529991462
+      keyboard buttons_140: 984139434831597690
+      keyboard buttons_141: -7229397002949651204
+      keyboard buttons_142: -2257207485960547538
+      keyboard buttons_143: -110531583085176169
+      keyboard buttons_144: 5725861712149835711
+      keyboard buttons_145: -2538833458659236673
+      keyboard buttons_146: 7118663807284077274
+      keyboard buttons_147: -7814009765657877368
+      keyboard buttons_148: 2626308863108852727
+      keyboard buttons_149: -3923646607513058877
+      keyboard buttons_15: 411745426468152294
+      keyboard buttons_150: -9072585583785801434
+      keyboard buttons_151: -1392899068505949021
+      keyboard buttons_152: 2169664569922902867
+      keyboard buttons_153: -883115831887913050
+      keyboard buttons_154: 2000643588259919397
+      keyboard buttons_155: -6829142821325123676
+      keyboard buttons_156: -3396378093440500486
+      keyboard buttons_157: 7759364111748295706
+      keyboard buttons_158: -137610595942403218
+      keyboard buttons_159: -3546303698904686884
+      keyboard buttons_16: -2739696787980177953
+      keyboard buttons_160: -5804852039471870278
+      keyboard buttons_161: 3734392930824612425
+      keyboard buttons_162: -4958081643277823079
+      keyboard buttons_163: -3045533537595319779
+      keyboard buttons_164: -1480222734513871470
+      keyboard buttons_165: 8147420134779569789
+      keyboard buttons_166: -9156024005743907164
+      keyboard buttons_167: -4044296510864517739
+      keyboard buttons_168: 2619030864288321073
+      keyboard buttons_169: -5979040871602910463
+      keyboard buttons_17: -7174430820461615694
+      keyboard buttons_170: -1767024372504384417
+      keyboard buttons_171: 4946361934047346271
+      keyboard buttons_172: -7617170012842612484
+      keyboard buttons_173: 1957537888241943718
+      keyboard buttons_174: 448176960755351141
+      keyboard buttons_175: -3996419979492586187
+      keyboard buttons_176: 7075099928663509754
+      keyboard buttons_177: 4711580717410623454
+      keyboard buttons_178: -656880480443069031
+      keyboard buttons_179: 3210184230338652095
+      keyboard buttons_18: 7351670786039417766
+      keyboard buttons_180: -8327492537843842698
+      keyboard buttons_181: -1551852552376972719
+      keyboard buttons_182: -6585956402880300434
+      keyboard buttons_183: -4277216615059211287
+      keyboard buttons_184: -3592145325563769694
+      keyboard buttons_185: 7538528473151745108
+      keyboard buttons_186: 4953127385018263803
+      keyboard buttons_187: -8044627079332063662
+      keyboard buttons_188: -7238433569379765095
+      keyboard buttons_189: -8294902899062069418
+      keyboard buttons_19: 6696380847418727635
+      keyboard buttons_190: 3862035975846951691
+      keyboard buttons_191: -4443847132952025587
+      keyboard buttons_192: -3366947529459878729
+      keyboard buttons_193: 2054512787154983817
+      keyboard buttons_194: 5203452501240875149
+      keyboard buttons_195: -4897783630363843298
+      keyboard buttons_196: -366836807013133211
+      keyboard buttons_197: 8538503869881332370
+      keyboard buttons_198: 874481709605172701
+      keyboard buttons_199: 4048484499012402742
+      keyboard buttons_2: -6123921460382279347
+      keyboard buttons_20: 5763299118565706046
+      keyboard buttons_200: -7418114552221204442
+      keyboard buttons_201: 2054557302326206058
+      keyboard buttons_202: 9191588637939896026
+      keyboard buttons_203: -1845321718285110451
+      keyboard buttons_204: 2104067872462243845
+      keyboard buttons_205: 3427857568254899261
+      keyboard buttons_206: 5323968418124575861
+      keyboard buttons_207: -9113616952324523413
+      keyboard buttons_208: 5203683240273667609
+      keyboard buttons_209: -7286235945845049770
+      keyboard buttons_21: -2177801180057159729
+      keyboard buttons_210: 2444015466920102152
+      keyboard buttons_211: 8831067102769760755
+      keyboard buttons_212: -6282762637898621393
+      keyboard buttons_213: -2925731727712709764
+      keyboard buttons_214: -614524789725104544
+      keyboard buttons_215: 4105995083366135298
+      keyboard buttons_216: 8809976067478759931
+      keyboard buttons_217: -4643238107452170084
+      keyboard buttons_218: 4836211963102431885
+      keyboard buttons_219: 2612942447092100618
+      keyboard buttons_22: -1926844180973930315
+      keyboard buttons_220: -1076438115758158689
+      keyboard buttons_221: 325846650636221957
+      keyboard buttons_222: 6003690583304873013
+      keyboard buttons_223: 925856122039135621
+      keyboard buttons_224: -5575654961926908205
+      keyboard buttons_225: 2305496855249650955
+      keyboard buttons_226: 3997242709973726821
+      keyboard buttons_227: 8918328441546430199
+      keyboard buttons_228: -7985418279822876998
+      keyboard buttons_229: 7748860574332288959
+      keyboard buttons_23: -6627158974637830772
+      keyboard buttons_230: -8352728529068432163
+      keyboard buttons_231: -7654590407808615282
+      keyboard buttons_24: 2324002553869730662
+      keyboard buttons_25: -7999410469824119428
+      keyboard buttons_26: 2096643941565219878
+      keyboard buttons_27: -1795808079027303872
+      keyboard buttons_28: -768493135045831628
+      keyboard buttons_29: 5908136775557710623
+      keyboard buttons_3: -2493207987833118920
+      keyboard buttons_30: -3790080551506858751
+      keyboard buttons_31: 2381561946408843497
+      keyboard buttons_32: 9057747819218586649
+      keyboard buttons_33: 138702552032874895
+      keyboard buttons_34: -2753791652217019960
+      keyboard buttons_35: 2229836516529817375
+      keyboard buttons_36: 177468703159946053
+      keyboard buttons_37: 979839074933216103
+      keyboard buttons_38: 8129459944220223317
+      keyboard buttons_39: -419227891319590648
+      keyboard buttons_4: -8205689575932363716
+      keyboard buttons_40: -8882361955593836565
+      keyboard buttons_41: 7125097040383886353
+      keyboard buttons_42: 426656378977127368
+      keyboard buttons_43: -6542242650829698108
+      keyboard buttons_44: -5041392227274887978
+      keyboard buttons_45: 4168303560279738919
+      keyboard buttons_46: -1212704865788111895
+      keyboard buttons_47: -5845842008043823316
+      keyboard buttons_48: 364352929598728689
+      keyboard buttons_49: 1103050960797551387
+      keyboard buttons_5: -5915660238328138363
+      keyboard buttons_50: 6973620527671392272
+      keyboard buttons_51: -8769736540534979098
+      keyboard buttons_52: -93384176757240750
+      keyboard buttons_53: -4092145918734761538
+      keyboard buttons_54: -7486359098859239083
+      keyboard buttons_55: 6839950169954125262
+      keyboard buttons_56: -3990418572686050704
+      keyboard buttons_57: -4538177077778579671
+      keyboard buttons_58: 1115425649723226931
+      keyboard buttons_59: -4612195220768941071
+      keyboard buttons_6: 6296430411685108991
+      keyboard buttons_60: 142915046084534315
+      keyboard buttons_61: 5143701167727775846
+      keyboard buttons_62: 3972351297677359483
+      keyboard buttons_63: 1897637392243372457
+      keyboard buttons_64: 746344724204534759
+      keyboard buttons_65: 2910517165690935070
+      keyboard buttons_66: 3290825802159909382
+      keyboard buttons_67: -8145772903311641053
+      keyboard buttons_68: 2163894073087482902
+      keyboard buttons_69: 4867558761003376614
+      keyboard buttons_7: -4875043349190946453
+      keyboard buttons_70: -5596240375784394067
+      keyboard buttons_71: -2745538346573458213
+      keyboard buttons_72: -5616140946614287253
+      keyboard buttons_73: 1533633155832071109
+      keyboard buttons_74: 2774880242927517230
+      keyboard buttons_75: 8504652916990267172
+      keyboard buttons_76: -6380229360490918364
+      keyboard buttons_77: -3774190085678432007
+      keyboard buttons_78: 6430754441786080052
+      keyboard buttons_79: -5184156490924199207
+      keyboard buttons_8: -7328455951613191802
+      keyboard buttons_80: 7886274593888539527
+      keyboard buttons_81: -6605633810711877758
+      keyboard buttons_82: 606893778412606877
+      keyboard buttons_83: -6469026013977814829
+      keyboard buttons_84: -3460676939095395892
+      keyboard buttons_85: -966710084461677465
+      keyboard buttons_86: 2032347912497558468
+      keyboard buttons_87: 2256367509102778374
+      keyboard buttons_88: 250730692705236722
+      keyboard buttons_89: 3292611390631563796
+      keyboard buttons_9: -7178057599229226951
+      keyboard buttons_90: -3584575955670746750
+      keyboard buttons_91: -5091116500952656415
+      keyboard buttons_92: -2408042720806304972
+      keyboard buttons_93: -26966899877520533
+      keyboard buttons_94: -1251262716080006030
+      keyboard buttons_95: 5994573720017601133
+      keyboard buttons_96: -6182482347679590915
+      keyboard buttons_97: 5775221348772195870
+      keyboard buttons_98: -5983657834122685116
+      keyboard buttons_99: 7783860923026084499
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

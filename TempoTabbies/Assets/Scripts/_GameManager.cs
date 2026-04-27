@@ -20,6 +20,7 @@ public class _GameManager : MonoBehaviour
     public int whoGetsToPlay; // When 0, only player 1 gets to do stuff in menus, when 1, only player 2 gets to do stuff in menus
 
     public bool multiplayer;
+    public bool tutorial;
 
     // Setting values to remember
     [Header("Settings values to save")]

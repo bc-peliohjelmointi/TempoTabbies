@@ -57,10 +57,10 @@ public class Create_LoadPlayer : MonoBehaviour
     public ButtonControl button2;
     public ButtonControl button3;
     public ButtonControl button4;
-    private string button1name;
-    private string button2name;
-    private string button3name;
-    private string button4name;
+    public string button1name;
+    public string button2name;
+    public string button3name;
+    public string button4name;
 
     [Header("Keys")]
     public KeyControl key1;
@@ -69,12 +69,12 @@ public class Create_LoadPlayer : MonoBehaviour
     public KeyControl key4;
     public KeyControl swipeLeft;
     public KeyControl swipeRight;
-    private string key1name;
-    private string key2name;
-    private string key3name;
-    private string key4name;
-    private string swipeLeftname;
-    private string swipeRightname;
+    public string key1name;
+    public string key2name;
+    public string key3name;
+    public string key4name;
+    public string swipeLeftname;
+    public string swipeRightname;
 
     [Header("Images")]
     public GameObject button1Image;
@@ -517,7 +517,6 @@ public class Create_LoadPlayer : MonoBehaviour
     // Saves the given details into a JSON file, excluding some names
     public void SaveName()
     {
-        Debug.Log(button4);
         if (button4 == null)
         {
             button1name = "leftTrigger";

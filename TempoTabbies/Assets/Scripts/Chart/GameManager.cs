@@ -1,7 +1,7 @@
 using System.Collections;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
@@ -28,7 +28,10 @@ public class GameManager : MonoBehaviour
                                               // ADD THIS - Make GameManager a singleton for easy access
 
     public GameObject buttonsp1;
+    public GameObject buttonsp1Keyboard;
     public GameObject buttonsp2;
+    public GameObject buttonsp2Keyboard;
+
     public static GameManager Instance { get; private set; }
 
     public float submit;
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
             submit = player.Submit();
             if (submit > 0)
             {
+                gm.tutorial = false;
                 SceneManager.LoadScene("StageSelect");
             }
         }
@@ -66,16 +70,21 @@ public class GameManager : MonoBehaviour
 
         gm = FindFirstObjectByType<_GameManager>();
         gm.state = _GameManager.GameState.Game;
-    }
-
-    void Start()
-    {
         if (GameSession.SelectedSong == null || GameSession.SelectedChart == null)
         {
             Debug.LogError("No song or chart selected! Please load from Song Select first.");
             return;
         }
 
+        SMFile sm = GameSession.SelectedSong;
+        if (sm.Title.ToLower().Contains("tutoial"))
+        {
+            gm.tutorial = true;
+        }
+    }
+
+    void Start()
+    {
         SMFile sm = GameSession.SelectedSong;
         SMChart chart = GameSession.SelectedChart;
 
@@ -115,21 +124,42 @@ public class GameManager : MonoBehaviour
         }
         if (gm.p1.showButtons)
         {
-            buttonsp1.SetActive(true);
+            if (gm.p1.inputDevice is Gamepad)
+            {
+                buttonsp1.SetActive(true);
+                buttonsp1Keyboard.SetActive(false);
+            }
+            else
+            {
+                buttonsp1Keyboard.SetActive(true);
+                buttonsp1.SetActive(false);
+
+            }
         }
         else
         {
             buttonsp1.SetActive(false);
+            buttonsp1Keyboard.SetActive(false);
         }
         if (gm.multiplayer && gm.p2.showButtons)
         {
-            buttonsp2.SetActive(true);
+            if (gm.p2.inputDevice is Gamepad)
+            {
+                buttonsp2.SetActive(true);
+                buttonsp2Keyboard.SetActive(false);
+            }
+            else
+            {
+                buttonsp2Keyboard.SetActive(true);
+                buttonsp2.SetActive(false);
+            }
         }
         else
         {
             if (buttonsp2 != null)
             {
                 buttonsp2.SetActive(false);
+                buttonsp2Keyboard.SetActive(false);
             }
         }
     }

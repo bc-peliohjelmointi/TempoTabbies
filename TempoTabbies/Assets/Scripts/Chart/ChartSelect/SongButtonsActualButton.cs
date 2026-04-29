@@ -1,16 +1,19 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 
-public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
+public class SongButtonsActualButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     public SongButton songButton;
     public AudioSource Music;
-    public AudioMixer mixer;
     private _GameManager _gm;
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        StartCoroutine(StopMusic());
+    }
 
     public void OnSelect(BaseEventData eventData)
     {
@@ -19,6 +22,16 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
             StartCoroutine(ChangeSongs());
         }
     }
+
+    private IEnumerator StopMusic()
+    {
+        yield return new WaitForSeconds(0.01f);
+        if (Music.isPlaying)
+        {
+            Music.Stop();
+        }
+    }
+
     private IEnumerator ChangeSongs()
     {
         yield return new WaitForSeconds(0.001f);
@@ -37,6 +50,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
             StartCoroutine(LoadAndStartMusic(songButton.currentSong));
         }
     }
+
     private IEnumerator LoadAndStartMusic(SMFile sm)
     {
         if (Music.clip == null)

@@ -15,12 +15,12 @@ MonoBehaviour:
   CardName: 
   description: "Both players notes become harder to hit\u200B"
   effectType: 6
-  icon: {fileID: -2956686467031510096, guid: 2dfb6ceb50b8e854781c7ade71cf65e7, type: 3}
+  icon: {fileID: -7950095946979258867, guid: dce0b0d1c95a2604da1d40b43f8dbec2, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
   multiplayer: 0
-  activeP1: 0
+  activeP1: 1
   activeP2: 0
   value: 0
   triggerThreshold: 0

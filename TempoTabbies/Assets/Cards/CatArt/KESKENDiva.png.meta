@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2dfb6ceb50b8e854781c7ade71cf65e7
+guid: c4ed99a71581c3d44b045cea8c2e878f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2956686467031510096
-    second: KeskenWorstHitChance_0
+      213: -5155810312196478615
+    second: KESKENDiva_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KeskenWorstHitChance_0
+      name: KESKENDiva_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0b3d16cc25db7f6d0800000000000000
-      internalID: -2956686467031510096
+      spriteID: 969ab3476d1e278b0800000000000000
+      internalID: -5155810312196478615
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      KeskenWorstHitChance_0: -2956686467031510096
+      KESKENDiva_0: -5155810312196478615
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

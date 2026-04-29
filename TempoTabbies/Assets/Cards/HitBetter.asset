@@ -15,12 +15,12 @@ MonoBehaviour:
   CardName: 
   description: 
   effectType: 5
-  icon: {fileID: 5097197816180322628, guid: d8027524c92188e488a625c233b75b10, type: 3}
+  icon: {fileID: 8164842726566910024, guid: c6ab4071ab2cf32409081786db717830, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1
   multiplayer: 0
-  activeP1: 0
+  activeP1: 1
   activeP2: 0
   value: 0
   triggerThreshold: 0

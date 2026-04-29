@@ -15,7 +15,7 @@ MonoBehaviour:
   CardName: 
   description: 
   effectType: 9
-  icon: {fileID: 3018051706124938852, guid: 10faa180b385e9a40a0b119cd0d7951e, type: 3}
+  icon: {fileID: 1760584736556077887, guid: 24ad6a92a15597842be8d73b911f8d97, type: 3}
   duration: 10
   cooldown: 30
   activatesAutomatically: 1

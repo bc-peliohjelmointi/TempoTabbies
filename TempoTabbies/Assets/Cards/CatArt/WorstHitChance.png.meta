@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: b12328c7ec172324f9943d5a96b97346
+guid: dce0b0d1c95a2604da1d40b43f8dbec2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6709595717348926441
-    second: oranssiKissanorm.2_0
-  - first:
-      213: -6271259634327720838
-    second: oranssiKissanorm.2_1
+      213: -7950095946979258867
+    second: WorstHitChance1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oranssiKissanorm.2_0
+      name: WorstHitChance1_0
       rect:
         serializedVersion: 2
-        x: 560
-        y: 977
-        width: 8
-        height: 9
+        x: 0
+        y: 0
+        width: 1390
+        height: 2035
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9e3a01781c54d1d50800000000000000
-      internalID: 6709595717348926441
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: oranssiKissanorm.2_1
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 96
-        width: 642
-        height: 874
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a7c66a1d69208f8a0800000000000000
-      internalID: -6271259634327720838
+      spriteID: d0e470e8bd59ba190800000000000000
+      internalID: -7950095946979258867
       vertices: []
       indices: 
       edges: []
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      oranssiKissanorm.2_0: 6709595717348926441
-      oranssiKissanorm.2_1: -6271259634327720838
+      WorstHitChance1_0: -7950095946979258867
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

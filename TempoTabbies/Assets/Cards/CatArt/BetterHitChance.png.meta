@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 894087378fff22842b7e651beac979da
+guid: c6ab4071ab2cf32409081786db717830
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2864738286450786963
-    second: oranssiKissanorm.1_0
+      213: 8164842726566910024
+    second: BetterHitChance_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: oranssiKissanorm.1_0
+      name: BetterHitChance_0
       rect:
         serializedVersion: 2
-        x: 303
-        y: 148
-        width: 658
-        height: 842
+        x: 0
+        y: 0
+        width: 1390
+        height: 2035
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6db3add4b76e38d0800000000000000
-      internalID: -2864738286450786963
+      spriteID: 848d3fb53395f4170800000000000000
+      internalID: 8164842726566910024
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      oranssiKissanorm.1_0: -2864738286450786963
+      BetterHitChance_0: 8164842726566910024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

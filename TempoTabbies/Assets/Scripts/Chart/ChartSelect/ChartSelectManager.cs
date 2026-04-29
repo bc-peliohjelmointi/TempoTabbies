@@ -35,6 +35,7 @@ public class ChartSelectManager : MonoBehaviour
     public float submitValue;
     public float timer;
     private float timerMax = 0.5f;
+    private GameObject lastSelected;
 
     public enum State
     {
@@ -207,6 +208,17 @@ public class ChartSelectManager : MonoBehaviour
 
     void Update()
     {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (lastSelected != EventSystem.current.currentSelectedGameObject)
+            {
+                EventSystem.current.SetSelectedGameObject(lastSelected);
+            }
+        }
+        if (lastSelected != EventSystem.current.currentSelectedGameObject)
+        {
+            lastSelected = EventSystem.current.currentSelectedGameObject;
+        }
         // Handle controller/keyboard selection hover: show score popup when a chart button is selected
         if (EventSystem.current != null)
         {

@@ -1108,6 +1108,16 @@ MonoBehaviour:
   saveButton: {fileID: 8616304064382520590}
   startingSection: {fileID: 1923216715}
   buttonEditSection: {fileID: 327387176}
+  button1name: 
+  button2name: 
+  button3name: 
+  button4name: 
+  key1name: 
+  key2name: 
+  key3name: 
+  key4name: 
+  swipeLeftname: 
+  swipeRightname: 
   button1Image: {fileID: 337499959}
   button2Image: {fileID: 450940909}
   button3Image: {fileID: 823420844}
@@ -3685,6 +3695,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 227833787}
+        m_TargetAssemblyTypeName: Create_LoadPlayer, Assembly-CSharp
+        m_MethodName: GoToStartButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 227833787}
         m_TargetAssemblyTypeName: Create_LoadPlayer, Assembly-CSharp
         m_MethodName: NewProfileButton

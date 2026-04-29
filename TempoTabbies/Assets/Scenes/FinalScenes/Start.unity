@@ -1231,6 +1231,7 @@ MonoBehaviour:
   stageID: 0
   whoGetsToPlay: 0
   multiplayer: 1
+  tutorial: 0
   volume: 0
   showButtons: 0
   scrollSpeed: 0
@@ -1239,6 +1240,7 @@ MonoBehaviour:
   assistTickVolume: 0
   hitSound: 0
   hitSoundVolume: 0
+  lineOpacity: 0
   epilepsy: 0
   movingBG: 0
   noteOne: 

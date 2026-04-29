@@ -2646,7 +2646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194363974656373455, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4639,7 +4639,7 @@ MonoBehaviour:
   LaneParent: {fileID: 24678508}
   HitLine: {fileID: 1554121468}
   buttonsp1: {fileID: 513570063}
-  buttonsp1Keyboard: {fileID: 0}
+  buttonsp1Keyboard: {fileID: 1061863081}
   buttonsp2: {fileID: 0}
   buttonsp2Keyboard: {fileID: 0}
   submit: 0

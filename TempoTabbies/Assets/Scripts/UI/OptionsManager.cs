@@ -33,6 +33,7 @@ public class OptionsManager : MonoBehaviour
     public Button assistTick;
     public Slider assistTickVolume;
     public Slider lineOpacity;
+    public Button missRumble;
     public Button hitSound;
     public Slider hitSoundVolume;
     public Button audioTop;
@@ -49,6 +50,7 @@ public class OptionsManager : MonoBehaviour
     public Image assistTickConfirmation;
     public Image hitSoundConfirmation;
     public Image showButtonConfirmation;
+    public Image missRumbleConfirmation;
     public Image epilepsyConfirmation;
     public Image movingBGImage;
 
@@ -85,7 +87,7 @@ public class OptionsManager : MonoBehaviour
         assistTickVolume.value = gameManager.assistTickVolume;
         hitSoundVolume.value = gameManager.hitSoundVolume;
         // just clicks buttons twice, so if true in gameManager, it goes false then back to true we do this so it can check what the button bools are in the gameManager
-        AssistTick(); AssistTick(); HitSound(); HitSound(); ShowButtons(); ShowButtons(); OnEpilepsyClick(); OnEpilepsyClick(); OnMovingBGClick(); OnMovingBGClick();
+        AssistTick(); AssistTick(); HitSound(); HitSound(); ShowButtons(); ShowButtons(); OnEpilepsyClick(); OnEpilepsyClick(); OnMovingBGClick(); OnMovingBGClick(); OnMissRumbleClick(); OnMissRumbleClick();
     }
 
 
@@ -176,6 +178,19 @@ public class OptionsManager : MonoBehaviour
         else
         {
             movingBGImage.color = Color.softRed;
+        }
+    }
+
+    public void OnMissRumbleClick()
+    {
+        gameManager.missRumble = !gameManager.missRumble;
+        if (gameManager.missRumble)
+        {
+            missRumbleConfirmation.color = Color.limeGreen;
+        }
+        else
+        {
+            missRumbleConfirmation.color = Color.softRed;
         }
     }
 

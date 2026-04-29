@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ScoreManager : MonoBehaviour
 {
     public PlayerScript player;
+    public Gamepad assignedGamepad;
     public int playerToUse;
     [Header("Scoring Settings")]
     public int maxScore = 1010000;    // All Marvelous
@@ -131,6 +134,9 @@ public class ScoreManager : MonoBehaviour
         // Update combo UI/display
         OnComboChanged?.Invoke(player.Combo);
     }
+
+    
+
 
     // Call this when the chart/song is complete
     public void FinalizeScore()
@@ -409,10 +415,18 @@ public class ScoreManager : MonoBehaviour
         if (playerToUse == 1)
         {
             player = gm.p1;
+            if (player.inputDevice is Gamepad)
+            {
+                assignedGamepad = player.inputDevice as Gamepad;
+            }
         }
         else
         {
             player = gm.p2;
+            if (player.inputDevice is Gamepad)
+            {
+                assignedGamepad = player.inputDevice as Gamepad;
+            }
         }
     }
 }

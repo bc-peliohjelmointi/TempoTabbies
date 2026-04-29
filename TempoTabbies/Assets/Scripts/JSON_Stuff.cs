@@ -27,11 +27,11 @@ public class Player
 public class GM
 {
     public float volume;
-    public float scrollSpeed;
     public float audioOffset;
     public bool assistTick;
     public float assistTickVolume;
     public bool hitSound;
+    public bool missRumble;
     public float hitSoundVolume;
     public bool showButtons;
     public int lineOpacity;
@@ -72,11 +72,11 @@ public class JSON_Stuff : MonoBehaviour
         GM gm = new();
         // Saves the values from _GameManager to the placeholder class
         gm.volume = gameManager.volume;
-        gm.scrollSpeed = gameManager.scrollSpeed;
         gm.audioOffset = gameManager.audioOffset;
         gm.assistTick = gameManager.assistTick;
         gm.assistTickVolume = gameManager.assistTickVolume;
         gm.hitSound = gameManager.hitSound;
+        gm.missRumble = gameManager.missRumble;
         gm.hitSoundVolume = gameManager.hitSoundVolume;
         gm.showButtons = gameManager.showButtons;
         gm.lineOpacity = gameManager.lineOpacity;
@@ -91,6 +91,11 @@ public class JSON_Stuff : MonoBehaviour
     // Load the data for _GameManager from a JSON file
     public void LoadGameManager()
     {
+        if (!File.Exists(("JSON/GameManager/_GameManager.json")))
+        {
+            Debug.LogError("No JSON file found for GameManager, Creating a default");
+            SaveGameManager();
+        }
         // makes the placeholder class
         GM gm = new();
         // Finds the currently existing JSON file needed
@@ -99,12 +104,12 @@ public class JSON_Stuff : MonoBehaviour
         gm = JsonUtility.FromJson<GM>(json);
         // Tranfers the values from the place holder class to the _GameManager
         gameManager.volume = gm.volume;
-        gameManager.scrollSpeed = gm.scrollSpeed;
         gameManager.audioOffset = gm.audioOffset;
         gameManager.assistTick = gm.assistTick;
         gameManager.assistTickVolume = gm.assistTickVolume;
         gameManager.hitSound = gm.hitSound;
         gameManager.hitSoundVolume = gm.hitSoundVolume;
+        gameManager.missRumble = gm.missRumble;
         gameManager.showButtons = gm.showButtons;
         gameManager.lineOpacity = gm.lineOpacity;
         gameManager.epilepsy = gm.epilepsy;

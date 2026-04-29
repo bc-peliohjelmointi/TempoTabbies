@@ -517,7 +517,8 @@ public class Create_LoadPlayer : MonoBehaviour
     // Saves the given details into a JSON file, excluding some names
     public void SaveName()
     {
-        if (button4 == null)
+        Debug.Log(button4name);
+        if (button4name == null)
         {
             button1name = "leftTrigger";
             button2name = "leftShoulder";
@@ -526,12 +527,15 @@ public class Create_LoadPlayer : MonoBehaviour
         }
         else
         {
-            button1name = button1.name;
-            button2name = button2.name;
-            button3name = button3.name;
-            button4name = button4.name;
+            if (button4 != null)
+            {
+                button1name = button1.name;
+                button2name = button2.name;
+                button3name = button3.name;
+                button4name = button4.name;
+            }
         }
-        if (key4 == null)
+        if (key4name == null)
         {
             key1name = "S";
             key2name = "D";
@@ -542,17 +546,24 @@ public class Create_LoadPlayer : MonoBehaviour
         }
         else
         {
-            key1name = key1.keyCode.ToString().Replace("Digit", "");
-            key2name = key2.keyCode.ToString().Replace("Digit", "");
-            key3name = key3.keyCode.ToString().Replace("Digit", "");
-            key4name = key4.keyCode.ToString().Replace("Digit", "");
-            swipeLeftname = swipeLeft.keyCode.ToString().Replace("Digit", "");
-            swipeRightname = swipeRight.keyCode.ToString().Replace("Digit", "");
+            if (key4 != null)
+            {
+                key1name = key1.keyCode.ToString().Replace("Digit", "");
+                key2name = key2.keyCode.ToString().Replace("Digit", "");
+                key3name = key3.keyCode.ToString().Replace("Digit", "");
+                key4name = key4.keyCode.ToString().Replace("Digit", "");
+                swipeLeftname = swipeLeft.keyCode.ToString().Replace("Digit", "");
+                swipeRightname = swipeRight.keyCode.ToString().Replace("Digit", "");
+            }
         }
 
-        if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert")
+        if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert" && chosenName.text.ToLower() != "" && !chosenName.text.ToLower().Contains(".json"))
         {
             json.SavePlayer(player, scrollSpeed, assistTick, showButtons, button1name, button2name, button3name, button4name, key1name, key2name, key3name, key4name, swipeLeftname, swipeRightname);
+        }
+        else
+        {
+            chosenName.text = "INVALID NAME";
         }
     }
 
@@ -634,8 +645,19 @@ public class Create_LoadPlayer : MonoBehaviour
         button4 = null;
     }
 
+    public void NullKeys()
+    {
+        key1 = null;
+        key2 = null;
+        key3 = null;
+        key4 = null;
+        swipeLeft = null;
+        swipeRight = null;
+    }
+
     public void StartButtonChange()
     {
+        NullButtons();
         timer = 0;
         button1Image.SetActive(true);
         state = State.buttons;
@@ -645,6 +667,7 @@ public class Create_LoadPlayer : MonoBehaviour
 
     public void StartKeyChange()
     {
+        NullKeys();
         timer = 0;
         button1Image.SetActive(true);
         state = State.keys;
@@ -669,10 +692,6 @@ public class Create_LoadPlayer : MonoBehaviour
         ShowButtons();
     }
 
-    public void LoadPlayerToPlayer(int number)
-    {
-        json.LoadPlayerToPlayer(player, number);
-    }
     public void ApplyProfileToPlayer(PlayerScript player)
     {
         if (player == null) return;

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -50,6 +51,7 @@ public class HitManager : MonoBehaviour
 
     // expose assigned gamepad to HoldNote
     public Gamepad AssignedGamepad => assignedGamepad;
+    public bool motorOn;
 
     // Previous-frame gamepad-held states (used to detect press-this-frame reliably)
     private bool prevGamepadLeftTriggerHeld = false;
@@ -93,7 +95,7 @@ public class HitManager : MonoBehaviour
     public KeyControl swipeLeft;
     public KeyControl swipeRight;
 
-    private _GameManager _gm;
+    public _GameManager _gm;
 
     public bool gamepadOn;
 
@@ -155,7 +157,7 @@ public class HitManager : MonoBehaviour
 
         foreach (SpriteRenderer sr in hitlines.GetComponentsInChildren<SpriteRenderer>())
         {
-            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, (float)_gm.lineOpacity/10);
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, (float)_gm.lineOpacity / 10);
         }
 
         // Auto-assign a per-player SimpleHitSprite if none was set in the inspector.
@@ -572,6 +574,8 @@ public class HitManager : MonoBehaviour
                 else
                 {
                     ShowJudgment("MISS", false, false); // No direction for misses
+                    
+                    StartCoroutine(Rumble());
                 }
 
                 // ADD MISS TO SCORE
@@ -584,6 +588,21 @@ public class HitManager : MonoBehaviour
                 Debug.Log($"[MISS] lane {note.Lane}");
             }
         }
+    }
+
+    public IEnumerator Rumble()
+    {
+        if (motorOn || !_gm.missRumble)
+        { 
+            yield break;
+        }
+        Debug.LogError("Rumble!");
+        assignedGamepad?.SetMotorSpeeds(0.5f, 0.5f);
+        motorOn = true;
+        yield return new WaitForSeconds(0.05f);
+        assignedGamepad?.SetMotorSpeeds(0f, 0f);
+        motorOn = false;
+
     }
 
     public void InitializeChart(int totalNotes)

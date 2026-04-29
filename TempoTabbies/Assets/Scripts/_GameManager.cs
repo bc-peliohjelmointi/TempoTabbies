@@ -26,7 +26,7 @@ public class _GameManager : MonoBehaviour
     [Header("Settings values to save")]
     public float volume;
     public bool showButtons;
-    public float scrollSpeed;
+    public bool missRumble;
     public float audioOffset; // in ms
     public bool assistTick;
     public float assistTickVolume;

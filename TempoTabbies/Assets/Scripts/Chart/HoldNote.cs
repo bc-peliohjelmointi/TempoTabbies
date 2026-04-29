@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class HoldNote : MonoBehaviour
@@ -268,11 +269,24 @@ public class HoldNote : MonoBehaviour
         if (scoreManager != null)
         {
             scoreManager.AddJudgment("MISS");
+            StartCoroutine(Rumble());
         }
 
         // Do not destroy the hold note on initial miss — dim it so the player
         // can still attempt to hit the release timing window.
         DimNoteVisuals(0.6f);
+    }
+    public IEnumerator Rumble()
+    {
+        if (OwnerHitManager.motorOn || !OwnerHitManager._gm.missRumble)
+        {
+            yield break;
+        }
+        Debug.LogError("Rumble!");
+        Gamepad assignedGamepad = OwnerHitManager?.AssignedGamepad;
+        assignedGamepad?.SetMotorSpeeds(0.5f, 0.5f);
+        yield return new WaitForSeconds(0.05f);
+        assignedGamepad?.SetMotorSpeeds(0f, 0f);
     }
 
     // Dim the visual components of this hold note (head/body/end) by a factor.
@@ -314,6 +328,7 @@ public class HoldNote : MonoBehaviour
         if (scoreManager != null)
         {
             scoreManager.AddJudgment("MISS");
+            StartCoroutine(Rumble());
         }
 
         DestroyHold();
@@ -425,6 +440,7 @@ public class HoldNote : MonoBehaviour
         if (initialPressMissed && !hasStartedHold)
         {
             ShowJudgment("MISS", false, false);
+            StartCoroutine(Rumble());
             if (scoreManager != null)
                 scoreManager.AddJudgment("MISS");
             Debug.Log("[HoldNote] Release Judgment: MISS (never held)");

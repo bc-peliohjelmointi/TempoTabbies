@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6200938075610504760}
   - component: {fileID: 6037213866281020685}
   - component: {fileID: 4012210235010216441}
+  - component: {fileID: 2724800937522699870}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -236,6 +237,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2724800937522699870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2649696940767847695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e030710294729aa468f78fa2e6d1f081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChartButtonActualButton
+  songButton: {fileID: 0}
 --- !u!1 &4566371805641757261
 GameObject:
   m_ObjectHideFlags: 0

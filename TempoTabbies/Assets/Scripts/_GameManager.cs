@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// General game manager
@@ -87,6 +88,9 @@ public class _GameManager : MonoBehaviour
 
     private void Awake()
     {
+        UnityEngine.Cursor.visible = false;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+
         if (instance == null)
         {
             instance = this;

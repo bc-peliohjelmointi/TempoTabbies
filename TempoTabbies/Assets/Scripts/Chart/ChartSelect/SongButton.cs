@@ -100,6 +100,7 @@ public class SongButton : MonoBehaviour
             SetButtonColor(btn, chart.Difficulty);
             SMChart currentChart = chart;
             btn.onClick.AddListener(() => OnChartSelected(currentChart));
+            btn.GetComponent<ChartButtonActualButton>().songButton = gameObject.GetComponent<SongButtonsActualButton>(); 
             // Add hover handler to the actual Button gameObject so pointer events reach it
             GameObject hoverTarget = (btn != null) ? btn.gameObject : btnObj;
             var hover = hoverTarget.GetComponent<ChartButtonHover>();

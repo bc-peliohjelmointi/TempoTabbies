@@ -62,11 +62,11 @@ public class NoteSpawner : MonoBehaviour
 
         if (gm != null)
         {
-            if (gm.taco)
+            /*if (gm.taco)
             {
                 NotePrefab_TypeA.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
                 NotePrefab_TypeB.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
-            }
+            }*/
             if (playerID == 1)
             {
                 if (gm.p1 != null)

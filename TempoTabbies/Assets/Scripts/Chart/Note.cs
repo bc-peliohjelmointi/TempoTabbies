@@ -8,10 +8,7 @@ public class Note : MonoBehaviour
     public Transform HitLine;
     public int Lane;
     public bool Hit;
-    _GameManager gm;
-    SpriteRenderer thisSr;
-    public SpriteRenderer tacoSr;
-    public bool taco;
+    private _GameManager _gm;
 
     private float initialX;
     private float initialZ;
@@ -23,7 +20,6 @@ public class Note : MonoBehaviour
         initialX = transform.position.x;
         initialZ = transform.position.z;
         started = true;
-        thisSr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -42,16 +38,9 @@ public class Note : MonoBehaviour
 
             Destroy(gameObject);
         }
-
-        if (gm == null)
+        if (_gm.taco)
         {
-            gm = FindFirstObjectByType<_GameManager>();
+            gameObject.transform.localEulerAngles += new Vector3(0, 0, 5f);
         }
-        if (gm.taco)
-        {
-            thisSr.sprite = tacoSr.sprite;
-            gameObject.transform.localEulerAngles += new Vector3(0, 0, 5);
-        }
-
     }
 }

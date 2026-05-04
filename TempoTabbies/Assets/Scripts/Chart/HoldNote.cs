@@ -10,9 +10,11 @@ public class HoldNote : MonoBehaviour
     public int Lane;
     public AudioSource Music;
     public Transform HitLine;
+    private _GameManager _gm;
 
     [Header("Hold Components")]
     public GameObject Head;
+    private SpriteRenderer sr; // For taco rotation
     public GameObject Body;
     public GameObject End;
 
@@ -72,6 +74,12 @@ public class HoldNote : MonoBehaviour
             var s = Head.transform.localScale;
             s.x = BodyWidth;
             Head.transform.localScale = s;
+            _gm = FindFirstObjectByType<_GameManager>();
+            if (_gm.taco)
+            {
+                SpriteRenderer sr = Head.GetComponent<SpriteRenderer>();
+                sr.sprite = Body.GetComponent<Note>().tacoSr.sprite;
+            }
         }
 
         // --- Robust fallback binding for singleplayer ---
@@ -109,6 +117,16 @@ public class HoldNote : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
+        if (_gm.taco)
+        {
+            if (Head != null)
+            {
+                Head.transform.localEulerAngles += new Vector3(0, 0, 5);
+                if (sr.sprite != Body.GetComponent<Note>().tacoSr.sprite)
+                    sr.sprite = Body.GetComponent<Note>().tacoSr.sprite;
+            }
+        }
+
         if (!Music || !HitLine || hasEnded) return;
 
         // Use owner hit manager's assigned pad when available.
@@ -147,7 +165,7 @@ public class HoldNote : MonoBehaviour
         if (keyboard != null)
         {
             curStickLeftHeld = curStickLeftHeld || (!OwnerHitManager.gamepadOn && OwnerHitManager.swipeLeft.isPressed);
-            curStickRightHeld = curStickRightHeld ||(!OwnerHitManager.gamepadOn && OwnerHitManager.swipeRight.isPressed);
+            curStickRightHeld = curStickRightHeld || (!OwnerHitManager.gamepadOn && OwnerHitManager.swipeRight.isPressed);
         }
 
         // --- BEFORE HOLD START ---

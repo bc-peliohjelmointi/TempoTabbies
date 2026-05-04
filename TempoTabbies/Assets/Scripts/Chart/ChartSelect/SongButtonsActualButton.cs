@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
+using static Unity.VisualScripting.Member;
 
 public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
 {
@@ -21,11 +22,9 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
     }
     private IEnumerator ChangeSongs()
     {
-        yield return new WaitForSeconds(0.001f);
         if (EventSystem.current.currentSelectedGameObject == gameObject)
         {
             songButton.SaveThisButton();
-            yield return new WaitForSeconds(0.5f);
             if (_gm == null) _gm = FindFirstObjectByType<_GameManager>();
             if (_gm.allAudioSources.Count < 4)
             {
@@ -34,7 +33,12 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                     _gm.allAudioSources.Add(source);
                 }
             }
-            StartCoroutine(LoadAndStartMusic(songButton.currentSong));
+            foreach (AudioSource source in _gm.allAudioSources)
+            {
+                source.Stop();
+            }
+            yield return new WaitForSeconds(0.1f);
+            if (EventSystem.current.currentSelectedGameObject == gameObject) StartCoroutine(LoadAndStartMusic(songButton.currentSong));
         }
     }
     private IEnumerator LoadAndStartMusic(SMFile sm)
@@ -95,12 +99,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
             }
         }
         foreach (AudioSource source in _gm.allAudioSources)
-        {
-            if (source != Music)
-            {
-                source.Stop();
-            }
-        }
+        
         Music.time = sm.chartStartOffset;
         Music.Play();
 

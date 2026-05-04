@@ -130,7 +130,7 @@ public class HitManager : MonoBehaviour
         }
         else if (playerNumber == 2)
         {
-            if (_gm.p2.inputDevice is Keyboard)
+            if (_gm.p2.inputDevice is Gamepad)
             {
                 assignedGamepad = ConvertToGamepad(_gm.p2.inputDevice);
                 if (_gm.p2.button4 == null)

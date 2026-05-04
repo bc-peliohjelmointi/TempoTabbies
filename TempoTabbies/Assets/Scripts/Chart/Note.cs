@@ -47,7 +47,7 @@ public class Note : MonoBehaviour
         {
             gm = FindFirstObjectByType<_GameManager>();
         }
-        if (gm.taco && taco)
+        if (gm.taco)
         {
             thisSr.sprite = tacoSr.sprite;
             gameObject.transform.localEulerAngles += new Vector3(0, 0, 5);

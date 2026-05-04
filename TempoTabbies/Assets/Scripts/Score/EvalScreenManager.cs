@@ -58,6 +58,9 @@ public class EvalScreenManager : MonoBehaviour
     public _GameManager gm;
     private SMFile currentSong;
     private SMChart currentChart;
+    private SMFile currentSongP2;
+    private SMChart currentChartP2;
+
 
     public GameObject winnerScreen;
     public TextMeshProUGUI winnerText;
@@ -74,6 +77,8 @@ public class EvalScreenManager : MonoBehaviour
     {
         currentSong = GameSession.SelectedSong;
         currentChart = GameSession.SelectedChart;
+        currentSongP2 = GameSession.SelectedSongP2;
+        currentChartP2 = GameSession.SelectedChartP2;
 
         SetupSongInfo();
         SetupScoreDisplay();
@@ -96,19 +101,39 @@ public class EvalScreenManager : MonoBehaviour
             songTitleText.text = currentSong.Title ?? "Unknown Title";
             artistText.text = currentSong.Artist ?? "Unknown Artist";
 
+            // Player 1 main display
             if (currentChart != null)
             {
-                // Player 1 main display
-                difficultyText.text = currentChart.Difficulty ?? "Unknown";
-                meterText.text = $"Lv. {currentChart.Meter}";
+                if (difficultyText != null) difficultyText.text = currentChart.Difficulty ?? "Unknown";
+                if (meterText != null) meterText.text = $"Lv. {currentChart.Meter}";
                 SetDifficultyColor(currentChart.Difficulty);
+            }
+            else
+            {
+                Debug.LogWarning("[EvalScreenManager] currentChart (P1) is null.");
+                if (difficultyText != null) difficultyText.text = "Unknown";
+                if (meterText != null) meterText.text = "Lv. ?";
+            }
 
-                // Player 2 mirrored display (only difficulty, meter, background) if multiplayer and fields assigned
-                if (multiplayer)
+            // Player 2 mirrored display (only difficulty, meter, background) if multiplayer
+            if (multiplayer)
+            {
+                if (currentChartP2 != null)
                 {
-                    if (difficultyTextP2 != null) difficultyTextP2.text = currentChart.Difficulty ?? "Unknown";
-                    if (meterTextP2 != null) meterTextP2.text = $"Lv. {currentChart.Meter}";
-                    if (difficultyBackgroundP2 != null) SetDifficultyColor(currentChart.Difficulty, difficultyBackgroundP2);
+                    if (difficultyTextP2 != null) difficultyTextP2.text = currentChartP2.Difficulty ?? "Unknown";
+                    else Debug.LogWarning("[EvalScreenManager] difficultyTextP2 is not assigned in the inspector.");
+
+                    if (meterTextP2 != null) meterTextP2.text = $"Lv. {currentChartP2.Meter}";
+                    else Debug.LogWarning("[EvalScreenManager] meterTextP2 is not assigned in the inspector.");
+
+                    // Pass explicit target; if difficultyBackgroundP2 is null, SetDifficultyColor will warn instead of silently using P1 background.
+                    SetDifficultyColor(currentChartP2.Difficulty, difficultyBackgroundP2);
+                }
+                else
+                {
+                    Debug.LogWarning("[EvalScreenManager] currentChartP2 is null. Ensure Player 2 selected a chart and GameSession.SelectedChartP2 is set.");
+                    if (difficultyTextP2 != null) difficultyTextP2.text = "Unknown";
+                    if (meterTextP2 != null) meterTextP2.text = "Lv. ?";
                 }
             }
 

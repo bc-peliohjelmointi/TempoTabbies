@@ -5684,7 +5684,9 @@ MonoBehaviour:
   rightStickLane: 5
   hitlines: {fileID: 1421990812}
   AcceptKeyboard: 1
+  motorOn: 0
   playerNumber: 2
+  _gm: {fileID: 0}
   gamepadOn: 0
 --- !u!4 &925474175
 Transform:
@@ -9250,7 +9252,9 @@ MonoBehaviour:
   rightStickLane: 5
   hitlines: {fileID: 1137812608}
   AcceptKeyboard: 1
+  motorOn: 0
   playerNumber: 1
+  _gm: {fileID: 0}
   gamepadOn: 0
 --- !u!4 &1509357026
 Transform:

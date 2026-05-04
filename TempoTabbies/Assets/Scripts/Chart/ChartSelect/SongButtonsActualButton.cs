@@ -4,16 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 
-public class SongButtonsActualButton : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
 {
     public SongButton songButton;
     public AudioSource Music;
     private _GameManager _gm;
-
-    public void OnDeselect(BaseEventData eventData)
-    {
-        StartCoroutine(StopMusic());
-    }
 
     public void OnSelect(BaseEventData eventData)
     {
@@ -23,22 +18,12 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler, IDeselectH
         }
     }
 
-    private IEnumerator StopMusic()
-    {
-        yield return new WaitForSeconds(0.01f);
-        if (Music.isPlaying)
-        {
-            Music.Stop();
-        }
-    }
 
-    private IEnumerator ChangeSongs()
+    public IEnumerator ChangeSongs()
     {
-        yield return new WaitForSeconds(0.001f);
         if (EventSystem.current.currentSelectedGameObject == gameObject)
         {
             songButton.SaveThisButton();
-            yield return new WaitForSeconds(0.5f);
             if (_gm == null) _gm = FindFirstObjectByType<_GameManager>();
             if (_gm.allAudioSources.Count < 4)
             {
@@ -47,7 +32,12 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler, IDeselectH
                     _gm.allAudioSources.Add(source);
                 }
             }
-            StartCoroutine(LoadAndStartMusic(songButton.currentSong));
+            foreach (AudioSource source in _gm.allAudioSources)
+            {
+                source.Stop();
+            }
+            yield return new WaitForSeconds(0.1f);
+            if (EventSystem.current.currentSelectedGameObject == gameObject) StartCoroutine(LoadAndStartMusic(songButton.currentSong));
         }
     }
 
@@ -108,16 +98,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler, IDeselectH
                 Music.clip = dlHandler.audioClip;
             }
         }
-        foreach (AudioSource source in _gm.allAudioSources)
-        {
-            if (source != Music)
-            {
-                source.Stop();
-            }
-        }
         Music.time = sm.chartStartOffset;
         Music.Play();
-
-        Debug.Log($"[GameManager] Music started at time 0, notes have offset applied");
     }
 }

@@ -53,6 +53,7 @@ public class HoldNote : MonoBehaviour
 
     void Start()
     {
+        _gm = FindFirstObjectByType<_GameManager>();
         if (Body != null)
         {
             bodyRenderer = Body.GetComponent<SpriteRenderer>();
@@ -74,7 +75,6 @@ public class HoldNote : MonoBehaviour
             var s = Head.transform.localScale;
             s.x = BodyWidth;
             Head.transform.localScale = s;
-            _gm = FindFirstObjectByType<_GameManager>();
             if (_gm.taco)
             {
                 SpriteRenderer sr = Head.GetComponent<SpriteRenderer>();
@@ -122,8 +122,6 @@ public class HoldNote : MonoBehaviour
             if (Head != null)
             {
                 Head.transform.localEulerAngles += new Vector3(0, 0, 5);
-                if (sr.sprite != Body.GetComponent<Note>().tacoSr.sprite)
-                    sr.sprite = Body.GetComponent<Note>().tacoSr.sprite;
             }
         }
 

@@ -23,6 +23,7 @@ public class NoteSpawner : MonoBehaviour
     public GameObject NotePrefab_TypeB; // lanes 1,2
     public GameObject NotePrefab_TypeC; // lane 4
     public GameObject NotePrefab_TypeD; // lane 5
+    public SpriteRenderer tacoSr; 
 
     [Header("Hold Prefabs by Lane Group")]
     public GameObject HoldBodyPrefab_TypeA;
@@ -61,6 +62,11 @@ public class NoteSpawner : MonoBehaviour
 
         if (gm != null)
         {
+            if (gm.taco)
+            {
+                NotePrefab_TypeA.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
+                NotePrefab_TypeB.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
+            }
             if (playerID == 1)
             {
                 if (gm.p1 != null)

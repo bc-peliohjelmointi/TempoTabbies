@@ -29,6 +29,7 @@ public class HoldNote : MonoBehaviour
 
     [Header("Body Settings")]
     public float BodyWidth = 0.25f;
+    public bool swipe;
 
     private SpriteRenderer bodyRenderer;
     private Gamepad gamepad;
@@ -75,11 +76,6 @@ public class HoldNote : MonoBehaviour
             var s = Head.transform.localScale;
             s.x = BodyWidth;
             Head.transform.localScale = s;
-            if (_gm.taco)
-            {
-                SpriteRenderer sr = Head.GetComponent<SpriteRenderer>();
-                sr.sprite = Body.GetComponent<Note>().tacoSr.sprite;
-            }
         }
 
         // --- Robust fallback binding for singleplayer ---
@@ -119,7 +115,7 @@ public class HoldNote : MonoBehaviour
     {
         if (_gm.taco)
         {
-            if (Head != null)
+            if (Head != null && !swipe)
             {
                 Head.transform.localEulerAngles += new Vector3(0, 0, 5);
             }

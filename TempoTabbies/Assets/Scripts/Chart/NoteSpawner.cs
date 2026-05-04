@@ -62,11 +62,11 @@ public class NoteSpawner : MonoBehaviour
 
         if (gm != null)
         {
-            /*if (gm.taco)
+            if (gm.taco)
             {
                 NotePrefab_TypeA.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
                 NotePrefab_TypeB.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
-            }*/
+            }
             if (playerID == 1)
             {
                 if (gm.p1 != null)
@@ -253,6 +253,7 @@ public class NoteSpawner : MonoBehaviour
                         hold.Music = Music;
                         hold.HitLine = HitLine;
                         hold.Lane = noteData.lane;
+                        if (gm.taco && (hold.Lane == 4 || hold.Lane == 5)) hold.swipe = true;
 
                         GameObject headPrefab = GetTapPrefabForLane(noteData.lane);
                         GameObject bodyPrefab = GetHoldBodyPrefabForLane(noteData.lane);

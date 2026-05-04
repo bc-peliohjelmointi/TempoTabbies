@@ -208,17 +208,6 @@ public class ChartSelectManager : MonoBehaviour
 
     void Update()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            if (lastSelected != EventSystem.current.currentSelectedGameObject)
-            {
-                EventSystem.current.SetSelectedGameObject(lastSelected);
-            }
-        }
-        if (lastSelected != EventSystem.current.currentSelectedGameObject)
-        {
-            lastSelected = EventSystem.current.currentSelectedGameObject;
-        }
         // Handle controller/keyboard selection hover: show score popup when a chart button is selected
         if (EventSystem.current != null)
         {
@@ -272,6 +261,11 @@ public class ChartSelectManager : MonoBehaviour
         }
         if (state == State.bigButton)
         {
+            Mouse mouse = Mouse.current;
+            if (mouse.leftButton.isPressed && state == State.bigButton)
+            {
+                StartCoroutine(GoBackToButtonWhenClick());
+            }
             foreach (PlayerScript player in _gm.players)
             {
                 submitValue = player.Submit();
@@ -291,6 +285,18 @@ public class ChartSelectManager : MonoBehaviour
         {
             foreach (PlayerScript player in _gm.players)
             {
+                Mouse mouse = Mouse.current;
+                if (Mouse.current.leftButton.wasPressedThisFrame)
+                {
+                    if (lastSelected != EventSystem.current.currentSelectedGameObject)
+                    {
+                        EventSystem.current.SetSelectedGameObject(lastSelected);
+                    }
+                }
+                if (lastSelected != EventSystem.current.currentSelectedGameObject)
+                {
+                    lastSelected = EventSystem.current.currentSelectedGameObject;
+                }
                 submitValue = player.Submit();
                 if (submitValue > 0 && timerMax <= timer)
                 {
@@ -309,6 +315,15 @@ public class ChartSelectManager : MonoBehaviour
                     timer += Time.deltaTime;
                 }
             }
+        }
+    }
+
+    public IEnumerator GoBackToButtonWhenClick()
+    {
+        yield return new WaitForSeconds(0.2f);
+        if (state == State.bigButton)
+        {
+            EventSystem.current.SetSelectedGameObject(GameObject.Find(_gm.savedButtonName).transform.GetChild(0).gameObject);
         }
     }
 

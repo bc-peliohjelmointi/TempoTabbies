@@ -2640,10 +2640,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4231889004453813177, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7194363974656373455, guid: 3b685ff2a04560645b27b949f0f5c4fa, type: 3}
       propertyPath: m_Name
       value: Tutorial
@@ -4696,9 +4692,7 @@ MonoBehaviour:
   rightStickLane: 5
   hitlines: {fileID: 1137812608}
   AcceptKeyboard: 1
-  motorOn: 0
   playerNumber: 1
-  _gm: {fileID: 0}
   gamepadOn: 0
 --- !u!4 &1509357026
 Transform:
@@ -4766,8 +4760,8 @@ MonoBehaviour:
   hitManager: {fileID: 1509357025}
   NotePrefab_TypeA: {fileID: 4250342097177189302, guid: 0b408fd592630f645ac2e90350732862, type: 3}
   NotePrefab_TypeB: {fileID: 4778064962251987020, guid: 004a5be27d97c4748bf7e478bc692eaa, type: 3}
-  NotePrefab_TypeC: {fileID: 7214182099033442407, guid: 6899dc707caa94d4c8e406d17e724e2e, type: 3}
-  NotePrefab_TypeD: {fileID: 2909949394380897542, guid: 118983424ce07184cb57c5e778b7c27c, type: 3}
+  NotePrefab_TypeC: {fileID: 7214182099033442407, guid: da3c6e31396a8044c93b7b23db7ea7c3, type: 3}
+  NotePrefab_TypeD: {fileID: 2909949394380897542, guid: 5f7bf95e180d3d94291cbbf37de465e0, type: 3}
   HoldBodyPrefab_TypeA: {fileID: 7616786001258505359, guid: 1dbe7007570613a42b24c4acefdcc6a1, type: 3}
   HoldBodyPrefab_TypeB: {fileID: 3601753205922264076, guid: c9d229bdccb52c0498b0e338e8d82b73, type: 3}
   HoldBodyPrefab_TypeC: {fileID: 6957338224734186665, guid: 482e4ab6a5e93df48b02eb4e2a8c8f07, type: 3}
@@ -6802,7 +6796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6417720536121199590, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
       propertyPath: m_Navigation.m_Mode
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6417720536121199590, guid: 7ee550d5b7cbafb4aa0a09feb8601dd3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

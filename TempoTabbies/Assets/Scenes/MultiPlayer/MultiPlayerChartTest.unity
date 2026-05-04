@@ -5684,9 +5684,7 @@ MonoBehaviour:
   rightStickLane: 5
   hitlines: {fileID: 1421990812}
   AcceptKeyboard: 1
-  motorOn: 0
   playerNumber: 2
-  _gm: {fileID: 0}
   gamepadOn: 0
 --- !u!4 &925474175
 Transform:
@@ -9252,9 +9250,7 @@ MonoBehaviour:
   rightStickLane: 5
   hitlines: {fileID: 1137812608}
   AcceptKeyboard: 1
-  motorOn: 0
   playerNumber: 1
-  _gm: {fileID: 0}
   gamepadOn: 0
 --- !u!4 &1509357026
 Transform:
@@ -11500,14 +11496,6 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 30
       objectReference: {fileID: 0}
-    - target: {fileID: 300314379256428027, guid: 5d96f08d968351d4c83dd14511f57880, type: 3}
-      propertyPath: m_margin.x
-      value: -22.235481
-      objectReference: {fileID: 0}
-    - target: {fileID: 300314379256428027, guid: 5d96f08d968351d4c83dd14511f57880, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1627009134878018511, guid: 5d96f08d968351d4c83dd14511f57880, type: 3}
       propertyPath: m_margin.x
       value: -11.537437
@@ -11527,10 +11515,6 @@ PrefabInstance:
     - target: {fileID: 4740480554605813001, guid: 5d96f08d968351d4c83dd14511f57880, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5637333404452526256, guid: 5d96f08d968351d4c83dd14511f57880, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 261
       objectReference: {fileID: 0}
     - target: {fileID: 7491505947351331608, guid: 5d96f08d968351d4c83dd14511f57880, type: 3}
       propertyPath: m_margin.x

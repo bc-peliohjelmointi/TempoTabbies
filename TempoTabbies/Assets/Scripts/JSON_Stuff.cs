@@ -122,25 +122,9 @@ public class JSON_Stuff : MonoBehaviour
         player.scrollSpeed = scrollSpeed;
         player.assistTick = assistTick;
         player.showButtons = showButtons;
-        if (button1 == null)
-        {
-            button1 = "leftTrigger";
-        }
         player.button1 = button1;
-        if (button2 == null)
-        {
-            button2 = "leftShoulder";
-        }
         player.button2 = button2;
-        if (button3 == null)
-        {
-            button3 = "rightShoulder";
-        }
         player.button3 = button3;
-        if (button4 == null)
-        {
-            button4 = "rightTrigger";
-        }
         player.button4 = button4;
         player.key1 = key1;
         player.key2 = key2;

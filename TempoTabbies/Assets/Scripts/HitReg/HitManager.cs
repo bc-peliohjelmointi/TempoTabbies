@@ -130,7 +130,7 @@ public class HitManager : MonoBehaviour
         }
         else if (playerNumber == 2)
         {
-            if (_gm.p2.inputDevice is Gamepad)
+            if (_gm.p2.inputDevice is Keyboard)
             {
                 assignedGamepad = ConvertToGamepad(_gm.p2.inputDevice);
                 if (_gm.p2.button4 == null)
@@ -269,177 +269,139 @@ public class HitManager : MonoBehaviour
 
         if (_gm != null)
         {
-            if (playerNumber == 1)
+            var ps = playerNumber == 1 ? _gm.p1 : _gm.p2;
+            if (ps != null)
             {
-                if (button1 == null)
+                Debug.Log($"HitManager(player {playerNumber}) PlayerScript present: playerName={ps.name} inputDevice={(ps.inputDevice != null ? ps.inputDevice.displayName : "null")}");
+                // Attempt to bind assignedGamepad from the PlayerScript device
+                if (assignedGamepad == null && ps.inputDevice != null)
                 {
-                    button1 = _gm.p1.button1;
-                    button2 = _gm.p1.button2;
-                    button3 = _gm.p1.button3;
-                    button4 = _gm.p1.button4;
-                }
-                if (key1 == null)
-                {
-                    key1 = _gm.p1.key1;
-                    key2 = _gm.p1.key2;
-                    key3 = _gm.p1.key3;
-                    key4 = _gm.p1.key4;
-                    swipeLeft = _gm.p1.swipeLeft;
-                    swipeRight = _gm.p1.swipeRight;
-                }
-            }
-            else if (playerNumber == 2)
-            {
-                if (button1 == null)
-                {
-                    button1 = _gm.p2.button1;
-                    button2 = _gm.p2.button2;
-                    button3 = _gm.p2.button3;
-                    button4 = _gm.p2.button4;
-                }
-                if (button1 == null)
-                {
-                    key1 = _gm.p2.key1;
-                    key2 = _gm.p2.key2;
-                    key3 = _gm.p2.key3;
-                    key4 = _gm.p2.key4;
-                    swipeLeft = _gm.p2.swipeLeft;
-                    swipeRight = _gm.p2.swipeRight;
-                }
-                var ps = playerNumber == 1 ? _gm.p1 : _gm.p2;
-                if (ps != null)
-                {
-                    Debug.Log($"HitManager(player {playerNumber}) PlayerScript present: playerName={ps.name} inputDevice={(ps.inputDevice != null ? ps.inputDevice.displayName : "null")}");
-                    // Attempt to bind assignedGamepad from the PlayerScript device
-                    if (assignedGamepad == null && ps.inputDevice != null)
+                    var tryPad = ConvertToGamepad(ps.inputDevice);
+                    if (tryPad != null)
                     {
-                        var tryPad = ConvertToGamepad(ps.inputDevice);
-                        if (tryPad != null)
-                        {
-                            assignedGamepad = tryPad;
-                            Debug.Log($"HitManager(player {playerNumber}): bound assignedGamepad to {assignedGamepad.displayName}");
-                        }
+                        assignedGamepad = tryPad;
+                        Debug.Log($"HitManager(player {playerNumber}): bound assignedGamepad to {assignedGamepad.displayName}");
                     }
-                    // If still no assignedGamepad, try per-player index from Gamepad.all
-                    if (assignedGamepad == null && Gamepad.all.Count >= playerNumber && playerNumber > 0)
-                    {
-                        assignedGamepad = Gamepad.all[playerNumber - 1];
-                        Debug.Log($"HitManager(player {playerNumber}): fallback bound assignedGamepad to {assignedGamepad.displayName} by index");
-                    }
-
-                    // Ensure per-player ButtonControl bindings exist; SetDefaultButtons is safe to call repeatedly.
-                    if (ps.button1 == null || ps.button2 == null || ps.button3 == null || ps.button4 == null)
-                    {
-                        ps.SetDefaultButtons();
-                        Debug.Log($"HitManager(player {playerNumber}): SetDefaultButtons called, buttons: {ps.button1?.name} {ps.button2?.name} {ps.button3?.name} {ps.button4?.name}");
-                    }
-
-                    // Update our cached ButtonControls from the player script
-                    button1 ??= ps.button1;
-                    button2 ??= ps.button2;
-                    button3 ??= ps.button3;
-                    button4 ??= ps.button4;
-                    Debug.Log($"HitManager(player {playerNumber}) cached buttons: {button1?.name} {button2?.name} {button3?.name} {button4?.name}");
                 }
-            }
-
-            // Decide whether we allow falling back to any connected gamepad (singleplayer only)
-            bool singleplayerAllowAnyGamepad = _gm == null || !_gm.multiplayer;
-
-
-            gamepad = assignedGamepad ?? (singleplayerAllowAnyGamepad ? Gamepad.current : null);
-
-
-            // already coordinates ownership in multiplayer, so a simple flag check is sufficient.
-            var keyboard = AcceptKeyboard ? Keyboard.current : null;
-
-            bool AnyGamepadHas(System.Func<Gamepad, bool> pred)
-            {
-                if (!singleplayerAllowAnyGamepad) return false;
-                foreach (var gp in Gamepad.all)
+                // If still no assignedGamepad, try per-player index from Gamepad.all
+                if (assignedGamepad == null && Gamepad.all.Count >= playerNumber && playerNumber > 0)
                 {
-                    if (gp != null && pred(gp)) return true;
+                    assignedGamepad = Gamepad.all[playerNumber - 1];
+                    Debug.Log($"HitManager(player {playerNumber}): fallback bound assignedGamepad to {assignedGamepad.displayName} by index");
                 }
-                return false;
+
+                // Ensure per-player ButtonControl bindings exist; SetDefaultButtons is safe to call repeatedly.
+                if (ps.button1 == null || ps.button2 == null || ps.button3 == null || ps.button4 == null)
+                {
+                    ps.SetDefaultButtons();
+                    Debug.Log($"HitManager(player {playerNumber}): SetDefaultButtons called, buttons: {ps.button1?.name} {ps.button2?.name} {ps.button3?.name} {ps.button4?.name}");
+                }
+
+                // Update our cached ButtonControls from the player script
+                button1 ??= ps.button1;
+                button2 ??= ps.button2;
+                button3 ??= ps.button3;
+                button4 ??= ps.button4;
+                Debug.Log($"HitManager(player {playerNumber}) cached buttons: {button1?.name} {button2?.name} {button3?.name} {button4?.name}");
             }
-
-
-            // s -> lane 0, d -> lane 1, k -> lane 2, l -> lane 3
-            // space -> left swipe (lane 4), rightAlt -> right swipe (lane 5)
-            bool curLeftTriggerHeld = (button1 != null && button1.isPressed)
-                                      || (!gamepadOn && keyboard != null && key1.isPressed);
-
-            bool curLeftBumperHeld = (button2 != null && button2.isPressed)
-                                     || (!gamepadOn && keyboard != null && key2.isPressed);
-
-            bool curRightBumperHeld = (button3 != null && button3.isPressed)
-                                      || (!gamepadOn && keyboard != null && key3.isPressed);
-
-            bool curRightTriggerHeld = (button4 != null && button4.isPressed)
-                                       || (!gamepadOn && keyboard != null && key4.isPressed);
-
-            bool curStickLeftHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f))
-                                    || AnyGamepadHas(gp => gp.leftStick.ReadValue().x < -0.5f || gp.rightStick.ReadValue().x < -0.5f)
-                                    || (!gamepadOn && keyboard != null && swipeLeft.isPressed);
-
-            bool curStickRightHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f))
-                                     || AnyGamepadHas(gp => gp.leftStick.ReadValue().x > 0.5f || gp.rightStick.ReadValue().x > 0.5f)
-                                     || (!gamepadOn && keyboard != null && swipeRight.isPressed);
-
-            // Press-this-frame detection
-            bool leftTriggerPressedThisFrame = (curLeftTriggerHeld && !prevGamepadLeftTriggerHeld) || (!gamepadOn && keyboard != null && key1.wasPressedThisFrame);
-            bool leftBumperPressedThisFrame = (curLeftBumperHeld && !prevGamepadLeftShoulderHeld) || (!gamepadOn && keyboard != null && key2.wasPressedThisFrame);
-            bool rightBumperPressedThisFrame = (curRightBumperHeld && !prevGamepadRightShoulderHeld) || (!gamepadOn && keyboard != null && key3.wasPressedThisFrame);
-            bool rightTriggerPressedThisFrame = (curRightTriggerHeld && !prevGamepadRightTriggerHeld) || (!gamepadOn && keyboard != null && key4.wasPressedThisFrame);
-            bool stickLeftPressed = (curStickLeftHeld && !prevGamepadStickLeftHeld);
-            bool stickRightPressed = (curStickRightHeld && !prevGamepadStickRightHeld);
-
-
-            // Input visuals (supports both gamepad and keyboard held states)
-            if (leftTriggerObject != null)
-                leftTriggerObject.SetActive(curLeftTriggerHeld);
-            if (rightTriggerObject != null)
-                rightTriggerObject.SetActive(curRightTriggerHeld);
-            if (leftBumperObject != null)
-                leftBumperObject.SetActive(curLeftBumperHeld);
-            if (rightBumperObject != null)
-                rightBumperObject.SetActive(curRightBumperHeld);
-
-            if (leftStickObject != null)
-                leftStickObject.SetActive(curStickLeftHeld);
-            if (rightStickObject != null)
-                rightStickObject.SetActive(curStickRightHeld);
-
-            if (Music == null || Spawner == null)
-            {
-                // update previous-frame gamepad states before returning
-                UpdatePrevGamepadStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftBumperHeld, curRightBumperHeld, curStickLeftHeld, curStickRightHeld);
-                return;
-            }
-
-            float songTime = GameManager.SongTime;
-
-            // Tap / hold start detection (only on press-this-frame events)
-            if (leftTriggerPressedThisFrame) TryHit(leftTriggerLane, songTime);
-            if (leftBumperPressedThisFrame) TryHit(leftBumperLane, songTime);
-            if (rightBumperPressedThisFrame) TryHit(rightBumperLane, songTime);
-            if (rightTriggerPressedThisFrame) TryHit(rightTriggerLane, songTime);
-            if (stickLeftPressed) TryHit(leftStickLane, songTime);
-            if (stickRightPressed) TryHit(rightStickLane, songTime);
-
-            // Track stick initial press state for non-gamepad fallbacks
-            stickLeftInitialPress = curStickLeftHeld;
-            stickRightInitialPress = curStickRightHeld;
-
-            // Update hold tracking (uses held states)
-            UpdateHolds(songTime);
-
-            // Detect misses
-            CheckForMisses(songTime);
-
-            // store previous gamepad-held states for next-frame edge detection
-            UpdatePrevGamepadStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftBumperHeld, curRightBumperHeld, curStickLeftHeld, curStickRightHeld);
         }
+
+        // Decide whether we allow falling back to any connected gamepad (singleplayer only)
+        bool singleplayerAllowAnyGamepad = _gm == null || !_gm.multiplayer;
+
+
+        gamepad = assignedGamepad ?? (singleplayerAllowAnyGamepad ? Gamepad.current : null);
+
+
+        // already coordinates ownership in multiplayer, so a simple flag check is sufficient.
+        var keyboard = AcceptKeyboard ? Keyboard.current : null;
+
+        bool AnyGamepadHas(System.Func<Gamepad, bool> pred)
+        {
+            if (!singleplayerAllowAnyGamepad) return false;
+            foreach (var gp in Gamepad.all)
+            {
+                if (gp != null && pred(gp)) return true;
+            }
+            return false;
+        }
+
+
+        // s -> lane 0, d -> lane 1, k -> lane 2, l -> lane 3
+        // space -> left swipe (lane 4), rightAlt -> right swipe (lane 5)
+        bool curLeftTriggerHeld = (button1 != null && button1.isPressed)
+                                  || (!gamepadOn && keyboard != null && key1.isPressed);
+
+        bool curLeftBumperHeld = (button2 != null && button2.isPressed)
+                                 || (!gamepadOn && keyboard != null && key2.isPressed);
+
+        bool curRightBumperHeld = (button3 != null && button3.isPressed)
+                                  || (!gamepadOn && keyboard != null && key3.isPressed);
+
+        bool curRightTriggerHeld = (button4 != null && button4.isPressed)
+                                   || (!gamepadOn && keyboard != null && key4.isPressed);
+
+        bool curStickLeftHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x < -0.5f || gamepad.rightStick.ReadValue().x < -0.5f))
+                                || AnyGamepadHas(gp => gp.leftStick.ReadValue().x < -0.5f || gp.rightStick.ReadValue().x < -0.5f)
+                                || (!gamepadOn && keyboard != null && swipeLeft.isPressed);
+
+        bool curStickRightHeld = (gamepad != null && (gamepad.leftStick.ReadValue().x > 0.5f || gamepad.rightStick.ReadValue().x > 0.5f))
+                                 || AnyGamepadHas(gp => gp.leftStick.ReadValue().x > 0.5f || gp.rightStick.ReadValue().x > 0.5f)
+                                 || (!gamepadOn && keyboard != null && swipeRight.isPressed);
+
+        // Press-this-frame detection
+        bool leftTriggerPressedThisFrame = (curLeftTriggerHeld && !prevGamepadLeftTriggerHeld) || (!gamepadOn && keyboard != null && key1.wasPressedThisFrame);
+        bool leftBumperPressedThisFrame = (curLeftBumperHeld && !prevGamepadLeftShoulderHeld) || (!gamepadOn && keyboard != null && key2.wasPressedThisFrame);
+        bool rightBumperPressedThisFrame = (curRightBumperHeld && !prevGamepadRightShoulderHeld) || (!gamepadOn && keyboard != null && key3.wasPressedThisFrame);
+        bool rightTriggerPressedThisFrame = (curRightTriggerHeld && !prevGamepadRightTriggerHeld) || (!gamepadOn && keyboard != null && key4.wasPressedThisFrame);
+        bool stickLeftPressed = (curStickLeftHeld && !prevGamepadStickLeftHeld);
+        bool stickRightPressed = (curStickRightHeld && !prevGamepadStickRightHeld);
+
+
+        // Input visuals (supports both gamepad and keyboard held states)
+        if (leftTriggerObject != null)
+            leftTriggerObject.SetActive(curLeftTriggerHeld);
+        if (rightTriggerObject != null)
+            rightTriggerObject.SetActive(curRightTriggerHeld);
+        if (leftBumperObject != null)
+            leftBumperObject.SetActive(curLeftBumperHeld);
+        if (rightBumperObject != null)
+            rightBumperObject.SetActive(curRightBumperHeld);
+
+        if (leftStickObject != null)
+            leftStickObject.SetActive(curStickLeftHeld);
+        if (rightStickObject != null)
+            rightStickObject.SetActive(curStickRightHeld);
+
+        if (Music == null || Spawner == null)
+        {
+            // update previous-frame gamepad states before returning
+            UpdatePrevGamepadStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftBumperHeld, curRightBumperHeld, curStickLeftHeld, curStickRightHeld);
+            return;
+        }
+
+        float songTime = GameManager.SongTime;
+
+        // Tap / hold start detection (only on press-this-frame events)
+        if (leftTriggerPressedThisFrame) TryHit(leftTriggerLane, songTime);
+        if (leftBumperPressedThisFrame) TryHit(leftBumperLane, songTime);
+        if (rightBumperPressedThisFrame) TryHit(rightBumperLane, songTime);
+        if (rightTriggerPressedThisFrame) TryHit(rightTriggerLane, songTime);
+        if (stickLeftPressed) TryHit(leftStickLane, songTime);
+        if (stickRightPressed) TryHit(rightStickLane, songTime);
+
+        // Track stick initial press state for non-gamepad fallbacks
+        stickLeftInitialPress = curStickLeftHeld;
+        stickRightInitialPress = curStickRightHeld;
+
+        // Update hold tracking (uses held states)
+        UpdateHolds(songTime);
+
+        // Detect misses
+        CheckForMisses(songTime);
+
+        // store previous gamepad-held states for next-frame edge detection
+        UpdatePrevGamepadStates(curLeftTriggerHeld, curRightTriggerHeld, curLeftBumperHeld, curRightBumperHeld, curStickLeftHeld, curStickRightHeld);
     }
 
     private void UpdatePrevGamepadStates(bool leftTriggerHeld, bool rightTriggerHeld, bool leftBumperHeld, bool rightBumperHeld, bool stickLeftHeld, bool stickRightHeld)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 
@@ -8,6 +9,7 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
 {
     public SongButton songButton;
     public AudioSource Music;
+    public AudioMixer mixer;
     private _GameManager _gm;
 
     public void OnSelect(BaseEventData eventData)
@@ -17,13 +19,13 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
             StartCoroutine(ChangeSongs());
         }
     }
-
-
-    public IEnumerator ChangeSongs()
+    private IEnumerator ChangeSongs()
     {
+        yield return new WaitForSeconds(0.001f);
         if (EventSystem.current.currentSelectedGameObject == gameObject)
         {
             songButton.SaveThisButton();
+            yield return new WaitForSeconds(0.5f);
             if (_gm == null) _gm = FindFirstObjectByType<_GameManager>();
             if (_gm.allAudioSources.Count < 4)
             {
@@ -32,15 +34,9 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                     _gm.allAudioSources.Add(source);
                 }
             }
-            foreach (AudioSource source in _gm.allAudioSources)
-            {
-                source.Stop();
-            }
-            yield return new WaitForSeconds(0.1f);
-            if (EventSystem.current.currentSelectedGameObject == gameObject) StartCoroutine(LoadAndStartMusic(songButton.currentSong));
+            StartCoroutine(LoadAndStartMusic(songButton.currentSong));
         }
     }
-
     private IEnumerator LoadAndStartMusic(SMFile sm)
     {
         if (Music.clip == null)
@@ -98,7 +94,16 @@ public class SongButtonsActualButton : MonoBehaviour, ISelectHandler
                 Music.clip = dlHandler.audioClip;
             }
         }
+        foreach (AudioSource source in _gm.allAudioSources)
+        {
+            if (source != Music)
+            {
+                source.Stop();
+            }
+        }
         Music.time = sm.chartStartOffset;
         Music.Play();
+
+        Debug.Log($"[GameManager] Music started at time 0, notes have offset applied");
     }
 }

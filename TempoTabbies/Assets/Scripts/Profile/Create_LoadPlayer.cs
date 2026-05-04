@@ -557,7 +557,7 @@ public class Create_LoadPlayer : MonoBehaviour
             }
         }
 
-        if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert" && chosenName.text.ToLower() != "" && !chosenName.text.ToLower().Contains(".json") && !chosenName.text.ToLower().Contains("*"))
+        if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert" && chosenName.text.ToLower() != "" && !chosenName.text.ToLower().Contains(".json"))
         {
             json.SavePlayer(player, scrollSpeed, assistTick, showButtons, button1name, button2name, button3name, button4name, key1name, key2name, key3name, key4name, swipeLeftname, swipeRightname);
         }

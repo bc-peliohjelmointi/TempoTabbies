@@ -26,6 +26,7 @@ public class HoldNote : MonoBehaviour
 
     [Header("Owner HitManager (set by spawner / HitManager when starting hold)")]
     public HitManager OwnerHitManager;
+    public NoteSpawner noteSpawner;
 
     [Header("Body Settings")]
     public float BodyWidth = 0.25f;
@@ -54,7 +55,19 @@ public class HoldNote : MonoBehaviour
 
     void Start()
     {
+        if (Head != null)
+        {
+            var s = Head.transform.localScale;
+            s.x = BodyWidth;
+            Head.transform.localScale = s;
+        }
+
+
         _gm = FindFirstObjectByType<_GameManager>();
+        if (_gm.taco && !swipe)
+        {
+            BodyWidth = 0.15f;
+        }
         if (Body != null)
         {
             bodyRenderer = Body.GetComponent<SpriteRenderer>();
@@ -70,14 +83,6 @@ public class HoldNote : MonoBehaviour
             s.y = BodyWidth;
             End.transform.localScale = s;
         }
-
-        if (Head != null)
-        {
-            var s = Head.transform.localScale;
-            s.x = BodyWidth;
-            Head.transform.localScale = s;
-        }
-
         // --- Robust fallback binding for singleplayer ---
         // If OwnerHitManager wasn't provided by the spawner, try to bind a sensible HitManager now.
         if (OwnerHitManager == null)

@@ -23,7 +23,7 @@ public class NoteSpawner : MonoBehaviour
     public GameObject NotePrefab_TypeB; // lanes 1,2
     public GameObject NotePrefab_TypeC; // lane 4
     public GameObject NotePrefab_TypeD; // lane 5
-    public SpriteRenderer tacoSr; 
+    public SpriteRenderer tacoSr;
 
     [Header("Hold Prefabs by Lane Group")]
     public GameObject HoldBodyPrefab_TypeA;
@@ -67,6 +67,7 @@ public class NoteSpawner : MonoBehaviour
                 NotePrefab_TypeA.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
                 NotePrefab_TypeB.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
             }
+
             if (playerID == 1)
             {
                 if (gm.p1 != null)
@@ -253,16 +254,22 @@ public class NoteSpawner : MonoBehaviour
                         hold.Music = Music;
                         hold.HitLine = HitLine;
                         hold.Lane = noteData.lane;
-                        if (gm.taco && (hold.Lane == 4 || hold.Lane == 5)) hold.swipe = true;
 
                         GameObject headPrefab = GetTapPrefabForLane(noteData.lane);
                         GameObject bodyPrefab = GetHoldBodyPrefabForLane(noteData.lane);
                         GameObject endPrefab = GetHoldEndPrefabForLane(noteData.lane);
 
+                        
+
                         // Null-check prefabs before instantiate
                         if (headPrefab != null) hold.Head = Instantiate(headPrefab, holdRoot.transform);
                         if (bodyPrefab != null) hold.Body = Instantiate(bodyPrefab, holdRoot.transform);
                         if (endPrefab != null) hold.End = Instantiate(endPrefab, holdRoot.transform);
+
+                        if (gm.taco && (hold.Lane == 4 || hold.Lane == 5))
+                        {
+                            hold.swipe = true;
+                        }
 
                         // Assign per-player managers (score, hit effects) and owner so HoldNote uses the correct input device
                         if (hitManager != null)

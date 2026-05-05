@@ -8,7 +8,6 @@ public class Note : MonoBehaviour
     public Transform HitLine;
     public int Lane;
     public bool Hit;
-    private _GameManager _gm;
 
     private float initialX;
     private float initialZ;
@@ -38,7 +37,7 @@ public class Note : MonoBehaviour
 
             Destroy(gameObject);
         }
-        if (_gm.taco)
+        if (_GameManager.instance.taco && (Lane != 4 && Lane != 5))
         {
             gameObject.transform.localEulerAngles += new Vector3(0, 0, 5f);
         }

@@ -62,12 +62,6 @@ public class NoteSpawner : MonoBehaviour
 
         if (gm != null)
         {
-            if (gm.taco)
-            {
-                NotePrefab_TypeA.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
-                NotePrefab_TypeB.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
-            }
-
             if (playerID == 1)
             {
                 if (gm.p1 != null)
@@ -266,9 +260,13 @@ public class NoteSpawner : MonoBehaviour
                         if (bodyPrefab != null) hold.Body = Instantiate(bodyPrefab, holdRoot.transform);
                         if (endPrefab != null) hold.End = Instantiate(endPrefab, holdRoot.transform);
 
-                        if (gm.taco && (hold.Lane == 4 || hold.Lane == 5))
+                        if (hold != null && gm.taco && (hold.Lane == 4 || hold.Lane == 5))
                         {
                             hold.swipe = true;
+                        }
+                        if (hold != null && gm.taco && (hold.Lane != 4 || hold.Lane == 5))
+                        {
+                            hold.Head.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
                         }
 
                         // Assign per-player managers (score, hit effects) and owner so HoldNote uses the correct input device
@@ -295,6 +293,7 @@ public class NoteSpawner : MonoBehaviour
                 }
 
                 GameObject note = Instantiate(tapPrefab, spawnPos, Quaternion.identity, transform);
+
                 Note n = note.GetComponent<Note>();
                 if (n != null)
                 {
@@ -303,6 +302,11 @@ public class NoteSpawner : MonoBehaviour
                     n.Music = Music;
                     n.HitLine = HitLine;
                     n.Lane = noteData.lane;
+                }
+
+                if (n != null && gm.taco && (n.Lane != 4 && n.Lane != 5))
+                {
+                    n.gameObject.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
                 }
 
                 nextIndex++;

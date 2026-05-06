@@ -264,7 +264,7 @@ public class NoteSpawner : MonoBehaviour
                         {
                             hold.swipe = true;
                         }
-                        if (hold != null && gm.taco && (hold.Lane != 4 || hold.Lane == 5))
+                        if (hold != null && gm.taco && (hold.Lane != 4 || hold.Lane != 5))
                         {
                             hold.Head.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
                         }

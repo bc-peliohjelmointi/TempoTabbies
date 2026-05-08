@@ -1108,6 +1108,16 @@ MonoBehaviour:
   saveButton: {fileID: 8616304064382520590}
   startingSection: {fileID: 1923216715}
   buttonEditSection: {fileID: 327387176}
+  button1name: 
+  button2name: 
+  button3name: 
+  button4name: 
+  key1name: 
+  key2name: 
+  key3name: 
+  key4name: 
+  swipeLeftname: 
+  swipeRightname: 
   button1Image: {fileID: 337499959}
   button2Image: {fileID: 450940909}
   button3Image: {fileID: 823420844}
@@ -7662,7 +7672,7 @@ RectTransform:
   m_GameObject: {fileID: 1780314254}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1898121151}

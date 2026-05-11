@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f952303900c380f439cfb4825c6b839e
+guid: 1a1ea544a7aebc54cb5363553fa7944f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3162314982296581764
-    second: DiskoCatENG_0
+      213: 5500457932408372533
+    second: DISCOCAT1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DiskoCatENG_0
+      name: DISCOCAT1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c79015c37433d14d0800000000000000
-      internalID: -3162314982296581764
+      spriteID: 53d3e2bc85d855c40800000000000000
+      internalID: 5500457932408372533
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DiskoCatENG_0: -3162314982296581764
+      DISCOCAT1_0: 5500457932408372533
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1047,7 +1047,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &364683405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3674,7 +3674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 148.7, y: 185}
+  m_AnchoredPosition: {x: 153, y: 185}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1103337646
@@ -3847,7 +3847,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 148.7, y: 185}
+  m_AnchoredPosition: {x: 152.99998, y: 185}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1137396723
@@ -4337,7 +4337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1375990339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5493,7 +5493,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5907,7 +5907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1848776546
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7212,6 +7212,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1431055408}
     m_Modifications:
+    - target: {fileID: 638168810875428695, guid: 570418b52274b5d4bae1a9f282f93317, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -66.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8271941474992468312, guid: 570418b52274b5d4bae1a9f282f93317, type: 3}
       propertyPath: m_Name
       value: ProgressBar
@@ -7385,7 +7389,6 @@ SceneRoots:
   - {fileID: 797076457}
   - {fileID: 319012139}
   - {fileID: 1679093608}
-  - {fileID: 967665397}
   - {fileID: 275084307}
   - {fileID: 6521355102287448771}
   - {fileID: 804341108}

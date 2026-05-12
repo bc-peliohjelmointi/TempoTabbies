@@ -37,9 +37,13 @@ public class WhatCardIsActive : MonoBehaviour
             KukaPelaajaPartyModessa();
             korttiKuva.sprite = PelaajanKortti.icon;
         }
-        if (gameManager.crazy == true) 
+        else if (gameManager.crazy == true) 
         {
             korttiKuva.sprite = CrazyModeEverything;
+        }
+        else
+        {
+            gameObject.SetActive(false);
         }
         // jos perus mode on pohja kortti
         // jos crazy mode on erikois kortti

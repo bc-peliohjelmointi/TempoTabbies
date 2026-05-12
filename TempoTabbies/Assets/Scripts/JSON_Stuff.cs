@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
 
 // Placehodler for the PlayerScript things
 [Serializable]

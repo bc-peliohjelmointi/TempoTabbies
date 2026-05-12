@@ -559,6 +559,23 @@ public class Create_LoadPlayer : MonoBehaviour
 
         if (chosenName.text.ToLower() != "name of profile" && chosenName.text.ToLower() != "beginner" && chosenName.text.ToLower() != "seasoned" && chosenName.text.ToLower() != "expert" && chosenName.text.ToLower() != "" && !chosenName.text.ToLower().Contains(".json"))
         {
+            Debug.LogError(button1name);
+            if (button1name == "" || button4name == "")
+            {
+                button1name = "leftTrigger";
+                button2name = "leftShoulder";
+                button3name = "rightShoulder";
+                button4name = "rightTrigger";
+            }
+            if (key1name == "" || key4name == "")
+            {
+                key1name = "A";
+                key2name = "S";
+                key3name = "K";
+                key4name = "L";
+                swipeLeftname = "Space";
+                swipeRightname = "RightAlt";
+            }
             json.SavePlayer(player, scrollSpeed, assistTick, showButtons, button1name, button2name, button3name, button4name, key1name, key2name, key3name, key4name, swipeLeftname, swipeRightname);
         }
         else

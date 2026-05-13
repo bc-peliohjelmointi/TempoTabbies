@@ -10,6 +10,7 @@ public class ScorePopupManager : MonoBehaviour
     [Header("UI References")]
     public GameObject panelRoot;
     public TMP_Text headerText;
+    public TMP_Text artistText;
     public TMP_Text contentText;
     public TMP_Text gradetext;
     public TMP_Text cleartypetext;
@@ -42,7 +43,8 @@ public class ScorePopupManager : MonoBehaviour
         if (chartManager == null) chartManager = FindFirstObjectByType<ChartSelectManager>();
     }
 
-    public void ShowScores(string mapName, string difficulty)
+    // Accept artist as an optional parameter so callers that have the SMFile can pass Artist directly.
+    public void ShowScores(string mapName, string difficulty, string artist = null)
     {
         Debug.Log($"[ScorePopupManager] ShowScores called for {mapName} / {difficulty}");
         if (panelRoot == null)
@@ -69,7 +71,10 @@ public class ScorePopupManager : MonoBehaviour
         }
 
         if (headerText != null)
-            headerText.text = $"{mapName} - {difficulty}";
+            headerText.text = $"{mapName}";
+
+        if (artistText != null)
+            artistText.text = artist ?? string.Empty;
 
         if (entries == null || entries.Count == 0)
         {
@@ -231,7 +236,8 @@ public class ScorePopupManager : MonoBehaviour
 
     private void Update()
     {
-        if (chartManager.state == ChartSelectManager.State.bigButton)
+        if (chartManager == null) chartManager = FindFirstObjectByType<ChartSelectManager>();
+        if (chartManager != null && chartManager.state == ChartSelectManager.State.bigButton)
         {
             Debug.Log("[ScorePopupManager] Hide called");
             if (panelRoot != null) panelRoot.SetActive(false);
@@ -240,7 +246,8 @@ public class ScorePopupManager : MonoBehaviour
 
     public void Hide()
     {
-        if (chartManager.state == ChartSelectManager.State.bigButton)
+        if (chartManager == null) chartManager = FindFirstObjectByType<ChartSelectManager>();
+        if (chartManager != null && chartManager.state == ChartSelectManager.State.bigButton)
         {
             Debug.Log("[ScorePopupManager] Hide called");
             if (panelRoot != null) panelRoot.SetActive(false);

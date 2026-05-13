@@ -46,7 +46,8 @@ public class ChartButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
             }
         }
 
-        mgr.ShowScores(m, d);
+        // Pass song.Artist when available so ScorePopupManager can show artist text
+        mgr.ShowScores(m, d, song != null ? song.Artist : null);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -84,7 +85,8 @@ public class ChartButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExi
             return;
         }
 
-        mgr.ShowScores(m, d);
+        // Pass song.Artist when available so ScorePopupManager can show artist text
+        mgr.ShowScores(m, d, song != null ? song.Artist : null);
     }
 
     public void HoverExit()

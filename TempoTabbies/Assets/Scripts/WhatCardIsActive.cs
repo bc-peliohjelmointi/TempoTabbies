@@ -37,7 +37,7 @@ public class WhatCardIsActive : MonoBehaviour
             KukaPelaajaPartyModessa();
             korttiKuva.sprite = PelaajanKortti.icon;
         }
-        else if (gameManager.crazy == true) 
+         if (gameManager.crazy == true) 
         {
             korttiKuva.sprite = CrazyModeEverything;
         }

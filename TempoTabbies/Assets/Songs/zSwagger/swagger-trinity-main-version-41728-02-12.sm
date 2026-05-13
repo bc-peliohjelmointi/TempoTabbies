@@ -7,8 +7,8 @@
 #GENRE:;
 #CREDIT:;
 #MUSIC:swagger-trinity-main-version-41728-02-12.wav;
-#BANNER:_banner.png;
-#BACKGROUND:_stagefile.png;
+#BANNER:_banner.jpg;
+#BACKGROUND:_stagefile.jpg;
 #CDTITLE:;
 #SAMPLESTART:0.000000;
 #SAMPLELENGTH:0.000000;
@@ -1671,7 +1671,7 @@
      dance-solo:
      :
      Challenge:
-     18:
+     200:
      0,0,0,0,0:
 000000
 000000
@@ -2387,7 +2387,7 @@
      dance-solo:
      :
      Edit:
-     20:
+     200:
      0,0,0,0,0:
 000000
 000000

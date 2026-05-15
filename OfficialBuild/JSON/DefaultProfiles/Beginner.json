@@ -1,0 +1,15 @@
+{
+    "scrollSpeed": 5.0,
+    "assistTick": true,
+    "showButtons": true,
+    "button1": "leftTrigger",
+    "button2": "leftShoulder",
+    "button3": "rightShoulder",
+    "button4": "rightTrigger",
+    "key1": "A",
+    "key2": "S",
+    "key3": "K",
+    "key4": "L",
+    "swipeLeft": "Space",
+    "swipeRight": "RightAlt"
+}

@@ -10,8 +10,8 @@
 #BANNER:_banner.png;
 #BACKGROUND:_stagefile.png;
 #CDTITLE:;
-#SAMPLESTART:0.000000;
-#SAMPLELENGTH:0.000000;
+#SAMPLESTART:6.000000;
+#SAMPLELENGTH:12.000000;
 #SELECTABLE:YES;
 #OFFSET:0.036045;
 #BPMS:0.000000=110.000000;
@@ -23,7 +23,7 @@
      dance-solo:
      :
      Beginner:
-     1:
+     5:
      0,0,0,0,0:
 000000
 000000
@@ -273,7 +273,7 @@
      dance-solo:
      :
      Medium:
-     1:
+     8:
      0,0,0,0,0:
 000000
 000000
@@ -867,7 +867,7 @@
      dance-solo:
      :
      Hard:
-     1:
+     12:
      0,0,0,0,0:
 000000
 000000
@@ -1521,7 +1521,7 @@
      dance-solo:
      :
      Challenge:
-     1:
+     17:
      0,0,0,0,0:
 000000
 000000

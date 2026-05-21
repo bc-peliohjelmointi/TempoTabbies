@@ -165,6 +165,7 @@ public class GameEndManager : MonoBehaviour
         yield return StartCoroutine(FadeFromBlack());
 
         gameEnded = true;
+        EventSystem.current.SetSelectedGameObject(returnButton);
     }
 
     private IEnumerator FadeMusic()

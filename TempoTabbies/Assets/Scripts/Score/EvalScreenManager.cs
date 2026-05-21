@@ -84,14 +84,14 @@ public class EvalScreenManager : MonoBehaviour
         SetupScoreDisplay();
         SetupNavigation();
 
-        if (initialSelectedButton != null)
+        if (returnButton != null)
             StartCoroutine(SetInitialSelection());
     }
 
     private IEnumerator SetInitialSelection()
     {
         yield return new WaitForEndOfFrame();
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(initialSelectedButton);
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(returnButton.gameObject);
     }
 
     public void SetupSongInfo()

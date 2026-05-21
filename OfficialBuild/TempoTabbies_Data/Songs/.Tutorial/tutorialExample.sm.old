@@ -7,8 +7,8 @@
 #GENRE:;
 #CREDIT:;
 #MUSIC:tutorialExample.wav;
-#BANNER:;
-#BACKGROUND:;
+#BANNER:_banner.png;
+#BACKGROUND:_stagefile.png;
 #CDTITLE:;
 #SAMPLESTART:0.000000;
 #SAMPLELENGTH:0.000000;

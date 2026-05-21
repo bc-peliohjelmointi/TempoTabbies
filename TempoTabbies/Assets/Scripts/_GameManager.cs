@@ -87,6 +87,8 @@ public class _GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         if (instance == null)
         {
             instance = this;

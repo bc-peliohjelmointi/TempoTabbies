@@ -11,7 +11,7 @@ public class VoidCatImage : MonoBehaviour
         {
             if (gm.p1.scrollSpeed > 0 && gm.p1.scrollSpeed < 5)
             {
-                gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, -60, gameObject.transform.localPosition.z);
+                gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, -80, gameObject.transform.localPosition.z);
             }
             else if (gm.p1.scrollSpeed >= 5 && gm.p1.scrollSpeed < 8)
             {

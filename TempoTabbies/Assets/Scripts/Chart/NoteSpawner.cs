@@ -268,6 +268,10 @@ public class NoteSpawner : MonoBehaviour
                         {
                             hold.Head.GetComponent<SpriteRenderer>().sprite = tacoSr.sprite;
                         }
+                        else
+                        {
+                            hold.swipe = true;
+                        }
 
                         // Assign per-player managers (score, hit effects) and owner so HoldNote uses the correct input device
                         if (hitManager != null)

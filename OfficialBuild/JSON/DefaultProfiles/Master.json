@@ -1,7 +1,7 @@
 {
     "scrollSpeed": 9.0,
-    "assistTick": false,
-    "showButtons": false,
+    "assistTick": true,
+    "showButtons": true,
     "button1": "leftTrigger",
     "button2": "leftShoulder",
     "button3": "rightShoulder",

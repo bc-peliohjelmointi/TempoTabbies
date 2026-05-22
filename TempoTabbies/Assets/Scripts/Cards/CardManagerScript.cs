@@ -22,6 +22,7 @@ public class CardManagerScript : MonoBehaviour
 
     private int player = 0;
     private float submit;
+    public MenuAnimations anims;
 
     [Header("UI asiat")]
     public TextMeshProUGUI ValittuPelaaja;//UI teksti joka kertoo pelaajan vuoron
@@ -172,6 +173,14 @@ public class CardManagerScript : MonoBehaviour
     }
     private void Update()
     {
+        foreach (PlayerScript player in gm.players)
+        {
+            if (player.Submit() > 0)
+            {
+                anims.scene = "MainMenu";
+                anims.PawStB();
+            }
+        }
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (lastSelected != EventSystem.current.currentSelectedGameObject)

@@ -14,7 +14,7 @@ public class WhatCardIsActive : MonoBehaviour
     {
         gameManager = FindFirstObjectByType<_GameManager>();  //mikä mode    bool joka kattoo modet
         playerScript = FindFirstObjectByType<PlayerScript>();  // mikä kortti      EI Tarvii
-        
+
     }
     void KukaPelaajaPartyModessa()
     {
@@ -32,12 +32,12 @@ public class WhatCardIsActive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.party == true)
+        if (gameManager.party == true)
         {
             KukaPelaajaPartyModessa();
             korttiKuva.sprite = PelaajanKortti.icon;
         }
-        if (gameManager.crazy == true) 
+        if (gameManager.crazy == true)
         {
             korttiKuva.sprite = CrazyModeEverything;
         }

@@ -78,19 +78,19 @@ public class SongButton : MonoBehaviour
 
             if (chart.Difficulty == "Beginner")
             {
-                txt.text = $"EZ ({chart.Meter})";
+                txt.text = $"Easy       ({chart.Meter})";
             }
             else if (chart.Difficulty == "Medium")
             {
-                txt.text = $"NM ({chart.Meter})";
+                txt.text = $"Normal ({chart.Meter})";
             }
             else if (chart.Difficulty == "Hard")
             {
-                txt.text = $"HD ({chart.Meter})";
+                txt.text = $"Hard ({chart.Meter})";
             }
             else if (chart.Difficulty == "Challenge")
             {
-                txt.text = $"EX ({chart.Meter})";
+                txt.text = $"Extreme ({chart.Meter})";
             }
             else
             {
